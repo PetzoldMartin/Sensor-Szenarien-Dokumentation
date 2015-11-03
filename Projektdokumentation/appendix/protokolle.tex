@@ -1,0 +1,270 @@
+\addtocontents{toc}{\protect\contentsline{chapter}{Anhang}{}{}}
+
+\chapter{Protokolle der Meetings}
+\label{[chap:protokolle]}
+
+\section{1. Treffen (02.10.15)}
+\begin{itemize}
+	\item bisherige Steuerung/Kontrolle von Smart-Home Geräten im Haus durch simple Zeit-/Anwesenheitssteuerung
+	\item Probleme und Vorgaben:
+	\begin{itemize}
+		\item Beeinflussung des Systems von einer zweiten Person zur gleichen Zeit
+		\item momentan existieren nur eine Person Steuerungskonzepte
+		\item erarbeiten von Konzepten für mehrere Personen
+		\item Wechselwirkung in der Beeinflussung des Systems z.B.: äußere Person beeinflusst Dinge die anwesende Person/en beeinflussen
+		\item Besprochene Beispiele Jalousie-Schaltung, Feuermelder
+		\item (Feedback von Systemänderungen an die Anwesenden Person) Feedback an Auslöser des Ereignisses
+		\item Feedback über eingebaute Geräte Licht/Audio Effekte eventuell
+		\item Interaktion durch Signale und vorhandene Schalter etc.
+		\item Generationenkonflikt daher nicht Telefon/Smartphone fest anbinden
+		\item geringe Kosten Massenmarkt/Low-Budget Bereich
+		\item ZUno Projekt
+	\end{itemize}
+	
+	\item Kreativität gefragt
+	\item Ziel: Idealfall Szenarien mit praktischer Demonstration, sodass präsentierbar
+	\item Analyse des Systems
+	\item Z-Wave.eu \textrightarrow Hohenstein
+	\item Z-Wave.me \textrightarrow Schweiz, Deutschland, Russland
+	\item ZWay \textrightarrow Softwarepaket/Server
+	\item Hersteller übergreifende Kommunikation
+	\item Simulation möglich
+	\item mögliches Vorgehen: Recherche für Sensoren
+	\item Android oder Webapp möglich (Teil von ZWay)
+	\item Informationen durch die Foren
+	\item Entwicklung zwei bis drei Szenarien das Mehr-Personen-Steuerung notwendig
+	\item Vortrags-links werden bereitgestellt
+	\item Organisatorisches
+	\begin{itemize}
+		\item Redmine Projekt
+		\item Scrum
+	\end{itemize}
+\end{itemize}
+
+\section{2. Treffen (09.10.15)}
+\begin{itemize}
+	\item Vortrag siehe Folien (Redmine)
+	\begin{itemize}
+		\item mehrere überlappende Netzwerke, wie ist das realisiert
+		\item Gruppenarbeit Sensorrecherche bis nächste Woche
+		\item Sensoren allgemein
+		\item Aktivität anhand des Stromverbrauchs erkennen, Fensterkontakt
+		\item weitere Technologien, die evtl. in Betracht gezogen werden können: Beacon, Z-Uno, RFID, NFC
+		\item zusätzliche Informationsquellen einbinden, und so mehr über einen typischen Tagesablauf lernen, z.B. Terminkalender
+		\item Vorstellung der Smart Home UI
+		\item Frage ob Z-Uno gebraucht wird oder nicht
+		\item was mit dessen Hilfe realisierbar ist
+		\item Raspberry Pi bzw. Funkmodul (RaZberry besorgen)
+		\item Z-Wave Programmierumgebung über Z-Wave oder JavaScript
+	\end{itemize}
+		
+	\item Besprechung
+	\begin{itemize}
+		\item Sensorensuche
+		\item Sensoren intelligent vernetzen
+		\item Liste mit Sensoren (Z-Wave Europe)
+		\item wie wird das mit einem Modell oder Raum
+		\item wie können Erkenntnisse anschaulich vermittelt werden
+		\item 2 Gruppen die jeweils 3 bis 5 Szenarien erarbeiten
+		\item Gruppeneinteilung
+	\end{itemize}
+\end{itemize}
+\section{3. Treffen (16.10.15)}
+
+\begin{itemize}
+	\item Vorstellung der in Gruppen erarbeiteten Szenarien
+	\item Gruppe 1:
+	\begin{itemize}
+		\item Sicherheit im Heim durch Abschaltung von Gefahrenquellen (z.B. Haartrockner) bei Verlassen der Wohnung
+		\item Gefahrenquellen (z.B. Ofen) deaktivieren, wenn keine Erwachsenen anwesend sind
+	\end{itemize}
+	\item Gruppe 2:
+	\begin{itemize}
+		\item Personenzähler je Raum anlegen, entsprechend der Personenanzahl unterschiedliche Aktionen ausführen
+		\item Personenerkennung an der Tür durch außen und innen angebrachten Bewegungsmelder, evaluieren, wie zuverlässig diese Sensoren arbeiten und Grenzfälle testen (z.B. Begrüßung im Türbereich)
+	\end{itemize}
+	\item \gls{aal}
+	\begin{itemize}
+		\item erhebliche rechtliche Unsicherheiten
+		\item technische Probleme, entsprechende Systeme können keine absolute Sicherheit bieten und nur unterstützend arbeiten
+	\end{itemize}
+	\item als weiterzuverfolgende Themen wurde identifiziert
+	\begin{itemize}
+		\item \gls{aal}
+		\item intelligente Steuerung bei Verlassen der Wohnung
+		\item Gefahrenquellen abstellen
+		\item Smartphone als Präsenzsensor (Wifi, Funkzelle)
+	\end{itemize}
+	\item weiteres Vorgehen
+	\begin{itemize}
+		\item bereits erstellte Szenarien werden auf erforderliche Komponenten (Sensoren) überprüft
+		\item Beschränkung auf Sensoren aus dem Z-Wave-Europe Produktkatalog
+		\item Szenarien konkretisieren, mit hohem Detailgrad beschreiben (einen konkreten Ablauf)
+		\item grafische Darstellung/Modellierung ausgewählter Szenarien
+	\end{itemize}
+\end{itemize}
+
+\section{4. Treffen (19.10.15)}
+\begin{itemize}
+	\item Sensoren und Aktoren für Einkauf festgelegt (siehe Dokumente \textrightarrow RelevanteSensoren.pdf)
+	\item Organisatorisches
+	\begin{itemize}
+		\item ab diese Woche: Arbeitsergebnisse einen Tag vor einem Meeting, unter Dokumente entsprechend hochladen (bis 21:00 Uhr)
+		\item die Modellierung der Szenarien ist mit dem Tool ArgoUML zu realisieren
+		\item ArgoUML ist unter Dateien zu finden (einfach herunterladen, entpacken und starten)
+		\item Dateiformat: strukturierte Textdatei (.txt ausreichend), um eine einheitliche Dokumentation zu ermöglichen alle bisherigen Szenarien sind nachzuarbeiten (siehe Ticket \#3961)
+	\end{itemize}	
+\end{itemize}
+
+\section{5. Treffen (23.10.15)}
+\begin{itemize}
+	\item Präsentation:
+	\begin{itemize}
+		\item Organisatorisches
+		\item Besprechung Handhabung Redmine
+		\item Bilder als SVG
+		\item für LaTex kompatible Dateien
+		\item Stand der Dokumentation
+		\item Gliederung der Dokumentation
+		\item Arbeitsergebnisse von jedem selbständig
+	\end{itemize}
+	\item Vorstellung Szenarien
+	\begin{itemize}
+		\item Anzahl Personen im Raum (Laube)
+		\item Gefahrenquellen abschalten (Petzold)
+		\item Wohnung schließen (Schwabe)
+		\item Präsenzsensor (Hecker)
+	\end{itemize}
+	\item Modellierung
+	\begin{itemize}
+		\item Szenario oder Software lastig
+		\item Ausbau Software und Benutzersicht der Modelle
+		\item keine Anmerkung zu den Modellen
+	\end{itemize}
+	\item Besprochene Punkte
+	\begin{itemize}
+		\item als erstes Erkennung von Personen
+		\item Feedback momentan LED an der Wand
+		\item Alarm oder so
+		\item Feedback innerhalb des Hauses
+		\item Feedback in einem Beispielszenario allgemein
+		\item Feedback muss angemessen sein und Frage wie realisiert ohne zu nerven
+		\item Beispiel: abgedunkelter Raum Lampen bei Fußballtor ansteuern
+		\item wie ist die Reaktion auf das Feedback
+		\item z.B. Ereigniss Abstellung am Lichtschalter
+		\item Z-Wave Taster als Beispiel Schalter mit mehr als 2 Zuständen der Geräte z.B. Schalter
+		\item momentane Feedbackreaktion z.B. über App.
+		\item Bedienelement und Smartphonebedienung -> Smartphone als Hardware-Ersatz für nicht vorhandene Hardwarekomponenten ("`als Krücke"')
+		\item Vorgehensplan
+		\item Modellüberarbeitung
+		\item Z-Way Module planen/realisieren/testen
+		\item Simulation mit Dummyelementen möglich
+		\item Versuchsaufbau planen/realisieren/testen
+		\item Simulation
+		\item Sensoren evaluieren
+	\end{itemize}
+	\item Besprechung
+	\begin{itemize}
+		\item Bestellung muss realisiert werden
+	\end{itemize}
+	\item Vorgehensplan
+	\begin{itemize}
+		\item für das System Anwendung mehrere Module
+		\item was sind Module \textrightarrow nur Software
+		\item Beispiel Module
+		\item Komponenten für Szenarien überlegen
+		\item Simulation lokal möglich
+		\item bis nächste Woche Planung
+		\item nächste Woche Architektur festlegen
+	\end{itemize}
+	\item Sprint 4
+	\begin{itemize}
+		\item Szenarien Modulsicht, Aufspaltung
+		\item Modellüberarbeitung
+		\item Zusammenarbeit der Szenarien festlegen
+		\item Schnittstellen zwischen Modulen ist der interner Eventbus
+		\item Nutzer Szenario Zuordnung
+	\end{itemize}
+	\item Zuordnung:
+	\begin{itemize}
+		\item Bewegungsmelder vor nach der Tür / Philip Laube
+		\item Gefahrenquellen / Patrick Hecker, Martin Petzold, Tobias Weise
+		\item Tür/Wohnung schließen / Alexander Keller, Simon Schwabe, Zarina Omurova
+	\end{itemize}
+	\item Zerteilung der Szenarien
+	\item Vorarbeit:
+	\begin{itemize}
+		\item Feedback, Versuchsaufbau (mobil)
+		\item Erfahrungsbericht von Alex
+		\item Sensorliste um Sirene erweitert? RGB-Lampe?
+		\item Bestellung mit Kundenrabatt?
+	\end{itemize}
+\end{itemize}
+
+\section{6. Treffen (30.10.15)}
+\begin{itemize}
+	\item Modelle der drei Gruppen besprechen
+	\item Nachbearbeitung Modelle abgeschlossen
+	\item Szenario Personenzählen
+	\begin{itemize}
+		\item Bewegungsmelderkonzept
+		\item Personencounter
+		\item Counter und Sensoren extra Module
+	\end{itemize}
+
+	\item Sensoren ungenau (Fibaro)
+	\item Szenario Gefahrenquelle
+	\begin{itemize}
+		\item Sequenzdiagramm für Module vorgestellt
+		\item Module selbst erklärt
+		\item Modularisierung
+		\item ungeklärt: Erkennung Erwachsener/Kind mit Sensoren schwierig!
+		\item Trennung Personenanzahl von Information, ob Erwachsener/Kind
+	\end{itemize}
+
+	\item Szenario Wohnung verschließen
+	\begin{itemize}
+		\item Konfiguration
+		\item In- und Output
+		\item Reaktion des Alarmmodus auf dieses Modul
+	\end{itemize}
+
+	\item als Beispiel im Vergleich: Fibaro System
+	\begin{itemize}
+		\item Szenario Alarmmodul und Feedback
+		\item Gliederung etc. siehe Präsentation
+		\item Funktionalität
+		\item Bose Sound System als Alarmsirene verwendet
+		\item Lampen als Alarmgeber
+		\item E-Mail Benachrichtigung
+		\item Historisierungsidee und Benutzeroberfläche
+		\item Fibaro System als Beispiel
+		\item Editor eher ungeeignet, da nicht Massenmarktauglich
+		\item Mehrbenutzer
+		\item RFID bereits verworfen
+		\item Smartphone Erkennung in Bearbeitung
+		\item Personenerkennung wird entwickelt
+	\end{itemize}
+
+	\item ist eine eigene Oberfläche zu entwickeln?
+	\begin{itemize}
+		\item Test Vorstellung einiger Module
+		\item Diskussion Oberflächenanpassung (alles neu oder nur Erweiterung?)
+		\item niedrige Priorität, erst wenn Module funktional
+	\end{itemize}
+	
+	\item Konzepte bis nächste Woche festlegen
+
+	\begin{itemize}
+		\item 05.11.2015 8:00 Uhr Einführung Modulentwicklung
+		\item neue Gruppeneinteilung
+	\end{itemize}
+
+	\item Alternative Tickets freie Auswahl
+	\begin{itemize}
+		\item Versuchsaufbau
+		\item Feedback
+	\end{itemize}
+	
+\end{itemize}
+

@@ -1,0 +1,349 @@
+\documentclass[12pt, oneside, smallheadings]{scrbook}
+
+\usepackage[a4paper, reset, left=35mm,right=15mm, lines=46]{geometry}
+\usepackage[utf8]{inputenc} % Umlaute ermöglichen
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel} % deutsche Silbentrennung
+\usepackage[numbers,square]{natbib}
+\usepackage{graphicx} % Grafiken
+\usepackage[printonlyused]{acronym}
+\usepackage{listings, marvosym}
+\usepackage{url}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs} 
+\usepackage{todonotes}
+\usepackage{xcolor}
+\usepackage{subfigure} 
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{enumitem}
+%\usepackage{dirtree}
+\usepackage{textcomp}
+\usepackage[htt]{hyphenat}
+
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+
+\usepackage{minted}
+
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}                                                                                                                                                              
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}                    
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{bookmark}
+
+\graphicspath{{img/}}
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\makeatother
+ 
+%%% Textart
+\RequirePackage{lmodern}
+\fontfamily{ptm}
+
+%%% Zeilenabstand
+\RequirePackage{setspace}  
+\onehalfspacing
+
+%%% Kopfzeile / Fußzeile
+\RequirePackage[automark]{scrpage2}
+\pagestyle{scrheadings}
+\renewcommand\chaptermark[1]{
+    \markboth{Kapitel \thechapter: #1}{}
+}
+\renewcommand\sectionmark[1]{
+    \markright{#1}
+}
+\clearscrheadfoot
+\setheadsepline{0.4pt}
+\ihead{\footnotesize\textnormal\leftmark}
+\chead{}
+\ohead{\footnotesize\textnormal\rightmark}
+
+\ifoot{}
+\cfoot[\pagemark]{\textnormal{\thepage}}
+\ofoot{}
+%%% Ende Kopfzeile / Fußzeile
+
+%%% Referenzen
+\RequirePackage{prettyref}
+\RequirePackage{titleref}
+
+% Kapitel
+\newrefformat{chap}{siehe Kapitel \ref{#1}, Seite \pageref{#1}}
+% Abschnitte
+\newrefformat{sec}{siehe Abschnitt \ref{#1}, Seite \pageref{#1}}
+% Abbildungen
+\newrefformat{fig}{siehe Abbildung \ref{#1}}
+% Tabellen
+\newrefformat{tab}{siehe Tabelle \ref{#1}}
+% Listings
+\newrefformat{lst}{siehe Listing \ref{#1}}
+
+\newcommand{\pref}[1]{\prettyref{#1}}
+\newcommand{\siehe}[1]{\prettyref{#1}}
+%%% Ende Referenzen
+
+%%% Beeinflusst die Eintragungen im Inhaltsverzeichnis
+%\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}} 
+
+%%% Glossar
+\usepackage[acronym, toc, style=long, nonumberlist, nomain]{glossaries}
+%Glossar-Übersetzungen:
+\RequirePackage{glossaries-babel}
+\newcommand{\abk}[1]{\gls{#1}}
+
+\include{precontent/abbreviation}
+\makeglossaries
+
+%\newglossaryentry{...}
+%{
+%  name=SOAP,
+%  description={...}
+%}
+%%% Ende Glossar
+
+%%% Style Listings
+\usepackage{chngcntr}% http://ctan.org/pkg/chngcntr
+\counterwithin{listing}{chapter}
+
+\begin{document}
+
+%%% Einrücken bei neuen Absatz verhindern
+%\setlength{\parindent}{0pt}
+
+%%% Titelseite
+\pdfbookmark[0]{Titelseite}{titlepage}
+\include{precontent/titlepage}
+
+\setcounter{page}{1}
+\setcounter{tocdepth}{1}
+\pagenumbering{roman}
+
+%%% Inhaltsverzeichnis
+\clearpage
+\pdfbookmark[0]{Inhaltsverzeichnis}{contents}
+\tableofcontents
+\thispagestyle{plain}
+
+%%% Glossar (Abkürzungen)
+\printglossary[type=\acronymtype, title=Akronymverzeichnis,toctitle=Akronymverzeichnis]
+% \printglossary[title=Glossar,toctitle=Glossar]
+
+%%% Tabellenverzeichnis
+% \listoftables
+% \addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+
+%%% Abbildungsverzeichnis
+% \listoffigures
+% \addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+
+%%% Listingsverzeichnis
+%\renewcommand\listoflistingscaption{Listingverzeichnis}
+%\listoflistings
+%\addcontentsline{toc}{chapter}{Listingverzeichnis}
+
+%%% Inhalt
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\pagestyle{scrheadings}
+
+\chapter{Einleitung} 
+\begin{itemize}
+	\item Zeitrahmen des Projekts
+	\item Mitarbeiter, Verantwortlichkeiten
+\end{itemize}
+
+\chapter{Projektziel}
+\begin{itemize}
+	\item aktueller Stand (Ist-Analyse)
+	\item Gegenstand, Motivation, Zielstellung des Projekts
+\end{itemize}
+
+\chapter{Vorgehensplan}
+\begin{itemize}
+	\item grober Vorgehensplan, um "`Big Picture"' nicht aus den Augen zu verlieren
+	\item agiles Vorgehen
+
+\end{itemize}
+
+\chapter{Projektverlauf}
+\begin{itemize}
+	\item welche konkreten Aufgaben wurden wann bearbeitet
+	\item Verweise auf Arbeitsergebnisse
+\end{itemize}
+
+\section{Sprint 1}
+\begin{itemize}
+	\item Zeitraum: 02.10.15 - 09.10.15
+	\item Task \#3866: Einarbeitung
+\end{itemize}
+Am 02.10.15 fand das initiale Projektmeeting statt. In einem Vortrag für die Projektmitglieder wurde die Thematik Smart Home im Allgemeinen und Z-Wave als Kommunikationsprotokoll im Speziellen vorgestellt. Dadurch sollten Kenntnisse und Wissensstand der Teammitglieder auf ein einheitliches Niveau gehoben werden. Die verschiedenen Rollen der Mitglieder im Projekt wurden verteilt und ein organisatorischer Rahmen festgelegt.
+
+Da es sich um ein Projekt mit erheblichem Forschungsanteil handelt, fiel die Entscheidung auf agiles Vorgehen und gegen eine starre Projektplanung im Voraus. Im Rahmen des Projekts wird mit Sensoren gearbeitet und zum Zeitpunkt der Initialisierung liegen noch wenige konkrete Erfahrungen im Umgang und zur Leistungsfähigkeit der Sensoren vor.
+
+Ziel des Sprints ist eine selbstständige, vertiefende Einarbeitung in die Thematik. Dieses Wissen bildet die Diskussionsgrundlage für das weitere Vorgehen.
+
+\section{Sprint 2}
+\begin{itemize}
+	\item Zeitraum: 09.10.15 - 16.10.15
+	\item Task \#3883: Multi-Personen Szenarien erarbeiten
+	\item Task \#3885: Szenarien erstellen \& diese mittels Z-Wave Komponenten realisieren
+\end{itemize}
+
+\section{Sprint 3}
+\begin{itemize}
+	\item Zeitraum: 16.10.15 - 23.10.15
+	\item Task \#3933: Sensorauswahl für die favorisierten Szenarien
+	\item Task \#3960: Modellierung der Szenarien
+	\item Task \#3961: Szenarien nacharbeiten
+\end{itemize}
+
+\section{Sprint 4}
+\begin{itemize}
+	\item Zeitraum: 23.10.15 - 30.10.15
+	\item Task \#3961: Szenarien nacharbeiten
+	\item Task \#4007: Modelle nacharbeiten
+	\item Task \#4010: Konzept für Module entwickeln
+	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
+	\item Task \#4013: Versuchsaufbau konzipieren
+\end{itemize}
+
+Während des vierten Sprints wurden die ausgewählten Szenarien und daraus resultierenden Modelle nochmals überarbeitet und konkretisiert. 
+%TODO auf Resultate verweisen
+Die Erweiterung der bestehenden Serveranwendung ist durch Module möglich. Anhand der erarbeiteten Szenarien wurden zu entwickelnde Module konzipiert und die Wechselwirkung zwischen verschiedenen Modulen analysiert. Außerdem wurde ein "`Hello World"' Modul zur Verfügung gestellt, um einen Einblick in die Modulentwicklung zu gewähren.
+
+\section{Sprint 5}
+\begin{itemize}
+	\item Zeitraum: 30.10.15 - 06.11.15
+	\item Task \#4010: Konzept für Module entwickeln
+	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
+	\item Task \#4013: Versuchsaufbau konzipieren
+	\item Task \#4065: Einarbeitung "`Entwicklung von Z-Way Modulen"'
+\end{itemize}
+
+\section{Sprint 6}
+\begin{itemize}
+	\item Zeitraum: 06.10.15 - 13.11.15
+	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
+	\item Task \#4013: Versuchsaufbau konzipieren
+\end{itemize}
+
+\chapter{Arbeitsergebnisse}
+\begin{itemize}
+	\item Ergebnisse, welche für den weiteren Verlauf relevant sind (z.B. zu realisierende Szenarien)
+	\item weiterverfolgte Szenarien
+\end{itemize}
+
+\section{Szenarien}
+
+\subsection{Effizienz und Komfort - Erkennung der Anzahl der Personen in einem Raum}
+\subsubsection{Ablauf}
+Person A geht zusammen mit Person B vom Flur in das Wohnzimmer, während Person C in die Küche geht.
+Die Lichter werden im Flur deaktiviert, im Wohnzimmer und in der Küche aktiviert.
+Person D betritt die Wohnung und wird von den Personen A und B in der Tür zum Wohnzimmer begrüßt. Zusammen gehen sie ins Wohnzimmer.
+Dabei werden zunächst die Lichter im Flur erneut aktiviert und nach der Begrüßung wieder deaktiviert.
+Nach einiger Zeit ruft Person D zum Essen und es verlassen Personen A, B und C das Wohnzimmer und gehen in die Küche.
+Sobald die letzte Person das Wohnzimmer verlassen hat werden die Lichter im Wohnzimmer deaktiviert.
+
+\subsubsection{Erforderliche Komponenten}
+\begin{itemize}
+	\item ZWay Steuereinheit
+	\item 2 x Bewegungsmelder / Fibaro 6-in-1 Sensor pro Tür
+	\item Modul zur Lichtersteuerung
+\end{itemize}
+
+\subsubsection{zur Diskussion}
+Unbekannt ob Begrüßungssituation ausreichend abgegrenzt werden kann, ohne Fehler hervorzubringen.
+Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu bestätigen bzw. vorbeigehende Personen bei geschlossener Tür zu ignorieren.
+
+\subsubsection{Modelle}
+%TODO textuelle Beschreibung der Modelle
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1]{img/Szenarien/Effizienz_Komfort_Erkennung_Anzahl_Personen.png}
+	\caption{Erkennung Anzahl Personen}
+	\label{fig:szenarienPersonenerkennung}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Szenarien/Personenerkennung_an_Tuer.png}
+	\caption{Personenerkennung an der Tür}
+	\label{fig:szenarienPersonenerkennungTür}
+\end{figure}
+
+
+\subsection{Haus bei verschließen der Haus- Wohnungstür in "`Standby"' versetzen}
+\subsubsection{Ablauf}
+Um den Komfort in ihrem Smart Home zu steigern, möchte Anne möglichst wenig Aufwand zur Steuerung des Lichts betreiben. Dazu möchte sie bei Verlassen der Wohnung nicht alle angeschalteten Lampen manuell ausschalten und überprüfen, ob Gefahrenquellen vom Stromnetz getrennt sind.
+
+Ein intelligentes, vernetztes Türschloss überträgt dazu beim Abschließen der Wohnung ein entsprechendes Signal an die zentrale Steuereinheit. Diese Steuereinheit interpretiert das Signal und schaltet alle Lampen aus. Außerdem werden vorher konfigurierte Steckdosen deaktiviert, um das Brandrisiko zu minimieren. Damit wird die Wohnung in einen "`Standby-Modus"' versetzt. Auch in diesem Fall möchte Anne nicht alle Geräte vom Stromnetz trennen, ihr Laptop soll weiterhin mit Strom versorgt und der Akku geladen werden.
+
+Befindet sich Tom noch in der Wohnung, wenn sie abschließt, soll er nicht durch die Steuerung gestört werden. Das heißt in diesem Fall wird die automatische Abschaltung nicht durchgeführt. Dazu ist es notwendig, dass verschiedene Sensoren des Systems zuverlässig erkennen, ob Personen anwesend sind. Die automatische Steuerung wird erst aktiv, wenn der letzte Bewohner die Wohnung verlässt und abschließt.
+
+\subsubsection{zur Diskussion}
+\begin{itemize}
+	\item welche Komponenten sind von Abschaltung betroffen (z.B. Lampen, Steckdosen von Wasserkocher, Kaffeemaschine, ...)
+	\item welche Komponenten sind ausgeschlossen (z.B. Kühl- und Gefrierschränke, Waschmaschinen, ...)
+\end{itemize}
+
+\subsubsection{erforderliche Komponenten}
+\begin{itemize}
+	\item Steuereinheit
+	\item vernetztes Türschloss
+	\item Sensoren zu Personenerkennung: z.B. Bewegungsmelder, Infrarot, 
+	\item schaltbare Steckdosen, evtl. mit Verbrauchserkennung
+	\item schaltbare Lampen
+\end{itemize}
+
+\subsubsection{Modellierung aus Systemsicht}
+
+\subsubsection{Modellierung aus Nutzersicht}
+
+
+
+\chapter{Fazit}
+% Ausblick, weiteres Vorgehen
+\begin{itemize}
+	\item Bewertung der Projektergebnisse
+	\item Ausblick, Erweiterungsmöglichkeiten
+\end{itemize}
+
+\newpage
+
+%\chapter{Einleitung}
+%\label{chap:einleitung}
+%Dieses Dokument soll eine Hilfestellung bei der Arbeit mit dem Funkprotokoll Z-Wave und dem Z-Way-Server sein. Zu Beginn (\prettyref{sec:z-wave}) wird ein kurzer Überblick über das Funkprotokoll Z-Wave gegeben. Für eine detailliertere technische Beschreibung des Standards sei auf das Z-Wave-Vademekum von Dr. Pätz verwiesen \cite[]{Pae14}.
+%
+%Etwas umfangreicher wird die Installation, Architektur und User Interface des Z-Way-Servers beschrieben. Der letzte Teil des Dokuments beschreibt die Nutzung der Z-Way-API und die Erweiterung der Serverfunktionalität durch die Entwicklung zusätzlicher Module.
+%
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{images/what-is-zwave.jpg}
+%	\caption{What is Z-Wave? \cite{WhatIsZWave}}
+%	\label{fig:zway-ui}
+%\end{figure}
+
+%%% Quellenverzeichnis
+%\renewcommand{\bibname}{Quellenverzeichnis}
+%\bibliography{literature/literature}{}
+%\addcontentsline{toc}{chapter}{\bibname}
+%\bibliographystyle{alphadin} %natdin
+
+%%% Anhang
+\appendix
+\include{appendix/protokolle}
+\include{appendix/szenarien}
+
+\end{document}
+
+% \acrfull{***}
+% \gls{***}
+
+% \cite[][S.~***]{***}
+% \cite[vgl.][S.~***, ***]{***}
