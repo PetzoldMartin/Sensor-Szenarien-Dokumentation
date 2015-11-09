@@ -78,7 +78,9 @@ Die Unterscheidung zwischen diesen Gerätekategorien (abzuschalten / nicht abzus
 Person A geht mit dem Smartphone, auf dem sich Android 4.3 und aktiviertes BLE\footnote{
 	Bluetooth Low Energy, kurz BLE, ist ein von Nokia neu eingeführter Funkstandard, mit dem sich Geräte im Umkreis von 10 Metern innerorts vernetzen lassen. Der Vorteil im Vergleich zum normalen Bluetooth besteht dabei besonders aus dem deutlich niedrigerem Stromverbrauch. BLE sendet im Bereich von 2,4 GHz und Beacons, die diese Technologie verwenden, haben durch den sparsamen Verbrauch je nach Anwendungsbereich meist eine Lebensdauer von 2 bis 5 Jahren, bis die Batterie ausgetauscht werden muss.} 
 befinden, vom Wohnzimmer in die Küche. Dabei trägt Person A ein Kind B auf dem Arm und dieses Kind besitzt einen Anstecker, der als Beacon fungiert und ebenfalls ein BLE Signal sendet.
+
 In der Küche befindet sich ein Smart Beacon, welcher als Bluetooth und als Wifi-Schnittstelle dient. Dieses Gerät A misst die Signalstärke der BLE-sendenden Geräte im Takt von 20ms und sendet die Messwerte mit den entsprechenden MAC-Adressen der einzelnen BLE-Geräte an das zentrale Gateway. Anhand der Signalstärke stellt das Gateway fest, dass zwei Menschen mit einer jeweils zugeordneten MAC-Adresse soeben die Küche betreten haben.
+
 Eine weitere Person C klingelt an der Wohnungstür, woraufhin Person A die Küche verlässt, um die Türe zu öffnen. Diese Raumänderung wird dem Gateway durch Gerät A mitgeteilt. Das Gateway realisiert, dass sich Kind B allein in der Küche befindet und deaktiviert alle Steckdosen, an denen kein Verbraucher angeschlossen ist und die somit eine direkte Gefahrenquelle darstellen. 
 Das Kind B beginnt in der Küche zu spielen und greift dabei aus versehen in die Steckdose. Da das Gateway jedoch erkannt hat, dass sich nur Kind B in der Küche befindet, leitet die Steckdose keinen Strom und Kind B bleibt unverletzt.
 Nachdem Person A das Gespräch an der Türe mit Person C beendet hat, kehrt sie in die Küche zurück, woraufhin das Gateway über das Gerät A abermals eine Änderungsmeldung erhält und die Geräte für den alltäglichen Gebrauch wieder reaktiviert werden.
@@ -97,3 +99,32 @@ Nachdem Person A das Gespräch an der Türe mit Person C beendet hat, kehrt sie 
 	\item wie zuverlässig ist die Erkennung anhand der Signalreichweite, ob sich eine Person im entsprechenden Raum befindet, oder nicht
 \end{itemize}
 
+\section{Ambient Assisted Living}
+\subsection{Ablauf}
+Eine Person A kümmert sich um ihre Mutter Person X. Da die Mutter schon im fortgeschrittenen Alter ist, benötigt sie viel Pflege. Zu diesem Zweck einigen sich Person A und Person X auf die Installation eines \gls{aal}-Systems. Dieses soll die Pflege erleichtern und Notsituationen von Person X erkennen helfen.
+
+Person X steht früh morgens auf und geht duschen. Die Bewegungsmelder werden aktiviert, sobald der Raum betreten wird. Daraufhin werden die Lampen angeschaltet. Im zentralen System wird vermerkt, dass Person X aufgestanden ist. Die Vitalparameter der Person werden gemessen und im zentralen Steuerungssystem gespeichert. 
+
+Wenn der Blutdruck steigt, die Sauerstoffversorgung nicht ausreichend ist (z.B. bei Bewusstlosigkeit) oder der Blutzuckerspiegel stark variiert, kann der Arzt benachrichtigt werden. Dieser kann entsprechende Maßnahmen einleiten. 
+
+Während des Duschens, kann es der Person X schlecht gehen und sie kann zu Boden fallen (z.B. Schock-/ oder Vibrationsensoren). Durch geeignete Hilfsmittel (z.B. Chip/Armband) erkennt das System, dass der Herzschlag schneller oder langsamer ist, bzw. ausgesetzt hat. Bewegungssensoren stellen fest, dass keine Aktivität mehr geschieht und CO$_2$ Sensoren können messen, wenn keine Luft mehr veratmet wird. In diesen Notfallsituationen wird das System automatisch eine Meldung an alle registrierten Personen senden und über die Situation von Person X informieren.
+
+\subsection{erforderliche Komponenten}
+\begin{itemize}
+	\item Bewegungsmelder
+	\item Deckenbeleuchtung
+	\item Schock-/Vibrationssensor
+	\item CO$_2$ Sensor
+	\item Chip/Armband
+	\item zentrales Steuerungssystem
+\end{itemize}
+
+\subsection{zur Diskussion}
+\begin{itemize}
+	\item Chip Integration/Armband(\gls{aal}) - um Gesundheitsdaten von Personen zu erhalten
+\end{itemize}
+
+\subsection{ähnliche Szenarien}
+\begin{itemize}
+	\item Personenerkennung, bei Betreten/Verlassen des Raums
+\end{itemize}
