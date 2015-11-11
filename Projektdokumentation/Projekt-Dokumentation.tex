@@ -243,6 +243,7 @@ Ziel dieses Sprints war die Einarbeitung in die Modulentwicklung für den Z-Way-
 \section{Szenarien}
 
 \subsection{Effizienz und Komfort - Erkennung der Anzahl der Personen in einem Raum}
+\emph{(Philip Laube)}
 \subsubsection{Ablauf}
 Person A geht zusammen mit Person B vom Flur in das Wohnzimmer, während Person C in die Küche geht.
 Die Lichter werden im Flur deaktiviert, im Wohnzimmer und in der Küche aktiviert.
@@ -264,22 +265,23 @@ Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu
 
 \subsubsection{Modelle}
 %TODO textuelle Beschreibung der Modelle
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=1]{img/Szenarien/Effizienz_Komfort_Erkennung_Anzahl_Personen.png}
-	\caption{Erkennung Anzahl Personen}
-	\label{fig:szenarienPersonenerkennung}
-\end{figure}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.9\textwidth]{img/Szenarien/Personenerkennung_an_Tuer.png}
-	\caption{Personenerkennung an der Tür}
-	\label{fig:szenarienPersonenerkennungTür}
-\end{figure}
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[scale=1]{img/Szenarien/Effizienz_Komfort_Erkennung_Anzahl_Personen.png}
+%	\caption{Erkennung Anzahl Personen}
+%	\label{fig:szenarienPersonenerkennung}
+%\end{figure}
+%
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{img/Szenarien/Personenerkennung_an_Tuer.png}
+%	\caption{Personenerkennung an der Tür}
+%	\label{fig:szenarienPersonenerkennungTür}
+%\end{figure}
 
 
 \subsection{Haus bei verschließen der Haus- Wohnungstür in "`Standby"' versetzen}
+\emph{(Simon Schwabe)}
 \subsubsection{Ablauf}
 Um den Komfort in ihrem Smart Home zu steigern, möchte Anne möglichst wenig Aufwand zur Steuerung des Lichts betreiben. Dazu möchte sie bei Verlassen der Wohnung nicht alle angeschalteten Lampen manuell ausschalten und überprüfen, ob Gefahrenquellen vom Stromnetz getrennt sind.
 
@@ -297,15 +299,37 @@ Befindet sich Tom noch in der Wohnung, wenn sie abschließt, soll er nicht durch
 \begin{itemize}
 	\item Steuereinheit
 	\item vernetztes Türschloss
-	\item Sensoren zu Personenerkennung: z.B. Bewegungsmelder, Infrarot, 
+	\item Sensoren zu Personenerkennung: z.B. Bewegungsmelder, Infrarot
 	\item schaltbare Steckdosen, evtl. mit Verbrauchserkennung
 	\item schaltbare Lampen
 \end{itemize}
 
-\subsubsection{Modellierung aus Systemsicht}
 
 \subsubsection{Modellierung aus Nutzersicht}
+Das Modell (\prettyref{fig:szenarienStandbyNutzersicht}) verdeutlicht die im Szenario beschriebene Interaktion des Nutzers mit dem System. Ziel des Szenarios ist es, dem Nutzer möglichst hohen Komfort zu bieten. Aus diesem Grund sind die Interaktionsmöglichkeiten des Nutzers mit dem System bewusst auf das Notwendigste beschränkt. Das Szenario wird indirekt durch den Nutzer initiiert, indem er die Wohnungstür abschließt. Auf diese Weise entsteht für die Nutzer kein Mehraufwand und keine direkte Interaktion mit dem System.
 
+Mit dem Abschließen der Tür ist die Erwartung des Nutzers verbunden, dass die Wohnung in einen Standby-Modus tritt. Sollte dies aufgrund anwesender Personen nicht möglich sein, sollte der Nutzer über ein geeignetes Mittel darüber informiert werden. Dazu kann beispielsweise eine Benachrichtigung auf das Mobiltelefon des Nutzers gesendet werden.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Szenarien/WohnungSchliessenNutzersicht.pdf}
+	\caption{Abläufe bei Verschließen der Wohnung aus Nutzersicht}
+	\label{fig:szenarienStandbyNutzersicht}
+\end{figure}
+
+\subsubsection{Modellierung aus Systemsicht}
+Die technische Modellierung (\prettyref{fig:szenarienStandby}) gestaltet sich etwas umfangreicher. Gestartet wird der Ablauf durch das Schließen des konfigurierten Schlosses. Alternativ kann auch ein Schalter an der Wohnungstür betätigt werden. Das System überprüft daraufhin, ob noch Personen in der Wohnung anwesend sind. Ist das der Fall, wird die Aktion abgebrochen und anwesende Personen werden nicht in ihren Aktivitäten beeinträchtigt. In diesem Fall kann der Nutzer, welcher die Wohnung verlassen hat, informiert werden.
+
+Wird zum Zeitpunkt des Abschließens keine anwesende Person erkannt, wird ein Timer gestartet. So lange dieser Timer aktiv ist, wird in regelmäßigen Abständen überprüft, ob Personen, bzw. Bewegungen in der Wohnung erkannt werden. Dieses Vorgehen soll die Gefahr reduzieren, dass anwesende Personen nicht wahrgenommen werden. Wird während der Laufzeit des Timers eine Person erkannt, wird die Aktion wie oben beschrieben abgebrochen.
+
+Trotz dieses Vorgehens ist nicht auszuschließen, dass Personen in der Wohnung nicht korrekt erkannt werden. Für diesen Fall kann ein zusätzlicher Feedback-Modus implementiert werden, in dem die anwesenden, nicht erkannten Personen über die anstehende Aktion informiert werden. Erfolgt kein Feedback, werden konfigurierte Geräte in den Standby-Modus versetzt.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Szenarien/WohnungSchliessen.pdf}
+	\caption{Abläufe bei Verschließen der Wohnung aus Systemsicht}
+	\label{fig:szenarienStandby}
+\end{figure}
 
 
 \chapter{Fazit}
