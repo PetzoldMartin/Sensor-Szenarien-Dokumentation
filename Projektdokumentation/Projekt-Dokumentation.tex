@@ -234,6 +234,17 @@ Ziel dieses Sprints war die Einarbeitung in die Modulentwicklung für den Z-Way-
 	\item Task \#4013: Versuchsaufbau konzipieren
 \end{itemize}
 
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Arbeitsergebnisse}
 \begin{itemize}
 	\item Ergebnisse, welche für den weiteren Verlauf relevant sind (z.B. zu realisierende Szenarien)
@@ -243,7 +254,7 @@ Ziel dieses Sprints war die Einarbeitung in die Modulentwicklung für den Z-Way-
 \section{Szenarien}
 
 \subsection{Effizienz und Komfort - Erkennung der Anzahl der Personen in einem Raum}
-\emph{(Philip Laube)}
+\emph{(von Philip Laube)}
 \subsubsection{Ablauf}
 Person A geht zusammen mit Person B vom Flur in das Wohnzimmer, während Person C in die Küche geht.
 Die Lichter werden im Flur deaktiviert, im Wohnzimmer und in der Küche aktiviert.
@@ -263,31 +274,35 @@ Sobald die letzte Person das Wohnzimmer verlassen hat werden die Lichter im Wohn
 Unbekannt ob Begrüßungssituation ausreichend abgegrenzt werden kann, ohne Fehler hervorzubringen.
 Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu bestätigen bzw. vorbeigehende Personen bei geschlossener Tür zu ignorieren.
 
-\subsubsection{Modelle}
+\subsubsection{Modellierung Erkennung der Personenanzahl}
 %TODO textuelle Beschreibung der Modelle
-%\begin{figure}[h!]
-%	\centering
-%	\includegraphics[scale=1]{img/Szenarien/Effizienz_Komfort_Erkennung_Anzahl_Personen.png}
-%	\caption{Erkennung Anzahl Personen}
-%	\label{fig:szenarienPersonenerkennung}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%	\centering
-%	\includegraphics[width=0.9\textwidth]{img/Szenarien/Personenerkennung_an_Tuer.png}
-%	\caption{Personenerkennung an der Tür}
-%	\label{fig:szenarienPersonenerkennungTür}
-%\end{figure}
+\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.8]{img/Szenarien/ErkennungAnzahlPersonen.pdf}
+	\caption{Erkennung der Personenanzahl}
+	\label{fig:szenarienPersonenerkennung}
+\end{figure}
 
+\subsubsection{Modellierung Personenerkennung an der Tür}
+\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.8]{img/Szenarien/PersonenerkennungAnTuer.pdf}
+	\caption{Personenerkennung an der Tür}
+	\label{fig:szenarienPersonenerkennungTür}
+\end{figure}
 
 \subsection{Haus bei verschließen der Haus- Wohnungstür in "`Standby"' versetzen}
-\emph{(Simon Schwabe)}
+\emph{(von Simon Schwabe)}
 \subsubsection{Ablauf}
 Um den Komfort in ihrem Smart Home zu steigern, möchte Anne möglichst wenig Aufwand zur Steuerung des Lichts betreiben. Dazu möchte sie bei Verlassen der Wohnung nicht alle angeschalteten Lampen manuell ausschalten und überprüfen, ob Gefahrenquellen vom Stromnetz getrennt sind.
 
 Ein intelligentes, vernetztes Türschloss überträgt dazu beim Abschließen der Wohnung ein entsprechendes Signal an die zentrale Steuereinheit. Diese Steuereinheit interpretiert das Signal und schaltet alle Lampen aus. Außerdem werden vorher konfigurierte Steckdosen deaktiviert, um das Brandrisiko zu minimieren. Damit wird die Wohnung in einen "`Standby-Modus"' versetzt. Auch in diesem Fall möchte Anne nicht alle Geräte vom Stromnetz trennen, ihr Laptop soll weiterhin mit Strom versorgt und der Akku geladen werden.
 
 Befindet sich Tom noch in der Wohnung, wenn sie abschließt, soll er nicht durch die Steuerung gestört werden. Das heißt in diesem Fall wird die automatische Abschaltung nicht durchgeführt. Dazu ist es notwendig, dass verschiedene Sensoren des Systems zuverlässig erkennen, ob Personen anwesend sind. Die automatische Steuerung wird erst aktiv, wenn der letzte Bewohner die Wohnung verlässt und abschließt.
+
+Der Standby-Modus wird mit Aufschließen der Wohnungstür deaktiviert. Es erscheint allerdings nicht sinnvoll, den Zustand zum Zeitpunkt des Verlassens wiederherzustellen, da die Anforderungen an Beleuchtung usw. beim Ankommen grundlegend andere als bei Verlassen der Wohnung sein können. Diese sind abhängig von der Tageszeit.
 
 \subsubsection{zur Diskussion}
 \begin{itemize}
@@ -329,6 +344,73 @@ Trotz dieses Vorgehens ist nicht auszuschließen, dass Personen in der Wohnung n
 	\includegraphics[width=0.9\textwidth]{img/Szenarien/WohnungSchliessen.pdf}
 	\caption{Abläufe bei Verschließen der Wohnung aus Systemsicht}
 	\label{fig:szenarienStandby}
+\end{figure}
+
+\subsection{Gefahrenquellen abstellen (Fibaro, CO$_2$)}
+\emph{(von Martin Petzold)}
+\subsubsection{Auslöser (opt.)}
+\begin{itemize}
+	\item Erkennung Erwachsene Person (Fibaro, CO$_2$)
+\end{itemize}
+
+\subsubsection{Vorbedingung}
+\begin{itemize}
+	\item Zuverlässige Erkennung ob Personen den Raum betreten oder Verlassen wurde bereits realisiert (Szenario Herr Laube)
+\end{itemize}
+
+\subsubsection{Ablauf}
+Das System befindet sich im Standby, d.h. alle Gefahrenquellen im Raum sind ausgeschaltet. Person X (ein Kind) betritt den Raum. Das Betreten des Raumes wir vom System erkannt, nun wird ein Vorgang gestartet der die Person als Kind oder Erwachsenen zu identifizieren. Person X wir dabei als Kind identifiziert somit bleiben die Gefahrenquellen abgeschaltet. 
+Nun betritt Person Y (ein Erwachsener) den Raum, dessen Betreten wird ebenfalls vom System erkannt. Der Erkennungsvorgang wird ein zweites mal Gestartet. das System erkennt das es sich bei einer der Beiden Personen um eine Erwachsene Person handeln muss und Schaltet die Gefahrenquellen frei so das diese benutzt werden können.
+Nach einer Weile verlässt Person Y den Raum, das System Stellt fest das sich kein erwachsener mehr im Raum befindet und schaltet nach einer gewissen Zeit den Standby Modus wieder her.
+
+\subsubsection{Alternativer Ablauf}
+Nur Person Y(ein Erwachsener)  betritt den Raum, System erkennt den Eintritt. Er wird beim Identifizierungsvorgang als Erwachsener erkannt und damit werden die Gefahrenquellen freigeschaltet.
+Nach einer Weile verlässt Person Y den Raum, das System Stellt fest das sich kein erwachsener mehr im Raum befindet und schaltet nach einer gewissen Zeit den Standby Modus wieder her.
+
+\subsubsection{erforderliche Komponenten}
+\begin{itemize}
+	\item Fibaro 6 in 1 Sensor
+	\item CO$_2$ Sensor
+	\item Z-Way-Server/Steuereinheit
+	\item 2 Bewegungsmelder zur Erkennung von Eintritt in den Raum
+	\item Schaltbare Gefahrenquelle (zur Demonstration reicht auch eine Schaltbare Signalquelle)
+\end{itemize}
+
+\subsubsection{Nachbedingung (opt.)}
+\begin{itemize}
+	\item Das System kann auch eine Regelung beinhalten das der Standby Modus irgendwann automatisch und nicht nach verlassen des Raumes Zeitgesteuert wieder hergestellt wird.
+\end{itemize}
+
+\subsubsection{zur Diskussion}
+\begin{itemize}
+	\item Abgleich mit dem Szenario zur Erkennung  Person hat den Raum betreten/verlassen
+	\item sind die Sensoren Präzise genug um den Unterschied Kind Erwachsener zu erfassen, oder kann wie im Werbevideo nur Mensch und Haustier unterschieden werden
+	\item soll die Wieder Standby Schaltung des Systems Teil des Szenarios sein
+	\item Einordnung in Umsetzbar/Nicht Umsetzbar
+\end{itemize}
+
+\subsubsection{ähnliche Szenarien}
+\begin{itemize}
+	\item Verknüpfung mit zur Erkennung  Person hat den Raum betreten/verlassen
+	\item Verknüpfung mit Haus bei verschließen der Haus- Wohnungstür in "`Standby"' versetzen als Regelung zur Herstellung des Standby Zustandes
+\end{itemize}
+
+\subsubsection{Modellierung Identifizierung Erwachsener}
+\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Szenarien/IdentifizierungErwachsene.pdf}
+	\caption{Identifizierung Erwachsener}
+	\label{fig:szenarienIdentifizierungErwachsene}
+\end{figure}
+
+\subsubsection{Modellierung Gefahrenquellen abstellen}
+\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Szenarien/GefahrenquellenAbstellen.pdf}
+	\caption{Gefahrenquellen abstellen}
+	\label{fig:szenarienGefahrenquellenAbstellen}
 \end{figure}
 
 
