@@ -166,14 +166,6 @@ Nach einer Weile verlässt Person Y den Raum, das System Stellt fest das sich ke
 	\label{fig:szenarienGefahrenquellenAbstellen}
 \end{figure}
 
-\section{Sensorevaluation}
-\begin{itemize}
-	\item Ergebnisse der Sensorevaluation (je Sensor)
-	\item Was funktioniert wie erwartet/was nicht?
-	\item Welche technischen Probleme, lassen sich diese einschränken?
-	\item Sind Probleme auf Hardware/Software zurückzuführen?
-\end{itemize}
-
 
 \section{Modulkonzeption}
 TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
@@ -264,3 +256,138 @@ Der TurnOffTimer stellt die eine Schnittstelle zum FeedbackModule her. Durch die
 \begin{itemize}
 	\item konfiguriertes Türschloss
 \end{itemize}
+
+\section{Sensorevaluation}
+\begin{itemize}
+	\item Ergebnisse der Sensorevaluation (je Sensor)
+	\item Was funktioniert wie erwartet/was nicht?
+	\item Welche technischen Probleme, lassen sich diese einschränken?
+	\item Sind Probleme auf Hardware/Software zurückzuführen?
+\end{itemize}
+
+\subsection{Fibaro Wall Plug (FGWPx-102) – Zwischenstecker}
+\subsubsection{Funktionalität}
+\begin{itemize}
+	\item ZWave kompatibler Zwischenstecker in Form eines Steckdosenadapters
+	\item Steuerung elektrischer Geräte (max. 2,5 kW)
+	\item Messung von Wirkleistung und Stromverbrauch
+	\item Anzeige über Schaltzustand und Stromverbrauch über Mehrfarben-LED-Ring
+	\item Steuerung am Gerät über Taste
+\end{itemize}
+\subsubsection{Z-Way Elemente}
+\begin{itemize}
+	\item Fibaro Wall Plug
+	\begin{itemize}
+		\item Binary Switch
+		\item Steuerung des Schaltzustandes
+	\end{itemize}
+	\item Meter Electric
+	\begin{itemize}
+		\item Sensor Multilevel
+		\item Stromverbrauch in kW
+	\end{itemize}
+	\item Sensor Power
+	\begin{itemize}
+		\item Sensor Multilevel
+		\item Wirkleistung in W
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Konfiguration}
+
+\paragraph{Immer An - Funktion}
+\begin{itemize}
+	\item Parameter 1:
+	\begin{description}
+		\item [0] aktiviert,
+		\item [1] deaktiviert
+	\end{description}
+\end{itemize}
+
+\paragraph{Der Zwischenstecker kann auf Z-Wave Netzwerk Alarm reagieren}
+\begin{description}
+	\item [Parameter 34:] Welcher Alarm soll Reaktion auslösen?
+	\begin{description}
+		\item [1] genereller Alarm
+		\item [2] Rauchalarm
+		\item [4] CO Alarm
+		\item [8] CO$_2$ Alarm
+		\item [16] Temperaturalarm
+		\item [32] Überflutungsalarm
+		\item [63] auf jeden Alarm reagieren
+	\end{description}
+	\item [Parameter 35:] Reaktion auf Alarm
+	\begin{description}
+		\item [0] keine Reaktion,
+		\item [1] Schaltzustand ein,
+		\item [2] Schaltzustand aus, zyklischer Wechsel (an/aus) jede Sekunde	
+	\end{description}
+	\item [Parameter 39:] Dauer der Reaktion
+	\begin{itemize}
+		\item 1 – 65536 Sekunden
+	\end{itemize}
+\end{description}
+
+\paragraph{Aussenden verschiedener Reports}
+\begin{description}
+	\item [Parameter 40 - 45] nur bei Änderung des Stromverbrauchs
+	\item [Parameter 47] periodisch, ohne Berücksichtigung des Stromverbrauchs
+	\begin{description}
+		\item [Parameter 40:] Sofortiger Report über Stromverbrauch (W)
+		\begin{itemize}
+			\item 1 – 100 \%
+		\end{itemize}
+		\item [Parameter 42:] Standardmäßiges Aussenden von Reports über den Stromverbrauch
+		\begin{itemize}
+			\item 1 – 100 \%
+		\end{itemize}
+		\item [Parameter 43:] Zeitintervall zum Senden eines Reports über den Stromverbrauch
+		\begin{itemize}
+			\item 1 – 254 Sekunden (bezieht sich auf Parameter 42)
+		\end{itemize}
+		\item [Parameter 45:] Änderung in der Stromaufnahme durch gesteuerte Geräte (kWh)
+		\begin{itemize}
+			\item 1 – 254 (0,01 – 2,54 kWh)
+		\end{itemize}
+		\item [Parameter 47:] Zeitintervall zwischen den Reports über die momentane Wirkleistung und den Stromverbrauch
+		\begin{itemize}
+			\item 1 – 65534 Sekunden
+			\item Erklärung: Report im Zeitintervall, ohne Änderung im Verbrauch!
+		\end{itemize}
+		\item [Parameter 49:] Messen des Eigenstromverbrauchs des Wall Plug Moduls
+		\begin{description}
+			\item [0] keine Einbeziehung des Eigenstromverbrauchs
+			\item [1] inklusive Eigenstromverbrauch
+		\end{description}
+	\end{description}
+\end{description}
+
+\paragraph{Einstellungen zu Assoziationsgruppe 2}
+\begin{description}
+	\item [Parameter 50:] Unterer Leistungsschwellwert
+	\item [Parameter 51:] Oberer Leistungsschwellwert
+	\item [Parameter 52:] Konfiguration des Verhaltens beim Überschreiten der festgelegten Leistungsschwellwerte
+\end{description}
+
+\paragraph{Farbeinstellungen}
+\begin{description}
+	\item[Parameter 60:] Leistungsschwellwert für violettes Blinken
+	\begin{itemize}
+		\item 1000 – 32000 (100 – 3200 W)
+	\end{itemize}
+	\item [Parameter 61:] LED-Ring-Farbe im Einschaltzustand
+	\item [Parameter 62:] LED-Ring-Farbe im Ausschaltzustand
+	\item [Parameter 63:] LED-Ring-Farbe bei Z-Wave-Alarmmeldung
+	\item [Parameter 61 - 63:] Farbwerte
+	\begin{description}
+		\item [1] White
+		\item [2] Red
+		\item [3] Green
+		\item [4] Blue
+		\item [5] Yellow
+		\item [6] Cyan
+		\item [7] Magenta
+		\item [8] Farbe aus
+	\end{description}
+\end{description}
+Weitere Informationen (auch technische Details) sind dem Handbuch zu entnehmen.
