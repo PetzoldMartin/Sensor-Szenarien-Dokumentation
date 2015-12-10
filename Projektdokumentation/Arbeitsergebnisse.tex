@@ -266,6 +266,8 @@ Der TurnOffTimer stellt die eine Schnittstelle zum FeedbackModule her. Durch die
 \end{itemize}
 
 \subsection{Fibaro Wall Plug (FGWPx-102) – Zwischenstecker}
+
+\emph{(von Patrick Hecker)}
 \subsubsection{Funktionalität}
 \begin{itemize}
 	\item ZWave kompatibler Zwischenstecker in Form eines Steckdosenadapters
@@ -391,3 +393,93 @@ Der TurnOffTimer stellt die eine Schnittstelle zum FeedbackModule her. Durch die
 	\end{description}
 \end{description}
 Weitere Informationen (auch technische Details) sind dem Handbuch zu entnehmen.
+
+
+\subsection{Aoetec Multisensor Sensor}
+\emph{(von Alexander Keller)}
+
+\subsubsection{Allgemein}
+Im Bereich Smarthome hat man eine riesige Auswahl von verschiedenen Sensoren. Je nach Bedarf bieten die Multisensoren verschiedene Funktionalitäten welche Bewegungen, Raumtemperatur, Licht oder andere registrieren können. Der Aeotec Sensor erfasst 6 verschiedene Messwerte. Die Sensoren messen Raumtemperatur, Lichtstärke, Luftfeuchtigkeit, Bewegung, \gls{uv}-Sensor und Vibration. Diese Werte überträgt der Multisensor mit einer drahtlosen Kommunikationsschnittstelle namens Z-Wave.
+
+In unserem Projekt kommt dieser Sensor zum Einsatz, um das Alarm Modul, Personenidentifikationsmodul und Gefahrenmodul mithilfe seiner Sensortechnik zu unterstützen. Durch seine durchaus komplexe Konfigurationsmöglichkeit kann der
+
+//TODO: wie geht's hier weiter?
+
+\subsubsection{Konfigurationsmöglichkeiten}
+Nachdem man das Gerät erfolgreich im Z-Way Home Center hinzugefügt hat, besteht die Möglichkeit den Multisensor über die Expert-UI zu konfigurieren. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/AeoScreenshot.png}
+	\caption{Übersichtsseite des Aeotec Multisensor}
+	\label{fig:sensorenAeoScreenshot}
+\end{figure}
+
+Der Z-Way Server erstellt automatisiert eine Übersichtsseite nachdem der Sensor erfolgreich hinzugefügt wurde. In diesem Reiter besteht die Möglichkeit das Gerät umzubenennen, Netzwerkstatus abzurufen, \gls{sdk} Version.
+
+Im Reiter „Configuration“ findet man alle Einstellungsmöglichkeiten die der Sensor bietet. In der nachfolgenden Tabelle, finden sie alle Konfigurationsoptionen.
+
+\begin{table}
+	\begin{longtabu} to \linewidth {
+			>{}X
+			>{}X
+			>{}X
+		}	
+		\hline
+		\textbf{Name}							& \textbf{Optionen}		& \textbf{Beschreibung} \\
+		\hline 
+		Wake Up 10 Minutes when	batteries are inserted	
+				& No \newline Yes				
+						& Der Sensor "`erwacht"' alle 10 Minuten, wenn Batterien eingelegt sind. \\ 
+
+		\hline 
+		On Time									& X Minuten	 		& Wie lang sollen die verschiedenen Sensoren den aktuellen Wert speichern bevor diese aktualisiert werden \\ 
+		\hline
+		Enable/Disable the function of motion Sensor &
+				(0) disable \newline
+				(1) enable, the current PIR sensitivity level=1. (minimum level) \newline
+				(2) enable, the current PIR sensitivity level = 2. \newline
+				(3) enable, the current PIR sensitivity level=3. \newline
+				(4) enable, the current PIR sensitivity level=4. \newline
+				(5) enable, the current PIR sensitivity level=5. (maximum level) \newline &
+						Es besteht die Möglichkeit den Bewegungssensor zu deaktivieren \& die Intensität einzustellen \\
+		\hline
+		Motion Detection &
+				(1) Send Basic Set CC. \newline
+				(2) Send Sensor Binary Report CC. &
+						Welchen Standard soll der Aeotec Sensor sende, wenn der Bewegungssensor ausgelöst wurde \\
+		\hline
+		Low Batterie Value &
+				X \% &
+						Ab welchen prozentualen Wert soll der Sensor bescheid geben, wenn der Batteriestand niedrig ist. \\
+		\hline
+		Reports for Parameter 41 – 44 &
+				(0) disable \newline
+				(1) enable &
+						Diese Funktionalität dient dazu um bestimmte Schwellenwerte in bestimmten Zeitabständen zu an den Z-Way Server zu senden. (Netzwerktraffic) \\
+		\hline
+		Humidity Automatic Report &
+				X Schwellenwert &
+						Festlegen eines Schwellenwertes für den Feuchtigkeitssensor \\
+		\hline
+		Luminance Automatic Report &
+				X Luminanz &
+						Festlegen eines Schwellenwertes für den Lichtsensor \\
+		\hline
+		Battery Automatic Report &
+				X Prozent &
+						Festlegen eines Schwellenwertes für die Batterieänderung \\
+		\hline
+		Threshold change in ultraviolet to induce an automatic report. &
+				X Schwellenwert &
+						Festlegen eines Schwellenwertes für Ultra Violettes Licht \\
+		\hline
+		Low Temperature Alarm Report &
+				(0) Disable to send the alarm report of low temperature \newline
+				(1) Enable to send the alarm report of low temperature &
+						 Bericht wenn die Temperatur unter 15 Grad fällt. \\
+						
+	\end{longtabu}
+	\caption{Config des Sensors}
+\end{table}
+
