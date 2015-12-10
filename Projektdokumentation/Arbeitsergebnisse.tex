@@ -257,6 +257,21 @@ Der TurnOffTimer stellt die eine Schnittstelle zum FeedbackModule her. Durch die
 	\item konfiguriertes Türschloss
 \end{itemize}
 
+\subsection{PersonCounterModule}
+\emph{(von Philip Laube)}
+\subsubsection{Allgemein}
+Das PersonCounterModule übernimmt die Aufgabe, die Anzahl der Personen im jeweiligen Raum zu speichern. Jede Möglichkeit einer Erkennung ob eine Person den Raum betreten oder verlassen hat kann über dieses Modul kommuniziert werden um es anderen Modulen zur Verfügung zu stellen. Dies macht dieses Modul zu einem zentralen Bestandteil.
+
+Ein PersonCounterModule enthält zusätzlich die Information für welchen Raum es bestimmt ist, somit kann es beliebig oft wiederverwendet werden.
+
+Der jeweilige Personenzähler pro Raum wird durch das Modul die dies benötigen instanziiert sofern noch keine Personenzähler für die jeweiligen Räume vorhanden sind.
+
+\subsubsection{Funktionsweise}
+Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für wichtige, für andere Module nötige Informationen der Personenanzahl. (//TODO: HIER NUR VERWEIS AUF BILD) %TODO Modell einfügen
+
+Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder wird als Funktion bereitgestellt. Es kann dann entweder automatisch oder pro Modul über eine Funktion instanziiert und benutzt werden.
+
+
 \section{Sensorevaluation}
 \begin{itemize}
 	\item Ergebnisse der Sensorevaluation (je Sensor)
