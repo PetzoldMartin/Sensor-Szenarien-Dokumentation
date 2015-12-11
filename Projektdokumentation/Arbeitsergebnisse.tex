@@ -267,9 +267,77 @@ Ein PersonCounterModule enthält zusätzlich die Information für welchen Raum e
 Der jeweilige Personenzähler pro Raum wird durch das Modul die dies benötigen instanziiert sofern noch keine Personenzähler für die jeweiligen Räume vorhanden sind.
 
 \subsubsection{Funktionsweise}
-Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für wichtige, für andere Module nötige Informationen der Personenanzahl. (//TODO: HIER NUR VERWEIS AUF BILD) %TODO Modell einfügen
+Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für wichtige, für andere Module nötige Informationen der Personenanzahl. (//TODO: HIER NUR VERWEIS AUF BILD) (An dieser Stelle Projektdokumentation/img/Szenarien/ErkennungAnzahlPersonen.pdf verwenden?) %TODO Modell einfügen
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/AeoScreenshot.png}
+	\caption{Übersichtsseite des Aeotec Multisensor}
+	\label{fig:sensorenAeoScreenshot}
+\end{figure}
+
 
 Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder wird als Funktion bereitgestellt. Es kann dann entweder automatisch oder pro Modul über eine Funktion instanziiert und benutzt werden.
+
+\subsubsection{Konfiguration}
+\begin{itemize}
+	\item Zähler
+	\begin{itemize}
+		\item Typ: Metrik
+		\item Erforderlich: ja
+	\end{itemize}
+	\item Raum
+	\begin{itemize}
+		\item Typ: Text
+		\item Erforderlich: ja
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Schnittstellen}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1.25\hsize}X % 40% of 3\hsize 
+			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
+			>{\hsize=1.25\hsize}X % 40% of 3\hsize
+			% sum=3.0\hsize for 3 columns
+		}
+		\hline
+		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+		\hline /command/person\_entered		& - 					& Erhöht den Zähler um 1. \\ 
+		\hline /command/person\_left		& - 			 		& Mindert den Zähler um 1. \\
+		\hline /command/persons				& - 					& Liefert die aktuelle Anzahl an Personen des Raums. \\
+		\hline
+	\end{tabularx}
+	\caption{ZAutomation Schnittstelle}
+\end{table}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=2.0\hsize}X % 40% of 3\hsize 
+			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
+			>{\hsize=0.5\hsize\centering\arraybackslash}X % 40% of 3\hsize
+			% sum=3.0\hsize for 3 columns
+		}
+		\hline
+		\textbf{Event Name}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_entered	& - 					& - \\ 
+		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_left		& - 			 		& - \\
+		\hline
+	\end{tabularx}
+	\caption{Event Bus}
+\end{table}
+
+\subsubsection{Abhängigkeiten}
+\begin{itemize}
+	\item Keine da dieses Modul Grundfunktionalitäten bereitstellt.
+\end{itemize}
+
+\subsubsection{Interne Speicher}
+\begin{itemize}
+	\item Raum ID
+	\item Anzahl der Personen im Raum
+\end{itemize}
 
 
 \section{Sensorevaluation}
