@@ -547,17 +547,14 @@ Weitere Informationen (auch technische Details) sind dem Handbuch zu entnehmen.
 
 \subsubsection{Allgemein}
 
-Im Bereich Smarthome hat man eine riesige Auswahl von verschiedenen Sensoren. Je nach Bedarf bieten die Multisensoren verschiedene Funktionalitäten welche Bewegungen, Raumtemperatur, Licht oder andere registrieren können. Der Aeotec Sensor erfasst 6 verschiedene Messwerte. Die Sensoren messen Raumtemperatur, Lichtstärke, Luftfeuchtigkeit, Bewegung, \gls{uv}-Sensor und Vibration. Diese Werte überträgt der Multisensor mit einer drahtlosen Kommunikationsschnittstelle namens Z-Wave.
+Im Bereich Smarthome hat man eine riesige Auswahl von verschiedenen Sensoren. Je nach Bedarf bieten die Multisensoren verschiedene Funktionalitäten welche Bewegungen, Raumtemperatur, Licht oder andere registrieren können. Der Aeotec Sensor erfasst 6 verschiedene Messwerte. Die Sensoren messen Raumtemperatur, Lichtstärke, Luftfeuchtigkeit, Bewegung, UV-Sensor und Vibration. Diese Werte überträgt der Multisensor mit einer drahtlosen Kommunikationsschnittstelle names Z-Wave.
 
-In unserem Projekt kommt dieser Sensor zum Einsatz, um das Alarm Modul, Personenidentifikationsmodul und Gefahrenmodul mithilfe seiner Sensortechnik zu unterstützen. Durch seine durchaus komplexe Konfigurationsmöglichkeit kann der
-
-//TODO: wie geht's hier weiter?
-
+In unserem Projekt kommt dieser Sensor zum Einsatz, um das Alarm Modul, Personenidentifikationsmodul und Gefahrenmodul mithilfe seiner Sensortechnik zu unterstützen.
 
 
 \subsubsection{Konfigurationsmöglichkeiten}
 
-Nachdem man das Gerät erfolgreich im Z-Way Home Center hinzugefügt hat, besteht die Möglichkeit den Multisensor über die Expert-UI zu konfigurieren. 
+Nachdem man das Gerät erfolgreich im Z-Way Home Center hinzugefügt hat, besteht die Möglichkeit den Multisensor über die Expert-UI zu konfigurieren.
 
 \begin{figure}[h!]
 	\centering
@@ -569,7 +566,6 @@ Nachdem man das Gerät erfolgreich im Z-Way Home Center hinzugefügt hat, besteh
 Der Z-Way Server erstellt automatisiert eine Übersichtsseite nachdem der Sensor erfolgreich hinzugefügt wurde. In diesem Reiter besteht die Möglichkeit das Gerät umzubenennen, Netzwerkstatus abzurufen, \gls{sdk} Version.
 
 Im Reiter „Configuration“ findet man alle Einstellungsmöglichkeiten die der Sensor bietet. In der nachfolgenden Tabelle, finden sie alle Konfigurationsoptionen.
-
 \begin{longtabu} to \linewidth {
 		>{}X
 		>{}X
@@ -607,11 +603,11 @@ Im Reiter „Configuration“ findet man alle Einstellungsmöglichkeiten die der
 			(2) enable, the current PIR sensitivity level = 2. \newline
 			(3) enable, the current PIR sensitivity level=3. \newline
 			(4) enable, the current PIR sensitivity level=4. \newline
-			(5) enable, the current PIR sensitivity level=5. (maximum level) \newline &
+			(5) \uline{enable, the current PIR sensitivity level=5. (maximum level)} \newline &
 					Es besteht die Möglichkeit den Bewegungssensor zu deaktivieren \& die Intensität einzustellen \\
 	\hline
 	Motion Detection &
-			(1) Send Basic Set CC. \newline
+			(1) \uline{Send Basic Set CC.} \newline
 			(2) Send Sensor Binary Report CC. &
 					Welchen Standard soll der Aeotec Sensor sende, wenn der Bewegungssensor ausgelöst wurde \\
 	\hline
@@ -620,7 +616,7 @@ Im Reiter „Configuration“ findet man alle Einstellungsmöglichkeiten die der
 					Ab welchen prozentualen Wert soll der Sensor bescheid geben, wenn der Batteriestand niedrig ist. \\
 	\hline
 	Reports for Parameter 41 – 44 &
-			(0) disable \newline
+			(0) \uline{disable} \newline
 			(1) enable &
 					Diese Funktionalität dient dazu um bestimmte Schwellenwerte in bestimmten Zeitabständen zu an den Z-Way Server zu senden. (Netzwerktraffic) \\
 	\hline
