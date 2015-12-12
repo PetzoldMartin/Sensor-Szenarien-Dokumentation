@@ -267,15 +267,7 @@ Ein PersonCounterModule enthält zusätzlich die Information für welchen Raum e
 Der jeweilige Personenzähler pro Raum wird durch das Modul die dies benötigen instanziiert sofern noch keine Personenzähler für die jeweiligen Räume vorhanden sind.
 
 \subsubsection{Funktionsweise}
-Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für wichtige, für andere Module nötige Informationen der Personenanzahl. (//TODO: HIER NUR VERWEIS AUF BILD) (An dieser Stelle Projektdokumentation/img/Szenarien/ErkennungAnzahlPersonen.pdf verwenden?) %TODO Modell einfügen
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/AeoScreenshot.png}
-	\caption{Übersichtsseite des Aeotec Multisensor}
-	\label{fig:sensorenAeoScreenshot}
-\end{figure}
-
+Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für wichtige, für andere Module nötige Informationen der Personenanzahl (\prettyref{fig:szenarienPersonenerkennung}). (//TODO: Bildverweis wie gedacht?)
 
 Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder wird als Funktion bereitgestellt. Es kann dann entweder automatisch oder pro Modul über eine Funktion instanziiert und benutzt werden.
 
@@ -309,14 +301,14 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 		\hline /command/persons				& - 					& Liefert die aktuelle Anzahl an Personen des Raums. \\
 		\hline
 	\end{tabularx}
-	\caption{ZAutomation Schnittstelle}
+	\caption{PersonCounterModule: Schnittstelle ZAutomation}
 \end{table}
 
 \begin{table}[H]
 	\begin{tabularx}{\textwidth}{
-			>{\hsize=2.0\hsize}X % 40% of 3\hsize 
-			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
-			>{\hsize=0.5\hsize\centering\arraybackslash}X % 40% of 3\hsize
+			>{\hsize=2.0\hsize}X % 66.66% of 3\hsize 
+			>{\hsize=0.5\hsize\centering}X % 16.66% of 3\hsize
+			>{\hsize=0.5\hsize\centering\arraybackslash}X % 16.66% of 3\hsize
 			% sum=3.0\hsize for 3 columns
 		}
 		\hline
@@ -325,7 +317,7 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_left		& - 			 		& - \\
 		\hline
 	\end{tabularx}
-	\caption{Event Bus}
+	\caption{PersonCounterModule: Schnittstelle Event Bus}
 \end{table}
 
 \subsubsection{Abhängigkeiten}
@@ -338,6 +330,78 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 	\item Raum ID
 	\item Anzahl der Personen im Raum
 \end{itemize}
+
+
+\subsection{RoomAccessModule}
+\emph{(von Philip Laube)}
+
+\subsubsection{Allgemein}
+Das RoomAccessModule übernimmt die Aufgabe, Personen zu erkennen die einen Raum verlassen oder betreten haben. Entweder sofortig oder zeitversetzt, je nach Art der zugrundeliegende Module.
+
+Dieses Modul stellt grundlegende Unterstützung zunächst für Bewegungssensoren, später eventuell auch erweiterte Logik für andere Sensoren zur Personenerkennung bzw. Raumwechsel.
+
+Ein RoomAccessModule enthält zusätzlich die Information für welche Räume es bestimmt ist, somit kann es beliebig oft wiederverwendet werden.
+
+\subsubsection{Funktionsweise}
+Diese Realisierung entspricht der geplanten Realisierung des Szenarios zu Beginn des Projekts. Exakt diese Logik wird zunächst durch dieses Modul implementiert (\prettyref{fig:szenarienPersonenerkennungTür}). //TODO: Bildverweis wie gedacht?
+
+Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und die Anzahl jeweils korrigiert. Weitere Logik anderer Module kann durch ein Event erfolgen. Jedwede Logik die direkt mit der Personenanzahl in Verbindung steht muss den Personenzähler (PersonCounterModule) ansprechen.
+
+\subsubsection{Konfiguration}
+\begin{itemize}
+	\item Sensor Eins
+	\begin{itemize}
+		\item Typ: Bewegungssensor
+		\item Erforderlich: ja
+	\end{itemize}
+	
+	\item Raum Eins
+	\begin{itemize}
+		\item Typ: Raum
+		\item Erforderlich: ja
+	\end{itemize}
+
+	\item Sensor Zwei
+	\begin{itemize}
+		\item Typ: Bewegungssensor
+		\item Erforderlich: ja
+	\end{itemize}
+	
+	\item Raum Zwei
+	\begin{itemize}
+		\item Typ: Raum
+		\item Erforderlich: ja
+	\end{itemize}
+
+\end{itemize}
+
+\subsubsection{Schnittstellen}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1.25\hsize}X 
+			>{\hsize=0.75\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		\textbf{Event Name}						& \textbf{Beschreibung} \\
+		\hline [DeviceId]:RoomAccessModule\_[verlassenderRaumId]\_[betretenerRaumId]\_transition\_detected	& Wenn ein Übergang einer Person von einem Raum in den nächsten 	Raum erfolgt ist wird dieses Event ausgelöst \\ 
+		\hline 
+	\end{tabularx}
+	\caption{RoomAccessModule: Schnittstellen Event Bus}
+\end{table}
+
+\subsubsection{Abhängigkeiten}
+\begin{itemize}
+	\item Daten des PersonCounterModule zum Zählen der Personen in einem Raum
+\end{itemize}
+
+\subsubsection{Interne Speicher}
+\begin{itemize}
+	\item Zwei Bewegungssensoren
+	\item Raum Zuordnung der beiden Sensoren
+	\item PersonenCounterModule der Raumzuordnungen
+\end{itemize}
+
 
 
 \section{Sensorevaluation}
