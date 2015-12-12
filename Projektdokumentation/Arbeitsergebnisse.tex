@@ -402,7 +402,80 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 	\item PersonenCounterModule der Raumzuordnungen
 \end{itemize}
 
+\subsection{StandbyModule}
+\emph{(von Zarina Muratbekovna Omurova)}
+\subsubsection{Allgemein}
+Das StandbyModule übernimmt die Aufgabe, das Haus in Standby-Modus zu setzen. 
+Im Falle wenn niemand zu Hause und nachdem ein Event vom LockDoor Module eingegangen ist, das der 'LockDoor\_locked' ist, werden angeschlossene/gesteuerte Geräte, wie Lampen, Heizung, Elektrogeräte im Haus ausgeschaltet mit 'StandbyModule\_' = startet. Manche Geräte, z.B. Steckdosen sollen ausgeschaltet werden, wenn der Raum in den Standby-Modus geht. Andere Geräte, z.B. Orientierungsleuchten oder Alarmanlagen sollen angeschaltet werden.
 
+Im Gegenfall 'LockDoor\_unlocked' ist, werden keine Aktionen durchgeführt, daraus folgt das 'StandbyModule\_' = stopped ist.
+Wenn der Tür geöffnet wird, wird automatisch die Standby-Modus ausgeschaltet und entsprechenden Event anderen Modulen schicken, das es 'StandbyModule\_' = stopped ist, auf den gleich die AlarmModule reagieren können und den Wert auf  'Alarm' = aus setzen, damit der gesteuerte Geräte wieder aktiviert werden können um dem Person den Eintritt zu Hause angenehm zu gestalten.
+
+\subsubsection{Konfiguration}
+\begin{itemize}
+	\item Geräte
+	\begin{itemize}
+		\item 	Typ: Liste [Switch Binary, Switch Multilevel]
+		\item Aktion: on/off 
+		\item Erforderlich: ja
+	\end{itemize}
+	\item Aufruf spezieller Module
+	\begin{itemize}
+		\item Typ: Liste [] (LockDoor)
+		\item Erforderlich: ja
+	\end{itemize}
+	\item Raum
+	\begin{itemize}
+		\item Typ: Text
+		\item Erforderlich:  ja
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Schnittstellen}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1.25\hsize}X % 40% of 3\hsize 
+			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
+			>{\hsize=1.25\hsize}X % 40% of 3\hsize
+			% sum=3.0\hsize for 3 columns
+		}
+		\hline
+		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+		\hline /command/started				& - 					& Starten des Standby-Modus. \\ 
+		\hline /command/stopped				& - 			 		& Stoppen des Standby-Modus. \\
+		\hline /command/state				& stopped\newline started	& Liefert den aktuellen Zustand des Moduls. \\
+		\hline
+	\end{tabularx}
+	\caption{StandbyModule: Schnittstelle ZAutomation}
+\end{table}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1.25\hsize}X % 66.66% of 3\hsize 
+			>{\hsize=0.5\hsize\centering}X % 16.66% of 3\hsize
+			>{\hsize=1.25\hsize\centering\arraybackslash}X % 16.66% of 3\hsize
+			% sum=3.0\hsize for 3 columns
+		}
+		\hline
+		\textbf{Event Name}								& \textbf{Parameter}	& \textbf{Beschreibung} \\
+		\hline [DeviceId]:StandbyModule\_[RaumId]\_started	& - 				& Standby-Modus wurde gestartet \\ 
+		\hline [DeviceId]:StandbyModule\_[RaumId]\_stopped	& - 				& Standby-Modus wurde beendet \\
+		\hline
+	\end{tabularx}
+	\caption{StandbyModule: Schnittstelle Event Bus}
+\end{table}
+
+\subsubsection{Abhängigkeiten}
+\begin{itemize}
+	\item Module Events (LockDoor)
+\end{itemize}
+
+\subsubsection{Interne Speicher}
+\begin{itemize}
+	\item Raum ID
+	\item Zustand des Raums (im Standby: stopped/started)
+	\item Switches/Dimmers
+\end{itemize}
 
 \section{Sensorevaluation}
 \begin{itemize}
