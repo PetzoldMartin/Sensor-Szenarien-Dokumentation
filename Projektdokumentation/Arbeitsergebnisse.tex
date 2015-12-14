@@ -32,7 +32,7 @@ Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu
 \emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.8]{img/Szenarien/ErkennungAnzahlPersonen.pdf}
+	\includegraphics[scale=0.7]{img/Szenarien/ErkennungAnzahlPersonen.pdf}
 	\caption{Erkennung der Personenanzahl}
 	\label{fig:szenarienPersonenerkennung}
 \end{figure}
@@ -41,7 +41,7 @@ Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu
 \emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.8]{img/Szenarien/PersonenerkennungAnTuer.pdf}
+	\includegraphics[scale=0.7]{img/Szenarien/PersonenerkennungAnTuer.pdf}
 	\caption{Personenerkennung an der Tür}
 	\label{fig:szenarienPersonenerkennungTür}
 \end{figure}
@@ -80,7 +80,7 @@ Mit dem Abschließen der Tür ist die Erwartung des Nutzers verbunden, dass die 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/Szenarien/WohnungSchliessenNutzersicht.pdf}
+	\includegraphics[scale=0.7]{img/Szenarien/WohnungSchliessenNutzersicht.pdf}
 	\caption{Abläufe bei Verschließen der Wohnung aus Nutzersicht}
 	\label{fig:szenarienStandbyNutzersicht}
 \end{figure}
@@ -171,7 +171,7 @@ Nach einer Weile verlässt Person Y den Raum, das System Stellt fest das sich ke
 TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
 
 \subsection{LockDoorModule}
-\emph{von Simon Schwabe}
+\emph{(von Simon Schwabe)}
 
 \subsubsection{Allgemein}
 Das LockDoorModule ist der Vermittler für weitere Module im Zusammenhang mit dem Verlassen der Wohnung. Wenn die Wohnung verlassen und abgeschlossen wird, ist die Wahrscheinlichkeit hoch, dass keine weiteren Personen anwesend sind. Allerdings kann die Wohnung auch irrtümlich abgeschlossen werden und es sind noch weitere Personen anwesend. Um solchen Fehlinterpretationen entgegenzuwirken überprüft das LockDoorModule immer, ob wirklich keine Personen erkannt werden und die Wohnung leer steht. Diese Information ist für weitere Module, insbesondere das AlarmModule, relevant und wird über den Event Bus mitgeteilt.
