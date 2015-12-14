@@ -477,6 +477,140 @@ Wenn der Tür geöffnet wird, wird automatisch die Standby-Modus ausgeschaltet u
 	\item Switches/Dimmers
 \end{itemize}
 
+\subsection{InHomeFeedbackModule }
+\subsubsection{Allgemein}
+Das Feedbackmodul übernimmt die Aufgabe, Personen im Haus über eingehende Aktionen zu informieren. Neben den eingehenden Aktionen (von Personen außerhalb des Hauses) kann auch auf Aktionen, die vom System automatisch gestartet wurden, hingewiesen werden (Timer, Grenzwert eines Sensors überschritten, …). Die Personen im Haus haben dadurch die Möglichkeit auf Aktionen zu reagieren, indem sie sie abbrechen bzw. verzögern können. Der konkrete Feedbackmechanismus kann individuell konfiguriert werden und gliedert sich in folgende fünf Kategorien (detaillierter in Abschnitt Konfiguration).
+
+\begin{itemize}
+	\item visuelles Feedback (bspw. Lampen, LED’s an Schalter, ...),
+	\item akustisches Feedback (bspw. Sirene, ...)
+	\item Nachricht (bspw. E-Mail, Push-Nachricht, ...)
+	\item Aufruf spezieller Module (bspw. Philips Hue, Bose, ...)
+	\item HTTP
+	\item JavaScript
+\end{itemize}
+Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es bestimmt ist, somit kann es beliebig oft wiederverwendet werden.
+
+\subsubsection{Funktionsweise}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.7]{img/Modulkonzeption/FeedbackStateMachine.pdf}
+	\caption{Zustandsdiagramm – InHomeFeedbackModule}
+	\label{fig:feedbackStateMachine}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/FeedbackSequence.pdf}
+	\caption{Sequenzdiagramm – InHomeFeedbackModule – Beispiel 1}
+	\label{fig:feedbackSequence}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/FeedbackSequenceUser.pdf}
+	\caption{Sequenzdiagramm – InHomeFeedbackModule – Beispiel 2}
+	\label{fig:feedbackSequenceUser}
+\end{figure}
+
+
+\subsubsection{Konfiguration}
+
+\begin{itemize}
+	\item visuelles Feedback
+	\begin{itemize}
+		\item Typ: Liste [Binary Switch, Multilevel Switch]
+		\item Aktion: on/off/on/off/on/... bzw. 0-99-0-99-0-...
+		\item Erforderlich: nein
+		\item Option:
+		\begin{itemize}
+			\item Frequenz
+			\begin{itemize}
+				\item Typ: Text
+				\item Erforderlich: nein
+				\item Default: 5 sek
+			\end{itemize}
+		\item spezieller Wert, bspw. RGB (RGB + Warmweiß + Kaltweiß)
+		\end{itemize}
+	\end{itemize}
+	\item akustisches Feedback
+	\begin{itemize}
+		\item Typ: Liste [*] %todo bspw. Aeon Labs Sirene %todo Binary Switch
+		\item Aktion: on/off
+		\item Erforderlich: nein
+	\end{itemize}
+	\item Nachricht
+	\begin{itemize}
+		\item Vorbedingung: Auswahl von E-Mail bzw. Push-Nachricht
+		\item Typ: Liste [Text] (E-Mail-Adresse bzw. URL)
+		\item Aktion: HTTP-Request
+		\item Erforderlich: nein
+	\end{itemize}
+	\item Aufruf spezieller Module
+	\begin{itemize}
+		\item Typ: Liste [Binary Switch, Multilevel Switch] %todo Device Type der speziellen Module! (deviceType %todo namespace\_deviceType)
+		\item Aktion: on/off bzw. 0/99
+		\item Erforderlich: nein
+		\item Option:
+		\begin{itemize}
+			\item spezieller Wert, bspw. RGB (R + G + B + Warmweiß + Kaltweiß)
+		\end{itemize}
+	\end{itemize}
+	\item HTTP
+	\begin{itemize}
+		\item Typ: Text
+		\item Erforderlich: nein
+	\end{itemize}
+	\item JavaScript
+	\begin{itemize}
+		\item Typ: Text
+		\item Erforderlich: nein
+	\end{itemize}
+	\item Raum
+	\begin{itemize}
+		\item Typ: Text
+		\item Erforderlich: ja
+	\end{itemize}
+	\item Dauer (bis automisch deaktiviert)
+	\begin{itemize}
+		\item Typ: Text
+		\item Erforderlich: nein
+		\item Default: 30 sek
+	\end{itemize}
+	\item Verzögerungszeit
+	\begin{itemize}
+		\item Typ: Text
+		\item Erforderlich: nein
+		\item Default: 600 sek
+	\end{itemize}
+	\item Schalter (zum Abbrechen der eingehenden Aktion)
+	\begin{itemize}
+		\item Typ: Binary Switch
+		\item Erforderlich nein
+	\end{itemize}
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Sensorevaluation}
 \begin{itemize}
 	\item Ergebnisse der Sensorevaluation (je Sensor)
