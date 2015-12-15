@@ -1,3 +1,4 @@
+%TODO: Zeilenabstand in Listen verringern?
 \chapter{Arbeitsergebnisse}
 \begin{itemize}
 	\item Ergebnisse, welche für den weiteren Verlauf relevant sind (z.B. zu realisierende Szenarien)
@@ -477,9 +478,10 @@ Wenn der Tür geöffnet wird, wird automatisch die Standby-Modus ausgeschaltet u
 	\item Switches/Dimmers
 \end{itemize}
 
-\subsection{InHomeFeedbackModule }
+\subsection{InHomeFeedbackModule}
+\emph{(von Patrick Hecker)}
 \subsubsection{Allgemein}
-Das Feedbackmodul übernimmt die Aufgabe, Personen im Haus über eingehende Aktionen zu informieren. Neben den eingehenden Aktionen (von Personen außerhalb des Hauses) kann auch auf Aktionen, die vom System automatisch gestartet wurden, hingewiesen werden (Timer, Grenzwert eines Sensors überschritten, …). Die Personen im Haus haben dadurch die Möglichkeit auf Aktionen zu reagieren, indem sie sie abbrechen bzw. verzögern können. Der konkrete Feedbackmechanismus kann individuell konfiguriert werden und gliedert sich in folgende fünf Kategorien (detaillierter in Abschnitt Konfiguration).
+Das Feedbackmodul übernimmt die Aufgabe, Personen im Haus über eingehende Aktionen zu informieren. Neben den eingehenden Aktionen (von Personen außerhalb des Hauses) kann auch auf Aktionen, die vom System automatisch gestartet wurden, hingewiesen werden (Timer, Grenzwert eines Sensors überschritten, ...). Die Personen im Haus haben dadurch die Möglichkeit auf Aktionen zu reagieren, indem sie sie abbrechen bzw. verzögern können. Der konkrete Feedbackmechanismus kann individuell konfiguriert werden und gliedert sich in folgende fünf Kategorien (detaillierter in Abschnitt Konfiguration).
 
 \begin{itemize}
 	\item visuelles Feedback (bspw. Lampen, LED’s an Schalter, ...),
@@ -536,7 +538,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\end{itemize}
 	\item akustisches Feedback
 	\begin{itemize}
-		\item Typ: Liste [*] %todo bspw. Aeon Labs Sirene %todo Binary Switch
+		\item Typ: Liste [*] \textrightarrow{ }bspw. Aeon Labs Sirene \textrightarrow{ }Binary Switch
 		\item Aktion: on/off
 		\item Erforderlich: nein
 	\end{itemize}
@@ -549,7 +551,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\end{itemize}
 	\item Aufruf spezieller Module
 	\begin{itemize}
-		\item Typ: Liste [Binary Switch, Multilevel Switch] %todo Device Type der speziellen Module! (deviceType %todo namespace\_deviceType)
+		\item Typ: Liste [Binary Switch, Multilevel Switch] \textrightarrow{ }Device Type der speziellen Module! (deviceType \textrightarrow{ }namespace\_deviceType)
 		\item Aktion: on/off bzw. 0/99
 		\item Erforderlich: nein
 		\item Option:
