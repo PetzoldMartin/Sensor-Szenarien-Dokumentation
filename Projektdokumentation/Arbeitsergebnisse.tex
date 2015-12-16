@@ -1,4 +1,3 @@
-%TODO: Zeilenabstand in Listen verringern?
 \chapter{Arbeitsergebnisse}
 \begin{itemize}
 	\item Ergebnisse, welche für den weiteren Verlauf relevant sind (z.B. zu realisierende Szenarien)
@@ -29,8 +28,8 @@ Unbekannt ob Begrüßungssituation ausreichend abgegrenzt werden kann, ohne Fehl
 Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu bestätigen bzw. vorbeigehende Personen bei geschlossener Tür zu ignorieren.
 
 \subsubsection{Modellierung Erkennung der Personenanzahl}
-%TODO textuelle Beschreibung der Modelle
-\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
+Das Modell (\prettyref{fig:szenarienPersonenerkennung}) zeigt den Ablauf für den Personenzähler bei einer Erkennung eines Personenübergangs mit unterschiedlichen Mitteln. Sofern ein Übergang erkannt wurde, werden die Personenzähler angepasst. Daraufhin können andere Module eine Aktion, abhängig von der nun neuen Personenanzahl pro Raum, starten.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.7]{img/Szenarien/ErkennungAnzahlPersonen.pdf}
@@ -39,7 +38,8 @@ Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu
 \end{figure}
 
 \subsubsection{Modellierung Personenerkennung an der Tür}
-\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
+Das Modell (\prettyref{fig:szenarienPersonenerkennungTür}) zeigt den Ablauf für die beiden Bewegungssensoren an einem Türdurchgang. Dabei wird nach einer Aktivierung eines Sensors auf einer Seite der Tür auf den zweiten Sensor auf der anderen Seite der Tür eine gewisse Zeit gewartet. Sofern beide Sensoren innerhalb dieses gewissen Zeitraums aktiviert wurden ist ein Durchgang erkannt worden und die jeweiligen Personenzähler der anliegenden Räume werden angepasst.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.7]{img/Szenarien/PersonenerkennungAnTuer.pdf}
@@ -47,7 +47,8 @@ Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu
 	\label{fig:szenarienPersonenerkennungTür}
 \end{figure}
 
-\subsection{Haus bei verschließen der Haus- Wohnungstür in "`Standby"' versetzen}
+\subsection{Haus bei verschließen der Haus-/ Wohnungstür in "`Standby"' versetzen}
+\label{subsec:szenarioStandby}
 \emph{(von Simon Schwabe)}
 \subsubsection{Ablauf}
 Um den Komfort in ihrem Smart Home zu steigern, möchte Anne möglichst wenig Aufwand zur Steuerung des Lichts betreiben. Dazu möchte sie bei Verlassen der Wohnung nicht alle angeschalteten Lampen manuell ausschalten und überprüfen, ob Gefahrenquellen vom Stromnetz getrennt sind.
@@ -178,10 +179,18 @@ TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
 Das LockDoorModule ist der Vermittler für weitere Module im Zusammenhang mit dem Verlassen der Wohnung. Wenn die Wohnung verlassen und abgeschlossen wird, ist die Wahrscheinlichkeit hoch, dass keine weiteren Personen anwesend sind. Allerdings kann die Wohnung auch irrtümlich abgeschlossen werden und es sind noch weitere Personen anwesend. Um solchen Fehlinterpretationen entgegenzuwirken überprüft das LockDoorModule immer, ob wirklich keine Personen erkannt werden und die Wohnung leer steht. Diese Information ist für weitere Module, insbesondere das AlarmModule, relevant und wird über den Event Bus mitgeteilt.
 
 \subsubsection{Funktionsweise}
-Die genaue Funktionswese des Moduls wurde im Wesentlichen schon im Abschnitt %TODO beschrieben und modelliert. Das Modell „Abläufe bei Verschließen der Wohnung aus Systemsicht“ %TODO beschreibt das Vorgehen. Die Aktivität „Standby aktivieren“ kann um das Werfen des entsprechenden Events erweitert werden.
+Die genaue Funktionsweise des Moduls wurde im Wesentlichen schon im Abschnitt Szenarien (siehe \prettyref{subsec:szenarioStandby}) beschrieben und modelliert. Das Modell „Abläufe bei Verschließen der Wohnung aus Systemsicht“ (\prettyref{fig:szenarienStandby}) beschreibt das Vorgehen. Die Aktivität „Standby aktivieren“ kann um das Werfen des entsprechenden Events erweitert werden.
 
-Das Szenario enthält keine detaillierte Beschreibung für die Abschaltung des Standby-Modus, da nicht sinnvoll. Für das Modul LockDoor ist es allerdings erforderlich auf die Ankunft von Personen zu reagieren, z.B. um das Alarm-Modul zu benachrichtigen und die Alarmanlage abzuschalten. Die Anzahl der durchzuführenden Aktionen ist überschaubar und wird im Modell %TODO dargestellt.
+Das Szenario enthält keine detaillierte Beschreibung für die Abschaltung des Standby-Modus, da nicht sinnvoll. Für das Modul LockDoor ist es allerdings erforderlich auf die Ankunft von Personen zu reagieren, z.B. um das Alarm-Modul zu benachrichtigen und die Alarmanlage abzuschalten. %Die Anzahl der durchzuführenden Aktionen ist überschaubar und wird im Modell dargestellt (\prettyref{fig:modulkonzeptionLockDoorSequence}).
+Dazu wird bei Ankunft der entsprechende Schalter betätigt, bzw. das Schloss geschlossen. Anschließend wird das Event "`LockDoorModule\_unlocked"' geworfen. An dieser Stelle ist keine weitere Logik erforderlich.
 
+%TODO Grafik an geeigneter Stelle einbinden und beschreiben.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/LockDoorSequence.pdf}
+	\caption{Sequenzdiagramm - LockDoorModule}
+	\label{fig:modulkonzeptionLockDoorSequence}
+\end{figure}
 
 \subsubsection{Konfiguration}
 Bei der Konfiguration des LockDoor muss das Wohnungstürschloss angegeben werden, alternativ kann dafür ein Schalter benutzt werden, der im inneren der Wohnung vor dem Verlassen betätigt wird. 
@@ -198,7 +207,7 @@ Die Schnittstellen, welche dieses Modul nutzt und bereitstellt, sind von großer
 
 LockDoor bietet über den Event Bus eine Schnittstelle zu anderen Modulen. Diese werden benachrichtigt, sobald davon ausgegangen wird, dass keine Person mehr anwesend ist (LockDoorModule\_locked). Die Freischaltung geschieht über ein weiteres Event (LockDoorModule\_unlocked).
 
-Das Modul wird als Singleton angelegt, da für jede Wohnung nur ein Modul zur Überwachung der Wohnungstür erforderlich ist. Das hat zur Folge, dass Events keine Virtual Device Id tragen. Damit ist es für Empfänger einfacher, auf entsprechende Events zu Reagieren.
+Das Modul wird als Singleton angelegt, da für jede Wohnung nur ein Modul zur Überwachung der Wohnungstür erforderlich ist. Das hat zur Folge, dass Events keine Virtual Device Id tragen. Damit ist es für Empfänger einfacher, auf entsprechende Events zu reagieren.
 
 Für die Überprüfung der Personenanzahl wird die Schnittstelle des Moduls PersonCounter genutzt. Dazu wird für jeden Raum die Anzahl der Personen überprüft.
 
