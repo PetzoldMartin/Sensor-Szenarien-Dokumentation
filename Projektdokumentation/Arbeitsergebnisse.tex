@@ -603,10 +603,87 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 
 \end{itemize}
 
+\subsubsection{Schnittstellen}
+%todo tabelle einfügen
 
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1.25\hsize}X % 40% of 3\hsize 
+			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
+			>{\hsize=1.25\hsize}X % 40% of 3\hsize
+			% sum=3.0\hsize for 3 columns
+		}
+		\hline
+		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+		\hline 
+		/command/start				
+				& duration (opt.) \newline endless=true (opt.) 	
+						& Starten des Feedbackmodus (die Durchführung der Aktion wird nicht beeinflusst). Der Parameter "`endless=true"' startet den Feedback-Modus, ohne automatische Terminierung nach einer bestimmten Zeitspanne. \\ 
+		\hline 
+		/command/stop		
+				& - 			 		
+						& Stoppen des Feedbackmodus (die Durchführung der Aktion wird nicht beeinflusst). \\
+		\hline 
+		/command/state
+				& - 				
+						& Liefert den aktuellen Zustand des Moduls. \\
+		\hline
+		/command/cancel
+				& -
+						& Die Aktion abbrechen. \\
+		\hline
+		/command/defer
+				& duration (opt.)
+						& Die Aktion um eine bestimmte Zeit verschieben. \\
+		\hline
+	\end{tabularx}
+	\caption{InHomeFeedbackModule: Schnittstelle ZAutomation}
+\end{table}
 
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1.2\hsize}X 
+			>{\hsize=0.8\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		\textbf{Event Name}						& \textbf{Beschreibung} \\
+		\hline
+		[deviceId]:InHomeFeedbackModule\_[roomId]\_started	
+				& Feedbackmodus wurde gestartet \\
+		\hline 
+		[deviceId]:InHomeFeedbackModule\_[roomId]\_stopped\_normal
+				& Feedbackmodus wurde nach der vorgegebenen Zeit beendet \\
+		\hline
+		[deviceId]:InHomeFeedbackModule\_[roomId]\_stopped\_manual
+				& Feedbackmodus wurde  gestoppt \\
+		\hline
+		[deviceId]:InHomeFeedbackModule\_[roomId]\_canceled\_by\_user
+				& Feedbackmodus wurde vom Nutzer abgebrochen (aufrufende Komponente sollte dieses Event abfangen und entsprechend reagieren) \\
+		\hline
+		[deviceId]:InHomeFeedbackModule\_[roomId]\_deferred
+				& Aktion wurde um eine bestimmte Zeit aufgeschoben \\
+		\hline
+		[deviceId]:InHomeFeedbackModule\_[roomId]\_continued
+				& - \\
+		\hline
+	\end{tabularx}
+	\caption{InHomeFeedbackModule: Schnittstellen Event Bus}
+\end{table}
 
+\subsubsection{Abhängigkeiten}
+\begin{itemize}
+	\item Module, für Geräte von Drittanbietern (Philips Hue, Bose, ...)
+\end{itemize}
 
+\subsubsection{Interne Speicher}
+\begin{itemize}
+	\item Raum ID
+	\item Zustand - aktiviert, deaktiviert, aufgeschoben
+	\item Dauer - falls Modulkonfiguration für den Command überschrieben
+	\item Verzögerungszeit - falls Modulkonfiguration für den Command überschrieben
+	
+\end{itemize}
 
 
 
