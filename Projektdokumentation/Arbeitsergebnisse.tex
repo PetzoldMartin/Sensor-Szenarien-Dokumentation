@@ -687,18 +687,6 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 \section{Sensorevaluation}
 \begin{itemize}
 	\item Ergebnisse der Sensorevaluation (je Sensor)
@@ -710,6 +698,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 \subsection{Fibaro Multisensor}
 \emph{(von Philip Laube)}
 
+\subsubsection{Allgemein}
 \begin{description}
 	\item[Energieversorgung] CR123A battery, 3.6 VDC
 	\item[Empfohlene Installationshöhe] 2,4m
@@ -730,6 +719,63 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 Dieses Gerät ist vielseitig einsetzbar da eine Vielzahl von Sensoren zur Verfügung stehen. Die Bewegungssensoren sollen dazu verwendet werden eine Person beim Durchgehen eines Türdurchganges zu beobachten.
 Neben dem Bewegungssensor beinhaltet der Fibaro Multisensor ein Thermometer ein Lichtsensor sowie einen Erschütterungssensor.
 Der Erschütterungssensor wird standardmäßig als Diebstahlschutz verwendet um zusätzliche Ereignisse auszulösen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{img/Sensorevaluation/FibaroMultiRange.png}
+	\caption{Reichweite des Bewegungssensors}
+	\label{fig:sensorenFibaroMultiRange}
+\end{figure}
+ 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.4]{img/Sensorevaluation/FibaroMultiExamples.png}
+	\caption{Generelle Installationspunkte zum Beobachtung eines Raumes}
+	\label{fig:sensorenFibaroMultiExamples}
+\end{figure}
+
+\subsubsection{Praxistest – Türdurchgang}
+Für die Konfiguration der Geräte müssen folgende Anpassungen vorgenommen werden.
+
+Parameter 1 = 8, Parameter 2 = 0, Parameter 6 = 1s
+
+Das hat dann zur Folge das jede Sekunde ein Event geworfen wird. Mit diesen Parametern wird zudem jede kleinste Bewegung eines Menschen, die für eine solche Funktion notwendig ist, erkannt. Nun werden pro Raum ein Sensor vor die Tür mit Sicht zur Tür befestigt. Diese werden dann später von einem Modul der diesen Raumdurchgang implementiert benutzt.
+
+\subsubsection{Parameterübersicht}
+\begin{description}
+	\item [Parameter 1] Wird benutzt um die Sensitivität des Sensors einzustellen und ist ein Wert zwischen 8 und 255 wobei ein kleinerer Wert eine höhere Sensitivität zur Folge hat.
+
+	\item [Parameter 2] Gibt einen Wert an um den Bewegungssensor eine gewisse Zeit nach einem Erkennen von Bewegung blind zu machen. Dabei ist der Wertebereich hier zwischen 0 und 15 wobei eine Einheit eine halbe Sekunde entspricht. So entspricht ein Wert von 0 0,5 Sekunden während ein Wert von 15 8 Sekunden entspricht.
+	\item [Parameter 6] Nach wie vielen Sekunden wird im Hauptcontroller (bei uns Z-Way) der Bewegungssensor nach einem Auslösen des Sensors wieder auf inaktiv gesetzt. Der Countdown wird erneut zurückgesetzt sofern eine neue Bewegung erkannt wird. Um dies entgegenzuwirken soll Parameter 2 weiter angepasst werden.
+\end{description}
+
+Mit diesen eingestellten Parametern kann nun bei einem Türdurchgang mit zwei solcher Bewegungssensoren eine Person zuverlässig erkannt werden. Ein Personenzähler hält dabei die erkannten Werte dauerhaft. 
+
+\begin{description}
+	\item [Parameter 8] Gibt nur an zu welcher Tageszeit der Sensor aktiv sein soll. Bei dem Wert 0 ist er den ganzen Tag aktiv, bei dem Wert 1 nur am Tag und bei einem Wert von 2 nur bei Nacht. Hinzuzufügen ist hier das die Bestimmung ob Tag oder Nacht ist durch den internen Lichtsensor realisiert wird. Dieser Wert kann unter dem Parameter 9 eingestellt werden.
+	\item [Parameter 20] Die Sensitivität des Erschütterungssensor (Wertebereich 0 – 122 = 0.08 – 2g = Wert * 0.016g)
+	\item [Parameter 22] Alle wie viele Sekunden wird der Sensor zurückgesetzt und ein neuer Erschütterungswert kann gesendet werden.
+	\item [Parameter 26] Der Alarm kann hiermit über einen Broadcast an alle Geräte in der Reichweite gesendet werden, sofern diese einen solchen Broadcast empfangen können.
+	\item [Parameter 40] Die minimale Änderung des einfallenden Lichts in Lux um den aktuellen Lux Wert zu senden
+	\item [Parameter 42] alle wie viele Sekunden soll der Lux Wert gesendet werden, unabhängig von der Änderung des einfallenden Lichts
+	\item [Parameter 60] Die minimale Änderungen der Temperatur bis der aktuelle Wert gesendet wird
+	\item [Parameter 62] Alle wie viele Sekunden wird die Temperatur gemessen
+	\item [Parameter 64] alle wie viele Sekunden soll der Temperatur Wert gesendet werden, unabhängig von der Änderung der Temperatur
+	\item [Parameter 66] Anpassung der erkannten Temperatur zur Kalibrierung des Geräts
+	\item [Parameter 80+] Alle Einstellungen für die LED des Auges
+\end{description}
+
+\subsubsection{Weitere Funktionalitäten}
+Mit dem Parameter 24 = 4 und einer eingestellten minimalen Vibration in Parameter 20 sowie einem Intervall in Parameter 22 in Sekunden ein Seismograph eingestellt werden.
+
+Dabei wird ab dem Erreichen des Minimalwertes intervallmäßig der erkannte Erschütterungswert gesendet solang die Erschütterung über dem Minimalwert anhält.
+%TODO Quellen ergänzen
+%Weitere Einstellungen, sowie alle konkreten Wertebereiche sind in der Anleitung Motion-Sensor_EN_5.3.14.pdf zu finden.
+
+%http://www.fibarouk.co.uk/counting-people-using-two-motion-sensors/
+%http://www.fibaro.com/manuals/en/Motion-Sensor/Motion-Sensor_EN_5.3.14.pdf
+%http://www.fibaro.com/de/the-fibaro-system/motion-sensor
+%http://www.fibaro.com/sites/all/themes/fibaro/images/motion-sensor/en/motion_sensor_02.png
 
 
 \subsection{Fibaro Wall Plug (FGWPx-102) – Zwischenstecker}
