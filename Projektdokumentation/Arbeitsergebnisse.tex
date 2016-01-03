@@ -415,29 +415,44 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 \subsection{StandbyModule}
 \emph{(von Zarina Muratbekovna Omurova)}
 \subsubsection{Allgemein}
-Das StandbyModule übernimmt die Aufgabe, das Haus in Standby-Modus zu setzen. 
-Im Falle wenn niemand zu Hause und nachdem ein Event vom LockDoor Module eingegangen ist, das der 'LockDoor\_locked' ist, werden angeschlossene/gesteuerte Geräte, wie Lampen, Heizung, Elektrogeräte im Haus ausgeschaltet mit 'StandbyModule\_' = startet. Manche Geräte, z.B. Steckdosen sollen ausgeschaltet werden, wenn der Raum in den Standby-Modus geht. Andere Geräte, z.B. Orientierungsleuchten oder Alarmanlagen sollen angeschaltet werden.
+Das StandbyModule übernimmt die Aufgabe, das Haus in einen Standby-Modus zu versetzen.
 
-Im Gegenfall 'LockDoor\_unlocked' ist, werden keine Aktionen durchgeführt, daraus folgt das 'StandbyModule\_' = stopped ist.
-Wenn der Tür geöffnet wird, wird automatisch die Standby-Modus ausgeschaltet und entsprechenden Event anderen Modulen schicken, das es 'StandbyModule\_' = stopped ist, auf den gleich die AlarmModule reagieren können und den Wert auf  'Alarm' = aus setzen, damit der gesteuerte Geräte wieder aktiviert werden können um dem Person den Eintritt zu Hause angenehm zu gestalten.
+Im Fall, dass niemand zu Hause ist und das Event "`LockDoor\_locked"' vom LockDoorModule eingegangen ist, werden ausgewählte Geräte, wie Lampen, Heizung oder Elektrogeräte im Haus in einen definierten Zustand geschaltet. Manche Geräte, z.B. Steckdosen, sollen ausgeschaltet werden, wenn die Wohnung in den Standby-Modus geht. Andere Geräte, z.B. Orientierungsleuchten oder Alarmanlagen sollen angeschaltet werden. Diese Geräte und die entsprechenden Aktionen werden beim Anlegen des StandbyModules konfiguriert.
+
+Bei dem Event "`LockDoor\_unlocked"', werden keine Aktionen durchgeführt, dies bewirkt, dass der interne Zustand des StandbyModules auf "`stopped"' geändert wird.
+
+Wenn die Tür geöffnet wird, wird automatisch der Standby-Modus ausgeschaltet und ein entsprechendes Event an andere Module gesendet.
+
+\subsubsection{Funktionsweise}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.7]{img/Modulkonzeption/StandbyStateMachine.pdf}
+	\caption{Zustandsdiagramm – StandbyModule}
+	\label{fig:standbyStateMachine}
+\end{figure}
+
+
+Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyModules und deren Zustandsübergänge. Wenn es im inaktiven Zustand ist, wird das Modul durch einen Startkommando in einen aktiven Zustand übergehen und im aktivem Zustand kann das Modul in einen inaktiven Zustand wechseln.
 
 \subsubsection{Konfiguration}
 \begin{itemize}
-	\item Geräte
+	\item Geräte, welche bei Aktivierung des Standby geschaltet werden
 	\begin{itemize}
 		\item 	Typ: Liste [Switch Binary, Switch Multilevel]
 		\item Aktion: on/off 
 		\item Erforderlich: ja
 	\end{itemize}
-	\item Aufruf spezieller Module
+	\item Geräte, welche bei Dektivierung des Standby geschaltet werden
 	\begin{itemize}
-		\item Typ: Liste [] (LockDoor)
+		\item 	Typ: Liste [Switch Binary, Switch Multilevel]
+		\item Aktion: on/off 
 		\item Erforderlich: ja
 	\end{itemize}
 	\item Raum
 	\begin{itemize}
 		\item Typ: Text
-		\item Erforderlich:  ja
+		\item Erforderlich: ja
 	\end{itemize}
 \end{itemize}
 
@@ -453,7 +468,7 @@ Wenn der Tür geöffnet wird, wird automatisch die Standby-Modus ausgeschaltet u
 		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
 		\hline /command/started				& - 					& Starten des Standby-Modus. \\ 
 		\hline /command/stopped				& - 			 		& Stoppen des Standby-Modus. \\
-		\hline /command/state				& stopped\newline started	& Liefert den aktuellen Zustand des Moduls. \\
+		\hline /command/state				& stopped started	& Liefert den aktuellen Zustand des Moduls. \\
 		\hline
 	\end{tabularx}
 	\caption{StandbyModule: Schnittstelle ZAutomation}
@@ -1103,7 +1118,7 @@ Ab einen bestimmten Anteil von ultravioletten Licht ist dieses sehr schädlich f
 
 
 \subsection{Philio 4-in-1 Multisensor}
-
+\emph{(von Tobias Weise)}
 \subsubsection{Allgemein}
 Im Bereich Smart Home hat man eine riesige Auswahl von verschiedenen Sensoren. Je nach Bedarf biete der Philio 4-in-1 Multisensor verschiedene Funktionalitäten, welche Bewegungen, Tür- und Fenster öffnen bzw. schließen, Licht- oder Temperaturänderungen registrieren können. Der Philio 4-in-1 Multisensor ist somit in der Lage 4 verschiedene Messwerte zu erfassen. Diese Werte überträgt der Multisensor mit einer drahtlosen Kommunikationsschnittstelle names Z-Wave an den Z-Way Server.
 
