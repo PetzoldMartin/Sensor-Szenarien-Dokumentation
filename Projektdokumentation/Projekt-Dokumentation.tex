@@ -164,10 +164,53 @@
 \end{itemize}
 
 \chapter{Projektziel}
-\begin{itemize}
-	\item aktueller Stand (Ist-Analyse)
-	\item Gegenstand, Motivation, Zielstellung des Projekts
-\end{itemize}
+%\begin{itemize}
+%	\item aktueller Stand (Ist-Analyse)
+%	\item Gegenstand, Motivation, Zielstellung des Projekts
+%\end{itemize}
+\section{Ist-Analyse}
+Dieser Abschnitt soll einen kurzen Überblick über gegenwärtig am Markt verfügbare Lösungen aus dem Bereich Heimautomatisierung und Smart Home geben. Zum besseren Verständnis werden häufig verwendete Begriffe kurz beschrieben.
+
+\begin{description}
+	\item[Sensor:] Gerät, welches Informationen aus der Umwelt generiert und diese weitergibt, beispielsweise Temperatur, Luftfeuchtigkeit oder Bewegung.
+	\item[Aktoren:] Gerät, welches Aktionen ausführt, z.B. Fenster öffnen, Licht an- oder ausschalten.
+	\item[Gateway:] Gerät und entsprechende Software, welche die eine Verbindung zwischen einer Smart-Home-Technologie (wie z.B. \gls{zwaveg}, \gls{zigbeeg}, Bluetooth) und dem Internet herstellt. Gateways ermöglichen so die entfernte Steuerung von Geräten und den Zugriff über Smartphones.
+\end{description}
+
+Die Vernetzung unterschiedlichster Geräte und Services gewinnt zunehmend an Bedeutung. Im Bereich des Smart Home konkurriert eine Vielzahl von Standards und Protokollen zur Vernetzung verschiedener Sensoren und Aktoren. Die Nutzung von Sensoren und Steuereinheiten ist kein neues Phänomen und wird in der Heim- und Gebäudeautomatisierung schon seit langer Zeit genutzt. Die intelligente Vernetzung aller dieser Geräte stellt allerdings eine neue Qualität der Automatisierung und Steuerung dar.
+
+Verschiedene Hersteller bewerben ihre Produkte und versuchen, diese im Markt zu etablieren. Diese Werbung ist allerdings häufig technologieorientiert, die Nutzer kommen darin nur am Rande vor. Völlig unbeachtet bleibt, dass in der Regel mehrere Personen in einer Wohnung oder einem Haus leben. Das ist eine gravierende Schwäche aktuell verfügbarer Lösungen. Eine Recherche ergab, dass gegenwärtige Systeme die Anwesenheit von Personen nicht ausreichend erfassen bzw. berücksichtigen. Eine Menge angebotener Sensoren können zur Erfassung unterschiedlichster Daten und Informationen genutzt werden, für die Erfassung bzw. Zählung von Personen in einem Raum existieren hingegen kaum Lösungen. Dies mag in der geringen Nutzerakzeptanz begründet liegen, da entsprechende Techniken tief in die Privatsphäre eingreifen würden.
+
+Die fehlende Berücksichtigung von Personen kann dazu führen, dass Zuhause anwesende Personen durch Aktionen des Smart Homes, gestartet durch andere Benutzer oder Automatismen, überrascht, oder in ihrer Tätigkeit gestört werden. Sollen Aktionen des Smart Home wirklich intelligent gestaltet werden, ist es unbedingt erforderlich die Anwesenheit von Personen zu berücksichtigen. Neben der Anwesenheit ist es auch erforderlich, die Anzahl der anwesenden Personen zu kennen. Eine weitere Herausforderung stellt der Aufenthaltsort der Personen in der Wohnung dar. Dieses Problem wird bei der genaueren Betrachtung am Markt verfügbarer Lösungen offenbar. Keines der Produkte arbeitet mit dem Konzept der Personenanzahl. Dies müsste in den verfügbaren Steuereinheiten implementiert und bei auszuführenden Aktionen berücksichtigt werden.
+
+Technologien wie \gls{nfc} oder iBeacons können zwar helfen, den Aufenthaltsort von Personen festzustellen, erfordern jedoch, dass Personen ständig ein eindeutiges Merkmal (z.B. einen Chip oder ein Smartphone) bei sich tragen. Smartphones stellen noch weitere Möglichkeiten zur Positionsbestimmung bereit. Verschiedene Daten wie GPS, aktuell verbundene oder sichtbare WiFi-Stationen oder Triangulation über Funkmasten der Netzbetreiber bedingen jedoch einen erheblichen Energieverbrauch und damit verkürzte Akkulaufzeiten. Besonders innerhalb von Gebäuden treten große Ungenauigkeiten bei Messwerten auf. Außerdem kann nicht vorausgesetzt werden, das jeder Bewohner ein Smartphone besitzt, geschweige denn es ständig bei sich trägt.
+
+Die Akzeptanz für diese Möglichkeiten der Personenerkennung dürfte im Allgemeinen gering sein. Deshalb soll nach Wegen gesucht werden, Personen, bzw. deren Aufenthaltsort festzustellen, ohne dabei jedoch zu tief in die Privatsphäre der Nutzer einzugreifen. Dazu kann beispielsweise die Anwesenheit von Personen erfasst werden, jedoch keine genaue Unterscheidung zwischen den Personen getroffen werden, bzw. Personen nach verschiedene Personengruppen differenziert werden, zum Beispiel Erwachsene/Kinder.
+
+\section{Gegenstand}
+
+Gegenstand ist Entwicklung von Ansätzen zur Personenerkennung im Smart Home Bereich. Um das nahezu unüberschaubare Angebot an Herstellern, Geräten, Protokollen und Standards in diesem Bereich etwas einzuschränken, wurde schon im Voraus die Nutzung des Z-Wave-Standards festgelegt. Aufgrund ähnlicher Sensoren für alle Standards kann davon ausgegangen werden, dass in diesem Projekt gewonnene Erkenntnisse und Ansätze zur Personenerkennung auch auf andere Systeme übertragen werden können.
+
+\section{Z-Wave}
+
+Z-Wave ist ein seit 2005 bestehender Funkstandard zur Heimvernetzung. Aufgrund der Funkübertragung ist diese Technologie besonders für die Nachrüstung in bestehenden Wohngebäuden geeignet und besonders flexibel bei der Erweiterung. So kann eine Installation zu Beginn nur aus einem einzigen Schalter und Aktor bestehen und nach Bedarf um zusätzliche Sensoren, Aktoren und einem Gateway zur intelligenten und entfernten Steuerung erweitert werden.
+Die Z-Wave Alliance, ein Zusammenschluss aller Z-Wave Hersteller, die Spezifikation und Zertifizierung. Das führt dazu, dass zwischen allen zertifizierten Geräten Kompatibilität besteht, unabhängig vom konkreten Hersteller. Diese Kompatibilität besteht nicht nur auf Netzwerkebene, sondern auch der Applikationsebene, sodass Z-Wave Geräte untereinander kommunizieren und sich „verstehen“ können. Das unterscheidet Z-Wave von anderen Protokollen, wie z.B. \gls{zigbeeg}, welches kein Kommunikationsprotokoll definiert.
+
+\section{\gls{zwayg}}
+
+Z-Wave.Me ist ein international tätiges Unternehmen, welches Z-Wave kompatible Geräte entwickelt und vertreibt. Neben der Hardware entwickelt Z-Wave.Me eine Serveranwendung zur Konfiguration, Verwaltung und Verwendung von Z-Wave-Netzen. Diese Serveranwendung heißt Z-Way. In Kombination mit einem USB-Stick (namens UZB) oder einer Erweiterungsplatine für den Raspberry Pi (namens Razberry) arbeitet dieser Server als Gateway für Z-Wave.
+
+Der in JavaScript entwickelte Server kann unter Windows und Raspbian einfach installiert werden. Aufgrund des modularen Aufbaus des Servers kann dieser durch Entwicklung von Modulen erweitert werden.
+
+\section{Motivation und Zielstellung}
+
+Aus den oben genannten Schwachstellen aktuell verfügbarer Smart Home Lösungen ergibt sich die Motivation des Projekts. Im Rahmen des Projekts sollen Möglichkeiten evaluiert werden, die Anzahl von Personen in Räumen festzustellen.
+Voraussetzung ist dabei, den Nutzer nicht aus dem Fokus zu verlieren und keine rein technische Lösung des Problems zu schaffen. Eine solche zu finden und zu realisieren erscheint durchaus möglich und der Aufwand dafür überschaubar. Allerdings findet die gesamte Entwicklung in einem äußerst sensiblen Umfeld statt. Es ist zu erwarten, dass die Nutzerakzeptanz drastisch sinkt, wenn ein System voraussetzt, dass Nutzer ihr Verhalten anpassen, zum Beispiel durch tragen eines Identifikationsmerkmals.
+
+Aus den aufgezeigten Gründen ist es unbedingt erforderlich, dass das System für dessen Benutzer so transparent wie möglich arbeitet und möglichst geringe Interaktion erfordert. Dabei wird vorausgesetzt, dass bereits eine Smart-Home-Lösung eingerichtet ist, welche um erforderliche Komponenten erweitert werden kann. Daraus ergibt sich die Forderung, dass alle erarbeiten Lösungsansätze mit frei am Markt verfügbaren Geräten umgesetzt werden sollen.
+Es ist nicht bekannt, inwieweit die verfügbaren Geräte zur Personenerkennung geeignet sind. Aktuell erhältliche Sensoren sind in ihrem Funktionsumfang und Leistungsfähigkeit begrenzt, deshalb ist es erforderlich zu untersuchen, welche Synergieeffekte aus der Vernetzung von Geräten und intelligente Analyse mehrerer Messwerte gewonnen werden können.
+Ziel ist es, Szenarien zu erarbeiten, welche Herausforderungen bei der Verwendung von Smart-Home-Systemen in Mehrpersonenhaushalten verdeutlichen. Aufgrund dieser Szenarien sollen Konzepte erarbeitet werden, diesen Herausforderungen zu begegnen. Durch die Erweiterung der gegebenen Umgebung aus Z-Wave und Z-Way-Server sollen die gefundenen Szenarien bestmöglich abgebildet und unterstützt werden.
+Zur Demonstration der erarbeiteten Lösung wird es hilfreich sein, eine Art Versuchsaufbau zu erstellen. Ziel dieses Aufbaus ist es, sowohl die Problematik der Personenerkennung zu zeigen, als auch dafür erarbeite Lösungsansätze. Falls dafür eine miniaturisierte Lösung genutzt wird, ist es notwendig zu untersuchen, wie zuverlässig die Sensoren in einer solchen Umgebung funktionieren können.
 
 \chapter{Vorgehensplan}
 % - grober Vorgehensplan, um "`Big Picture"' nicht aus den Augen zu verlieren
@@ -199,7 +242,7 @@ Der zeitliche Rahmen sieht die Abgabe des Abschlussberichts zum 22.01.2016 und d
 
 \chapter{Projektverlauf}
 \begin{itemize}
-	\item welche konkreten Aufgaben wurden wann bearbeitet
+%	\item welche konkreten Aufgaben wurden wann bearbeitet
 	\item Verweise auf Arbeitsergebnisse
 \end{itemize}
 
