@@ -98,19 +98,16 @@
 %\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}} 
 
 %%% Glossar
-\usepackage[acronym, toc, style=long, nonumberlist, nomain]{glossaries}
+\usepackage[acronym, toc, style=long, nonumberlist]{glossaries}
 %Glossar-Übersetzungen:
 \RequirePackage{glossaries-babel}
 \newcommand{\abk}[1]{\gls{#1}}
 
+
 \include{precontent/abbreviation}
+\include{precontent/glossary}
 \makeglossaries
 
-%\newglossaryentry{...}
-%{
-%  name=SOAP,
-%  description={...}
-%}
 %%% Ende Glossar
 
 %%% Style Listings
@@ -138,15 +135,15 @@
 
 %%% Glossar (Abkürzungen)
 \printglossary[type=\acronymtype, title=Akronymverzeichnis,toctitle=Akronymverzeichnis]
-% \printglossary[title=Glossar,toctitle=Glossar]
+\printglossary[type=main,title=Glossar,toctitle=Glossar]
 
 %%% Tabellenverzeichnis
 \listoftables
 \addcontentsline{toc}{chapter}{Tabellenverzeichnis}
 
 %%% Abbildungsverzeichnis
-% \listoffigures
-% \addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
 
 %%% Listingsverzeichnis
 %\renewcommand\listoflistingscaption{Listingverzeichnis}
