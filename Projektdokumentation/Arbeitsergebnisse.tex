@@ -700,8 +700,187 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	
 \end{itemize}
 
+\subsection{PersonIdentificationModule}
+\emph{(von Martin Petzold)}
 
+\subsubsection{Allgemein}
+Das PersonIdentificationModule übernimmt die Aufgabe, anhand der Personenanzahl und von Größen- und CO$_2$-Messungen Aussagen darüber zu treffen ob sich erwachsene Personen oder nur Kinder im  jeweiligen Raum befinden. 
 
+\subsubsection{Funktionsweise}
+Das Modul benötigt ein PersonCounterModule für den Raum in welchem es angewandt wird. Da der Abgleich der CO$_2$-Messungen nur in Verbindung des Wissens der Personenanzahl ausgewertet werden kann. Weiterhin erfolgt die Größenmessung in Zusammenhang mit der Änderung der im Raum befindlichen Personenanzahl. Somit ergibt sich die Funktionsweise, dass bei Änderung der Personenanzahl im Raum geprüft wird, ob durch die sich an den Raumzugängen durchgeführten Größenmessungen Erwachsene registriert wurden. Danach beginnt als Abgleich der Größenmessung die Messung der CO$_2$ Änderung im Raum. Haben nach den Messvorgängen beide Messgrößen die Anwesenheit eines Erwachsenen registriert gibt das Modul eine Erkennung eines Erwachsenen bekannt. Stellt  allerdings eines der beiden Systeme fest, dass sich kein Erwachsener im Raum befindet oder alle Erwachsenen den Raum verlassen haben, wird das Signal "`kein Erwachsener erkannt"' gesendet. Dieser Ablauf ist auch im Modell (\prettyref{fig:personIdentification}) dargestellt.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/PersonIdentificationStateMachine.pdf}
+	\caption{PersonIdentificationModule - Zustandsdiagramm}
+	\label{fig:personIdentification}
+\end{figure}
+
+\subsubsection{Konfiguration}
+\begin{itemize}
+	\item CO$_2$-Sensor
+	\begin{itemize}
+		\item Typ: Multilevel Sensor
+		\item erforderlich: ja
+		\item Ausgabewert: CO$_2$-Gehalt in ppm
+	\end{itemize}
+	\item doorWindowContacts
+	\begin{itemize}
+		\item Typ: Liste[Binary Switches]
+		\item erforderlich: ja
+		\item Ausgabewert: true/false
+	\end{itemize}
+	\item peopleSizeMeasurement 
+	\begin{itemize}
+		\item Typ: Liste[Binary Switches]
+		\item erforderlich: ja
+		\item Ausgabewert: true/false
+	\end{itemize}
+	\item roomHeight
+	\begin{itemize}
+		\item Typ: integer
+		\item erforderlich: ja
+	\end{itemize}
+	\item roomWidth
+	\begin{itemize}
+		\item Typ: integer
+		\item erforderlich: ja
+	\end{itemize}
+	\item roomLength
+	\begin{itemize}
+		\item Typ: integer
+		\item erforderlich: ja
+	\end{itemize}
+	\item roomId
+	\begin{itemize}
+		\item Typ: integer
+		\item erforderlich: ja
+	\end{itemize}
+	\item correctionFactor
+	\begin{itemize}
+		\item Typ: integer
+		\item erforderlich: ja
+	\end{itemize}
+	\item personCounter
+	\begin{itemize}
+		\item Typ: Metrik
+		\item erforderlich: ja
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Schnittstellen}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1.25\hsize}X % 40% of 3\hsize 
+			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
+			>{\hsize=1.25\hsize}X % 40% of 3\hsize
+			% sum=3.0\hsize for 3 columns
+		}
+		\hline
+		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+		\hline 
+		/command/areThereAdults				
+		& - 	
+		& Gibt ein Boolean zurück ob sich im Raum Erwachsene befinden. \\ 
+		\hline 
+		/command/setPersons		
+		& Anzahl, Erwachsenenanzahl		% TODO: wie heißen die Parameter wirklich?	 		
+		& Setzt die Anzahl der Personen im Raum und startet C02-Messung. \\
+		\hline 
+		/command/giveData
+		& - 				
+		& Gibt die Personen-, Erwachsenen- und Kinderanzahl an, die das System registriert hat. \\
+		\hline
+		/command/setCorrectionFactor
+		& Factor
+		& Korrekturfaktor für die CO2-Messung. \\
+		\hline
+		/command/setMeasureTimeDelta
+		& TimeDelta
+		& Zeitabstand zwischen Änderung des PersonCounter und Höhenmessung, welche noch einen Zusammenhang darstellen. \\
+		\hline
+		/command/start
+		& -
+		& \\
+		\hline
+		/command/stop
+		& - 
+		& \\
+		\hline
+		/command/debugOn
+		& - 
+		& \\
+		\hline
+		/command/debugOff
+		& - 
+		& \\
+		\hline
+	\end{tabularx}
+	\caption{PersonIdentification: Schnittstelle ZAutomation}
+\end{table}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1.2\hsize}X 
+			>{\hsize=0.8\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		\textbf{Event Name}						& \textbf{Beschreibung} \\ %TODO Beschreibung einfügen?
+		\hline
+		[deviceId]:PersonIdentificationModule\_[roomId]\_started	
+		& - \\
+		\hline 
+		[deviceId]:PersonIdentificationModule\_[roomId]\_stoped
+		& - \\
+		\hline
+		[deviceId]:PersonIdentificationModule\_[roomId]\_adult\_there
+		& - \\
+		\hline
+		[deviceId]:PersonIdentificationModule\_[roomIId]\_no\_adult\_there
+		& - \\
+		\hline
+	\end{tabularx}
+	\caption{PersonIdentification: Schnittstellen Event Bus}
+\end{table}
+
+\subsubsection{Abhängigkeiten}
+\begin{itemize}
+	\item PersonCounterModule
+\end{itemize}
+
+\subsubsection{Interne Speicher}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=0.85\hsize}X 
+			>{\hsize=0.85\hsize}X
+			>{\hsize=1.45\hsize}X
+			>{\hsize=0.85\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		\textbf{Speicher Name}	& \textbf{Datentyp}		& \textbf{Beschreibung}		& \textbf{Initialwert} \\
+		\hline
+		level					& integer				& Entsprechung des Status "`off"' ist false und "`on"' ist true.	& off \\
+		\hline
+		status					& boolean				& Status true wenn Erwachsener erkannt, false wenn nicht oder Zustand undefiniert.	& false \\
+		\hline
+		personCount				& integer				& Interner Zwischenspeicher der Personenanzahl vom zugehörigen Personcounter.	& 0 \\
+		\hline
+		adultCount				& integer				& Erkannte Erwachsene, welche durch die Größenmessung erkannt wurden.	& 0 \\
+		\hline
+		room					& integer				& RoomId																& -1 \\
+		\hline
+		correctionFactor		& integer				& Konstante zur Korrektur,  welche  mit  Messungen multipliziert wird.	& 1 \\
+		\hline
+		runningState			& boolean				& Zustand ob die Messungen ausgewertet werden oder nicht.			& true \\ 
+		\hline
+	\end{tabularx}
+	\caption{PersonIdentification: Interne Speicher}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sensorevaluation}
 \begin{itemize}
 	\item Ergebnisse der Sensorevaluation (je Sensor)
