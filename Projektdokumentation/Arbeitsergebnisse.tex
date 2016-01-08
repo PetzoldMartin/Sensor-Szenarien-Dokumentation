@@ -277,7 +277,7 @@ Ein PersonCounterModule enthält zusätzlich die Information für welchen Raum e
 Der jeweilige Personenzähler pro Raum wird durch das Modul die dies benötigen instanziiert sofern noch keine Personenzähler für die jeweiligen Räume vorhanden sind.
 
 \subsubsection{Funktionsweise}
-Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für wichtige, für andere Module nötige Informationen der Personenanzahl (\prettyref{fig:szenarienPersonenerkennung}). (//TODO: Bildverweis wie gedacht?)
+Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für wichtige, für andere Module nötige Informationen der Personenanzahl (\prettyref{fig:szenarienPersonenerkennung}).
 
 Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder wird als Funktion bereitgestellt. Es kann dann entweder automatisch oder pro Modul über eine Funktion instanziiert und benutzt werden.
 
@@ -353,7 +353,7 @@ Dieses Modul stellt grundlegende Unterstützung zunächst für Bewegungssensoren
 Ein RoomAccessModule enthält zusätzlich die Information für welche Räume es bestimmt ist, somit kann es beliebig oft wiederverwendet werden.
 
 \subsubsection{Funktionsweise}
-Diese Realisierung entspricht der geplanten Realisierung des Szenarios zu Beginn des Projekts. Exakt diese Logik wird zunächst durch dieses Modul implementiert (\prettyref{fig:szenarienPersonenerkennungTür}). //TODO: Bildverweis wie gedacht?
+Diese Realisierung entspricht der geplanten Realisierung des Szenarios zu Beginn des Projekts. Exakt diese Logik wird zunächst durch dieses Modul implementiert (\prettyref{fig:szenarienPersonenerkennungTür}).
 
 Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und die Anzahl jeweils korrigiert. Weitere Logik anderer Module kann durch ein Event erfolgen. Jedwede Logik die direkt mit der Personenanzahl in Verbindung steht muss den Personenzähler (PersonCounterModule) ansprechen.
 
