@@ -115,13 +115,13 @@ Trotz dieses Vorgehens ist nicht auszuschließen, dass Personen in der Wohnung n
 \end{itemize}
 
 \subsubsection{Ablauf}
-Das System befindet sich im Standby, d.h. alle Gefahrenquellen im Raum sind ausgeschaltet. Person X (ein Kind) betritt den Raum. Das Betreten des Raumes wir vom System erkannt, nun wird ein Vorgang gestartet der die Person als Kind oder Erwachsenen zu identifizieren. Person X wir dabei als Kind identifiziert somit bleiben die Gefahrenquellen abgeschaltet. 
-Nun betritt Person Y (ein Erwachsener) den Raum, dessen Betreten wird ebenfalls vom System erkannt. Der Erkennungsvorgang wird ein zweites mal Gestartet. das System erkennt das es sich bei einer der Beiden Personen um eine Erwachsene Person handeln muss und Schaltet die Gefahrenquellen frei so das diese benutzt werden können.
-Nach einer Weile verlässt Person Y den Raum, das System Stellt fest das sich kein erwachsener mehr im Raum befindet und schaltet nach einer gewissen Zeit den Standby Modus wieder her.
+Das System befindet sich im Standby, d.h. alle Gefahrenquellen im Raum sind ausgeschaltet. Person X (ein Kind) betritt den Raum. Das Betreten des Raumes wird vom System erkannt und es wird ein Vorgang gestartet, der die Person als Kind oder Erwachsenen identifiziert. Person X wird dabei als Kind identifiziert und die Gefahrenquellen bleiben somit abgeschaltet. 
+Nun betritt Person Y (ein Erwachsener) den Raum, dessen Betreten wird ebenfalls vom System erkannt. Der Erkennungsvorgang wird ein zweites Mal gestartet. Das System erkennt, dass es sich bei einer der beiden Personen um eine erwachsene Person handelt und schaltet die Gefahrenquellen frei, so dass diese benutzt werden können.
+Nach einer Weile verlässt Person Y den Raum. Das System stellt fest das sich kein Erwachsener mehr im Raum befindet und schaltet nach einer gewissen Zeit den Standby Modus wieder her.
 
 \subsubsection{Alternativer Ablauf}
-Nur Person Y(ein Erwachsener)  betritt den Raum, System erkennt den Eintritt. Er wird beim Identifizierungsvorgang als Erwachsener erkannt und damit werden die Gefahrenquellen freigeschaltet.
-Nach einer Weile verlässt Person Y den Raum, das System Stellt fest das sich kein erwachsener mehr im Raum befindet und schaltet nach einer gewissen Zeit den Standby Modus wieder her.
+Nur Person Y (ein Erwachsener) betritt den Raum und das System erkennt den Eintritt. Er wird beim Identifizierungsvorgang als Erwachsener erkannt und damit werden die Gefahrenquellen freigeschaltet.
+Nach einer Weile verlässt Person Y den Raum. Das System stellt fest das sich kein Erwachsener mehr im Raum befindet und schaltet nach einer gewissen Zeit den Standby Modus wieder her.
 
 \subsubsection{erforderliche Komponenten}
 \begin{itemize}
@@ -129,30 +129,30 @@ Nach einer Weile verlässt Person Y den Raum, das System Stellt fest das sich ke
 	\item CO$_2$ Sensor
 	\item Z-Way-Server/Steuereinheit
 	\item 2 Bewegungsmelder zur Erkennung von Eintritt in den Raum
-	\item Schaltbare Gefahrenquelle (zur Demonstration reicht auch eine Schaltbare Signalquelle)
+	\item Schaltbare Gefahrenquelle oder zur Simulation eine schaltbare Lampe
 \end{itemize}
 
-\subsubsection{Nachbedingung (opt.)}
+\subsubsection{Nachbedingung}
 \begin{itemize}
-	\item Das System kann auch eine Regelung beinhalten das der Standby Modus irgendwann automatisch und nicht nach verlassen des Raumes Zeitgesteuert wieder hergestellt wird.
+	\item Das System kann auch eine Regelung beeinhalten, dass der Standby Modus automatisch und nicht nach verlassen des Raumes zeitgesteuert wieder hergestellt wird.
 \end{itemize}
 
 \subsubsection{zur Diskussion}
 \begin{itemize}
-	\item Abgleich mit dem Szenario zur Erkennung  Person hat den Raum betreten/verlassen
-	\item sind die Sensoren Präzise genug um den Unterschied Kind Erwachsener zu erfassen, oder kann wie im Werbevideo nur Mensch und Haustier unterschieden werden
-	\item soll die Wieder Standby Schaltung des Systems Teil des Szenarios sein
+	\item Abgleich mit dem Szenario zur Erkennung ob eine Person den Raum betreten/verlassen hat
+	\item sind die Sensoren präzise genug um den Unterschied zwischen Kind und Erwachsener zu erfassen, oder kann nur Mensch und Haustier unterschieden werden
+	\item soll die Reaktivierung des Standby Modus Teil des Szenarios sein
 	\item Einordnung in Umsetzbar/Nicht Umsetzbar
 \end{itemize}
 
 \subsubsection{ähnliche Szenarien}
 \begin{itemize}
-	\item Verknüpfung mit zur Erkennung  Person hat den Raum betreten/verlassen
-	\item Verknüpfung mit Haus bei verschließen der Haus- Wohnungstür in "`Standby"' versetzen als Regelung zur Herstellung des Standby Zustandes
+	\item \prettyref{subsec:szenarioPersonTuer}
+	\item \prettyref{subsec:szenarioStandby}
 \end{itemize}
 
 \subsubsection{Modellierung Identifizierung Erwachsener}
-\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
+\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell)) bereits gemacht?
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Szenarien/IdentifizierungErwachsene.pdf}
@@ -161,7 +161,7 @@ Nach einer Weile verlässt Person Y den Raum, das System Stellt fest das sich ke
 \end{figure}
 
 \subsubsection{Modellierung Gefahrenquellen abstellen}
-\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell))
+\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell)) bereits gemacht?
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Szenarien/GefahrenquellenAbstellen.pdf}
