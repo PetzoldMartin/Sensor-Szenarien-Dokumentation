@@ -38,6 +38,7 @@ Das Modell (\prettyref{fig:szenarienPersonenerkennung}) zeigt den Ablauf für de
 \end{figure}
 
 \subsubsection{Modellierung Personenerkennung an der Tür}
+\label{subsec:szenarioPersonTuer}
 Das Modell (\prettyref{fig:szenarienPersonenerkennungTür}) zeigt den Ablauf für die beiden Bewegungssensoren an einem Türdurchgang. Dabei wird nach einer Aktivierung eines Sensors auf einer Seite der Tür auf den zweiten Sensor auf der anderen Seite der Tür eine gewisse Zeit gewartet. Sofern beide Sensoren innerhalb dieses gewissen Zeitraums aktiviert wurden ist ein Durchgang erkannt worden und die jeweiligen Personenzähler der anliegenden Räume werden angepasst.
 
 \begin{figure}[h!]
@@ -110,7 +111,7 @@ Trotz dieses Vorgehens ist nicht auszuschließen, dass Personen in der Wohnung n
 
 \subsubsection{Vorbedingung}
 \begin{itemize}
-	\item Zuverlässige Erkennung ob Personen den Raum betreten oder Verlassen wurde bereits realisiert (Szenario Herr Laube)
+	\item Zuverlässige Erkennung ob Personen den Raum betreten oder verlassen (\prettyref{subsec:szenarioPersonTuer})
 \end{itemize}
 
 \subsubsection{Ablauf}
