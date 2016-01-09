@@ -1,4 +1,4 @@
-\chapter{Arbeitsergebnisse}
+﻿\chapter{Arbeitsergebnisse}
 \begin{itemize}
 	\item Ergebnisse, welche für den weiteren Verlauf relevant sind (z.B. zu realisierende Szenarien)
 	\item weiterverfolgte Szenarien
@@ -10,22 +10,22 @@
 \emph{(von Philip Laube)}
 \subsubsection{Ablauf}
 Person A geht zusammen mit Person B vom Flur in das Wohnzimmer, während Person C in die Küche geht.
-Die Lichter werden im Flur deaktiviert, im Wohnzimmer und in der Küche aktiviert.
+Die Lampen werden im Flur ausgeschaltet, im Wohnzimmer und in der Küche eingeschaltet.
 Person D betritt die Wohnung und wird von den Personen A und B in der Tür zum Wohnzimmer begrüßt. Zusammen gehen sie ins Wohnzimmer.
-Dabei werden zunächst die Lichter im Flur erneut aktiviert und nach der Begrüßung wieder deaktiviert.
+Dabei werden zunächst die Lampen im Flur erneut eingeschaltet und nach der Begrüßung wieder ausgeschaltet.
 Nach einiger Zeit ruft Person D zum Essen und es verlassen Personen A, B und C das Wohnzimmer und gehen in die Küche.
-Sobald die letzte Person das Wohnzimmer verlassen hat werden die Lichter im Wohnzimmer deaktiviert.
+Sobald die letzte Person das Wohnzimmer verlassen hat, werden die Lampen im Wohnzimmer ausgeschaltet.
 
 \subsubsection{Erforderliche Komponenten}
 \begin{itemize}
-	\item ZWay Steuereinheit
+	\item Z-Way Steuereinheit
 	\item 2 x Bewegungsmelder / Fibaro 6-in-1 Sensor pro Tür
-	\item Modul zur Lichtersteuerung
+	\item Modul zur Lichtsteuerung
 \end{itemize}
 
 \subsubsection{zur Diskussion}
-Unbekannt ob Begrüßungssituation ausreichend abgegrenzt werden kann, ohne Fehler hervorzubringen.
-Tür könnte zusätzlich mit Türsensor ausgestattet werden um ein Durchgehen zu bestätigen bzw. vorbeigehende Personen bei geschlossener Tür zu ignorieren.
+Es ist unbekannt, ob die Begrüßungssituation ausreichend abgegrenzt werden kann, ohne Fehler hervorzubringen.
+Türen könnten zusätzlich mit Türsensoren ausgestattet werden, um ein Durchgehen zu bestätigen bzw. vorbeigehende Personen bei geschlossener Tür zu ignorieren.
 
 \subsubsection{Modellierung Erkennung der Personenanzahl}
 Das Modell (\prettyref{fig:szenarienPersonenerkennung}) zeigt den Ablauf für den Personenzähler bei einer Erkennung eines Personenübergangs mit unterschiedlichen Mitteln. Sofern ein Übergang erkannt wurde, werden die Personenzähler angepasst. Daraufhin können andere Module eine Aktion, abhängig von der nun neuen Personenanzahl pro Raum, starten.
@@ -39,7 +39,7 @@ Das Modell (\prettyref{fig:szenarienPersonenerkennung}) zeigt den Ablauf für de
 
 \subsubsection{Modellierung Personenerkennung an der Tür}
 \label{subsec:szenarioPersonTuer}
-Das Modell (\prettyref{fig:szenarienPersonenerkennungTür}) zeigt den Ablauf für die beiden Bewegungssensoren an einem Türdurchgang. Dabei wird nach einer Aktivierung eines Sensors auf einer Seite der Tür auf den zweiten Sensor auf der anderen Seite der Tür eine gewisse Zeit gewartet. Sofern beide Sensoren innerhalb dieses gewissen Zeitraums aktiviert wurden ist ein Durchgang erkannt worden und die jeweiligen Personenzähler der anliegenden Räume werden angepasst.
+Das Modell (\prettyref{fig:szenarienPersonenerkennungTür}) zeigt den Ablauf für die beiden Bewegungssensoren an einem Türdurchgang. Dabei wird nach einer Aktivierung eines Sensors, auf einer Seite der Tür, auf den zweiten Sensor, auf der anderen Seite der Tür, eine gewisse Zeit gewartet. Sofern beide Sensoren innerhalb dieses gewissen Zeitraums aktiviert wurden, ist ein Durchgang erkannt worden und die jeweiligen Personenzähler der anliegenden Räume werden angepasst.
 
 \begin{figure}[h!]
 	\centering
