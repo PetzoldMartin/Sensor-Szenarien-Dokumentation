@@ -6,13 +6,13 @@
 \section{Smartphone als Präsenzsensor (Wohnung/Haus als Ganzes)}
 \emph{(von Patrick Hecker)}
 
-\subsection{Auslöser (opt.)}
+\subsection{Auslöser}
 \begin{itemize}
 	\item Smartphone (WiFi, GPS, Funkzelle)
 \end{itemize}
 
 \subsection{Ablauf}
-16:00 Uhr. Person A begibt sich nach Feierabend auf den Heimweg. Die Präsenzsensor App, welche auf dem Smartphone von Person A installiert ist, wird im Umkreis von 2 km (einstellbar) um die Wohnung aktiv und sendet eine Nachricht (über HTTP) an die zentrale Steuereinheit. Das Gateway hat nun die Information, dass sich Person A auf dem Weg zur Wohnung befindet (Stufe 1) und startet in Abhängigkeit der aktuellen Personenanzahl, die sich im Haus befindet und deren Einstufung im System (Erwachsener, Kind) ein voreingestelltes Szenario. Sobald Person A zu Hause angekommen ist und die Wohnung betritt, wird sein Smartphone erneut aktiv (ohne Benutzerinteraktion\footnote{Die Präsenzsensor App registriert beim erstmaligen Start bzw. bei der Installation ein Betriebssystem-Ereignis, welches die Änderung des Netzwerkzustandes (Android: android.net.conn.CONNECTIVITY\_CHANGE) signalisiert. Sobald dieses Ereignis eintritt, wird die App aktiv und prüft die aktuellen Verbindungsinformation (WLAN ja/nein, SSID) und sendet im Hintergrund beim Erkennen des Heimnetzes eine Nachricht an die zentrale Steuereinheit.}), da eine Verbindung zu seinem privaten WLAN-Netz hergestellt wurde. Als Reaktion auf dieses Ereignis sendet sein Smartphone erneut eine Nachricht an die zentrale Steuereinheit und signalisiert damit die Ankunft von Person A. Solange die zentrale Steuereinheit keine neuen Informationen vom Smartphone bekommt, nimmt die zentrale Steuereinheit an, dass sich Person A in der Wohnung befindet. Diese Information wird für andere Automatisierungsmechanismen zur Verfügung gestellt, um deren Entscheidungsfindung zu unterstützen.
+16:00 Uhr: Person A begibt sich nach Feierabend auf den Heimweg. Die Präsenzsensor App, welche auf dem Smartphone von Person A installiert ist, wird im Umkreis von 2 km (einstellbar) um die Wohnung aktiv und sendet eine Nachricht (über HTTP) an die zentrale Steuereinheit. Das Gateway hat nun die Information, dass sich Person A auf dem Weg zur Wohnung befindet (Stufe 1) und startet in Abhängigkeit der aktuellen Personenanzahl, die sich im Haus befindet und deren Einstufung im System (Erwachsener, Kind) ein voreingestelltes Szenario. Sobald Person A zu Hause angekommen ist und die Wohnung betritt, wird sein Smartphone erneut aktiv (ohne Benutzerinteraktion\footnote{Die Präsenzsensor App registriert beim erstmaligen Start bzw. bei der Installation ein Betriebssystem-Ereignis, welches die Änderung des Netzwerkzustandes (Android: android.net.conn.CONNECTIVITY\_CHANGE) signalisiert. Sobald dieses Ereignis eintritt, wird die App aktiv und prüft die aktuellen Verbindungsinformation (WLAN ja/nein, SSID) und sendet im Hintergrund, beim Erkennen des Heimnetzes eine Nachricht an die zentrale Steuereinheit.}), da eine Verbindung zu seinem privaten WLAN-Netz hergestellt wurde. Als Reaktion auf dieses Ereignis sendet sein Smartphone erneut eine Nachricht an die zentrale Steuereinheit und signalisiert damit die Ankunft von Person A. Solange die zentrale Steuereinheit keine neuen Informationen vom Smartphone bekommt, nimmt die zentrale Steuereinheit an, dass sich Person A in der Wohnung befindet. Diese Information wird für andere Automatisierungsmechanismen zur Verfügung gestellt, um deren Entscheidungsfindung zu unterstützen.
 
 \subsection{Modellierung}
 \begin{figure}[h!]
@@ -29,7 +29,7 @@
 	\label{fig:szenarienSmartphoneWlan}
 \end{figure}
 
-\subsection{alternativer Ablauf (opt.)}
+\subsection{alternativer Ablauf}
 \begin{itemize}
 	\item anstatt der WiFi-Verbindung könnten auch Informationen zur Funkzelle als Ereignisauslöser dienen
 \end{itemize}
@@ -37,12 +37,12 @@
 \subsection{erforderliche Komponenten}
 \begin{itemize}
 	\item Smartphone mit WLAN, GPS
-	\item Smartphone App (Arrival Sensor o. Presence Sensor)
+	\item Smartphone App (Arrival Sensor oder Presence Sensor)
 	\item Z-Way Module/Profile
 	\item WLAN Router
 \end{itemize}
 
-\subsection{Nachbedingung (opt.)}
+\subsection{Nachbedingung}
 \begin{itemize}
 	\item wenn 24 Stunden kein Signal vom Smartphone bei der zentralen Steuereinheit eingeht, wird die Präsenz von Person A auf nicht anwesend gesetzt (deckt den Fehlerfall ab, dass angenommen wird, es ist jemand zu Hause obwohl dies nicht der Fall ist)
 \end{itemize}
@@ -54,7 +54,7 @@
 	\item Idee: \emph{Smart Sense Presence Sensor}
 	\begin{itemize}
 		\item ZigBee Gerät (Schlüsselanhänger)
-		\item Überprüfung der Verbindung zwischen Schlüsselanhänge und Hub, um Präsenzstatus zu ermitteln
+		\item Überprüfung der Verbindung zwischen Schlüsselanhänger und Hub, um Präsenzstatus zu ermitteln
 		\item Reichweite ca. 15-30 m
 	\end{itemize}
 \end{itemize}
