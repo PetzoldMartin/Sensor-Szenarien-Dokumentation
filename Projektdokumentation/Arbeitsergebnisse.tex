@@ -503,7 +503,7 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyMo
 \subsection{InHomeFeedbackModule}
 \emph{(von Patrick Hecker)}
 \subsubsection{Allgemein}
-Das Feedbackmodul übernimmt die Aufgabe, Personen im Haus über eingehende Aktionen zu informieren. Neben den eingehenden Aktionen (von Personen außerhalb des Hauses) kann auch auf Aktionen, die vom System automatisch gestartet wurden, hingewiesen werden (Timer, Grenzwert eines Sensors überschritten, ...). Die Personen im Haus haben dadurch die Möglichkeit auf Aktionen zu reagieren, indem sie sie abbrechen bzw. verzögern können. Der konkrete Feedbackmechanismus kann individuell konfiguriert werden und gliedert sich in folgende fünf Kategorien (detaillierter in Abschnitt Konfiguration).
+Das Feedback-Modul übernimmt die Aufgabe, Personen im Haus über eingehende Aktionen zu informieren. Neben den eingehenden Aktionen (von Personen außerhalb des Hauses) kann auch auf Aktionen, die vom System automatisch gestartet wurden, hingewiesen werden (Timer, Grenzwert eines Sensors überschritten, ...). Die Personen im Haus haben dadurch die Möglichkeit auf Aktionen zu reagieren, indem sie sie abbrechen bzw. verzögern können. Der konkrete Feedbackmechanismus kann individuell konfiguriert werden und gliedert sich in folgende fünf Kategorien (detaillierter in Abschnitt Konfiguration).
 
 \begin{itemize}
 	\item visuelles Feedback (bspw. Lampen, LED’s an Schalter, ...),
@@ -520,21 +520,21 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.7]{img/Modulkonzeption/FeedbackStateMachine.pdf}
-	\caption{Zustandsdiagramm – InHomeFeedbackModule}
+	\caption{Zustandsdiagramm – InHomeFeedback-Modul}
 	\label{fig:feedbackStateMachine}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/FeedbackSequence.pdf}
-	\caption{Sequenzdiagramm – InHomeFeedbackModule – Beispiel 1}
+	\caption{Sequenzdiagramm – InHomeFeedback-Modul – Beispiel 1}
 	\label{fig:feedbackSequence}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/FeedbackSequenceUser.pdf}
-	\caption{Sequenzdiagramm – InHomeFeedbackModule – Beispiel 2}
+	\caption{Sequenzdiagramm – InHomeFeedback-Modul – Beispiel 2}
 	\label{fig:feedbackSequenceUser}
 \end{figure}
 
@@ -545,7 +545,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\item visuelles Feedback
 	\begin{itemize}
 		\item Typ: Liste [Binary Switch, Multilevel Switch]
-		\item Aktion: on/off/on/off/on/... bzw. 0-99-0-99-0-...
+		\item Aktion: an/aus/an/aus/an/... bzw. 0-99-0-99-0-...
 		\item Erforderlich: nein
 		\item Option:
 		\begin{itemize}
@@ -553,7 +553,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 			\begin{itemize}
 				\item Typ: Text
 				\item Erforderlich: nein
-				\item Default: 5 sek
+				\item Standard: 5 Sekunden
 			\end{itemize}
 		\item spezieller Wert, bspw. RGB (RGB + Warmweiß + Kaltweiß)
 		\end{itemize}
@@ -561,7 +561,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\item akustisches Feedback
 	\begin{itemize}
 		\item Typ: Liste [*] \textrightarrow{ }bspw. Aeon Labs Sirene \textrightarrow{ }Binary Switch
-		\item Aktion: on/off
+		\item Aktion: an/aus
 		\item Erforderlich: nein
 	\end{itemize}
 	\item Nachricht
@@ -574,7 +574,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\item Aufruf spezieller Module
 	\begin{itemize}
 		\item Typ: Liste [Binary Switch, Multilevel Switch] \textrightarrow{ }Device Type der speziellen Module! (deviceType \textrightarrow{ }namespace\_deviceType)
-		\item Aktion: on/off bzw. 0/99
+		\item Aktion: an/aus bzw. 0/99
 		\item Erforderlich: nein
 		\item Option:
 		\begin{itemize}
@@ -600,13 +600,13 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\begin{itemize}
 		\item Typ: Text
 		\item Erforderlich: nein
-		\item Default: 30 sek
+		\item Standard: 30 Sekunden
 	\end{itemize}
 	\item Verzögerungszeit
 	\begin{itemize}
 		\item Typ: Text
 		\item Erforderlich: nein
-		\item Default: 600 sek
+		\item Standard: 600 Sekunden
 	\end{itemize}
 	\item Schalter (zum Abbrechen der eingehenden Aktion)
 	\begin{itemize}
@@ -631,7 +631,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 		\hline 
 		/command/start				
 				& duration (opt.) \newline endless=true (opt.) 	
-						& Starten des Feedbackmodus (die Durchführung der Aktion wird nicht beeinflusst). Der Parameter "`endless=true"' startet den Feedback-Modus, ohne automatische Terminierung nach einer bestimmten Zeitspanne. \\ 
+						& Starten des Feedback-Modus (die Durchführung der Aktion wird nicht beeinflusst). Der Parameter "`endless=true"' startet den Feedback-Modus, ohne automatische Terminierung nach einer bestimmten Zeitspanne. \\ 
 		\hline 
 		/command/stop		
 				& - 			 		
@@ -646,11 +646,11 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 						& Die Aktion abbrechen. \\
 		\hline
 		/command/defer
-				& duration (opt.)
+				& duration (opt.)%(wirklich optional oder hier unbedingt nötig?)
 						& Die Aktion um eine bestimmte Zeit verschieben. \\
 		\hline
 	\end{tabularx}
-	\caption{InHomeFeedbackModule: Schnittstelle ZAutomation}
+	\caption{InHomeFeedback-Modul: Schnittstelle ZAutomation}
 \end{table}
 
 \begin{table}[H]
@@ -663,16 +663,16 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 		\textbf{Event Name}						& \textbf{Beschreibung} \\
 		\hline
 		[deviceId]:InHomeFeedbackModule\_[roomId]\_started	
-				& Feedbackmodus wurde gestartet \\
+				& Feedback-Modus wurde gestartet \\
 		\hline 
 		[deviceId]:InHomeFeedbackModule\_[roomId]\_stopped\_normal
-				& Feedbackmodus wurde nach der vorgegebenen Zeit beendet \\
+				& Feedback-Modus wurde nach der vorgegebenen Zeit beendet \\
 		\hline
 		[deviceId]:InHomeFeedbackModule\_[roomId]\_stopped\_manual
-				& Feedbackmodus wurde  gestoppt \\
+				& Feedback-Modus wurde  gestoppt \\
 		\hline
 		[deviceId]:InHomeFeedbackModule\_[roomId]\_canceled\_by\_user
-				& Feedbackmodus wurde vom Nutzer abgebrochen (aufrufende Komponente sollte dieses Event abfangen und entsprechend reagieren) \\
+				& Feedback-Modus wurde vom Nutzer abgebrochen (aufrufende Komponente sollte dieses Event abfangen und entsprechend reagieren) \\
 		\hline
 		[deviceId]:InHomeFeedbackModule\_[roomId]\_deferred
 				& Aktion wurde um eine bestimmte Zeit aufgeschoben \\
@@ -681,7 +681,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 				& - \\
 		\hline
 	\end{tabularx}
-	\caption{InHomeFeedbackModule: Schnittstellen Event Bus}
+	\caption{InHomeFeedback-Modul: Schnittstellen Event Bus}
 \end{table}
 
 \subsubsection{Abhängigkeiten}
