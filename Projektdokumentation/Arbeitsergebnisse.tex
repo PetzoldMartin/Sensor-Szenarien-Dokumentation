@@ -177,24 +177,24 @@ TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
 \emph{(von Simon Schwabe)}
 
 \subsubsection{Allgemein}
-Das LockDoorModule ist der Vermittler für weitere Module im Zusammenhang mit dem Verlassen der Wohnung. Wenn die Wohnung verlassen und abgeschlossen wird, ist die Wahrscheinlichkeit hoch, dass keine weiteren Personen anwesend sind. Allerdings kann die Wohnung auch irrtümlich abgeschlossen werden und es sind noch weitere Personen anwesend. Um solchen Fehlinterpretationen entgegenzuwirken überprüft das LockDoorModule immer, ob wirklich keine Personen erkannt werden und die Wohnung leer steht. Diese Information ist für weitere Module, insbesondere das AlarmModule, relevant und wird über den Event Bus mitgeteilt.
+Das LockDoor-Modul ist der Vermittler für weitere Module im Zusammenhang mit dem Verlassen der Wohnung. Wenn die Wohnung verlassen und abgeschlossen wird, ist die Wahrscheinlichkeit hoch, dass keine weiteren Personen anwesend sind. Allerdings kann die Wohnung auch irrtümlich abgeschlossen werden und es sind noch weitere Personen anwesend. Um solchen Fehlinterpretationen entgegenzuwirken überprüft das LockDoor-Modul immer, ob wirklich keine Personen erkannt werden und die Wohnung leer steht. Diese Information ist für weitere Module, insbesondere das Alarm-Modul, relevant und wird über den Event Bus mitgeteilt.
 
 \subsubsection{Funktionsweise}
 Die genaue Funktionsweise des Moduls wurde im Wesentlichen schon im Abschnitt Szenarien (siehe \prettyref{subsec:szenarioStandby}) beschrieben und modelliert. Das Modell „Abläufe bei Verschließen der Wohnung aus Systemsicht“ (\prettyref{fig:szenarienStandby}) beschreibt das Vorgehen. Die Aktivität „Standby aktivieren“ kann um das Werfen des entsprechenden Events erweitert werden.
 
-Das Szenario enthält keine detaillierte Beschreibung für die Abschaltung des Standby-Modus, da nicht sinnvoll. Für das Modul LockDoor ist es allerdings erforderlich auf die Ankunft von Personen zu reagieren, z.B. um das Alarm-Modul zu benachrichtigen und die Alarmanlage abzuschalten. %Die Anzahl der durchzuführenden Aktionen ist überschaubar und wird im Modell dargestellt (\prettyref{fig:modulkonzeptionLockDoorSequence}).
+Das Szenario enthält keine detaillierte Beschreibung für die Abschaltung des Standby-Modus, da dies nicht notwendig ist. Für das LockDoor-Modul ist es allerdings erforderlich auf die Ankunft von Personen zu reagieren, z.B. um das Alarm-Modul zu benachrichtigen und die Alarmanlage abzuschalten. %Die Anzahl der durchzuführenden Aktionen ist überschaubar und wird im Modell dargestellt (\prettyref{fig:modulkonzeptionLockDoorSequence}).
 Dazu wird bei Ankunft der entsprechende Schalter betätigt, bzw. das Schloss geschlossen. Anschließend wird das Event "`LockDoorModule\_unlocked"' geworfen. An dieser Stelle ist keine weitere Logik erforderlich.
 
 %TODO Grafik an geeigneter Stelle einbinden und beschreiben.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/LockDoorSequence.pdf}
-	\caption{Sequenzdiagramm - LockDoorModule}
+	\caption{Sequenzdiagramm - LockDoor-Modul}
 	\label{fig:modulkonzeptionLockDoorSequence}
 \end{figure}
 
 \subsubsection{Konfiguration}
-Bei der Konfiguration des LockDoor muss das Wohnungstürschloss angegeben werden, alternativ kann dafür ein Schalter benutzt werden, der im inneren der Wohnung vor dem Verlassen betätigt wird. 
+Bei der Konfiguration des LockDoor-Moduls muss das Wohnungstürschloss angegeben werden, alternativ kann dafür ein Schalter benutzt werden, der im Inneren der Wohnung vor dem Verlassen betätigt wird. 
 \begin{itemize}
 	\item Schloss/Schalter
 	\begin{itemize}
@@ -204,9 +204,9 @@ Bei der Konfiguration des LockDoor muss das Wohnungstürschloss angegeben werden
 \end{itemize}
 
 \subsubsection{Schnittstellen}
-Die Schnittstellen, welche dieses Modul nutzt und bereitstellt, sind von großer Bedeutung. Das Modul an sich implementiert geringe Funktionalität, es ist eine Brücke zwischen den Modulen zur Raumüberwachung auf der einen Seite, und den Modulen für Aktionen bei Verlassen der Wohnung.
+Die Schnittstellen, welche dieses Modul nutzt und bereitstellt, sind von großer Bedeutung. Das Modul an sich implementiert eine nur geringe Funktionalität, jedoch ist es eine Brücke zwischen den Modulen zur Raumüberwachung auf der einen Seite, und den Modulen für Aktionen beim Verlassen der Wohnung auf der anderen Seite.
 
-LockDoor bietet über den Event Bus eine Schnittstelle zu anderen Modulen. Diese werden benachrichtigt, sobald davon ausgegangen wird, dass keine Person mehr anwesend ist (LockDoorModule\_locked). Die Freischaltung geschieht über ein weiteres Event (LockDoorModule\_unlocked).
+Das LockDoor-Modul bietet über den Event Bus eine Schnittstelle zu anderen Modulen. Diese werden benachrichtigt, sobald davon ausgegangen wird, dass keine Person mehr anwesend ist (LockDoorModule\_locked). Die Freischaltung geschieht über ein weiteres Event (LockDoorModule\_unlocked).
 
 Das Modul wird als Singleton angelegt, da für jede Wohnung nur ein Modul zur Überwachung der Wohnungstür erforderlich ist. Das hat zur Folge, dass Events keine Virtual Device Id tragen. Damit ist es für Empfänger einfacher, auf entsprechende Events zu reagieren.
 
@@ -221,7 +221,7 @@ Für die Überprüfung der Personenanzahl wird die Schnittstelle des Moduls Pers
 %	\hline 
 %\end{tabularx}
 
-\begin{table}
+\begin{table}[h!]
 \begin{tabularx}{\textwidth}{
 		 >{\hsize=1.25\hsize}X % 40% of 3\hsize 
 		>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
@@ -256,12 +256,9 @@ Für die Überprüfung der Personenanzahl wird die Schnittstelle des Moduls Pers
 	\item PersonCounterModule
 	\item TurnOffTimerModule
 \end{itemize}
-Die entsprechenden Module sind noch nicht beschrieben und genutzte Schnittstellen müssen noch analysiert und auf Nutzungsmöglichkeiten überprüft werden.
+Das PersonCounter-Modul wird zur Überprüfung der Personenanzahl je Raum genutzt. Dazu werden Aufrufe über die ZAutomation-API an das Modul gesendet.
 
-Das PersonCounterModule wird zur Überprüfung der Personenanzahl je Raum genutzt. Dazu werden Aufrufe über die ZAutomation-API an das Modul gesendet.
-
-Der TurnOffTimer stellt die eine Schnittstelle zum FeedbackModule her. Durch die zusätzliche Abstraktionsschicht des TurnOffTimers arbeitet das LockDoorModule nicht direkt gegen das FeedbackModul, sondern startet lediglich den Timer. Dieser übernimmt die Kommunikation mit dem FeedbackModule.
-
+Das TurnOffTimer-Modul stellt eine Schnittstelle zum Feedback-Modul her. Durch die zusätzliche Abstraktionsschicht des TurnOffTimer-Moduls arbeitet das LockDoor-Modul nicht direkt gegen das Feedback-Modul, sondern startet lediglich den Timer. Dieser übernimmt die Kommunikation mit dem Feedback-Modul.
 
 \subsubsection{Interne Speicher}
 \begin{itemize}
