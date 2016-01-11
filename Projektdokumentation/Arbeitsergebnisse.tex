@@ -134,7 +134,7 @@ Nach einer Weile verlässt Person Y den Raum. Das System stellt fest das sich ke
 
 \subsubsection{Nachbedingung}
 \begin{itemize}
-	\item Das System kann auch eine Regelung beeinhalten, dass der Standby Modus automatisch und nicht nach verlassen des Raumes zeitgesteuert wieder hergestellt wird.
+	\item Das System kann auch eine Regelung beinhalten, dass der Standby Modus automatisch und nicht nach verlassen des Raumes zeitgesteuert wieder hergestellt wird.
 \end{itemize}
 
 \subsubsection{zur Diskussion}
@@ -142,7 +142,7 @@ Nach einer Weile verlässt Person Y den Raum. Das System stellt fest das sich ke
 	\item Abgleich mit dem Szenario zur Erkennung ob eine Person den Raum betreten/verlassen hat
 	\item sind die Sensoren präzise genug um den Unterschied zwischen Kind und Erwachsener zu erfassen, oder kann nur Mensch und Haustier unterschieden werden
 	\item soll die Reaktivierung des Standby Modus Teil des Szenarios sein
-	\item Einordnung in Umsetzbar/Nicht Umsetzbar
+	\item Einordnung in umsetzbar/nicht umsetzbar
 \end{itemize}
 
 \subsubsection{ähnliche Szenarien}
@@ -153,6 +153,8 @@ Nach einer Weile verlässt Person Y den Raum. Das System stellt fest das sich ke
 
 \subsubsection{Modellierung Identifizierung Erwachsener}
 \emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell)) bereits gemacht?
+
+Wenn sich die Personenanzahl eines Raumes ändert wird unterschieden, ob die Person den Raum betreten oder verlassen hat. Danach wird die Größenmessung und CO$_2$ Messung gestartet. Wenn eine Person den Raum betreten hat, wird die Größenerkennung abgeglichen und anhand des Ergebnisses die Anzahl der Erwachsenen erhöht. Verlässt eine Person den Raum, dann wird der Counter verringert. Wenn der erwachsenenCounter Geringer als 1 ist oder die CO$_2$ Messung keinen Erwachsenen erkennt wird der Vorgang mit kein Erwachsener vorhanden beendet. Nur wenn sowohl die Größenmessung und die CO$_2$ Messung einen Erwachsenen erkennen, wird "`Erwachsener erkannt"' ausgegeben.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Szenarien/IdentifizierungErwachsene.pdf}
@@ -162,6 +164,9 @@ Nach einer Weile verlässt Person Y den Raum. Das System stellt fest das sich ke
 
 \subsubsection{Modellierung Gefahrenquellen abstellen}
 \emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell)) bereits gemacht?
+
+Wenn sich die Personenanzahl eines PersonCounters ändert, wird die Identifizierung gestartet, ob sich ein Erwachsener im Raum befindet. Wird ein Erwachsener erkannt wird der Zustand der Gefahrenquellen ausgelesen und, wenn nötig, freigeschaltet. Wird bei der Identifizierung kein Erwachsener erkannt wird ebenfalls der Zustand der Gefahrenquellen ausgelesen und gegebenenfalls ein Timer zu deren Abschaltung gestartet, welcher bei erneuter Änderung der Personenanzahl gestoppt wird.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Szenarien/GefahrenquellenAbstellen.pdf}
