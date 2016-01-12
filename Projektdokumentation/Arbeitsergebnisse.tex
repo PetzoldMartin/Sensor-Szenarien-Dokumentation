@@ -233,14 +233,14 @@ Für die Überprüfung der Personenanzahl wird die Schnittstelle des Moduls Pers
 		>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
 		>{\hsize=1.25\hsize}X % 40% of 3\hsize
 		% sum=3.0\hsize for 3 columns
-	}	
+	}
 	\hline
 	\textbf{Event Name}					& \textbf{Parameter}	& \textbf{Beschreibung} \\
 	\hline LockDoorModule\_locked		& - 					& Tür verschlossen, keine Person anwesend \\ 
 	\hline LockDoorModule\_unlocked		& - 			 		& Tür geöffnet \\ 
 	\hline
 \end{tabularx}
-\caption{Event Bus - Senden}
+\caption{LockDoorModule: Schnittstelle Event Bus}
 \end{table}
 
 
@@ -1222,7 +1222,7 @@ Im Reiter „Configuration“ findet man alle Einstellungsmöglichkeiten die der
 					Nach wie vielen Sekunden der Sensor erwachen sollen, wenn keine Aktivität vorhanden war \\
 	\hline
 		
-\caption{Config des Sensors} \\
+\caption{Konfiguration des Aeotec-Sensors} \\
 \end{longtabu}
 
 \subsubsection{Praxistest}
@@ -2057,6 +2057,81 @@ Tasker Beispiel: Bei \glqq Profile\grqq{} mit \glqq +\grqq{} und \glqq Ereignis\
 
 \newpage
 \section{Personenidentifikation}
+\subsection{Identifikation von Personen anhand des CO$_2$-Verbrauchs und Persona}
+\emph{(von Alexander Keller)}
+
+\subsubsection{Allgemein}
+Das Thema im Modul "'Projekt Master"' lautet "`Mehrbenutzerbetrieb der Smart-Home-Technik mittels des Systems Z-Way"'. Ziel ist es, in einem Haushalt, welcher mittels verschiedener Komponenten von Smart-Home-Technik ausgestattet ist, kleine Kinder vor Gefahrenquellen zu sichern. Zu diesem Thema wurden bereits verschiedene Szenarien ausgearbeitet. Diese beschreiben Gefahrenquellen vor welchen Kleinkinder geschützt werden sollten, wenn sie sich allein im Raum aufhalten.
+
+Ziel ist es, bei der Recherche zu ermitteln, wie viel CO$_2$ ein Mensch ausstößt und diesen anhand des Wertes in eine Persona zu unterteilen. Persona werden mithilfe von Merkmalen erstellt und diese einer Gruppe zugeordnet. Dabei wird häufig nicht nur eine Persona, sondern mehrere entworfen, so viele wie nötig sind, um die Benutzer des Systems abzudecken. Anschließend sollten aus diesen Personae jedoch die primären und sekundären Personae ausgewählt werden.
+
+Im letzten Gruppengespräch wurde festgelegt, dass drei verschiedene Personae angenommen werden. Diese drei Personae unterscheiden sich in Geschlecht und Alter des Menschen. Diese Annahme widerspiegelt eine Familie, die aus einem Mann, eine Frau und zwei Kindern besteht. Mittels des CO$_2$ Sensors soll es möglich sein zu erkennen, ob sich eines der beiden Kinder im Raum aufhält. Nachdem erkannt wurde, ob sich eines der beiden Kindern alleine im Raum befindet, werden anschließend automatisiert per Smart-Home-Steuerung alle Gefahrenquellen abgeschaltet.
+
+\subsubsection{Der Siegenia SensoAir CO$_2$-Sensor}
+Der CO$_2$-Gehalt der Luft wird mit der Maßeinheit \gls{ppm}  mithilfe des Gerätes der Firma Siegenia gemessen. Der Sensor besitzt eine LED die je nach CO$_2$ Konzentration in der Luft in verschiedenen Farben aufleuchtet.
+
+\begin{longtabu} to \linewidth {
+		>{\hsize=1.0\hsize}X 
+		>{\hsize=1.0\hsize}X
+		% sum=2.0\hsize for 2 columns
+	}
+	% ----------- begin header -----------	
+	\hline
+	\textbf{LED Anzeige}					& \textbf{Auswirkung} \\
+	\hline
+	\endhead
+	% ----------- end header -----------
+
+	% ----------- begin footer -----------
+	\multicolumn{2}{r}{{Fortsetzung auf nächster Seite}}  \\ 
+	\endfoot
+	\endlastfoot
+	% ----------- end footer -----------
+	blinkt 2x kurz rot (2500ppm)			& Luftqualität sehr schlecht \\
+	\hline 
+	blinkt 1x lang rot (ab 2000ppm)			& Luftqualität sehr schlecht \\
+	\hline
+	dauerhaft rot (1500ppm)					& Grenzwert für Büros und Klassenräume \\
+	\hline
+	gelb / rot (1000ppm)					& Grenzwert für Wohnräume \\
+	\hline
+	dauerhaft gelb (800 ppm)				& gefühlt schlecht Luft \\
+	\hline
+	grün / gelb (600 ppm)					& Luftqualität verschlechtert sich \\
+	\hline
+	dauerhaft grün (350 ppm)				& saubere Frischluft \\
+	\hline	
+	\caption{Statusanzeige des SensoAir}
+\end{longtabu}
+
+Um das Gerät der Firma Siegenia nutzen zu können, muss der Sensor kalibriert werden. Die Kalibrierung des Sensors dauert mindestens 30 Minuten und anschließend ist das Gerät betriebsbereit. In der Theorie sollte das Gerät erkennen wie viele Personen sich im Raum befinden und unterscheiden ob Kinder oder Erwachsener sich dort aufhalten. Um das zuordnen zu können, ist es notwendig zu evaluieren wie viel jede Person im Schnitt an CO$_2$ ausstößt.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/PersonIdentification/sensoAir.png}
+	\caption{Siegenia SensoAir (Tischgerät)}
+	\label{fig:sensoAir}
+\end{figure}
+
+\subsubsection{Recherche zum CO$_2$-Ausstoß}
+Der Stoffwechsel des Menschen ist dafür verantwortlich, dass der Mensch CO$_2$ freisetzt. Das ganze System ist sehr komplex, vielseitig und störanfällig. Alle Vorgänge der Nahrungsaufnahme, -verarbeitung und Ausscheidung von Restprodukten fallen darunter sowie die Atmung. Alle Lebewesen sind auf dieses System angewiesen um zu existieren. Die Bewegung, Ernährung und Atemluft beeinflussen den Ablauf des Stoffwechsels enorm und ist dadurch von Mensch zu Mensch völlig verschieden.
+
+\subsubsection{Interview mit Dr. med. S. Blasko}
+Zur Bearbeitung des Themas wurde Dr. med. S. Blaskos Hilfe beansprucht und ca. zwei Stunden über das Problem des CO$_2$-Ausstoßes beim Menschen gesprochen. Herr Blasko war zu Beginn von dem Thema Smart-Home-Technik sehr begeistert. Die Problemstellung wurde ihm ausführlich erklärt und gefragt, ob es denn möglich sei, mithilfe von CO$_2$-Werten zu unterscheiden, ob eine erwachsene Person sich in einem Raum befindet oder ein Kind.
+
+Seine Antwort darauf war ein klares nein. Der Stoffwechsel jeder einzelnen Person ist so grundverschieden, dass man keinen festen Wert bzw. keine Konstante festlegen kann. 
+
+Für ein Grundverständnis erklärte er, dass der Stoffwechsel konkret für
+die Aufnahme, Transport und chemische Umwandlung von Nährstoffen im Körper zuständig ist, sowie die Abgabe von Stoffwechselendprodukten. Jeder Mensch hat einen anderen und individuellen Stoffwechsel, den man grob in drei Gruppen unterscheiden kann. Zum einen gibt es den "`Mesomorphen"' Stoffwechsel, der bei eher muskulösen Menschen vorkommt und welcher durchschnittlich ist. Bei Menschen die eher eine schmale Figur besitzen nennt man den Stoffwechsel "`Ektomorph"' und dieser ist sehr hoch. Bei der Persona "`Der runde Typ"' wo der Stoffwechsel sehr langsam ist spricht man von "`Endomorph"'. Anhand der drei Kategorien könnte man annehmen, dass man die verschiedenen Personen in diese Personas aufteilt und dort einen konstanten Wert festlegt. Doch diese Theorie wurde von Dr. med. S. Blasko dementiert, weil trotz der Unterscheidung es nicht eindeutig sei den CO$_2$ Gehalt einer bestimmten Persona zuzuordnen. Als Beispiel nannte er mehrere Usecases die es unmöglich machen, anhand eines Wertes die Person eindeutig zu identifizieren.
+
+Wir nehmen an, das eine junge zierliche Frau entspannt auf dem Sofa liegt und deren Stoffwechsel in diesem Moment gerade gegen null geht. Im nächsten Moment kommt ein Kind vom Spielen nach Hause und betritt den Raum. Der CO$_2$ Ausstoß des Kindes ist in diesem Moment enorm groß und das Ergebnis wäre so sehr verfälscht, dass keine eindeutige Annahme getroffen werden kann, welche Persona sich im Raum befindet. Dazu kommen noch Fehlerquellen wie z.B. geöffnete Fenster
+oder Räume enormer Größe.
+
+Da das zu entwickelnde Modul ein sehr hohes Maß an Zuverlässigkeit mit sich
+bringen sollte, ist die Annahme, die Persona via CO$_2$ zu bestimmen nicht aussagekräftig genug. Von Dr. med. S. Blasko kam ebenfalls der Vorschlag, dieses System anhand eines Türsensors umzusetzen. Dieser bestimmt die Größe der Person, um dann entscheiden zu können, ob es sich um ein Kind oder einen Erwachsenen handelt.
+
+\subsubsection{Internetrecherche}
+Eine Recherche im Internet lieferte schlussendlich das gleiche Ergebnis wie  Dr. med. S. Blasko ausführlich erklärte. Der Stoffwechsel eines jeden Menschen ist derart grundverschiedenen, dass es ist nicht möglich ist, mithilfe einer Konstante festzulegen welche Persona sich im Raum aufhält.
 
 %TODO Quellen
 %Webquellen
