@@ -7,6 +7,7 @@
 \section{Szenarien}
 
 \subsection{Effizienz und Komfort - Erkennung der Anzahl der Personen in einem Raum}
+\label{subsec:szenarioPersonCounter}
 \emph{(von Philip Laube)}
 \subsubsection{Ablauf}
 Person A geht zusammen mit Person B vom Flur in das Wohnzimmer, während Person C in die Küche geht.
@@ -275,12 +276,12 @@ Das TurnOffTimer-Modul stellt eine Schnittstelle zum Feedback-Modul her. Durch d
 \subsubsection{Allgemein}
 Das PersonCounterModule übernimmt die Aufgabe, die Anzahl der Personen im jeweiligen Raum zu speichern. Jede Möglichkeit einer Erkennung ob eine Person den Raum betreten oder verlassen hat kann über dieses Modul kommuniziert werden um es anderen Modulen zur Verfügung zu stellen. Dies macht dieses Modul zu einem zentralen Bestandteil.
 
-Ein PersonCounterModule enthält zusätzlich die Information für welchen Raum es bestimmt ist, somit kann es beliebig oft wiederverwendet werden.
+Ein PersonCounterModule enthält zusätzlich die Information, für welchen Raum es bestimmt ist. Somit kann es beliebig oft wiederverwendet werden.
 
-Der jeweilige Personenzähler pro Raum wird durch das Modul die dies benötigen instanziiert sofern noch keine Personenzähler für die jeweiligen Räume vorhanden sind.
+Der jeweilige Personenzähler pro Raum wird durch Module, die ihn benötigen, instanziiert. Vorhandene Personenzähler werden einfach verwendet.
 
 \subsubsection{Funktionsweise}
-Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für wichtige, für andere Module nötige Informationen der Personenanzahl (\prettyref{fig:szenarienPersonenerkennung}).
+Dieses Modul wird nur indirekt benutzt. Es dient als Datenhaltung für die wichtige und von anderen Modulen benötige Informationen der Personenanzahl (\prettyref{fig:szenarienPersonenerkennung}).
 
 Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder wird als Funktion bereitgestellt. Es kann dann entweder automatisch oder pro Modul über eine Funktion instanziiert und benutzt werden.
 
@@ -319,15 +320,13 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 
 \begin{table}[H]
 	\begin{tabularx}{\textwidth}{
-			>{\hsize=2.0\hsize}X % 66.66% of 3\hsize 
-			>{\hsize=0.5\hsize\centering}X % 16.66% of 3\hsize
-			>{\hsize=0.5\hsize\centering\arraybackslash}X % 16.66% of 3\hsize
-			% sum=3.0\hsize for 3 columns
+			>{\hsize=1.5\hsize}X 
+			>{\hsize=0.5\hsize}X
 		}
 		\hline
-		\textbf{Event Name}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
-		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_entered	& - 					& - \\ 
-		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_left		& - 			 		& - \\
+		\textbf{Event Name}													& \textbf{Beschreibung} \\
+		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_entered	& - \\ 
+		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_left		& - \\
 		\hline
 	\end{tabularx}
 	\caption{PersonCounterModule: Schnittstelle Event Bus}
@@ -335,7 +334,7 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
-	\item Keine da dieses Modul Grundfunktionalitäten bereitstellt.
+	\item Keine, da dieses Modul Grundfunktionalitäten bereitstellt.
 \end{itemize}
 
 \subsubsection{Interne Speicher}
@@ -349,14 +348,14 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 \emph{(von Philip Laube)}
 
 \subsubsection{Allgemein}
-Das RoomAccessModule übernimmt die Aufgabe, Personen zu erkennen die einen Raum verlassen oder betreten haben. Entweder sofortig oder zeitversetzt, je nach Art der zugrundeliegende Module.
+Das RoomAccessModule übernimmt die Aufgabe, Personen zu erkennen, die einen Raum verlassen oder betreten haben. Dies geschieht entweder unverzüglich oder zeitversetzt, je nach Art der zugrundeliegende Module.
 
 Dieses Modul stellt grundlegende Unterstützung zunächst für Bewegungssensoren, später eventuell auch erweiterte Logik für andere Sensoren zur Personenerkennung bzw. Raumwechsel.
 
 Ein RoomAccessModule enthält zusätzlich die Information für welche Räume es bestimmt ist, somit kann es beliebig oft wiederverwendet werden.
 
 \subsubsection{Funktionsweise}
-Diese Realisierung entspricht der geplanten Realisierung des Szenarios zu Beginn des Projekts. Exakt diese Logik wird zunächst durch dieses Modul implementiert (\prettyref{fig:szenarienPersonenerkennungTür}).
+Diese Realisierung entspricht der geplanten Realisierung des Szenarios zu Beginn des Projekts (\prettyref{subsec:szenarioPersonCounter}). Exakt diese Logik wird zunächst durch dieses Modul implementiert (\prettyref{fig:szenarienPersonenerkennungTür}).
 
 Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und die Anzahl jeweils korrigiert. Weitere Logik anderer Module kann durch ein Event erfolgen. Jedwede Logik die direkt mit der Personenanzahl in Verbindung steht muss den Personenzähler (PersonCounterModule) ansprechen.
 
@@ -410,7 +409,7 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 
 \subsubsection{Interne Speicher}
 \begin{itemize}
-	\item Zwei Bewegungssensoren
+	\item zwei Bewegungssensoren
 	\item Raum Zuordnung der beiden Sensoren
 	\item PersonenCounterModule der Raumzuordnungen
 \end{itemize}
