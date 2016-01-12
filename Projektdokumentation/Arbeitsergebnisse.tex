@@ -1,8 +1,8 @@
 \chapter{Arbeitsergebnisse}
-\begin{itemize}
-	\item Ergebnisse, welche für den weiteren Verlauf relevant sind (z.B. zu realisierende Szenarien)
-	\item weiterverfolgte Szenarien
-\end{itemize}
+%\begin{itemize}
+%	\item Ergebnisse, welche für den weiteren Verlauf relevant sind (z.B. zu realisierende Szenarien)
+%	\item weiterverfolgte Szenarien
+%\end{itemize}
 
 \section{Szenarien}
 
@@ -480,7 +480,7 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyMo
 	\begin{tabularx}{\textwidth}{
 			>{\hsize=1.25\hsize}X % 66.66% of 3\hsize 
 			>{\hsize=0.5\hsize\centering}X % 16.66% of 3\hsize
-			>{\hsize=1.25\hsize\centering\arraybackslash}X % 16.66% of 3\hsize
+			>{\hsize=1.25\hsize}X % 16.66% of 3\hsize
 			% sum=3.0\hsize for 3 columns
 		}
 		\hline
@@ -881,6 +881,75 @@ Das Modul benötigt ein PersonCounterModule für den Raum in welchem es angewand
 	\end{tabularx}
 	\caption{PersonIdentification: Interne Speicher}
 \end{table}
+
+
+
+\subsection{TurnOffTimerModule}
+\emph{(von Tobias Weise)}
+\subsubsection{Funktionsweise}
+Das TurnOffTimer Module übernimmt die Aufgabe, nach einem eingehenden Command mit der Angabe der Ablaufdauer und einer zugewiesenen Priorität, einen Timer zu starten. Nach Ablauf oder Unterbrechung des Timers wird ein entsprechendes Event an den Event Bus verschickt. 
+
+Ein TurnOffTimerModule enthält zusätzlich die Information, für welchen Raum es bestimmt ist. Somit kann es beliebig oft innerhalb eines Raumes verwendet werden.
+
+\subsubsection{Schnittstellen}
+
+\begin{longtabu} to \textwidth{
+		>{\hsize=1.25\hsize}X % 40% of 3\hsize 
+		>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
+		>{\hsize=1.25\hsize}X % 40% of 3\hsize
+		% sum=3.0\hsize for 3 columns
+	}
+	\hline
+	\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+	\hline
+	\endhead
+	/command/start\_timer				& time 					& Starten des Timers, für die Länge der angegebenen Dauer in Sekunden. \\ 
+	\cline{2-3}
+										& priority		 		& Für den Timerstart muss eine Priorität angegeben werden. Je höher der Wert, desto höher die Priorität. \\
+	\hline 
+	/command/stop						& -						& Stoppen des Timers. \\
+	\hline
+	\caption{TurnOffTimerModule: Schnittstelle ZAutomation}
+\end{longtabu}
+
+\begin{longtabu} to \textwidth{
+		>{\hsize=1.25\hsize}X 
+		>{\hsize=0.75\hsize}X
+	}
+	\hline
+	\textbf{Event Name}									& \textbf{Beschreibung} \\
+	\hline
+	\endhead
+	[DeviceId]:TurnOffTimerModule\_[RaumId]\_expired	& Benachrichtigung, wenn die Zeit des Timers abgelaufen ist. \\ 
+	\hline 
+	[DeviceId]: TurnOffTimerModule\_[RaumId]\_canceled	& Benachrichtigung, wenn der Zeitablauf unterbrochen wurde. \\
+	\hline
+	\caption{TurnOffTimerModule: Schnittstelle Event Bus}
+\end{longtabu}
+	
+\subsubsection{Abhängigkeiten}
+\begin{itemize}
+	\item InHomeFeedbackModule: wenn der Timer aktiviert wurde, wird auch das Nutzerfeedback gestartet und falls durch Nutzerinteraktion das Feedbackmodul unterbrochen wird, wird der Timer ebenfalls abgebrochen	
+\end{itemize}
+
+
+\subsubsection{Interne Speicher}
+\begin{itemize}
+	\item Raum ID
+	\item Variable "`cancel"': "`1"' wenn der Timer unterbrochen wurde, "`0"' sonst
+\end{itemize}
+
+\subsubsection{Einsatzmöglichkeiten}
+Der Turn Off Timer wurde für das Projekt so erstellt, dass nur eine Instanz des Timers für jeden Raum genutzt werden kann. Anhand der Prioritäten ist es jedoch möglich, mit den entsprechenden Timer-Commands eine bestimmte Wichtigkeit zu definieren. Dabei ist zu beachten, dass ein höherer Zahlenwert eine höhere Priorität bedeutet. Nachfolgende Abbildung (\prettyref{fig:turnOffTimer}) soll das Verhalten des Timers bei entsprechender Priorisierung näher verdeutlichen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/Modulkonzeption/TurnOffTimer.png}
+	\caption{Übersicht Prioritätenverhalten}
+	\label{fig:turnOffTimer}
+\end{figure}
+
+Eine andere Möglichkeit zur Integration des Timers besteht darin, dass jedes Modul, welches pro notwendigen Raum definiert wird, eine eigenständige Instanz des Timers erzeugt. Dieser instanziierte Timer existiert anschließend solange, wie dieses Modul ihn für eine Timerlaufzeit benötigt.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sensorevaluation}
