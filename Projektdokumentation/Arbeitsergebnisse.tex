@@ -1443,6 +1443,55 @@ An dieser Stelle hat man die Möglichkeit, den Inkludiermodus von „secure“ z
 
 Wenn man nun die kleine Schalter-Lasche des Sensors 3x hintereinander (innerhalb von 1,5 Sekunden) betätigt, sollte der Multisensor erfolgreich in das Z-Way-Netzwerk integriert worden sein. Auf der Smart Home Benutzeroberfläche werden die Elemente automatisch generiert, welche die Funktionen des Philio-Multisensors darstellen.
 
+\section{Gefahrenquellenabschaltung}
+
+\section{Alarmanlage}
+
+\section{Feedback-Mechanismen}
+Bisher wurde davon ausgegangen, dass für ein leistungsfähiges intelligentes Haus Feedback-Möglichkeiten vorhanden sein sollen. Orientiert man sich an den Fähigkeiten des Menschen, sind dies das menschliche Sehen, Hören, Fühlen , Bewegen, Riechen und Schmecken. Insbesondere das Sehen, Hören und Bewegen sind für Feedbacks von Bedeutung. Als Möglichkeit für eine Rückmeldung stehen Displays, akustische Systeme und Gesten zur Verfügung. Um nun geeignete Reaktionen zu erwirken, bedarf es einer in Grenzen leistungsfähigen Systemintelligenz. Hierdurch wird die Repräsentation durch mögliche Interaktionen mit dem Smart Home möglich und hilft, den Eindruck von \glqq Intelligenz\grqq{} zu vermitteln. Auch dies ist eine wichtige Eigenschaft für die flexible Anpassungsfähigkeit an die vom Nutzer vorgegebenen Aufgabenstellungen. Die Anforderungen richten sich gleichermaßen, sowohl an sensorische Fähigkeiten als auch an die Fähigkeit, Daten von Sensoren in Erkenntnisse zu transformieren und daraus Strategien und Konzepte zu entwickeln. Methoden zur Wahrnehmung der Umwelt sowie zur Kommunikation mit dieser, stehen seit Jahren im Fokus der Forschung.\\
+Im folgenden werden einige Forschungsarbeiten vorgestellt die im Laufe der Ausarbeitung entdeckt wurden. Unter anderem werden Möglichkeiten beschrieben die später in dem Projekt als Feedback eingesetzt werden können. Es werden auch schon vorhandene Lösungen auf dem Markt vorgestellt, die übernommen werden können. Es soll auch der Kostenfaktor berücksichtigt werden, da es nicht bekannt ist, ob die teuren Lösungen in dem Projekt eingesetzt werden können.\\
+Weiter unten werden am Markt vorhandene Systeme und Lösungen kurz aufgelistet.\\
+
+\subsection{Steuermechanismen auf Basis von Akustik}
+\acrfull{tts} wandelt Fließtext in eine akustische Sprachausgaben um. Diese Technologie wird von den meisten Sprachmechanismen benutzt.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Feedback-Mechanismen/TTS.png}
+	\caption{\gls{tts}}
+	\label{fig:feedbackTTS}
+\end{figure}
+
+Der Einsatz von sprach-gesteuerten Systemen hat bereits auf verschiedensten Gebieten, mehr oder weniger erfolgreich Einzug gehalten.
+
+\subsubsection{IVEE}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq Deine Sprachsteuerung für dein SmartHome\grqq\footnote{\url{http://www.siio.de/connected-home/ivee-deine-sprachsteuerung-fuer-dein-smarthome/}}
+
+\begin{itemize}
+\item Kosten: 200\$
+\end{itemize}
+
+Bei ivee handelt es sich um eine cloudbasierte Sprachsteuerung für das Smart Home, bei der vom Marktstart an bereits diverse Hersteller angebunden sind. Hervorzuheben sind hier Belkin WeMo, Philips Hue, Logitech Harmony \& Google Nest sowie Z-Wave. Zu den genannten Anbietern werden kontinuierlich Neue dazu kommen. Nützlich könnten hier zum Beispiel eine Anbindung durch \gls{iftttg} oder an Google sein. Mit \gls{iftttg} könnten mit einem Schlag eine Vielzahl weiterer Dienste angebunden werden und mit der Anbindung an Google könnte man sich neue Mails oder Kalendereinträge vorlesen lassen. Die Installation und Steuerung von ivee ist auch für wenig technisch versierte Personen einfach umzusetzen. Die Sprachsteuerung ivee muss dazu nur an den Strom angeschlossen – und ins heimische WLAN integriert werden. Mit der dazugehörigen Smartphone App kann ivee beigebracht werden, welche Geräte im Haushalt verfügbar sind. Auch die Steuerung ist denkbar einfach:
+
+\begin{enumerate}
+\item Sag einfach \glqq Okay ivee\grqq{} zum Aufwecken. Der eingebaute, farbige LED-Ring wird blau und das System ist bereit für den Sprachbefehl.
+\item Dann einfach das Kommando sagen oder die Frage stellen. Zum Beispiel: \glqq Schalt den Fernseher ein\grqq .
+\item ivee schaltet den Fernseher an.
+\end{enumerate}
+
+Mit der iPhone-App können auch unterschiedliche Szenen angelegt werden, die zum Beispiel bei einem bestimmten Kommando die HUE-Leuchten dimmen, den Fernseher anschalten und die Raumtemperatur erhöhen. Alles möglich.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Feedback-Mechanismen/IVEE.png}
+	\caption{IVEE}
+	\label{fig:feedbackIVEE}
+\end{figure}
+
+Art des Feedbacks: Es kann mit ivee Dialog ausgeführt werden, als Feedback erhält eine Person von ivee eine sprachliche Bestätigung zurück, die mittels eingebaute Mikrofone übermittelt wird, das die Aktion ausgeführt wurde.
+
+\section{Personenidentifikation}
+
 %TODO Quellen
 %Webquellen
 %[Pep 1]		Z-Wave Device Library
