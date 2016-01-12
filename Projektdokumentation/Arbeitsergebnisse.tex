@@ -1733,6 +1733,328 @@ Netzwerk verwendet werden.
 \item ZME kann nicht Stand-alone betrieben werden (kein Controller), Konfiguration von Assoziationen\&Szenen per Z-Wave Gateway möglich
 \end{itemize}
 
+\subsection{Steuermechanismen auf Basis von Gesten}
+
+\subsubsection{OneCue}
+
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq OneCue – Gestensteuerung für Ihr Smart Home\grqq\footnote{\url{http://smarthomewelt.de/onecue-gestensteuerung-smart-home/}}
+
+\begin{itemize}
+\item Kosten: 129,00\$
+\end{itemize}
+
+\noindent
+eyeSights entwickelt wie das bereits von Microsofts Xbox bekannte Kinect-System nur auf Basis von Handgesten. Dazu ist das Gerät mit moderner Kamera-und Sensortechnik ausgestattet, die in der Lage ist, selbst kleinste Handbewegungen des Nutzers zu erkennen, korrekt zu interpretieren und für die mit OneCue verbundenen Geräte in die entsprechenden Befehle umzuwandeln. Die Steuerung für das Smart Home ist sehr intuitiv, das zeigt die Gestenerkennung mit der sich das TV-Gerät oder die Stereoanlage auf stumm schalten lässt: Klingelt beispielsweise das Telefon, reicht es den Zeigefinger wie bei einem \glqq Pssst!\grqq{} vor die geschlossenen Lippen zu führen um die Geräte vorübergehend in den Mute-Modus zu versetzen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/OneCue.png}
+	\caption{OneCue}
+	\label{fig:feedbackOneCue}
+\end{figure}
+
+Das OneCue-Smart Home System ist ein kleiner schwarzer Box. Die Smart Home-Steuerung lässt sich jedoch theoretisch überall im Haus platzieren. Einzige Voraussetzung für eine reibungslose Funktion der Gestensteuerung ist eine direkte Sichtverbindung zwischen dem Nutzer und der OneCue-Empfangseinheit. Die Signalstärke des Gadgets reicht um auch Endgeräte in größeren Entfernungen zu bedienen. Bauliche Gegebenheiten im Smart Home können allerdings dafür Sorgen, dass WiFi- und Infrarot-Signale schon in wenigen Metern Entfernung nur noch schwach vorhanden sind. Für diesen Fall liefert eyeSight einen Repeater zur Signalverstärkung mit.
+
+Für die Einrichtung können Nutzer wahlweise Bluetooth-fähiges Smartphone mit der in den App-Stores kostenlos verfügbaren OneCue-App (für iOS und Android) nutzen, oder auch PC/Laptop direkt mittels Micro-USB mit dem Gerät verbinden. Um für das Smart Home konzipierte Geräte wie das lernende Thermostat von Nest oder die vernetzten Leuchtmittel von Philips Hue mit Gesten über das OneCue bedienen zu können, müssen die bekannten WLAN Daten in der Konfiguration hinterlegt werden.
+
+Mit welchem Gerät OneCue im Augenblick verbunden ist, lässt sich anhand großer Symbole von dem 3-Zoll-LC-Display auf der Front der Gestensteuerung ablesen. In dem System sind bereits Icons für verschiedenste Gerätetypen wie zum Beispiel Apple TV, Fernseher, Nest, Philips Hue, Stereoanlage, Set-Top-Box oder Blu-ray Player vorinstalliert.
+
+Es wird ein API in weiteren Versionen entwickelt, die Entwicklern den Zugriff auf mehrere Geräte zu singlecue ermöglichen wird, das im Sommer 2016 veröffentlicht wird (\url{http://eyesight-tech.com/eyesight-technologies-announces-public-availability-of-singlecue-bringing-touch-free-gesture-control-to-your-home/}).
+
+\subsubsection{Reemo}
+
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq Reemo: Die Smart Home-Steuerung aus dem Handgelenk\grqq\footnote{\url{siio.de/reemo-die-smart-home-steuerung-aus-dem-handgelenk/}}
+
+\begin{itemize}
+\item Kosten: 299,00€
+\end{itemize}
+
+\begin{itemize}
+\item 45 Gramm
+\item funktioniert per Bluetooth
+\item wasserdicht
+\end{itemize}
+
+\noindent
+Dazu wird ein Receiver benötigt, welcher mit den gewünschten Smart Home-Produkten verbunden werden kann. Mit einer Geste (Reemo versteht insgesamt sechs verschiedene) können einzelne Aktionen, aber auch ganze Sequenzen ausgelöst werden.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/Reemo.png}
+	\caption{Reemo}
+	\label{fig:feedbackReemo}
+\end{figure}
+
+Die Hersteller versprechen störungsfreie Verwendung mehrere Reemo's in einem Haus. Nehmen wir
+an, Albert aktiviert mit Reemo den Nachtmodus (Licht aus, Alarm an, Türen zu etc.), das System
+merkt aber, das Bertha in der Küche ist, dann bleibt dort das Licht an.
+
+\noindent
+Kompatibel mit:
+\begin{itemize}
+\item Logitech Harmony Ultimate Home
+\item Philips Hue Lux/Tap, ZigBee lightbulbs
+\item Thermostaten von Azela, Pearl, Computime, RTCOA
+\end{itemize}
+
+\noindent
+Installation (\url{https://www.indiegogo.com/projects/control-your-world-with-reemo#/})
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/ReemoInstallation1.png}
+	\caption{Reemo Installation}
+	\label{fig:feedbackReemoInstallation1}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/ReemoInstallation2.png}
+	\caption{Reemo Installation}
+	\label{fig:feedbackReemoInstallation2}
+\end{figure}
+
+\noindent
+Ein Feedback von Reemo wird den Benutzern über eine Vibration mitgeteilt. Wenn ein Benutzer auf eine Lampe zeigt und er einen Befehl starten will, wird am Reemo durch eine Vibration betätigt, dass das Gerät ausgewählt wurde. Danach kann Benutzer Gesten-Befehle ausführen.
+
+\subsection{Studienergebnisse Sprach/Gestensteuerungssysteme}
+
+\subsubsection{SCARS}
+
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq HCI Aspects of Smart Environments\grqq\footnote{\url{http://www.uni-klu.ac.at/tewi/downloads/HASE10_Conference_Proceedings.pdf}}
+
+\noindent
+SCARS besteht im Wesentlichen aus fünf Hardwarekomponenten:
+
+\begin{itemize}
+\item EmpfängerEinheit
+\item kabellose Mikrofone
+\item Positionsbestimmungssystem
+\item Lautsprecher
+\item Softwareeinheit
+\end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/Feedback-Mechanismen/SCARS.png}
+	\caption{SCARS}
+	\label{fig:feedbackSCARS}
+\end{figure}
+
+Alle Elemente wurden eigens für eine Smart Home Umgebung entworfen, um alle Erfordernisse so
+gut wie möglich abzudecken. Auf dem Server läuft eine Spracherkennungssoftware von Philips, die
+ca. 20 vordefinierte Befehle erkennen kann und in weiterer Folge die entsprechenden Aktionen
+ausführt.
+Wenn ein Audiosignal von einem Mikrofon empfangen wird, wird dieses von der Software verarbeitet, mit den vordefinierten Befehlen verglichen und falls eine Übereinstimmung gefunden wird, wird ein entsprechender Code an das SCARS-Softwaremodul weitergeleitet. Dieses wertet in weiterer Folge den Code aus und sendet die zutreffende Aufgabe an die Serversoftware (z.B. schalte das Licht im Wohnzimmer ein) und gibt dem Benutzer eine natürlichsprachliche Bestätigung zurück.
+Dieses Audiofeedback wird durch einen \gls{tts} -Sprachgenerator erzeugt, der beliebige vordefinierte Zeichenketten wiedergeben kann.
+Der Benutzer drückt den Knopf am Mikrofon und spricht ein definiertes Kommando wie zum Beispiel
+\glqq schalte Licht ein\grqq{} und lässt den Knopf wieder los. Der Befehl wird daraufhin auf dem Server verarbeitet und die Lichter in dem Raum eingeschaltet, in dem sich der Benutzer gerade befindet. Abschließend gibt das System eine Bestätigung zurück.
+Das System wurde von einer Gruppe von Studenten getestet, die generell positiv überrascht waren, wie einfach die Bedienung zu erlernen war. Auch die Erkennung der Sprachbefehle der Benutzer verschiedener Geschlechter und Altersgruppen war erfolgreich. Ein Manko sahen die Testpersonen in der Antwortzeit des Systems, weiter erachteten sie es als nicht sehr praktikabel, ständig ein Mikrofon bei sich tragen zu müssen. Ein weiteres Problem stellte die Verlässlichkeit des Positionierungssystems dar, da es oftmals lange Zeit brauchte bis die Software den richtigen Standort des Mikrofons definieren konnte bzw. auch falsche Lautsprecher angesprochen wurden, wenn sich die Personen nahe an einem angrenzenden Raum befanden.
+
+\subsubsection{LOGOS}
+
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq HCI Aspects of Smart Environments\grqq\footnote{\url{http://www.uni-klu.ac.at/tewi/downloads/HASE10_Conference_Proceedings.pdf}}
+
+Ähnlich wie bei SCARS, setzt auch dieses System nicht nur rein auf eine Interaktionsmöglichkeit, sondern stellt insgesamt 3 verschiedene Möglichkeiten zur Verfügung. Es lässt sich entweder über eine Fernbedienung, eine PC-Tastatur oder über natürliche Sprache steuern. Das System bietet einen benutzerfreundlichen Zugang zu Informationen und Smart Home Geräten.
+
+Die Funktionsweise des sprachgesteuerten Dialogsystems sieht wie folgt aus. Eine Reihe von Mikrofonen zeichnen das Sprachsignal der Benutzer auf, danach benutzt die Spracherkennungskomponente ein vordefiniertes akustisches Modell sowie ein Sprachmodell, um der \glqq Sprachverständniskomponente\grqq den erkannten Text zur Verfügung zu stellen. Diese interpretiert in weiterer Folge den Input und leitet die daraus resultierenden Informationen an den Dialogmanager weiter. Abhängig vom übergebenen Befehl, dem Gerätestatus und dem Dialogverlauf, generiert diese Komponente via \gls{tts} den Output, wodurch ein natürlichsprachlicher Dialog zwischen Benutzer und System zustande kommt. Der Application-Manager übernimmt die Synchronisation aller Daten zwischen dem Dialogmanager und den Smart Home Geräten indem er erhaltene Befehle entweder direkt ausführt oder diese wieder an den Dialogmanager zurückgibt. In zweiten Fall verarbeitet dieser die Anfrage und aktualisiert den Dialogfluss. Zusätzlich wird von dieser Komponente auch ein visuelles Feedback für die Benutzer generiert. Um die verschiedenen Einschränkungen die aus einer realistischen Umgebung resultieren zu bewältigen, wurde eine Anordnung von kommerziellen Mikrofonen installiert, die über insgesamt acht Sensoren verfügen. Dadurch wurde ein hohes Signal-Stör-Verhältnis erreicht, das heißt es konnte eine Vielzahl an Hintergrundgeräuschen sowie auch das Echo herausgefiltert werden und somit eine bessere Verständlichkeit des Sprechenden erreicht werden.
+
+Hierbei handelt es sich um eine Spracherkennungskomponente, bei deren Entwicklung vor allem der Kostenfaktor eine wichtige Rolle spielte, da die derzeitigen sprachgesteuerten Systeme meist viel zu teuer sind, um eine weite Verbreitung zu finden. Die Komponente wurde anhand von echten Szenarien die im LOGOS System entwickelt wurden, getestet. Im Gegensatz zu Steuerungssystemen auf Basis von vordefinierten Befehlen, lässt sich diese Implementierung durch spontan gesprochene und nicht vorher definierte Befehle steuern. Die Implementierung beruht auf einer OpenSource Spracherkennung und einem kostengünstigen Mikrofon. Es wird kein Dialogsystem oder ein sprachliches Feedback verwendet, das einzige Feedback erhält der Benutzer vom Gerät selbst, wenn es in den von ihm gewünschten Zustand übergeht. Versuche zeigten dass durch diese Implementierung eine durchaus hohe Leistung erreicht werden kann. Der stabile Betrieb des Systems kombiniert mit seiner Wirtschaftlichkeit, machen es zu einer interessanten Alternative gegenüber anderen state-of-the-art Dialogsystemen.
+
+Das System wurde von insgesamt 10 Testpersonen evaluiert, in dem sie spontane Befehle via tragbarem Mikrofon an das System richteten. Die Leistung der Spracherkennungskomponente und der Erfüllungsgrad der Aufgaben wurden unter verschiedenen Bedingungen untersucht. Einerseits wurden die Worterkennungsrate und andererseits der Erfüllungsgrad der Aufgaben gemessen. Insgesamt wurden vier verschiedene Experimente bezüglich der Umfeldbedingungen durchgeführt. Ein Experiment beruhte auf einem hochqualitativen Mikrofon mit Störsignalunterdrückung, die anderen drei Versuche wurden mit dem kostengünstigen tragbaren Mikrofon durchgeführt. Die Ergebnisse zeigten, dass die günstigen Mikrofone nur unwesentlich schlechter als das qualitativ hochwertige Mikrofon abschnitten. Des weiteren wurde in allen vier Szenarien ein Erfüllungsgrad der Aufgaben von 100 \% und eine durchschnittliche Worterkennungsrate von 95,67 \% erreicht. Diese höchst positiven Ergebnisse zeigen die Effektivität des Systems und dessen Robustheit in lärmintensiven Umgebungen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/LOGOS.png}
+	\caption{LOGOS}
+	\label{fig:feedbackLOGOS}
+\end{figure}
+
+\subsubsection{Sidesight/HoverFlow}
+
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq HCI Aspects of Smart Environments\grqq\footnote{\url{http://www.uni-klu.ac.at/tewi/downloads/HASE10_Conference_Proceedings.pdf}}
+
+Bei den Prototypen Sidesight und HoverFlow sind die Gesten vom System vorgegeben und können
+nicht selbständig von der Person erweitert werden. Folgende Anforderungen wurden an den zu
+entwickelnden Prototyp gestellt:
+
+\begin{itemize}
+\item Verwendung von Standardgeräten, die generell verfügbar sind und mit geringen Kosten
+erworben werden können.
+\item Personen sollen Gesten so einfach wie möglich zeigen können.
+\item Die Erkennung von Gesten soll nicht von sich ändernden Lichtverhältnissen abhängig sein.
+\item Personen sollen in Smart Home selbständig Gesten erstellen können, um beispielsweise
+Lampen ein/auszuschalten, Wiedergabe von Filmen zu starten/anhalten/stoppen.
+\end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/Feedback-Mechanismen/Gestensteuerung.png}
+	\caption{Gestensteuerung}
+	\label{fig:feedbackGestensteuerung}
+\end{figure}
+
+Aufgrund dieser Anforderungen wurde folgender Ansatz gewählt: Das Erkennungssystem besteht aus einer Infrarot Kamera, einer Infrarot LED und einem Handschuh, wobei kein spezieller Datenhandschuh hierfür verwendet wird. Es wird lediglich die Infrarot LED am Handschuh befestigt. Wenn eine neue Geste gelernt werden soll, so aktiviert der User die Infrarot LED während er die Geste in den Raum zeichnet. Sodann wird die Geste vom System zerlegt, d.h. es werden vom Startpunkt aus jeweils die Richtungen, in die der User die Geste von Punkt zu Punkt zeichnet (in Summe sind es acht mögliche Richtungen) im IR motion processor gespeichert. Wenn nun eine gelernte Geste vom System erkannt wird, dann wird über einen sogenannten \glqq User Interaction Manager\grqq , der das Smart Home System per Web-Service über die erkannte Geste und die damit verbundene Aktion informiert und sodann führt das Smart Home die auszuführende Operation aus.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/Feedback-Mechanismen/Gestentabelle.png}
+	\caption{Gestentabelle}
+	\label{fig:feedbackGestentabelle}
+\end{figure}
+
+\subsection{Vergleich der Feedback-Mechanismen}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=1\hsize}X 
+			>{\hsize=1\hsize}X
+			>{\hsize=1\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		\textbf{System}	
+		& \textbf{Kosten}
+		& \textbf{Steuerung} \\
+		\hline 
+	 	Homey
+		& 299,00 \$
+		& Sprache \\
+		\hline 
+	 	IVEE
+		& 200,00 €
+		& Sprache \\	
+		\hline 
+	 	CastleOS Voice
+		& 199,99 \$
+		& Sprache \\
+		\hline 
+	 	Amazon Echo
+		& 179,99 \$
+		& Sprache \\
+		\hline 
+	 	EnBlink
+		& 89,99 \$
+		& Sprache \\
+		\hline 
+	 	Z-Wave.me
+		& 74,00 €
+		& Fernbedienung \\
+		\hline 
+	 	Düwi
+		& 70,80 €
+		& Fernbedienung \\
+		\hline 
+	 	Reemo
+		& 299,00 €
+		& Gestik \\
+		\hline 
+	 	OneCue
+		& 129,00 \$
+		& Gestik \\
+		\hline 
+	 	Kinect (das Gerät selbst)
+		& 110,00 \$
+		& Gestik \\
+		\hline 
+	\end{tabularx}
+	\caption{Vergleichstabelle}
+\end{table}
+
+\subsection{Einsatzmöglichkeiten im Projekt}
+Alle bisher aufgelistete Anwendungen können für Feedback im Projekt eingesetzt werden. Eine große Rolle spielen die Kosten, die im Vergleichsliste deutlich zu erkennen sind. Das Kostenfaktor variiert sich im Bereich von 200€, was für eine mögliche Testumsetzung sehr aufwändig wäre. Die Benutzbarkeit von den Systemen scheint überhaupt nicht schwierig zu sein, sondern sehr schnell erlernbar, effizient und anpassungsfähig. Die Anwendungen können von einzelnen sowie auch von mehreren Benutzern gesteuert werden. Als Vorteil bei Sprachsteuerungssystemen gilt das es keine vordefinierte Sätze gelernt werden sollen um die Hausgeräte zu steuern. Einfach angesprochene Sätze werden vom System verstanden und richtig ausgeführt.
+
+Es wäre auch eine Möglichkeit das System selbst zu bauen und zu testen. Dazu sollen ein Kinect,
+Bewegungssensor, Software für Spracherkennung, Schnittstelle, zusätzliche Kamera, Mikrofon
+besorgt werden, damit das ganze aufbauen zu können entweder für Sprachsteuerung oder Gestensteuerung. Dabei entstehen Kosten für das ganze um es zu realisieren und wird auch eine
+Menge Zeit kosten.
+
+\subsection{HomeKit iOS Gerätesteuerung}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequellen \glqq A Home for Apple – HomeKit unter iOS 9\grqq\footnote{\url{https://www.apfellike.com/2015/10/a-home-for-apple-homekit-unter-ios-9/}}, \glqq Geräte über den Raspberry Pi und HomeKit steuern\grqq\footnote{\url{https://alexbloggt.com/geraete-ueber-den-raspberry-pi-und-homekit-steuern/}} und \glqq So wird dein Raspberry Pi mit Z-Wave zur Apple HomeKit Bridge\grqq\footnote{\url{http://www.siio.de/so-wird-dein-raspberry-pi-mit-z-wave-zur-apple-homekit-bridge/}}
+
+Sprachsteuerung mit Hilfe von HomeKit, benötigt zusätzlich App (z.B. Eve) Installation auf dem iOS Gerät.
+
+Das Apple HomeKit ist ein System die auch innerhalb des Smart Homes benutzt werden kann. Die
+Komponenten des Hauses können über das Smartphone oder das Tablet gesteuert werden. Ab iOS 8
+ist es möglich, das iPhone oder das Tablet dazu zu verwenden, Komponenten in der Wohnung zu
+steuern. Dadurch wird beispielsweise ein Licht eingeschaltet, die Temperatur an einer Heizung
+geändert oder ein Herd eingeschaltet. Bei Apple HomeKit sendet das Smartphone Befehle an ein Set Top Box, der dann diese an jeweilige Geräte im Haus überträgt.
+
+Um HomeKit-Steuerung zu ermöglichen, muss das zu steuernde Gerät über einen HTTP-Request am Raspberry Pi zu steuern sein.
+
+Für die Einbindung von Geräten empfiehlt es sich, erst einmal mit Geräten zu beginnen, welche eine Schalterfunktion haben, da dieses von HomeKit unterstützt werden. In den Einstellungen wird den Punkt \glqq Geräte\grqq{} ausgewählt. In der Gerätegruppe, wähle Z-Wave Gerätetyp aus.
+
+Nach dem Klicken der Schaltfläche wird eine Übersicht mit 4 Schritten angezeigt. Überprüfe als
+erstes, ob dein Gerät exkludiert ist (im alten Netzwerk gelöscht wurde) und tatsächlich bereit ist inkludiert zu werden. Falls nicht, führe einfach noch einmal eine Exklusion durch um sicher zu gehen, dass das Gerät inkludiert werden kann.
+
+Wenn alles fertig ist, wird die Schaltfläche \glqq Anlernen starten\grqq{} gedrückt und wiederholt den Taster am Geräte gedrückt, um dieses zu inkludieren (mehr dazu siehe Handbuch des Z-Wave Gerätes). Nach einer kurzen Zeit sollte das Gerät gefunden werden. Die Oberfläche informiert, sobald das Gerät gefunden wurde und konfiguriert wird.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/HomeKit.png}
+	\caption{HomeKit iOS}
+	\label{fig:feedbackHomeKit}
+\end{figure}
+
+Um Z-Wave Geräte für HomeKit erkennbar zu machen bedarf es noch einer weiteren App, welche ebenfalls im App Store der Smart Home UI herunterladen und installieren werden kann.In die Einstellungen wird „Anwendungen“ ausgewählt. Die \glqq App Apple HomeKit Gate\grqq{} wird installiert, eine individuelle Name eingeben und entscheiden, wie Raspberry in der HomeKit App heißen soll. Da das Raspberry als Bridge für HomeKit dient, behalten alle inkludierten Geräte und erstellten Apps ihren Namen in dem HomeKit Apps bei. Nachdem die \glqq HomeKit Gate\grqq App installiert wurde, soll es auf Rapsberry Pi Konsole gewechselt werden und dort folgende Befehl ausgeführt werden:
+
+\textbf{tail -f /var/log/z-way-server.log}
+
+Dadurch werden diverse Informationen in der Konsole ausgegeben. Unter anderem auch der Punkt \glqq HomeKit PIN\grqq. Dieser PIN sollte wie so aussehen: XXXXXXXX
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/HomeKitKonfiguration.png}
+	\caption{HomeKit iOS - Konfiguration}
+	\label{fig:feedbackHomeKitKonfiguration}
+\end{figure}
+
+Raspberry Pi ist nun ein vollständig konfiguriertes HomeKit Accessoire, welches in jeder HomeKit kompatiblen App verwendet werden kann. HomeKit-PIN soll eingegeben werden, sobald nach diesem gefragt wird und alle inkludierten Geräte werden unter der Raspberry HomeKit Bridge zu finden sein. Als App kann z.B. die \glqq MyTouchHome\grqq{} App verwendet werden, welche viele HomeKit-Funktionen bietet. Danach wird neu erstelltes Haus im APP ausgewählt. Da das Raspberry als Bridge dient, zählt es als Accessoire. Füge es entweder zu deinem Haus hinzu oder zu einem neu erstellten Raum und danach werden alle inkludierten Geräte angezeigt, sofern HomeKit den Gerätetyp unterstützt.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/HomeKitSteuerung.png}
+	\caption{HomeKit iOS - Steuerung}
+	\label{fig:feedbackHomeKitSteuerung}
+\end{figure}
+
+Mit Hilfe von RESTask Plugin innerhalb des Tasker Apps können die HTTP-Befehle für die
+Steuerung von Geräten gesetzt werden. Ein Beispiel mit Fibaro HC (\url{http://www.siio.de/der-traum-vom-haus-per-sprachsteuerung-so-einfach/}).
+
+\textbf{Material:}
+
+\begin{itemize}
+\item Android Smartphone oder Tablet (Android 4.4+ empfohlen)
+\item Google Now
+\item Tasker
+\item RESTask Tasker Plugin
+\item AutoVoice Tasker Plugin
+\item Fibaro HC2
+\end{itemize}
+
+Google Now, Tasker, RESTask und AutoVoice werden installiert.
+Beispiel: Die Raumbeleuchtung per Sprachbefehl ein und ausschalten. AutoVoice erwartet keinen exakten Satz, sondern jeder Aktion werden Schlüsselwörter oder Phrasen zugeordnet. Wenn der Befehl als \glqq Licht ein\grqq hinterlegt wird, funktioniert \glqq Ich möchte das LICHT EINschalten\grqq{} oder \glqq Bitte das LICHT EIN\grqq{} auch. Nicht funktionieren wird: \glqq Schalte die Lampe an\grqq{} oder \glqq Bitte das Zimmer beleuchten\grqq.
+
+Als erstes AutoVoice auf Google Now konfigurieren. Dazu AutoVoice starten, \glqq Google Now
+Integration\grqq{} auswählen und dann noch \glqq NOT ENABLED\grqq{} klicken. In der Bedienungshilfe AutoVoice auf \glqq An\grqq{} stellen. Die angezeigte Warnmeldung ist in Ordnung. Als nächstes aktivieren das \glqq OK Google\grqq{} Feature. Im Android Startmenü \glqq Google Einstellungen\grqq{} auswählen. Dort \glqq Suche \& Google
+Now\grqq , dann \glqq Sprache\grqq{} anklicken. Ins Menü \glqq OK Google Erkennung\grqq{} und dort alles aktivieren und gegebenenfalls den Anweisungen folgen.
+
+Tasker Beispiel: Bei \glqq Profile\grqq{} mit \glqq +\grqq{} und \glqq Ereignis\grqq{} auswählen. Weiter:
+
+\begin{itemize}
+\item Plugins -> AutoVoice -> \glqq Recognized\grqq{} auswählen
+\item Stift oben Rechts -> Command Filter -> \glqq Licht ein\grqq{} hinterlegen
+\item Via Haken oben rechts speichern -> in Tasker oben links zurück
+\item \glqq Neuer Task\grqq{} poppt auf, wir klicken darauf und geben einen Namen ein (z.B. \glqq Licht ein\grqq)
+\item Mit dem Plus in der Mitte einen Schritt hinzufügen
+\item Plugins -> RESTask -> Stift oben rechts
+\item Bei HOST wird die entsprechende API URL für \glqq Lampe Einschalten\grqq{} hinterlegt
+\item Bei BasicAuth die Zugangsdaten der Fibaro HC2 hinterlegen (normal \glqq admin\grqq{} und \glqq admin\grqq)
+\item Via Diskette oben Speicher -> in Tasker oben links zurück
+\item Mit Play unten links kann \glqq Licht ein\grqq{} getestet werden
+\item oben links zurück -> Tasker schließen
+\end{itemize}
+
 \newpage
 \section{Personenidentifikation}
 
