@@ -1446,6 +1446,7 @@ Wenn man nun die kleine Schalter-Lasche des Sensors 3x hintereinander (innerhalb
 
 \section{Alarmanlage}
 
+\newpage
 \section{Feedback-Mechanismen}
 Bisher wurde davon ausgegangen, dass für ein leistungsfähiges intelligentes Haus Feedback-Möglichkeiten vorhanden sein sollen. Orientiert man sich an den Fähigkeiten des Menschen, sind dies das menschliche Sehen, Hören, Fühlen , Bewegen, Riechen und Schmecken. Insbesondere das Sehen, Hören und Bewegen sind für Feedbacks von Bedeutung. Als Möglichkeit für eine Rückmeldung stehen Displays, akustische Systeme und Gesten zur Verfügung. Um nun geeignete Reaktionen zu erwirken, bedarf es einer in Grenzen leistungsfähigen Systemintelligenz. Hierdurch wird die Repräsentation durch mögliche Interaktionen mit dem Smart Home möglich und hilft, den Eindruck von \glqq Intelligenz\grqq{} zu vermitteln. Auch dies ist eine wichtige Eigenschaft für die flexible Anpassungsfähigkeit an die vom Nutzer vorgegebenen Aufgabenstellungen. Die Anforderungen richten sich gleichermaßen, sowohl an sensorische Fähigkeiten als auch an die Fähigkeit, Daten von Sensoren in Erkenntnisse zu transformieren und daraus Strategien und Konzepte zu entwickeln. Methoden zur Wahrnehmung der Umwelt sowie zur Kommunikation mit dieser, stehen seit Jahren im Fokus der Forschung.\\
 Im folgenden werden einige Forschungsarbeiten vorgestellt die im Laufe der Ausarbeitung entdeckt wurden. Unter anderem werden Möglichkeiten beschrieben die später in dem Projekt als Feedback eingesetzt werden können. Es werden auch schon vorhandene Lösungen auf dem Markt vorgestellt, die übernommen werden können. Es soll auch der Kostenfaktor berücksichtigt werden, da es nicht bekannt ist, ob die teuren Lösungen in dem Projekt eingesetzt werden können.\\
@@ -1464,18 +1465,19 @@ Weiter unten werden am Markt vorhandene Systeme und Lösungen kurz aufgelistet.\
 Der Einsatz von sprach-gesteuerten Systemen hat bereits auf verschiedensten Gebieten, mehr oder weniger erfolgreich Einzug gehalten.
 
 \subsubsection{IVEE}
-Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq Deine Sprachsteuerung für dein SmartHome\grqq\footnote{\url{http://www.siio.de/connected-home/ivee-deine-sprachsteuerung-fuer-dein-smarthome/}}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq Deine Sprachsteuerung für dein SmartHome\grqq\footnote{\url{http://www.siio.de/connected-home/ivee-deine-sprachsteuerung-fuer-dein-smarthome/}}.
 
 \begin{itemize}
 \item Kosten: 200\$
 \end{itemize}
 
+\noindent
 Bei ivee handelt es sich um eine cloudbasierte Sprachsteuerung für das Smart Home, bei der vom Marktstart an bereits diverse Hersteller angebunden sind. Hervorzuheben sind hier Belkin WeMo, Philips Hue, Logitech Harmony \& Google Nest sowie Z-Wave. Zu den genannten Anbietern werden kontinuierlich Neue dazu kommen. Nützlich könnten hier zum Beispiel eine Anbindung durch \gls{iftttg} oder an Google sein. Mit \gls{iftttg} könnten mit einem Schlag eine Vielzahl weiterer Dienste angebunden werden und mit der Anbindung an Google könnte man sich neue Mails oder Kalendereinträge vorlesen lassen. Die Installation und Steuerung von ivee ist auch für wenig technisch versierte Personen einfach umzusetzen. Die Sprachsteuerung ivee muss dazu nur an den Strom angeschlossen – und ins heimische WLAN integriert werden. Mit der dazugehörigen Smartphone App kann ivee beigebracht werden, welche Geräte im Haushalt verfügbar sind. Auch die Steuerung ist denkbar einfach:
 
 \begin{enumerate}
 \item Sag einfach \glqq Okay ivee\grqq{} zum Aufwecken. Der eingebaute, farbige LED-Ring wird blau und das System ist bereit für den Sprachbefehl.
 \item Dann einfach das Kommando sagen oder die Frage stellen. Zum Beispiel: \glqq Schalt den Fernseher ein\grqq .
-\item ivee schaltet den Fernseher an.
+\item ivee schaltet den Fernseher an.\\
 \end{enumerate}
 
 Mit der iPhone-App können auch unterschiedliche Szenen angelegt werden, die zum Beispiel bei einem bestimmten Kommando die HUE-Leuchten dimmen, den Fernseher anschalten und die Raumtemperatur erhöhen. Alles möglich.
@@ -1489,6 +1491,249 @@ Mit der iPhone-App können auch unterschiedliche Szenen angelegt werden, die zum
 
 Art des Feedbacks: Es kann mit ivee Dialog ausgeführt werden, als Feedback erhält eine Person von ivee eine sprachliche Bestätigung zurück, die mittels eingebaute Mikrofone übermittelt wird, das die Aktion ausgeführt wurde.
 
+\subsubsection{CastleOS Voice}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq CastleOS Voice-Controlled Home Automation Software for INSTEON, Z-Wave, WeMo, and More\grqq\footnote{\url{http://www.smarthome.com/castleos-voice-controlled-home-automation-software-for-insteon-z-wave-wemo-and-more.html}}.
+
+\begin{itemize}
+\item Kosten: 200\$
+\end{itemize}
+
+\noindent
+CastleOS Voice-Controlled Home Automation Betriebssystem für INSTEON, X10, Z-Wave, UPB, LightwaveRF, WeMo, Nest, Sonos, Plex, XBMC, MediaBrowser3, DirecTV. Es ist kompatibel mit folgenden Smart Home Geräten wie Aeon Labs, Yale, Phillips, Honeywell, GE, Leviton, Sonos. CastleOS verwendet eine einzigartige Dual-Gerätesteuerung, die einfache Sprachbefehle durch eine Kinect oder CastleOS Web- und Mobile-Anwendung auf jedem iOS und Android Gerät akzeptiert. Befehle werden von der Kinect oder Web- und Mobile-Anwendung auf einen Windows PC, der mit einer unbegrenzten Anzahl von verbundenen Heimautomatisierungsgeräte, wie INSTEON, Z-Wave, UPB, X10 oder WeMo weitergeleitet. CastleOS kann nicht nur auf Sprachbefehle reagieren, sondern auch mit dem Ton Bestätigungen und Antworten auf Fragen und Befehle zu ausgeben. Kinect ermöglicht eine vollständige Kontrolle über ihr Zuhause mit einem präzisen und anspruchsvollen Spracherkennungssystem. Ihr Haus wird 24/7 ohne Störungen durch laute Musik, Filme, TV und andere Geräusche überwacht. Es gibt keine Begrenzung für die Anzahl der Kinect-Geräte die angeschlossen werden können aber zusätzliche Kinects erhöhen den Standard Übertragungsbereich um bis zu 10 Meter. Es kann auch mittels Mobil- bzw. Webapp gesteuert werden, falls keine Kinect vorhanden ist.
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=0.5\hsize}X 
+			>{\hsize=1.5\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		Betriebssystem	
+		& Windows 7 oder neuer \\
+		\hline 
+		Z-Wave
+		& Aeon Labs Z-Stick \\
+		\hline
+	\end{tabularx}
+	\caption{Systemanforderungen: CastleOS}
+\end{table}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=0.5\hsize}X 
+			>{\hsize=1.5\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		Kompatibilität	
+		& INSTEON, Z-Wave, UPB, WeMo \\
+		\hline 
+		Sprachsteuerung
+		& mit Kinect und Kinect Voice Interface, Reichweite: 10,66 m, natürliche Sprachbefehle \\
+		\hline 
+		Gerätegruppierung
+		& Szene, Gruppe \\
+		\hline
+	\end{tabularx}
+	\caption{Features: CastleOS}
+\end{table}
+
+Die Änderungen, die mit Version CastleOS 2.0 erscheinen sollen, werden die Erstellung von virtuellen Geräten und Protokollen ermöglichen. Auf diese Weise können beliebige HTTP-Aufrufe ausgeführt werden. Der endgültige Termin ist nicht festgelegt, laut  Q\&A auf der offiziellen Webseite wird es noch dauern bis es in die Produktion geht.
+
+\glqq The REST API was added a few months ago to support Android App development. To discover the services, you can use any web service explorer and point it to CastleOS on your machine: \url{http://localhost/CastleOS/service?wsdl}. You can also put that address in your web browser to see the raw XML if you'd like. The Custom Scripting as an Action is in testing now, and will be in the next release.\grqq
+
+\subsubsection{Amazon Echo}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq Amazon hört und spricht ins Wohnzimmer\grqq\footnote{\url{http://www.golem.de/news/amazon-echo-amazon-hoert-und-spricht-ins-wohnzimmer-1411-110371.html}}
+
+\begin{itemize}
+\item Kosten: 179,99\$
+\end{itemize}
+
+\noindent
+Der Echo kann jetzt auch Belkin WeMo und Philips Hue Produkte steuern. Amazon Echo sieht aus wie ein kleiner Bluetooth-Lautsprecher, der aber viel mehr kann als nur Musik abzuspielen. Das Gerät ist per WLAN mit dem Internet verbunden und besitzt sieben Mikrofone, mit denen es jedes Gespräch im Raum registrieren kann. Eine Fernbedienung mit eingebauten Mikrofonen, welche benutzt werden kann, wenn der Hub außer Reichweite ist, steht zur Verfügung.
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=0.5\hsize}X 
+			>{\hsize=1.5\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		WiFi	
+		& zur Einbindung in das Heimnetz \\
+		\hline 
+	 	Bluetooth
+		& Audiostreaming für Amazon Echo Mobilgeräte, Fernbedienung \\
+		\hline 
+	 	Systemanforderungen
+		& Zugriff über Mobile-App oder Weboberfläche \\
+		\hline
+	\end{tabularx}
+	\caption{Spezifikation: Amazon Echo}
+\end{table}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Feedback-Mechanismen/AmazonEcho.png}
+	\caption{Amazon Echo}
+	\label{fig:feedbackAmazonEcho}
+\end{figure}
+
+Eine Anleitung zur Anbindung an Z-Wave ist unter \url{http://www.myzwave.net/index.php/adding-voice-control-to-vera-z-wave-systems-using-amazon-echo/2/} zu finden.
+
+Die nachfolgenden Ausführung beziehen sich auf die Onlinequelle \glqq Amazon\grqq\footnote{\url{http://www.amazon.com/dp/B00X4WHP5E}} und \glqq Smart Home - Home Automation Superstore\grqq \footnote{\url{http://www.smarthome.com/amazon-echo-alexa.html}}.
+
+Amazon Echo kommuniziert visuell mit dem Benutzer über sein Status mit Hilfe einer farbigen Beleuchtung ganz oben und unten:
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Feedback-Mechanismen/AmazonEchoLight.png}
+	\caption{Amazon Echo - Beleuchtung}
+	\label{fig:feedbackAmazonEchoLights}
+\end{figure}
+
+Wenn ein Befehl ausgelöst wurde, wird Amazon Echo mit \glqq OK\grqq{} zurück antworten, wenn z.B gesagt wurde \glqq Licht an\grqq , wird \glqq OK\grqq{} ausgegeben.
+
+How to control Z-Wave devices with amazon echo via SmartThings hub (\url{http://misterhouse.blogspot.de/2015/10/amazon-echo-smartthings-howto.html})
+
+Die Z-Wave Geräte können von Amazon Echo mithilfe von SmartThings Hub gesteuert werden. In
+Amazon App Einstellungen wird Amazon zu Smartthings verlinkt, und danach können alle Geräte
+identifiziert werden. Nachdem die Geräteidentifizierung abgeschlossen ist, kann der Nutzer seine Geräte schon per Amazon Echo steuern.
+
+Mit Amazon-Echo-ha-bridge wird ein Hue Hub emuliert, und es können vom Benutzer virtuell erstellte Geräte von diesem Hub identifiziert werden. Diese Geräte können konfiguriert werden um HTTP Rest Befehle zu den anderen Geräten im Haus senden und diese steuern zu können.
+
+HowTo Amazon-Echo-Bridge (\url{https://github.com/armzilla/amazon-echo-ha-bridge})
+
+\noindent
+\glqq HowTo: Using Echo to control SmartThings:
+Amazon-echo-ha-bridge which is a Java application that emulates a Hue/WeMo hub. The user can
+create virtual \glqq lights\grqq{} that Echo will discover using it's native Hue/WeMo support. You can configure the \glqq lights\grqq{} to send HTTP REST commands to other systems in your house. You can say \glqq turn on the <xxx>\grqq , \glqq turn off the <yyy>\grqq , or \glqq set the <zzz> to 50\%\grqq{} (or whatever value). These are utilizing the on/off/dim verbs that Echo understands for light controls, so it works best for activities that would make sense in this sort of sentence. \glqq Alexa, set the thermostat to 78 percent\grqq{} might be ok for setting the temperature.\grqq
+
+\subsubsection{Homey}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq Homey, preheat the oven! This orb lets you control your house with your voice\grqq\footnote{\url{http://www.digitaltrends.com/home/homey-adds-jarvis-style-voice-control-practically-everything-house/}}
+
+\begin{itemize}
+\item Kosten: 299,00€
+\end{itemize}
+
+\noindent
+Homey unterstützt auch Dinge wie NFC, nRF24L01 + und Infrarot, sowie Z-Wave, ZigBee,
+Bluetooth und WiFi. Es wird verwendet, um TV, nicht vernetzte Soundsysteme zu steuern und sogar
+Computer. Der Vorteil ist das Homey eine natürliche Sprache versteht. Es sollen keine Befehle in einer bestimmten Reihenfolge ausgesprochen werden, um mit dem Homey zu interagieren. Homey ist mit einem \textit{natural language} Prozessor ausgestattet und versteht die Kurzbefehlen die zur Hausautomatisierung ausgerichtet sind. Es können folgende Befehle wie z.B. \glqq Heizung an\grqq , \glqq Tür zu\grqq{} oder \glqq Licht an\grqq{} ausgesprochen werden und es wird vom System verstanden. Homey ist mehrsprachig, u.a Deutsch.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Feedback-Mechanismen/Homey.png}
+	\caption{Homey}
+	\label{fig:feedbackHomey}
+\end{figure}
+
+Mit REST API, kann der Benutzer mit Homey interagieren und von außen HTTP Anfragen senden
+um die Geräte zu steuern. Die Verwendung ist unter \url{https://developers.athom.com/api/#} erklärt.
+
+\subsubsection{EnBlink}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequellen \glqq Enblink dongle now lets you control smart home devices with voice commands\grqq\footnote{\url{http://www.digitaltrends.com/home/enblink-dongle-now-lets-control-smart-home-devices-voice-commands/}} und \glqq Smart Home - Home Automation Superstore\grqq\footnote{\url{http://www.smarthome.com/enblink-ss201-us-w-z-wave-usb-plug-in-controller.html}}.
+
+\begin{itemize}
+\item Kosten: 89,99\$
+\end{itemize}
+
+\noindent
+Es handelt sich hierbei um einen kleine USB-Stick, der in jedes Google-TV-Gerät gesteckt werden kann und wandelt es in einen Hub, welcher das Haus steuert. Es funktioniert mit jedem Z-Wave-kompatiblen Gerät in ihrem Haus, das heißt, sie können es verwenden, um alles steuern zu können Lampen, Türschlösser, Sicherheitssensoren, Thermostate, und vieles mehr. EnBlink kann jedes Z-Wave-fähige Heimgerät von einer zentralen Stelle kontrollieren, das kann eine Wandplatte, Touchpad, PC, SmartTablet oder Smartphone sein.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/Feedback-Mechanismen/EnBlink.png}
+	\caption{EnBlink}
+	\label{fig:feedbackEnBlink}
+\end{figure}
+
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{
+			>{\hsize=0.5\hsize}X 
+			>{\hsize=1.5\hsize}X
+			% sum=2.0\hsize for 2 columns
+		}
+		\hline
+		Hersteller	
+		& EnBlink \\
+		\hline 
+	 	Z-Wave Chip
+		& ZW0301 \\
+		\hline 
+	 	Z-Wave Bibliothek
+		& Serial API \\
+		\hline 
+	 	Basic Device Class
+		& Z-Wave Controller \\
+		\hline 
+	 	Reichweite
+		& ca. 30 m \\
+		\hline 
+	\end{tabularx}
+	\caption{Spezifikation: Amazon Echo}
+\end{table}
+
+\subsubsection{HALBasic - Home Automation living}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle\footnote{\url{www.automatedliving.com/HALbasic.aspx}}
+
+\begin{itemize}
+\item Kosten: 19,99€
+\end{itemize}
+
+\noindent
+Z-Wave compatible UI (PC Control)-Software HALBasic ermöglicht begrenzte Geräte im Hausnetz
+durch PC Software zu steuern. HAL verbindet ein Mobiltelefon mit der Software auf PC durch die Telefonleitung. Nutzer benötigen einen Anruf für das Gerät die gesteuert werden soll tätigen und die Befehle senden, wie z.B Licht einschalten und wie lange. Alle Befehle werden durch den Computer gesteuert.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/HAL.png}
+	\caption{HAL}
+	\label{fig:feedbackHAL}
+\end{figure}
+
+\subsubsection{Z-Wave Fernbedienung}
+Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq düwi Fernbedienung: Z-Wave Netzwerk ohne Smart Home Gateway einrichten\grqq\footnote{\url{siio.de/duewi-fernbedienung-z-wave-netzwerk-ohne-smart-home-gateway-einrichten/}}
+
+\begin{itemize}
+\item Kosten: 74,00€ bzw. 70,90€
+\end{itemize}
+
+\noindent
+Mit Hilfe von folgenden Fernbedienungen können Geräte innerhalb des Heimnetzes gesteuert werden, die Anleitung zur Steuerung von Fernbedienung ist unter dem Link Schrittweise beschrieben.
+
+\noindent
+Z-Wave.Me: 
+
+\begin{itemize}
+\item Kosten: 74,00€
+\item Steuerung mittels Z-Wave (z. B. Fibaro, Vera, Zipato) 
+\item LED-Anzeige
+\item 868,4 MHz Frequenz, für den Einsatz in 47 Ländern der CEPT (einschließlich der gesamten EU) plus China, Singapur, Südafrika, Vereinigte Arabische Emirate
+\item unterstützt Ein/Aus-Schalter zum Bedienen der Geräte, Dimmen, Helligkeits-Steuerung für Beleuchtung und hoch/hinunter für motorbetriebene Geräte
+\item für bis zu 10 Z-Wave-Gerätegruppen oder Szenen über 10 Paar Taste
+\end{itemize}
+
+\noindent
+Düwi: 
+
+\begin{itemize}
+\item Kosten: 70,80€
+\item Z-Wave Plus: nein 
+\item Gerätetyp: Controller
+\end{itemize}
+
+\noindent
+Unterschied Düwi und Z-Wave Ferndbedienung: 
+Wenn es bereits eine Z-Wave Zentrale/Gateway im Einsatz ist, kann Düwi Fernbedienung auch in
+Netzwerk verwendet werden.
+
+\begin{itemize}
+\item Düwi kann Stand-alone betrieben werden, Controller, kann nicht per Z-Wave Gateway konfiguriert werden
+\item ZME kann nicht Stand-alone betrieben werden (kein Controller), Konfiguration von Assoziationen\&Szenen per Z-Wave Gateway möglich
+\end{itemize}
+
+\newpage
 \section{Personenidentifikation}
 
 %TODO Quellen
