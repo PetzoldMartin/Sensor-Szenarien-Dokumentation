@@ -2124,8 +2124,44 @@ Tasker Beispiel: Bei \glqq Profile\grqq{} mit \glqq +\grqq{} und \glqq Ereignis\
 \item oben links zurück -> Tasker schließen
 \end{itemize}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Personenidentifikation}
+
+\subsection{Größenerkennung an der Tür mittels Aeotec Multisensor}
+\subsubsection{Ziel}
+In einen Raum eintretende Personen sollen anhand ihrer Körpergröße in Erwachsene und Kleinkinder unterschieden werden. Diese Information ist für mehrere Module von Bedeutung. 
+
+\subsubsection{Lösungsansatz}
+Die Messung soll mit vorhandenen Sensoren realisiert werden und beschränkt sich deshalb im Wesentlichen auf Bewegungssensoren. Dazu soll ein Sensor im oberen Bereich des Türrahmens angebracht werden, welcher nur ausgelöst wird, wenn Personen mit einer bestimmten Körpergröße durch die Tür gehen (\prettyref{fig:personIdentificationAeotec1}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/PersonIdentification/Aeotec1.jpg}
+	\caption{Positionierung des Sensors in der Türlaibung}
+	\label{fig:personIdentificationAeotec1}
+\end{figure}
+
+Problematisch bei diesem Aufbau ist die Tatsache, dass auch die Bewegung der Tür vom Sensor wahrgenommen wird und dieser immer auslöst, auch wenn sich ein Kind in den Raum bewegt.
+
+Um den "`Blickwinkel"' des Bewegungsmelders einzuschränken, wurde dieser mit einem Papierstreifen abgeklebt (\prettyref{fig:personIdentificationAeotec2}). So beschränkt sich der überwachte Bereich auf die Türlaibung. Diese Modifikation ist erforderlich, da die Konfiguration des Sensors keine Veränderung des Sichtfeldes ermöglicht. Die Konfiguration des Bewegungsmelders beschränkt sich auf die Einstellung der Reaktionsempfindlichkeit des Sensors.
+
+Auch bei diesem Aufbau kam es in wenigen Ausnahmefällen zu Fehlmessungen, diese konnten allerdings durch geringfügige Reduktion der Sensorempfindlichkeit (von 5 auf 4) ausgeräumt werden. Passierende Personen mit entsprechender Körpergröße wurden trotzdem zuverlässig erkannt.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.35\textwidth]{img/PersonIdentification/Aeotec2.jpg}
+	\caption{Positionierung des Sensors in der Türlaibung}
+	\label{fig:personIdentificationAeotec2}
+\end{figure}
+
+\subsubsection{Ergebnis und Bewertung}
+Intensives Testen des Versuchsaufbaus zeigte, dass die Lösung zuverlässig funktioniert und so eine Unterscheidung der Personen nach Körpergröße ermöglicht. Insgesamt erscheint der gesamte Aufbau aus folgenden Gründen jedoch nicht praxistauglich zu sein:
+\begin{itemize}
+	\item Sensor befindet sich direkt in der Türlaibung, daher wenig ästhetisch
+	\item Modifikation des Sensors erforderlich
+\end{itemize}
+
 \subsection{Identifikation von Personen anhand des CO$_2$-Verbrauchs und Persona}
 \emph{(von Alexander Keller)}
 
