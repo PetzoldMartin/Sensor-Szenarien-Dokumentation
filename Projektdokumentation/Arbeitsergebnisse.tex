@@ -1513,6 +1513,84 @@ Wenn man nun die kleine Schalter-Lasche des Sensors 3x hintereinander (innerhalb
 
 \section{Gefahrenquellenabschaltung}
 
+\begin{longtabu} to \textwidth{
+		>{\hsize=0.8\hsize}X 
+		>{\hsize=1.2\hsize}X
+	}
+	\hline
+	\textbf{Aktionen des Benutzers}									& \textbf{Reaktion des Systems} \\
+	\hline
+	\endhead
+	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener \\ 
+	\hline
+	Kind betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifkator erkennt Person als Kind \\
+	\hline
+	Erwachsener fängt an zu Bügeln	& - \\
+	\hline
+	Erwachsener beendet bügeln und lässt Bügeleisen an	& - \\
+	\hline
+	Erwachsener verlässt den Raum	& Personenzähler vermindert Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener
+Feedbackmodul und Timermodul wird aktiviert \\
+	\hline
+	-	& Nach dem Ablauf des Timers wird das Feedbackmodul deaktiviert und das Bügeleisen abgeschalten. \\
+	\hline
+	Erwachsener betritt den Raum	& - \\
+	\hline
+	Erwachsener betätigt Schalter an schaltbarer Steckdose des Bügeleisens 	& Bügeleisen ist wieder angeschalten \\
+	\hline
+	\caption{TurnOffTimerModule: Schnittstelle Event Bus}
+\end{longtabu}
+
+
+Einleitung (kurz): Grundgedanke des Szenarios, Motivation (der Leser sollte danach mit dem Szenario vertraut sein und nachfolgende Punkte verstehen können)\\
+
+Konzept als Ganzes: Beschreibung als zusammenhängender Text der einzelnen Modulkonzepte. Wie soll das Szenario konkret umgesetzt werden?\\
+
+Funktionen die realisiert sein müssen\\
+
+Umsetzung / Programmierung: Welche Module wurden entwickelt?\\
+
+Personidentifikator-Modul
+
+RoomAccess- und PersonCounter-Modul
+
+InHomeFeedback-Modul
+
+
+
+TurnOffHazard-Modul
+
+
+
+TurnOffTimer-Modul
+
+
+
+Versuchsaufbau: Umsetzung des Szenarios mit Modulen und Geräten, u.a. einen konkreten Ablauf dokumentieren. Welche Sensoren/Aktoren wurden verwendet?\\
+
+Ausgehend von unserem zu Anfang angelegten Szenario werden die Geräte und Module so konfiguriert, dass das Szenario nachvollzogen werden kann.\\
+Dazu werden folgende Geräte benutzt:\\
+- Aeon Labs Bewegungssensor zur Personenidentifikation – Höhe der Person\\
+- Philio und Fibaro Bewegungssensor zur Erkennung einer Person im Türdurchgang\\
+- CO2 Sensor zur Personenidentifikation\\
+- Fibaro Steckdose + Lampe für die Feedbackfunktionalität\\
+
+weitere Aktoren:\\
+Simulierte Gefahrenquelle - Bügeleisen als Dummy Modul im System
+
+Konkreter Ablauf:\\
+
+Vorbedingung: eingestelltes Zway-system mit den oben genannten Modulen, Sensoren und Aktoren
+
+
+Zusammenfassung: Konnte das Szenario umgesetzt werden? Welche Anforderungen konnten noch nicht umgesetzt werden?\\
+
+Das Szenario ist rein theoretisch nach dem oben ablaufenden Schema durchführbar. Die Module und Sensoren für einen solchen Ablauf sind vorhanden. Einzelne Modul- und Sensortests waren erfolgreich.
+In der Praxis jedoch sind während des Integrationstests sowohl Module als auch Sensoren aus der Zway Software ausgefallen und waren erst nach einem Neustart des Servers verfügbar.
+
+Aus Sicht der Bewegungssensoren sind die Fibaro Bewegungssensoren am besten und würden die beste Konfiguration ermöglichen.
+
+
 \section{Alarmanlage}
 
 \newpage
