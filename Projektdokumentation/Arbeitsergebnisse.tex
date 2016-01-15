@@ -951,19 +951,119 @@ Der Turn Off Timer wurde für das Projekt so erstellt, dass nur eine Instanz des
 
 Eine andere Möglichkeit zur Integration des Timers besteht darin, dass jedes Modul, welches pro notwendigen Raum definiert wird, eine eigenständige Instanz des Timers erzeugt. Dieser instanziierte Timer existiert anschließend solange, wie dieses Modul ihn für eine Timerlaufzeit benötigt.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Auswahl der Sensoren}
+\emph{(von Simon Schwabe)}
+%TODO: please review
+\subsection{Voraussetzungen bei der Auswahl}
+Zu Beginn des Projekts standen noch keine Sensoren für die Arbeit und Entwicklung zur Verfügung. Es ist deshalb erforderlich, eine Auswahl an Sensoren zu treffen, welche bestmöglich geeignet ist, die erarbeiteten Szenarien zu realisieren. Für die Sensoren besteht Wahlfreiheit, allerdings müssen einige Rahmenbedingungen beachtet werden.
+
+\begin{enumerate}
+	\item Im Rahmen des Projekts wird ausschließlich mit der Z-Wave-Funktechnologie gearbeitet.
+	\item Sensoren sollten über den Händler Z-Wave Europe\footnote{\url{http://new.zwave.eu/index.php?id=13\&L=0}} erhältlich sein, da mit diesem Unternehmen im Rahmen eines anderen Projekts zusammengearbeitet wird.
+	\item Die Gesamtkosten für die Sensoren sollten 500 € nicht übersteigen.
+\end{enumerate}
+
+\subsection{Recherche und Auswahl}
+Zwar existiert auf den ersten Blick eine Vielzahl an Geräten, bei genauerer Betrachtung fällt allerdings auf, dass nur wenige verschiedene Kategorien von Sensoren existieren. (Tür- und Fensterkontakte, Überflutungssensoren, Rauchmelder, Bewegungsmelder, Temperatur"~, Helligkeit"~, UV- und Vibrationssensoren)
+% ("~ prevents hyphenation)
+
+Die meisten erhältlichen Geräte stellen nicht nur einen Sensor zur Verfügung, sondern bieten eine Kombination verschiedener Sensoren. In diesem Projekt sollen Sensoren eingesetzt werden, um die Anwesenheit von Personen zu erkennen. Deshalb sind Rauch- und Überflutungssensoren nicht hilfreich.
+
+Bewegungsmelder sind die am Besten geeigneten Sensoren zur Erkennung von Personen. Deshalb wurden Bewegungsmelder in drei verschiedenen Ausprägungen in die Auswahl aufgenommen. Es wurden verschiedene Modelle gewählt, um deren Leistungsfähigkeit und Funktionsumfang bestmöglich untersuchen und vergleichen zu können.
+
+Eine besondere Stellung nimmt der CO$_2$-Sensor ein. Zum einen ist er kostenintensiver, zum anderen ist im Voraus nicht bekannt, ob er geeignet ist, die Anwesenheit von Personen zu anhand des CO$_2$ Ausstoßes zu erkennen.
+
+In Ergänzung zum CO$_2$-Sensor wurde ein Tür- und Fensterkontakt ausgewählt. Dieser ist nützlich, um feststellen ob Fenster geöffnet sind. Ist das der Fall, werden die CO$_2$-Werte verfälscht und besitzen unter Umständen keine Aussagekraft.
+
+Die folgende Tabelle gibt einen Überblick der erworbenen Sensoren sowie deren  Messgegenstand. Um ein Z-Wave-Netzwerk aufzubauen, ist ein Z-Wave-Funktransceiver erforderlich, dazu wird ein entsprechender USB-Stick genutzt. Zur direkten Interaktion mit dem Netzwerk wurde ein Popp Wall Controller gewählt. Dieser ermöglicht die Steuerung von Geräte und stellt die direkteste Form der Interaktion dar. Exemplarisch für viele Geräte, welche über Z-Wave angesprochen und gesteuert werden können, wurde eine schaltbare Steckdose gewählt. Diese kann programmatisch an- und abgeschaltet und die Farbe des LED-Ring geändert werden.
+
+\subsection{Übersicht bestellter Sensoren}
+
+\begin{longtabu} to \linewidth {
+		>{\hsize=1.1\hsize}X
+		>{\hsize=0.7\hsize}X
+		>{\hsize=1.1\hsize}X
+		>{\hsize=1.1\hsize}X
+		% sum=2.0\hsize for 2 columns
+	}
+	% ----------- begin header -----------
+	\hline
+	\textbf{Abbildung}			& \textbf{Preis}		& \textbf{Produktname}		& \textbf{Messgegenstand} \\
+	\hline
+	\endhead
+	% ----------- end header -----------
+	
+	% ----------- begin footer -----------
+	\multicolumn{4}{r}{{Fortsetzung auf nächster Seite}}  \\ 
+	\endfoot
+	\endlastfoot
+	% ----------- end footer -----------
+
+	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/UZB.jpeg}
+	& 94,01 €
+	& USB Stick inkl. Z-Way Controller Software
+	& - \\
+	\hline 
+	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/Aeotec.jpg}
+	& 64,99 €
+	& Z-Wave Multisensor 6
+	& Bewegung, Temperatur, Vibration, UV, Luftfeuchtigkeit \\
+	\hline
+	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/FibaroMulti.jpg}
+	& 56,99 €
+	& Z-Wave Multisensor
+	& Bewegung, Temperatur, Licht \\
+	\hline
+	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/SensoAir.jpeg}
+	& 355,81 €
+	& Sensoair Z-Wave CO$_2$ Sensor - Table
+	& CO$_2$ \\
+	\hline
+	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/Philio.jpeg}
+	& 64,13 €
+	& Z-Wave 4 in 1 Sensor (Door, Motion, Illumination, Temperature)
+	& Tür-  Fensterkontakt, Bewegungsmelder, Helligkeit, Temperatur \\
+	\hline
+	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/PoppWallController.jpg}
+	& 37,01 €
+	& Z-Wave.Me Funkwandschalter
+	& Wandschalter \\
+	\hline
+	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/PoppFrame.jpg}
+	& 7,98 €
+	& Rahmen + Einzelwippe System 55
+	& Rahmen für Schalter\\
+	\hline
+	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/FibaroWallPlug.jpg}
+	& 63,89 €
+	& Zwischenstecker Schalter Typ F(Schuko)
+	& Aktor zu Demonstration, außerdem Sensor Stromverbrauch \\
+	\hline
+	\caption{Übersicht bestellter Sensoren}
+\end{longtabu}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sensorevaluation}
-\begin{itemize}
-	\item Ergebnisse der Sensorevaluation (je Sensor)
-	\item Was funktioniert wie erwartet/was nicht?
-	\item Welche technischen Probleme, lassen sich diese einschränken?
-	\item Sind Probleme auf Hardware/Software zurückzuführen?
-\end{itemize}
+%TODO: folgende drei Abschnitte reviewen (Simon)
+Dieser Abschnitt soll die ausgewählten Sensoren im Detail beschreiben und charakterisieren. Dabei wird analysiert, welche Funktionen von den Sensoren wie erwartet erfüllt werden, bzw. in welchen Bereichen die Geräte nicht wie erwartet arbeiten.
+
+Die Geräte stellen zahlreiche Konfigurationsparameter bereit, über diese kann die Arbeitsweise der Sensoren an die Anforderungen angepasst werden. Diese Parameter zu überprüfen, deren Änderung auf die Arbeitsweise zu untersuchen und geeignete Konfigurationen in Hinblick auf die Szenarien zu finden, ist Ziel dieses Abschnitts.
+
+Dabei soll festgestellt werden, ob grundsätzliche technische Probleme auftreten und wie sich diese bestenfalls lösen oder zumindest so weit einschränken lassen, dass sie der geplanten Verwendung der Geräte nicht im Wege stehen.
+
+%\begin{itemize}
+%	\item Ergebnisse der Sensorevaluation (je Sensor)
+%	\item Was funktioniert wie erwartet/was nicht?
+%	\item Welche technischen Probleme, lassen sich diese einschränken?
+%	\item Sind Probleme auf Hardware/Software zurückzuführen?
+%\end{itemize}
 
 \subsection{Fibaro Multisensor}
 \emph{(von Philip Laube)}
 
 \subsubsection{Allgemein}
+
 \begin{description}
 	\item[Energieversorgung] CR123A battery, 3.6 VDC
 	\item[Empfohlene Installationshöhe] 2,4m
@@ -2205,6 +2305,7 @@ Tasker Beispiel: Bei \glqq Profile\grqq{} mit \glqq +\grqq{} und \glqq Ereignis\
 \newpage
 \section{Personenidentifikation}
 
+\emph{(von Simon Schwabe)}
 \subsection{Größenerkennung an der Tür mittels Aeotec Multisensor}
 \subsubsection{Ziel}
 In einen Raum eintretende Personen sollen anhand ihrer Körpergröße in Erwachsene und Kleinkinder unterschieden werden. Diese Information ist für mehrere Module von Bedeutung. 
