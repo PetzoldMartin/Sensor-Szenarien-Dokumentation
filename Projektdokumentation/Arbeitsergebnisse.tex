@@ -195,7 +195,7 @@ Dazu wird bei Ankunft der entsprechende Schalter betätigt, bzw. das Schloss ges
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/LockDoorSequence.pdf}
-	\caption{Sequenzdiagramm - LockDoor-Modul}
+	\caption{LockDoor-Modul - Sequenzdiagramm}
 	\label{fig:modulkonzeptionLockDoorSequence}
 \end{figure}
 
@@ -270,6 +270,7 @@ Das TurnOffTimer-Modul stellt eine Schnittstelle zum Feedback-Modul her. Durch d
 \begin{itemize}
 	\item konfiguriertes Türschloss
 \end{itemize}
+
 
 \subsection{PersonCounterModule}
 \emph{(von Philip Laube)}
@@ -384,7 +385,6 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 		\item Typ: Raum
 		\item Erforderlich: ja
 	\end{itemize}
-
 \end{itemize}
 
 \subsubsection{Schnittstellen}
@@ -413,6 +413,7 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 	\item Raum Zuordnung der beiden Sensoren
 	\item PersonenCounterModule der Raumzuordnungen
 \end{itemize}
+
 
 \subsection{StandbyModule}
 \emph{(von Zarina Muratbekovna Omurova)}
@@ -503,6 +504,7 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyMo
 	\item Zustand des Raums (im Standby: stopped/started)
 	\item Switches/Dimmers
 \end{itemize}
+
 
 \subsection{InHomeFeedbackModule}
 \emph{(von Patrick Hecker)}
@@ -702,6 +704,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	
 \end{itemize}
 
+
 \subsection{PersonIdentificationModule}
 \emph{(von Martin Petzold)}
 
@@ -883,7 +886,6 @@ Das Modul benötigt ein PersonCounterModule für den Raum in welchem es angewand
 \end{table}
 
 
-
 \subsection{TurnOffTimerModule}
 \emph{(von Tobias Weise)}
 \subsubsection{Funktionsweise}
@@ -950,6 +952,107 @@ Der Turn Off Timer wurde für das Projekt so erstellt, dass nur eine Instanz des
 \end{figure}
 
 Eine andere Möglichkeit zur Integration des Timers besteht darin, dass jedes Modul, welches pro notwendigen Raum definiert wird, eine eigenständige Instanz des Timers erzeugt. Dieser instanziierte Timer existiert anschließend solange, wie dieses Modul ihn für eine Timerlaufzeit benötigt.
+
+
+\subsection{TurnOffHazardModule}
+\emph{(von Patrick Hecker und Tobias Weise)}
+
+\subsubsection{Allgemein}
+Das Modul "`Gefahrenquellen abstellen"' übernimmt die Aufgabe, eine vom Nutzer individuell erstellbare Liste an Gefahrenquellen zu speichern. Daraufhin soll das Modul in einem zuvor definierten Fehlerfall alle Gefahrenquellen, die in der Liste aufgeführt sind, abschalten bzw. eine spezielle Aktion ausführen. Um definieren zu können, wann ein Fehlerfall vorliegt, wird in dem Modul die Anzahl der Kinder, der Erwachsenen und der Personen im Raum allgemein registriert. Das Abschalten der Geräte erfolgt jedoch nicht direkt. Ein Abschalttimer für den Raum ermöglicht anwesenden Personen die Aktion abzubrechen.
+
+Ein "`Gefahrenquellen abstellen"'-Modul enthält zusätzlich die Information, für welchen Raum es bestimmt ist.
+
+\subsection{Funktionsweise}
+%TODO: evtl. kurzer Beschreibungstext, Diagramm als pdf
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{img/Modulkonzeption/TurnOffHazardSequence.pdf}
+	\caption{TurnOffHazardModule: Sequenzdiagramm}
+	\label{fig:turnOffHazard}
+\end{figure}
+
+\subsubsection{Konfiguration}
+\begin{itemize}
+	\item Gefahrenquellen
+	\begin{itemize}
+		\item Typ: Liste [Binary Switch, Multilevel Switch]
+		\item Aktion: definierte Aktion beim Abschalten bzw. Einschalten
+		\item erforderlich: ja
+	\end{itemize}
+	
+	\item Dauer (bis automatisch deaktiviert)
+	\begin{itemize}
+		\item Typ: Text
+		\item erforderlich: ja
+		\item Default: 60 s
+	\end{itemize}
+	
+	\item Priorität (beim Starten des Abschalttimer-Moduls)
+	\begin{itemize}
+		\item Typ: Text
+		\item erforderlich: nein
+		\item Default: 5
+	\end{itemize}
+	
+	\item Raum ID
+	\begin{itemize}
+		\item Typ: Text
+		\item erforderlich: ja
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Schnittstellen}
+\begin{longtabu} to \textwidth{
+		>{\hsize=0.8\hsize}X
+		>{\hsize=1.2\hsize}X
+	}
+	% ----------- begin header -----------
+	\hline
+	\textbf{URL}				& \textbf{Beschreibung} \\
+	\hline
+	\endhead
+	% ----------- end header -----------
+	
+	% ----------- begin footer -----------
+	\multicolumn{2}{r}{{Fortsetzung auf nächster Seite}}  \\
+	\endfoot
+	\endlastfoot
+	% ----------- end footer -----------
+	/command/hazardOff			& Abschalten aller Gefahrenquellen aus der Liste. \\
+	\hline
+	/command/hazardOn			& Einschalten aller Gefahrenquellen aus der Liste. \\
+	\hline 
+	/command/state				& Liefert den aktuellen Zustand des Moduls. \\
+	\hline
+	/command/history			& Liefert eine Liste mit den Zeitpunkten und deren Begründung nach abgeschalteten Gefahrenquellen. \\
+	\hline
+	
+	\caption{TurnOffHazardModule: Schnittstelle ZAutomation}
+\end{longtabu}
+
+\subsubsection{Abhängigkeiten}
+\begin{itemize}
+	\item Module für Geräte von Drittanbietern
+	\item Abschalttimer-Modul zum Starten und Stoppen des Abschalttimer-Moduls
+	\item Personenanzahl-Modul zum Erfassen der Personenzahlen im Raum
+	\item Identifizierung Kind/Erwachsener-Modul zum Erfassen der Kinder und Erwachsenen im Raum
+\end{itemize}
+
+%TODO: deutsche Modulnamen?
+
+\subsubsection{Interne Speicher}
+
+\begin{itemize}
+	\item Raum ID
+	\item Liste aller Gefahrenquellen
+	\item Dauer eines aktivierten Abschalttimer-Moduls
+	\item Priorität beim Starten des Abschalttimer-Moduls
+	\item Anzahl der Kinder im Raum
+	\item Anzahl der Erwachsenen im Raum
+	\item Anzahl der Personen im Raum
+	\item Zustand des zugehörigen Abschalttimer-Moduls
+	\item Historie zum Speichern der Abschaltzeiten und Abschaltbegründung der Gefahrenquellen
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Auswahl der Sensoren}
