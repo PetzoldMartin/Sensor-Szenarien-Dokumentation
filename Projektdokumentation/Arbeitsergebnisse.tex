@@ -1075,24 +1075,24 @@ Die meisten erhältlichen Geräte stellen nicht nur einen Sensor zur Verfügung,
 
 Bewegungsmelder sind die am Besten geeigneten Sensoren zur Erkennung von Personen. Deshalb wurden Bewegungsmelder in drei verschiedenen Ausprägungen in die Auswahl aufgenommen. Es wurden verschiedene Modelle gewählt, um deren Leistungsfähigkeit und Funktionsumfang bestmöglich untersuchen und vergleichen zu können.
 
-Eine besondere Stellung nimmt der CO$_2$-Sensor ein. Zum einen ist er kostenintensiver, zum anderen ist im Voraus nicht bekannt, ob er geeignet ist, die Anwesenheit von Personen zu anhand des CO$_2$ Ausstoßes zu erkennen.
+Eine besondere Stellung nimmt der CO$_2$-Sensor ein. Zum einen ist er kostenintensiver, zum anderen ist im Voraus nicht bekannt, ob er geeignet ist, die Anwesenheit von Personen anhand des CO$_2$ Ausstoßes zu erkennen und verschiedene Persona (Kinder, Erwachsene) zu identifizieren.
 
-In Ergänzung zum CO$_2$-Sensor wurde ein Tür- und Fensterkontakt ausgewählt. Dieser ist nützlich, um feststellen ob Fenster geöffnet sind. Ist das der Fall, werden die CO$_2$-Werte verfälscht und besitzen unter Umständen keine Aussagekraft.
+In Ergänzung zum CO$_2$-Sensor wurde ein Tür- und Fensterkontakt ausgewählt. Dieser ist nützlich, um feststellen, ob ein Fenster geöffnet ist. Ist das der Fall, werden die CO$_2$-Werte verfälscht und besitzen unter Umständen keine Aussagekraft.
 
-Die folgende Tabelle gibt einen Überblick der erworbenen Sensoren sowie deren  Messgegenstand. Um ein Z-Wave-Netzwerk aufzubauen, ist ein Z-Wave-Funktransceiver erforderlich, dazu wird ein entsprechender USB-Stick genutzt. Zur direkten Interaktion mit dem Netzwerk wurde ein Popp Wall Controller gewählt. Dieser ermöglicht die Steuerung von Geräte und stellt die direkteste Form der Interaktion dar. Exemplarisch für viele Geräte, welche über Z-Wave angesprochen und gesteuert werden können, wurde eine schaltbare Steckdose gewählt. Diese kann programmatisch an- und abgeschaltet und die Farbe des LED-Ring geändert werden.
+Die folgende Tabelle gibt einen Überblick der erworbenen Sensoren sowie deren  Messgegenstand. Um ein Z-Wave-Netzwerk aufzubauen, ist ein Z-Wave-Funktransceiver erforderlich, dazu wird ein entsprechender USB-Stick genutzt. Zur direkten Interaktion mit dem Netzwerk wurde ein Popp Wall Controller (Wandschalter) gewählt. Dieser ermöglicht die Steuerung von Geräte und stellt die direkteste Form der Interaktion für den Bewohner dar. Exemplarisch für viele Geräte, welche über Z-Wave angesprochen und gesteuert werden können, wurde eine schaltbare Steckdose gewählt. Diese kann programmatisch an- und abgeschaltet und die Farbe des LED-Ring geändert werden.
 
 \subsection{Übersicht bestellter Sensoren}
 
 \begin{longtabu} to \linewidth {
 		>{\hsize=1.1\hsize}X
-		>{\hsize=0.7\hsize}X
+		>{\hsize=0.5\hsize}X
 		>{\hsize=1.1\hsize}X
-		>{\hsize=1.1\hsize}X
+		>{\hsize=1.3\hsize}X
 		% sum=2.0\hsize for 2 columns
 	}
 	% ----------- begin header -----------
 	\hline
-	\textbf{Abbildung}			& \textbf{Preis}		& \textbf{Produktname}		& \textbf{Messgegenstand} \\
+	\textbf{Abbildung}			& \textbf{Preis}		& \textbf{Produktname, Bestellnummer}		& \textbf{Messgegenstand, Bemerkung} \\
 	\hline
 	\endhead
 	% ----------- end header -----------
@@ -1105,43 +1105,44 @@ Die folgende Tabelle gibt einen Überblick der erworbenen Sensoren sowie deren  
 
 	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/UZB.jpeg}
 	& 94,01 €
-	& USB Stick inkl. Z-Way Controller Software
+	& USB Stick inkl. Z-Way Controller Software \newline \textbf{ZMEEUZBWAY}
 	& - \\
 	\hline
 	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/Aeotec.jpg}
 	& 64,99 €
-	& Z-Wave Multisensor 6
+	& Z-Wave Multisensor 6 \newline \textbf{AEOEZW100}
 	& Bewegung, Temperatur, Vibration, UV, Luftfeuchtigkeit \\
 	\hline
 	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/FibaroMulti.jpg}
 	& 56,99 €
-	& Z-Wave Multisensor
+	& Z-Wave Multisensor \newline \textbf{FIB\_FGMS-001}
 	& Bewegung, Temperatur, Licht \\
 	\hline
 	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/SensoAir.jpeg}
 	& 355,81 €
-	& Sensoair Z-Wave CO$_2$ Sensor - Table
-	& CO$_2$ \\
+	& Sensoair Z-Wave CO$_2$ Sensor - Table (Tischgerät)
+	& CO$_2$; Einsatzmöglichkeit zur Personenerkennung nicht geklärt; wird nur für Überwachung der Luftqualität beworben; mit Fensterkontakt kombinierbar
+	\\
 	\hline
 	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/Philio.jpeg}
 	& 64,13 €
-	& Z-Wave 4 in 1 Sensor (Door, Motion, Illumination, Temperature)
+	& Z-Wave 4 in 1 Sensor (Door, Motion, Illumination, Temperature) \newline \textbf{PHI\_PST02-1A}
 	& Tür-  Fensterkontakt, Bewegungsmelder, Helligkeit, Temperatur \\
 	\hline
 	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/PoppWallController.jpg}
 	& 37,01 €
-	& Z-Wave.Me Funkwandschalter
-	& Wandschalter \\
+	& Z-Wave.Me Funkwandschalter \newline \textbf{ZMEEWALLC-2}
+	& Wandschalter zur Simulation eines Türschlosses oder für einen Abbruchmechanismus einer eingehenden Aktion\\
 	\hline
 	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/PoppFrame.jpg}
 	& 7,98 €
-	& Rahmen + Einzelwippe System 55
+	& Rahmen + Einzelwippe System 55 \newline \textbf{ZME\_SW7}
 	& Rahmen für Schalter\\
 	\hline
 	\vspace{0cm}\includegraphics[width=0.24\textwidth]{img/Sensorauswahl/FibaroWallPlug.jpg}
 	& 63,89 €
-	& Zwischenstecker Schalter Typ F(Schuko)
-	& Aktor zu Demonstration, außerdem Sensor Stromverbrauch \\
+	& Zwischenstecker Schalter Typ F (Schuko) \newline \textbf{FIBEFGWPF-102}
+	& Aktor zur Demonstration, außerdem Sensor Stromverbrauch \\
 	\hline
 	\caption{Übersicht bestellter Sensoren}
 \end{longtabu}
