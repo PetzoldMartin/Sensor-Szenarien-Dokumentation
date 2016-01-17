@@ -262,16 +262,17 @@ Darüber hinaus sind die nachfolgenden Aufgaben für die Projektarbeit relevant:
 Der zeitliche Rahmen sieht die Abgabe des Abschlussberichts zum 22.01.2016 und die Präsentation in der Woche vom 01.02. - 05.02.2016 vor.
 
 \chapter{Projektverlauf}
-\begin{itemize}
-%	\item welche konkreten Aufgaben wurden wann bearbeitet
-	\item Verweise auf Arbeitsergebnisse
-\end{itemize}
+% - welche konkreten Aufgaben wurden wann bearbeitet
+% - Verweise auf Arbeitsergebnisse
+
+Das folgende Kapitel beschreibt pro Sprint die erbrachten Ergebnisse sowie die Zielstellung für den jeweils darauffolgenden Sprint. Den Arbeitsergebnissen sind Verweise zu den entsprechenden Kapiteln und Abschnitten beigefügt. Zum Abschluss des Kapitel ist ein Gantt-Diagramm abgebildet, welches den tatsächlichen Verlauf anschaulich dokumentiert (\prettyref{fig:projektverlaufGanttDiagramm}).
 
 \section{Sprint 1}
 \begin{itemize}
 	\item Zeitraum: 02.10.15 - 09.10.15
-	\item Task \#3866: Einarbeitung
+	\item Task \#3866: Einarbeitung\\
 \end{itemize}
+\noindent
 Am 02.10.15 fand das initiale Projektmeeting statt. In einem Vortrag für die Projektmitglieder wurde die Thematik Smart Home im Allgemeinen und Z-Wave als Kommunikationsprotokoll im Speziellen vorgestellt. Dadurch sollten Kenntnisse und Wissensstand der Teammitglieder auf ein einheitliches Niveau gehoben werden. Die verschiedenen Rollen der Mitglieder im Projekt wurden verteilt und ein organisatorischer Rahmen festgelegt.
 
 Da es sich um ein Projekt mit erheblichem Forschungsanteil handelt, fiel die Entscheidung auf agiles Vorgehen und gegen eine starre Projektplanung im Voraus. Im Rahmen des Projekts wird mit Sensoren gearbeitet und zum Zeitpunkt der Initialisierung liegen noch wenige konkrete Erfahrungen im Umgang und zur Leistungsfähigkeit der Sensoren vor.
@@ -282,16 +283,34 @@ Ziel des Sprints ist eine selbstständige, vertiefende Einarbeitung in die Thema
 \begin{itemize}
 	\item Zeitraum: 09.10.15 - 16.10.15
 	\item Task \#3883: Multi-Personen Szenarien erarbeiten
-	\item Task \#3885: Szenarien erstellen \& diese mittels Z-Wave Komponenten realisieren
+	\item Task \#3885: Szenarien erstellen \& diese mittels Z-Wave Komponenten realisieren\\
 \end{itemize}
+\noindent
+Nachdem in der Einarbeitungsphase ein grundlegendes Verständnis zu Smart Homes allgemein erarbeitet wurde und das Potential sowie die Grenzen der Z-Wave Technologie und deren Sensoren bzw. Aktoren definiert wurden, sollen im folgenden Sprint Multi-Personen Szenarien entworfen werden. Dabei lag der Hauptaugenmerk auf die intelligente Vernetzung und Kombination der Sensoren. Die Szenarien sollen möglichst mit am Markt erhältlichen Aktoren und Sensoren umgesetzt werden können. Die Erarbeitung erfolgte in zwei Gruppen, zu drei bzw. vier Personen.
+
+Ziel des Sprints waren drei bis fünf Multi-Personen Szenarien, die zum nächsten Sprint-Meeting vorgestellt und diskutiert werden.
 
 \section{Sprint 3}
 \begin{itemize}
 	\item Zeitraum: 16.10.15 - 23.10.15
 	\item Task \#3933: Sensorauswahl für die favorisierten Szenarien
 	\item Task \#3960: Modellierung der Szenarien
-	\item Task \#3961: Szenarien nacharbeiten
+	\item Task \#3961: Szenarien nacharbeiten\\
 \end{itemize}
+\noindent
+Zum Meeting am 16.10.15 einigten sich die Projektmitarbeiter, in Absprache mit dem Auftraggeber, auf drei Szenarien, welche im Projektverlauf weiterentwickelt und als Grundlage zur konkreten Entwicklung dienen sollen. Des Weiteren ist die praktische Vorführung mit Sensoren und Aktoren vorgesehen.
+Die folgenden Multi-Personen Szenarien wurden favorisiert:
+\begin{itemize}
+	\item Effizienz und Komfort - Erkennung der Anzahl der Personen in einem Raum (\prettyref{subsec:szenarioPersonCounter})
+	\item Haus bei verschließen der Haus-/ Wohnungstür in "`Standby"' versetzen (\prettyref{subsec:szenarioStandby})
+	\item Gefahrenquellen abstellen (\prettyref{subsec:szenarioGefahrenquellen})\\
+\end{itemize}
+\noindent
+Während des dritten Sprints sollen die favorisierten Szenarien weiterentwickelt werden. Neben dem inhaltlichen Ausbau, wurde eine einheitliche Strukturierung als Ziel festgelegt. Die Szenarien, die nicht weiter verfolgt werden, sind neben der Strukturierung, um eine Begründung, warum diese zum aktuellen Zeitpunkt als nicht praktikabel, nicht realisierbar oder bereits gelöst eingestuft wurden, zu ergänzen (\prettyref{chap:szenarien}).
+
+Als weitere Aufgabe steht die Modellierung der favorisierten Szenarien, um diese formal zu beschreiben. Geeignete Modellarten sind individuell auszuwählen. Aktivitäts-, Sequenz- und Zustandsdiagramme wurden in Absprache mit dem Auftraggeber als geeignet festgelegt.
+
+Ein weiterer Arbeitsauftrag bezieht sich auf die Erstellung einer Sensorauswahl für die favorisierten Multi-Personen Szenarien. Zielstellung ist die Vorlage einer Bestellliste.
 
 \section{Sprint 4}
 \begin{itemize}
@@ -300,12 +319,14 @@ Ziel des Sprints ist eine selbstständige, vertiefende Einarbeitung in die Thema
 	\item Task \#4007: Modelle nacharbeiten
 	\item Task \#4010: Konzept für Module entwickeln
 	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
-	\item Task \#4013: Versuchsaufbau konzipieren
+	\item Task \#4013: Versuchsaufbau konzipieren\\
 \end{itemize}
+\noindent
+Während des vierten Sprints wurden die ausgewählten Szenarien und daraus resultierenden Modelle nochmals überarbeitet und konkretisiert.
 
-Während des vierten Sprints wurden die ausgewählten Szenarien und daraus resultierenden Modelle nochmals überarbeitet und konkretisiert. 
-%TODO auf Resultate verweisen
-Die Erweiterung der bestehenden Serveranwendung ist durch Module möglich. Anhand der erarbeiteten Szenarien wurden zu entwickelnde Module konzipiert und die Wechselwirkung zwischen verschiedenen Modulen analysiert. Außerdem wurde ein "`Hello World"' Modul zur Verfügung gestellt, um einen Einblick in die Modulentwicklung zu gewähren.
+Die Erweiterung der bestehenden Serveranwendung ist durch Module möglich. Anhand der erarbeiteten Szenarien wurden zu entwickelnde Module konzipiert und die Wechselwirkung zwischen verschiedenen Modulen analysiert. Außerdem wurde ein "`Hello World"'-Modul zur Verfügung gestellt, um einen Einblick in die Modulentwicklung zu gewähren.
+
+Des Weiteren wurden zum Projektmeeting zwei langfristige Aufgaben formuliert. Eine theoretische Ausarbeitung zu Feedbackmöglichkeiten soll den derzeitigen Stand der Technik und Forschung untersuchen. Der Hauptaugenmerk liegt in der Fragestellung: "`Wie kann ein sinnvolles Feedback auf eingehende Aktionen realisiert werden?"'. Das zweite Arbeitspaket beschäftigt sich mit der Konzipierung eines Versuchsaufbaus. Dabei müssen Lösungsansätze, bspw. ein Modell oder ein Aufbau in einem Raum ermittelt werden.
 
 \section{Sprint 5}
 \begin{itemize}
@@ -313,17 +334,19 @@ Die Erweiterung der bestehenden Serveranwendung ist durch Module möglich. Anhan
 	\item Task \#4010: Konzept für Module entwickeln
 	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
 	\item Task \#4013: Versuchsaufbau konzipieren
-	\item Task \#4065: Einarbeitung "`Entwicklung von Z-Way Modulen"'
+	\item Task \#4065: Einarbeitung "`Entwicklung von Z-Way Modulen"'\\
 \end{itemize}
-Ziel dieses Sprints war die Einarbeitung in die Modulentwicklung für den Z-Way-Server. Dazu wurden zwei HelloWorld-Module zur Verfügung gestellt. Ein minimales Beispiel verdeutlichte die grundlegende Entwicklung von Modulen ohne großen Funktionsumfang. Das zweite Modul bot einen erheblich erweiterten Funktionsumfang und bot somit tiefere Einblicke in die Entwicklung für den Z-Way-Server. Während eines Meetings der gesamten Projektgruppe wurde das minimale Beispiel Schritt für Schritt zu dem umfangreichen Modul ausgebaut um ein Gefühl für die Entwicklung zu vermitteln. Behandelte Themen waren unter anderem das Senden und Empfangen von Events über den Eventbus, die Konfiguration von Modulen mittels Alpaca.js und die Bereitstellung von Funktionen über die ZAutomation-API.
+\noindent
+Ziel dieses Sprints war die Einarbeitung in die Modulentwicklung für den Z-Way-Server. Dazu wurden zwei "`Hello World"'-Module zur Verfügung gestellt. Ein minimales Beispiel verdeutlichte die grundlegende Entwicklung von Modulen ohne großen Funktionsumfang. Das zweite Modul bot einen erheblich erweiterten Funktionsumfang und liefert somit tiefere Einblicke in die Entwicklung für den Z-Way-Server. Während eines Meetings der gesamten Projektgruppe wurde das minimale Beispiel Schritt für Schritt zu dem umfangreichen Modul ausgebaut um ein Gefühl für die Entwicklung zu vermitteln. Behandelte Themen waren unter anderem das Senden und Empfangen von Events über den Eventbus, die Konfiguration von Modulen mittels Alpaca.js und die Bereitstellung von Funktionen über die ZAutomation-API.
 
 \section{Sprint 6}
 \begin{itemize}
 	\item Zeitraum: 06.11.15 - 13.11.15
 	\item Task \#4010: Konzept für Module entwickeln	
 	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
-	\item Task \#4013: Versuchsaufbau konzipieren
+	\item Task \#4013: Versuchsaufbau konzipieren\\
 \end{itemize}
+\noindent
 Nachdem im letzten Sprint die Entwicklung von Modulen behandelt und in Grundzügen durchgeführt wurde, beschäftigt sich dieser Sprint mit der Konzeption von Modulen. Diese Konzepte sollen zu entwickelnde Module beschreiben und so später die Entwicklung vereinfachen. Relevant ist dabei die Konfiguration von Geräten, welche  Nutzer bei der Erstellung von Modulen durchführen. Außerdem beschreiben diese Konzepte die Interaktion zwischen verschiedenen Modulen. Dazu werden sowohl vom Modul bereitgestellte, als auch von anderen Modulen genutzte Schnittstellen beschrieben. Diese Abhängigkeiten zwischen den Modulen ist bei der weiteren Realisierung von großer Bedeutung.
 
 \section{Sprint 7}
@@ -332,9 +355,10 @@ Nachdem im letzten Sprint die Entwicklung von Modulen behandelt und in Grundzüg
 	\item Task \#4010: Konzept für Module entwickeln
 	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
 	\item Task \#4013: Versuchsaufbau konzipieren
-	\item Task \#4133: Entwicklung der Module, einschließlich Sensorevaluierung
+	\item Task \#4133: Entwicklung der Module, einschließlich Sensorevaluierung\\
 \end{itemize}
-Der Prozess der Abstimmung und Konzeption von Modulen wurde in diesem Sprint weitgehend abgeschlossen. Erste Module wurden zumindest in Grundzügen entwickelt und präsentiert. Die vorhanden Sensoren wurden in den Z-Way-Server integriert und deren Arbeitsweise untersucht. Dieser Vorgang war bei weitem aufwendiger und zeitintensiver als erwartet. Die Inkludierung der Geräte war nicht in jedem Fall ohne Probleme möglich. Auftretende Fehler und Probleme konnten nicht immer reproduziert in vielen Fällen jedoch gelöst werden. Der Komplex aus Webanwendung mit Frontend, Serversoftware zur Kommunikation, Z-Wave-Netzwerk und Hardware ist nicht immer zu überblicken und die Fehlersuche und -eingrenzung äußerst mühsam.
+\noindent
+Der Prozess der Abstimmung und Konzeption von Modulen wurde in diesem Sprint weitgehend abgeschlossen (\prettyref{sec:modulkonzepte}). Erste Module wurden zumindest in Grundzügen entwickelt und präsentiert. Die vorhanden Sensoren wurden in den Z-Way-Server integriert und deren Arbeitsweise untersucht. Dieser Vorgang war bei weitem aufwendiger und zeitintensiver als erwartet. Die Inkludierung der Geräte war nicht in jedem Fall ohne Probleme möglich. Auftretende Fehler und Probleme konnten nicht immer reproduziert in vielen Fällen jedoch gelöst werden. Der Komplex aus Webanwendung mit Frontend, Serversoftware zur Kommunikation, Z-Wave-Netzwerk und Hardware ist nicht immer zu überblicken und die Fehlersuche und -eingrenzung äußerst mühsam.
 
 \section{Sprint 8}
 \begin{itemize}
@@ -342,9 +366,10 @@ Der Prozess der Abstimmung und Konzeption von Modulen wurde in diesem Sprint wei
 	\item Task \#4010: Konzept für Module entwickeln
 	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
 	\item Task \#4013: Versuchsaufbau konzipieren
-	\item Task \#4133: Entwicklung der Module, einschließlich Sensorevaluierung
+	\item Task \#4133: Entwicklung der Module, einschließlich Sensorevaluierung\\
 \end{itemize}
-
+\noindent
+Während des achten Sprints kamen keine neuen Aufgaben hinzu. Weiterhin steht die Entwicklung der Module sowie die Sensorevaluation als Hauptaufgabe im Projekt. Der Stand der Modulentwicklung ließ die Präsentation der Module im Projektmeeting zu. Neben Verbesserungsvorschlägen und konstruktiven Hinweisen wurden Konventionen, bspw. zur Eventbezeichnung festgelegt.
 
 \section{Sprint 9}
 \begin{itemize}
@@ -356,6 +381,10 @@ Der Prozess der Abstimmung und Konzeption von Modulen wurde in diesem Sprint wei
 	\item Task \#4013: Versuchsaufbau konzipieren
 	\item Task \#4133: Entwicklung der Module, einschließlich Sensorevaluierung
 \end{itemize}
+
+% Dokumentation der Sensoren
+% Bug-Fixes
+% Ergebnisse zu Feedbackmöglichkeiten
 
 \section{Sprint 10}
 \begin{itemize}
@@ -388,7 +417,7 @@ Der Prozess der Abstimmung und Konzeption von Modulen wurde in diesem Sprint wei
 
 \section{Sprint 12}
 \begin{itemize}
-	\item Zeitraum: 18.12.15 - 08.01.15
+	\item Zeitraum: 18.12.15 - 08.01.16
 	\item Task \#4338: Versuchsaufbau (in einem Raum) - Tür schließen/Alarmmodul
 	\item Task \#4337: Versuchsaufbau (in einem Raum) - Gefahrenquellen abstellen
 	\item Task \#4331: Dokumentation 5.5. Tür schließen
@@ -403,6 +432,44 @@ Der Prozess der Abstimmung und Konzeption von Modulen wurde in diesem Sprint wei
 	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
 	\item Task \#4013: Versuchsaufbau konzipieren
 \end{itemize}
+
+\section{Sprint 13}
+\begin{itemize}
+	\item Zeitraum: 08.01.16 - 15.01.16
+	\item Task \#4338: Versuchsaufbau (in einem Raum) - Tür schließen/Alarmmodul
+	\item Task \#4337: Versuchsaufbau (in einem Raum) - Gefahrenquellen abstellen
+	\item Task \#4331: Dokumentation 5.5. Tür schließen
+	\item Task \#4330: Dokumentation 5.4. Gefahrenquellen abstellen
+	\item Task \#4324: Dokumentation 4. Projektverlauf
+	\item Task \#4291: Dokumentation 3. Vorgehensplan
+	\item Task \#4327: Präsentation
+	\item Task \#4012: Feedbackmöglichkeiten erarbeiten
+	\item Task \#4013: Versuchsaufbau konzipieren
+\end{itemize}
+
+\section{Sprint 14}
+\begin{itemize}
+	\item Zeitraum: 15.01.16 - 22.01.16
+	\item Task \#4355: Dokumentation 6. Fazit
+	\item Task \#4338: Versuchsaufbau (in einem Raum) - Tür schließen/Alarmmodul
+	\item Task \#4337: Versuchsaufbau (in einem Raum) - Gefahrenquellen abstellen
+	\item Task \#4331: Dokumentation 5.5. Tür schließen
+	\item Task \#4330: Dokumentation 5.4. Gefahrenquellen abstellen
+	\item Task \#4324: Dokumentation 4. Projektverlauf
+	\item Task \#4291: Dokumentation 3. Vorgehensplan
+	\item Task \#4327: Präsentation
+\end{itemize}
+
+\section{Gantt-Diagramm}
+
+Das Gantt-Diagramm veranschaulicht den tatsächliche Projektverlauf (\prettyref{fig:projektverlaufGanttDiagramm}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.55\textwidth]{img/Projektverlauf/GanttDiagramm.png}
+	\caption{Gantt-Diagramm, tatsächlicher Projektverlauf}
+	\label{fig:projektverlaufGanttDiagramm}
+\end{figure}
 
 \include{Arbeitsergebnisse}
 
