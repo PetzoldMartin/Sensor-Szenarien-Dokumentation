@@ -104,6 +104,7 @@ Trotz dieses Vorgehens ist nicht auszuschließen, dass Personen in der Wohnung n
 \end{figure}
 
 \subsection{Gefahrenquellen abstellen (Fibaro, CO$_2$)}
+\label{subsec:szenarioGefahrenquellen}
 \emph{(von Martin Petzold)}
 \subsubsection{Auslöser (opt.)}
 \begin{itemize}
@@ -177,6 +178,7 @@ Wenn sich die Personenanzahl eines PersonCounters ändert, wird die Identifizier
 
 
 \section{Modulkonzeption}
+\label{sec:modulkonzepte}
 TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
 
 \subsection{LockDoorModule}
@@ -1253,12 +1255,20 @@ Mit dem Parameter 24 = 4 und einer eingestellten minimalen Vibration in Paramete
 \emph{(von Patrick Hecker)}
 \subsubsection{Funktionalität}
 \begin{itemize}
-	\item ZWave kompatibler Zwischenstecker in Form eines Steckdosenadapters
+	\item Z-Wave kompatibler Zwischenstecker in Form eines Steckdosenadapters
 	\item Steuerung elektrischer Geräte (max. 2,5 kW)
 	\item Messung von Wirkleistung und Stromverbrauch
 	\item Anzeige über Schaltzustand und Stromverbrauch über Mehrfarben-LED-Ring
 	\item Steuerung am Gerät über Taste
 \end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/Sensorevaluation/FibaroWallPlug.jpg}
+	\caption{Fibaro Wall Plug}
+	\label{fig:sensorenFibaroWallPlug}
+\end{figure}
+
 \subsubsection{Z-Way Elemente}
 \begin{itemize}
 	\item Fibaro Wall Plug
@@ -1320,11 +1330,11 @@ Mit dem Parameter 24 = 4 und einer eingestellten minimalen Vibration in Paramete
 	\begin{description}
 		\item [Parameter 40:] Sofortiger Report über Stromverbrauch (W)
 		\begin{itemize}
-			\item 1 – 100 \%
+			\item 1 – 100 \% (Änderung des Stromverbrauchs)
 		\end{itemize}
 		\item [Parameter 42:] Standardmäßiges Aussenden von Reports über den Stromverbrauch
 		\begin{itemize}
-			\item 1 – 100 \%
+			\item 1 – 100 \% (Änderung des Stromverbrauchs)
 		\end{itemize}
 		\item [Parameter 43:] Zeitintervall zum Senden eines Reports über den Stromverbrauch
 		\begin{itemize}
@@ -1351,7 +1361,7 @@ Mit dem Parameter 24 = 4 und einer eingestellten minimalen Vibration in Paramete
 \begin{description}
 	\item [Parameter 50:] Unterer Leistungsschwellwert
 	\item [Parameter 51:] Oberer Leistungsschwellwert
-	\item [Parameter 52:] Konfiguration des Verhaltens beim Überschreiten der festgelegten Leistungsschwellwerte
+	\item [Parameter 52:] Konfiguration des Verhaltens beim Überschreiten der festgelegten Leistungsschwellwerte (z.B. das Aus- oder Einschalten aller assoziierten Geräte beim unterschreiten des unteren Leistungsschwellwerts (Parameter 50))
 \end{description}
 
 \paragraph{Farbeinstellungen}
@@ -1375,7 +1385,7 @@ Mit dem Parameter 24 = 4 und einer eingestellten minimalen Vibration in Paramete
 		\item [8] Farbe aus
 	\end{description}
 \end{description}
-Weitere Informationen (auch technische Details) sind dem Handbuch zu entnehmen.
+Weitere Informationen (auch technische Details) sind dem Handbuch zu entnehmen (\url{http://www.fibaro.com/manuals/de/FGWPx-101/FGWPx-101-DE-A-v1.00.pdf}).
 
 
 \subsection{Aoetec Multisensor Sensor}
@@ -2412,6 +2422,7 @@ Tasker Beispiel: Bei \glqq Profile\grqq{} mit \glqq +\grqq{} und \glqq Ereignis\
 
 \emph{(von Simon Schwabe)}
 \subsection{Größenerkennung an der Tür mittels Aeotec Multisensor}
+\label{subsec:groessenerkennungAnTuer}
 \subsubsection{Ziel}
 In einen Raum eintretende Personen sollen anhand ihrer Körpergröße in Erwachsene und Kleinkinder unterschieden werden. Diese Information ist für mehrere Module von Bedeutung. 
 
