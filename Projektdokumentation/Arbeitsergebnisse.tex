@@ -1876,7 +1876,7 @@ Bevor der Sensor seine Arbeit aufnehmen kann, muss er kalibriert werden. Dazu mu
 	\item 1 CR2032 Batterie \textrightarrow{ }Gerät befindet sich die meiste Zeit in Sleepmodus
 \end{itemize}
 
-Aufgrund des Batteriebetriebs befindet sich der Schalter die meiste Zeit im Sleepmodus, um Energie zu sparen und so die Laufzeit zu verlängern. Das bedeutet, dass Kommandos vom Gateway erst an den Schalter gesendet werden können, wenn dieser nicht im Sleepmodus ist. Um den Schalter zu wecken, ist es nicht ausreichend, einen Button zu drücken, das Gerät muss explizit aufgeweckt werden. Dazu werden alle vier Buttons gleichzeitig und anschließend Button 2 gedrückt. Danach können geänderte Parameter an das Gerät übertragen werden.
+Aufgrund des Batteriebetriebs befindet sich der Schalter die meiste Zeit im Sleepmodus, um Energie zu sparen und so die Laufzeit zu verlängern. Das bedeutet, dass Kommandos vom Gateway erst an den Schalter gesendet werden können, wenn dieser nicht im Sleepmodus ist. Um den Schalter zu wecken, ist es nicht ausreichend, einen Button zu drücken. Das Gerät muss explizit aufgeweckt werden. Dazu werden alle vier Buttons gleichzeitig und anschließend Button 2 gedrückt. Danach können geänderte Parameter an das Gerät übertragen werden.
 
 \begin{figure}[h!]
 	\centering
@@ -1946,9 +1946,9 @@ Alle Buttons unterstützen verschiedene Klickarten und bieten so Mehrfachfunktio
 \end{description}
 
 \subsubsection{Verwendung als Primärcontroller}
-Das Gerät kann als Primärcontroller verwendet werden. In diesem Betriebsmodus wird der Schalter wie ein einfacher Lichtschalter verwendet und bietet ausschließlich die Funktion, eine konfigurierte Lampe an- und auszuschalten. Dazu wird eine direkte, lokale Verbindung zwischen Schalter und Aktor aufgebaut, es ist kein Gateway erforderlich, welches Befehle vom Schalter entgegennimmt und weiterverarbeitet.
+Das Gerät kann als Primärcontroller verwendet werden. In diesem Betriebsmodus wird der Schalter wie ein einfacher Lichtschalter verwendet und bietet ausschließlich die Funktion, eine konfigurierte Lampe an- und auszuschalten. Dazu wird eine direkte, lokale Verbindung zwischen Schalter und Aktor aufgebaut. Es ist kein Gateway erforderlich, welches Befehle vom Schalter entgegennimmt und weiterverarbeitet.
 
-In diesem Betriebsmodus stellt der Schalter alle Funktionen bereit, welche von einem Primärkontroller gefordert werden. Dazu gehört:
+In diesem Betriebsmodus stellt der Schalter alle Funktionen bereit, welche von einem Primärcontroller gefordert werden. Dazu gehört:
 \begin{itemize}
 	\item Vergabe von Adressen für neu eingebundene Geräte
 	\item Aufbauen und Verwalten von Routingtabellen
@@ -1956,21 +1956,21 @@ In diesem Betriebsmodus stellt der Schalter alle Funktionen bereit, welche von e
 
 Wird der Schalter als Primärcontroller verwendet, können Aktoren in das lokale, vom Schalter verwaltete Netzwerk eingebunden werden. Bei dieser Inkludierung, geben einzubindende Aktoren ihre Geräteklasse bekannt. Entsprechend dieser Klasse werden anschließend die Buttons des Schalters, bzw. deren Funktion konfiguriert. So können Lampen an- und ausgeschaltet, bzw. gedimmt werden, wenn die Lampen das unterstützen.
 
-Da im Gesamten Projekt mit dem Z-Way-Server auf einem Raspberry Pi als Gateway gearbeitet wird, wurde die Verwendung des Schalters als Primärcontroller nicht weitergehend evaluiert.
+Da im gesamten Projekt mit dem Z-Way-Server auf einem Raspberry Pi als Gateway gearbeitet wird, wurde die Verwendung des Schalters als Primärcontroller nicht weitergehend evaluiert.
 
 \subsubsection{Verwendung als Sekundärcontroller}
-Als \emph{Sekundärcontroller} kann der Schalter in bestehende Netze eingebunden werden, z.B. in ein von Z-Way verwaltetes Netzwerk. In diesem Modus wir der Schalter über die Oberfläche des Gateways konfiguriert, in diesem Betriebsmodus bietet der Schalter noch mehr Funktionalität. Durch einen Klick auf einen Button können beispielsweise Szenen gestartet werden, z.B. alle Lampen ausschalten. 
+Als \emph{Sekundärcontroller} kann der Schalter in bestehende Netze eingebunden werden, z.B. in ein von Z-Way verwaltetes Netzwerk. In diesem Modus wird der Schalter über die Oberfläche des Gateways konfiguriert. In diesem Betriebsmodus bietet der Schalter noch mehr Funktionalität. Durch einen Klick auf einen Button können beispielsweise Szenen gestartet werden, z.B. alle Lampen ausschalten. 
 
 Auch wenn der Schalter als Sekundärcontroller verwendet wird, ist es möglich lokale Verbindungen zwischen Schalter und Aktor aufzubauen. \emph{Das ist sehr interessant, da der Schalter so auch Geräte steuern kann, wenn das zentrale Gateway nicht erreichbar oder ausgefallen ist.} Für dieses Verhalten muss über Z-Way-Expert eine Assoziation zwischen Schalter und Aktor hergestellt werden. In dieser Konfiguration werden Kommandos parallel an Gateway und an weitere Assoziationen gesendet (\prettyref{fig:sensorenPoppControllerSek}).
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/PoppWallControllerSek.png}
-	\caption{Statusanzeigen des Sensoair CO$_2$-Sensors}
+	\caption{Statusanzeigen des Popp Wall Controller}
 	\label{fig:sensorenPoppControllerSek}
 \end{figure}
 
-In der Beispielkonfiguration wurde die "`Command to Control Group A"' auf "`Switch On/Off only (send Basic Set)"' gesetzt. Außerdem wurde die Fibaro Schaltsteckdose ("`(\#9) Fibaro Wall Plug"' als Assoziation für die Gruppe A gesetzt. Somit werden einfache On/Off Kommandos an das Gateway und die Steckdose gesendet. Auch bei ausgeschaltetem Gateway lässt sich die Steckdose durch den Popp Wall Controller fernsteuern.
+In der Beispielkonfiguration wurde die "`Command to Control Group A"' auf "`Switch On/Off only (send Basic Set)"' gesetzt. Außerdem wurde die Fibaro Schaltsteckdose ("`(\#9) Fibaro Wall Plug"' als Assoziation für die Gruppe A gesetzt. Somit werden einfache On/Off Kommandos an das Gateway und die Steckdose gesendet. Auch bei ausgeschaltetem Gateway lässt sich die Steckdose durch den Popp Wall Controller fernsteuern. % #9 ? Hier eventuelle Verlinkung auf Sensorevaluierung zu Fibaro Wall Plug?
 
 
 \section{Gefahrenquellenabschaltung}
