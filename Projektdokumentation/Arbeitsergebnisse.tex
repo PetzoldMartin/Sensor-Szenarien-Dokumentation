@@ -711,10 +711,12 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 \emph{(von Martin Petzold)}
 
 \subsubsection{Allgemein}
-Das PersonIdentificationModule übernimmt die Aufgabe, anhand der Personenanzahl und von Größen- und CO$_2$-Messungen Aussagen darüber zu treffen ob sich erwachsene Personen oder nur Kinder im  jeweiligen Raum befinden. 
+Das PersonIdentificationModule übernimmt die Aufgabe, anhand der Personenanzahl und von Größen- und CO$_2$-Messungen Aussagen darüber zu treffen, ob sich erwachsene Personen oder ausschließlich Kinder im  jeweiligen Raum befinden.
+
+Das PersonIdentificationModule erkennt anhand der Messung des CO$_2$-Wertes in einem Raum und einer Größenmessung über eine Höhenmessungsschranke (\prettyref{subsec:groessenerkennungAnTuer}), ob sich in einem Raum eine erwachsene Person befindet oder nicht. Dabei erkennt das Modul Erwachsene nur, wenn beide Messungen entsprechende Ergebnisse liefern.
 
 \subsubsection{Funktionsweise}
-Das Modul benötigt ein PersonCounterModule für den Raum in welchem es angewandt wird. Da der Abgleich der CO$_2$-Messungen nur in Verbindung des Wissens der Personenanzahl ausgewertet werden kann. Weiterhin erfolgt die Größenmessung in Zusammenhang mit der Änderung der im Raum befindlichen Personenanzahl. Somit ergibt sich die Funktionsweise, dass bei Änderung der Personenanzahl im Raum geprüft wird, ob durch die sich an den Raumzugängen durchgeführten Größenmessungen Erwachsene registriert wurden. Danach beginnt als Abgleich der Größenmessung die Messung der CO$_2$ Änderung im Raum. Haben nach den Messvorgängen beide Messgrößen die Anwesenheit eines Erwachsenen registriert gibt das Modul eine Erkennung eines Erwachsenen bekannt. Stellt  allerdings eines der beiden Systeme fest, dass sich kein Erwachsener im Raum befindet oder alle Erwachsenen den Raum verlassen haben, wird das Signal "`kein Erwachsener erkannt"' gesendet. Dieser Ablauf ist auch im Modell (\prettyref{fig:personIdentification}) dargestellt.
+Das Modul benötigt ein PersonCounterModule für den Raum, in welchem es angewandt wird, da der Abgleich der CO$_2$-Messungen nur in Verbindung des Wissens der Personenanzahl ausgewertet werden kann. Weiterhin erfolgt die Größenmessung in Zusammenhang mit der Änderung der im Raum befindlichen Personenanzahl. Somit ergibt sich die Funktionsweise, dass bei Änderung der Personenanzahl im Raum geprüft wird, ob durch die sich an den Raumzugängen durchgeführten Größenmessungen Erwachsene registriert wurden. Danach beginnt als Abgleich der Größenmessung die Messung der CO$_2$-Änderung im Raum. Haben nach den Messvorgängen beide Messgrößen die Anwesenheit eines Erwachsenen registriert gibt das Modul die Erkennung eines Erwachsenen bekannt. Stellt  allerdings eines der beiden Systeme fest, dass sich kein Erwachsener im Raum befindet, oder alle Erwachsenen den Raum verlassen haben, wird das Signal "`kein Erwachsener erkannt"' gesendet. Dieser Ablauf ist auch im Modell (\prettyref{fig:personIdentification}) dargestellt.
 
 \begin{figure}[h!]
 	\centering
@@ -722,6 +724,49 @@ Das Modul benötigt ein PersonCounterModule für den Raum in welchem es angewand
 	\caption{PersonIdentificationModule - Zustandsdiagramm}
 	\label{fig:personIdentification}
 \end{figure}
+
+\paragraph{CO$_2$-Messung} Das Modul startet die CO$_2$-Messung, wenn:
+
+\begin{enumerate}
+	\item das modulinterne "`runningState"' auf "`true"' gesetzt ist
+	\item das modulinterne Messdatenobjekt initialisiert wurde
+	\item alle Tür- und Fensterkontakte geschlossen sind
+	\item der CO$_2$-Sensor einen ersten Messwert sendet
+\end{enumerate}
+
+Danach werden in einem bestimmten Intervall die vom CO$_2$-Sensor gesendeten Daten aufgenommen. Nachdem die Messwerte aufgenommen wurden, wird, um Messungenauigkeiten auszugleichen, durch die \gls{mkq} eine Geradenfunktion anhand der Messwerte erstellt. Nachdem diese Funktion errechnet wurde, wird anhand der Zeitpunkte des ersten und des letzten Messpunktes eine CO$_2$-Differenz bestimmt (\prettyref{fig:personIdentificationChart}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/PersonIdentificationChart.png}
+	\caption{Erfassung und Mittlung der CO$_2$-Werte}
+	\label{fig:personIdentificationChart}
+\end{figure}
+
+\paragraph{Zeitraum für Messungen}
+Der Wert von einer Minute Wartezeit pro 25.000 Liter Raumvolumen ist ein Erfahrungswert, der sich aus Probemessungen und der Beispielrechnung nach dem intellexi Standardlehraussagen Stand 2014 ergibt\footnote{\url{http://projektserver.informatik.fh-zwickau.de/attachments/download/4128/BerechnungenundTabellenCO2BerbrauchMensch.pdf}}. Wobei davon Ausgegangen wird, dass innerhalb dieser Zeitspanne eine Unterscheidung des CO$_2$-Verbrauchs von Kindern und Erwachsenen möglich ist.
+
+\paragraph{Höhenmessung}
+Die Höhenmessung des Moduls vergleicht die Zeitpunkte der letzten Änderung des dem Modul zugeordneten PersonCounters und der Sensoren zur Höhenmessung. Wenn innerhalb eines Zeitraumes ("`highmeasureWaitingtime"') in Sekunden gleichzeitig eine Höhenerkennung und eine Änderung des PersonCounters erfolgt, wird ein Erwachsener erkannt. Der, wenn der PersonCounter sich verringert, vom "`adultCounter"' abgezogen und wenn er sich erhöht auf den "`adultCounter"' addiert wird.
+
+\paragraph{Vergleich der Messungen}
+Sobald die CO$_2$-Differenz bestimmt wurde, wird dessen Ergebnis mit der Personenanzahl und den Angaben zu den Personae verrechnet. Dabei wird verglichen, ob das CO$_2$-Delta den Standardwert für den maximalen CO$_2$-Verbrauch für Kinder der gleichen Anzahl Personen im Raum übersteigt. Ist der Verbrauch im Raum höher, gibt die CO$_2$-Messung ihr "`OK"', dass ein Erwachsener erkannt wurde. Ist sowohl dieses Ok gegeben als auch der "`AdultCounter"' der Höhenmessung größer 1, schaltet das Modul auf "`on"', ansonsten bleibt es "`off"'.
+
+\paragraph{Abbruchbedingungen und Reinitialisierung}
+Es gibt mehrere Bedingungen, welche die momentanen Messdaten zurücksetzen und neu starten. Daraufhin gibt das Modul seinen aktuellen Status über den Event Bus bekannt. Diese Bedingungen sind:
+\begin{enumerate}
+	\item der zugehörige PersonCounter ändert sich
+	\item ein Fenster- oder Tür-/Sensorkontakt schaltet "`off"'
+	\item eine CO$_2$-Messung ist abgeschlossen und wurde ausgewertet
+\end{enumerate}
+
+\paragraph{Neue Commands}
+Gegen Ende der Entwicklung wurde eine Schnittstelle entwickelt, welche es ermöglicht, die CO$_2$-Messung zu deaktivieren. Infolge dessen wird die Erkennung von Erwachsenen nur anhand der Höhenmessung durchgeführt.
+
+\paragraph{CO$_2$-Sensor Korrekturfaktor}
+Diese Einstellmöglichkeit des Moduls ermöglicht es, die Messwerte des CO$_2$-Sensors anzupassen. Das ist notwendig, da die CO$_2$-Werte, welche zur Berechnung der Schwellwerte für das Volumen eines idealen Raumes berechnet werden.
+
+Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umgebung hat, nicht mit Möbeln bestückt ist und die Luft im Raum gleichmäßig umgewälzt wird. Da diese Faktoren meist nicht gegeben sind, wird der Korrekturfaktor dazu genutzt, diese konstanten Abweichungen auszugleichen. Es wäre weiterhin denkbar, statt des Korrekturfaktors eine Kalibrierung zu benutzen.
 
 \subsubsection{Konfiguration}
 \begin{itemize}
@@ -964,7 +1009,7 @@ Das Modul "`Gefahrenquellen abstellen"' übernimmt die Aufgabe, eine vom Nutzer 
 
 Ein "`Gefahrenquellen abstellen"'-Modul enthält zusätzlich die Information, für welchen Raum es bestimmt ist.
 
-\subsection{Funktionsweise}
+\subsubsection{Funktionsweise}
 %TODO: evtl. kurzer Beschreibungstext, Diagramm als pdf
 \begin{figure}[h!]
 	\centering
