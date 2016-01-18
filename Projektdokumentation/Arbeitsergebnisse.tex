@@ -800,7 +800,7 @@ Das Modul benötigt ein PersonCounterModule für den Raum in welchem es angewand
 		\hline
 		/command/setCorrectionFactor
 		& Factor
-		& Korrekturfaktor für die CO2-Messung. \\
+		& Korrekturfaktor für die CO$_2$-Messung. \\
 		\hline
 		/command/setMeasureTimeDelta
 		& TimeDelta
@@ -1043,7 +1043,6 @@ Ein "`Gefahrenquellen abstellen"'-Modul enthält zusätzlich die Information, f�
 %TODO: deutsche Modulnamen?
 
 \subsubsection{Interne Speicher}
-
 \begin{itemize}
 	\item Raum ID
 	\item Liste aller Gefahrenquellen
@@ -1059,7 +1058,7 @@ Ein "`Gefahrenquellen abstellen"'-Modul enthält zusätzlich die Information, f�
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Auswahl der Sensoren}
 \emph{(von Simon Schwabe)}
-%TODO: please review
+
 \subsection{Voraussetzungen bei der Auswahl}
 Zu Beginn des Projekts standen noch keine Sensoren für die Arbeit und Entwicklung zur Verfügung. Es ist deshalb erforderlich, eine Auswahl an Sensoren zu treffen, welche bestmöglich geeignet ist, die erarbeiteten Szenarien zu realisieren. Für die Sensoren besteht Wahlfreiheit, allerdings müssen einige Rahmenbedingungen beachtet werden.
 
@@ -1736,19 +1735,19 @@ Wenn man nun die kleine Schalter-Lasche des Sensors 3x hintereinander (innerhalb
 	\textbf{Aktionen des Benutzers}									& \textbf{Reaktion des Systems} \\
 	\hline
 	\endhead
-	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO2 Messung zur Bestätigung des Ergebnisses der Höhenmessung \\ 
+	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\ 
 	\hline
-	Kind betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifkator erkennt Person als Kind anhand der Höhenmessung, start der CO2 Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
+	Kind betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifkator erkennt Person als Kind anhand der Höhenmessung, start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
 	\hline
 	Erwachsener fängt an zu Bügeln	& - \\
 	\hline
 	Erwachsener beendet bügeln und lässt Bügeleisen an	& - \\
 	\hline
-	Erwachsener verlässt den Raum	& Personenzähler vermindert Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO2 Messung zur Bestätigung des Ergebnisses der Höhenmessung, Feedbackmodul und Timermodul wird aktiviert \\
+	Erwachsener verlässt den Raum	& Personenzähler vermindert Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung, Feedbackmodul und Timermodul wird aktiviert \\
 	\hline
 	-	& Nach dem Ablauf des Timers wird das Feedbackmodul deaktiviert und das Bügeleisen abgeschalten. \\
 	\hline
-	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO2 Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
+	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
 	\hline
 	Erwachsener betätigt Schalter an schaltbarer Steckdose des Bügeleisens 	& Bügeleisen ist wieder angeschalten \\
 	\hline
@@ -1786,7 +1785,7 @@ Ausgehend von unserem zu Anfang angelegten Szenario werden die Geräte und Modul
 Dazu werden folgende Geräte benutzt:\\
 - Aeon Labs Bewegungssensor zur Personenidentifikation – Höhe der Person\\
 - Philio und Fibaro Bewegungssensor zur Erkennung einer Person im Türdurchgang\\
-- CO2 Sensor zur Personenidentifikation\\
+- CO$_2$ Sensor zur Personenidentifikation\\
 - Fibaro Steckdose + Lampe für die Feedbackfunktionalität\\
 
 weitere Aktoren:\\
