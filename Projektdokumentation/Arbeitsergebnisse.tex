@@ -1654,11 +1654,22 @@ Der Z-Way Server erstellt automatisiert eine Übersichtsseite, nachdem der Senso
 		>{\hsize=1.5\hsize}X
 		% sum=4.0\hsize for 4 columns
 	}
+	% ----------- begin header -----------	
 	\hline
 	\textbf{Nr}
 			& \textbf{Name}
 					& \textbf{Beschreibung}
 							& \textbf{Werte} \\
+	\hline
+	\endhead
+	% ----------- end header -----------
+	
+	% ----------- begin footer -----------
+	\multicolumn{4}{r}{{Fortsetzung auf nächster Seite}}  \\ 
+	\endfoot
+	\endlastfoot
+	% ----------- end footer -----------
+	
 	\hline
 	2	
 			& Grundeinstellung 
@@ -1769,6 +1780,92 @@ An dieser Stelle hat man die Möglichkeit, den Inkludiermodus von „secure“ z
 \end{figure}
 
 Wenn man nun die kleine Schalter-Lasche des Sensors 3x hintereinander (innerhalb von 1,5 Sekunden) betätigt, sollte der Multisensor erfolgreich in das Z-Way-Netzwerk integriert worden sein. Auf der Smart Home Benutzeroberfläche werden die Elemente automatisch generiert, welche die Funktionen des Philio-Multisensors darstellen.
+
+
+\subsection{Sensoair Z-Wave CO$_2$ Sensor (Tischgerät)}
+
+\subsubsection{Beschreibung}
+Der Sensor misst die CO$_2$-Konzentration in der Luft in \gls{ppm}. Um die CO$_2$-Konzentration in geschlossenen Räumen erkennen zu können, nutzt die Einheit zwei Sensoren. Der gemessene Werte wird auch über die drei LEDs am Gehäuse symbolisiert. Dabei besitzt der Sensor sieben \gls{ppm}-Warnstufen, welche mithilfe der drei LEDs darstellt werden (\prettyref{fig:sensorenSensoair}).
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/Sensoair.png}
+	\caption{Statusanzeigen des Sensoair CO$_2$-Sensors}
+	\label{fig:sensorenSensoair}
+\end{figure}
+
+
+\begin{longtabu} to \textwidth{
+		>{\hsize=1.0\hsize}X 
+		>{\hsize=1.0\hsize}X
+	}
+	\hline
+	\textbf{ppm-Wert (obere Grenze)}	& \textbf{LED-Belegung} \\
+	\hline
+	\endhead
+	% ----------- begin footer -----------
+	\multicolumn{2}{r}{{Fortsetzung auf nächster Seite}}  \\ 
+	\endfoot
+	\endlastfoot
+	% ----------- end footer -----------
+	350									& grün \\ 
+	\hline
+	600									& grün und gelb \\
+	\hline
+	800									& gelb \\
+	\hline
+	1000								& gelb und rot \\
+	\hline
+	1500								& rot \\
+	\hline
+	2000								& einmal langes rotes Blinken \\
+	\hline
+	2500								& zweimal kurzes rotes Blinken \\
+	\hline
+	\caption{Visuelle Darstellung von CO$_2$-Messwerten.}
+\end{longtabu}
+
+\subsubsection{Besonderheiten bei der Installation}
+Der Sensor kann sowohl mit 230 Volt Wechselspannung als auch 24 Volt Gleichspannung betrieben werden, dazu müssen zwei Anschlusskabel ummontiert werden.
+
+Außerdem schreibt die Anleitung einige Bedingungen vor, unter welchen der Sensor genutzt werden soll. Der Sensor ist nur in geschlossenen, trockenen und staubfreien Räumen zu verwenden. Die Verwendung des Sensors ist auf einen Temperaturbereich von 5 – 40 °C beschränkt. Das Gerät ist nicht als Gaswarngerät geeignet und muss von Lösungsmitteln ferngehalten werden, da es zum Beispiel durch Silikondämpfe zu Fehlfunktionen kommen kann. 
+
+\subsubsection{Funktionalität im Z-Wave-Netzwerk}
+Der Sensor kann mit Z-Wave-Netzwerken verbunden (inkludiert) und von diesen entfernt (exkludiert) werden. Diese Vorgänge werden vom Gerät durch Blinken der gelben LED bestätigt. Um einem neuen Netzwerk beizutreten, muss der Sensor vorher exkludiert werden.
+
+Bevor der Sensor seine Arbeit aufnehmen kann, muss er kalibriert werden. Dazu muss er in einem gut belüfteten, personenleeren Raum stehen. Der Kalibrierungsvorgang startet mit dem Anschalten des Geräts. Danach vollzieht der Sensor eine Vorwärmphase bei der die grüne LED einmal blinkt. Danach kalibriert sich der Sensor auf 350 \gls{ppm}. Dieser Vorgang dauert ca. 30 Minuten, nach erfolgreicher Kalibrierung leuchtet die LED grün.
+
+\subsubsection{Konfiguration}
+\begin{description}
+	\item [Parameter 1] besteht aus einem 8-Bit-Feld. Die dezimale Repräsentation der hier gesetzten Bits kann in der Oberfläche eingegeben werden, z.B. für 0000 01001$_2$ wird 7$_{10}$ gesetzt.
+	\begin{longtabu} to \textwidth{
+			>{\hsize=0.4\hsize}X 
+			>{\hsize=1.6\hsize}X
+		}
+		\hline
+		\textbf{Stelle}		& \textbf{Bedeutung} \\
+		\hline
+		\endhead
+		% ----------- begin footer -----------
+		\multicolumn{2}{r}{{Fortsetzung auf nächster Seite}}  \\ 
+		\endfoot
+		\endlastfoot
+		% ----------- end footer -----------
+		0					& Sendet ungefragt Nachrichten, wenn der Wert 600, 800, 100, 1500, 2000 oder 2500 \gls{ppm} überschreitet\\ 
+		\hline
+		1					& Schaltet ungefragte Sensor-Reports ein.
+		\\
+		\hline
+		2					& Aktiviert das Senden eines "`an"' Signals bei Erreichen eines definierten CO$_2$-Schwellwertes \\
+		\hline
+		3					& Aktiviert das Senden des Report als Broadcast. \\
+		\hline
+		7					& Aktiviert die LED an der Frontseite. \\
+		\hline
+		\caption{Sensoair Konfiguration für Parameter 1.}
+	\end{longtabu}
+	\item [Parameter 2] ist das Zeitintervall bei gesetztem Bit 1 und kann auf 1 bis 255 Sekunden gesetzt werden.
+\end{description}
 
 \section{Gefahrenquellenabschaltung}
 
@@ -2510,7 +2607,7 @@ Ziel ist es, bei der Recherche zu ermitteln, wie viel CO$_2$ ein Mensch ausstö�
 
 Im letzten Gruppengespräch wurde festgelegt, dass drei verschiedene Personae angenommen werden. Diese drei Personae unterscheiden sich in Geschlecht und Alter des Menschen. Diese Annahme widerspiegelt eine Familie, die aus einem Mann, eine Frau und zwei Kindern besteht. Mittels des CO$_2$ Sensors soll es möglich sein zu erkennen, ob sich eines der beiden Kinder im Raum aufhält. Nachdem erkannt wurde, ob sich eines der beiden Kindern alleine im Raum befindet, werden anschließend automatisiert per Smart-Home-Steuerung alle Gefahrenquellen abgeschaltet.
 
-\subsubsection{Der Siegenia SensoAir CO$_2$-Sensor}
+\subsubsection{Siegenia SensoAir CO$_2$-Sensor}
 Der CO$_2$-Gehalt der Luft wird mit der Maßeinheit \gls{ppm}  mithilfe des Gerätes der Firma Siegenia gemessen. Der Sensor besitzt eine LED die je nach CO$_2$ Konzentration in der Luft in verschiedenen Farben aufleuchtet.
 
 \begin{longtabu} to \linewidth {
