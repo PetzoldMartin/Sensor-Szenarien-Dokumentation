@@ -989,7 +989,12 @@ Das Modul "`Gefahrenquellen abstellen"' übernimmt die Aufgabe, eine vom Nutzer 
 Ein "`Gefahrenquellen abstellen"'-Modul enthält zusätzlich die Information, für welchen Raum es bestimmt ist.
 
 \subsubsection{Funktionsweise}
-%TODO: evtl. kurzer Beschreibungstext, Diagramm als pdf
+Ein Beispielablauf könnte sein, dass eine erwachsene Person den Raum verlässt. Daraufhin wird der \textit{PersonCounter} und das \textit{PersonIdentificationModule} aktiv, um nach einer internen Berechnung, die Information, dass ein Erwachsener den Raum verlassen hat, anderen Modulen zur Verfügung zu stellen.
+
+Das \textit{TurnOffHazardModule} registriert dieses Ereignis und beginnt sofort mit der Abschaltroutine, indem es den \textit{TurnOffTimer} startet. In diesem Beispiel wird angenommen, dass sich keine weitere Person im Raum befindet und der Abschalttimer ohne Abbruch abläuft. Nach Ablauf benachrichtigt der Abschalttimer das \textit{TurnOffHazardModule}, welches die konfigurierten Gefahrenquellen abschaltet.
+
+Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurden.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{img/Modulkonzeption/TurnOffHazardSequence.pdf}
@@ -2048,6 +2053,9 @@ Aus Sicht der Bewegungssensoren sind die Fibaro Bewegungssensoren am besten und 
 \newpage
 \section{Feedback-Mechanismen}
 \label{sec:feedbackMechanismen}
+\emph{(von Zarina Muratbekovna Omurova)}
+
+\noindent
 Bisher wurde davon ausgegangen, dass für ein leistungsfähiges intelligentes Haus Feedback-Möglichkeiten vorhanden sein sollen. Orientiert man sich an den Fähigkeiten des Menschen, sind dies das menschliche Sehen, Hören, Fühlen , Bewegen, Riechen und Schmecken. Insbesondere das Sehen, Hören und Bewegen sind für Feedbacks von Bedeutung. Als Möglichkeit für eine Rückmeldung stehen Displays, akustische Systeme und Gesten zur Verfügung. Um nun geeignete Reaktionen zu erwirken, bedarf es einer in Grenzen leistungsfähigen Systemintelligenz. Hierdurch wird die Repräsentation durch mögliche Interaktionen mit dem Smart Home möglich und hilft, den Eindruck von \glqq Intelligenz\grqq{} zu vermitteln. Auch dies ist eine wichtige Eigenschaft für die flexible Anpassungsfähigkeit an die vom Nutzer vorgegebenen Aufgabenstellungen. Die Anforderungen richten sich gleichermaßen, sowohl an sensorische Fähigkeiten als auch an die Fähigkeit, Daten von Sensoren in Erkenntnisse zu transformieren und daraus Strategien und Konzepte zu entwickeln. Methoden zur Wahrnehmung der Umwelt sowie zur Kommunikation mit dieser, stehen seit Jahren im Fokus der Forschung.\\
 Im folgenden werden einige Forschungsarbeiten vorgestellt die im Laufe der Ausarbeitung entdeckt wurden. Unter anderem werden Möglichkeiten beschrieben die später in dem Projekt als Feedback eingesetzt werden können. Es werden auch schon vorhandene Lösungen auf dem Markt vorgestellt, die übernommen werden können. Es soll auch der Kostenfaktor berücksichtigt werden, da es nicht bekannt ist, ob die teuren Lösungen in dem Projekt eingesetzt werden können.\\
 Weiter unten werden am Markt vorhandene Systeme und Lösungen kurz aufgelistet.\\
@@ -2696,6 +2704,7 @@ Intensives Testen des Versuchsaufbaus zeigte, dass die Lösung zuverlässig funk
 \end{itemize}
 
 \subsection{Identifikation von Personen anhand des CO$_2$-Verbrauchs und Persona}
+\label{subsec:identifkationPersona}
 \emph{(von Alexander Keller)}
 
 \subsubsection{Allgemein}
