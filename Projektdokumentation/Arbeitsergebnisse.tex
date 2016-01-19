@@ -1965,6 +1965,7 @@ In der Beispielkonfiguration wurde die "`Command to Control Group A"' auf "`Swit
 
 
 \section{Gefahrenquellenabschaltung}
+\label{sec:gefahrenquellenabschaltung}
 
 \begin{longtabu} to \textwidth{
 		>{\hsize=0.8\hsize}X
@@ -2044,7 +2045,57 @@ Aus Sicht der Bewegungssensoren sind die Fibaro Bewegungssensoren am besten und 
 
 
 \section{Alarmanlage}
+\subsection{Einleitung und Szenariobeschreibung}
+Das Szenario "`Haus/Wohnung bei verschließen der Haus-/Wohnungstür in Standby versetzten"' wurde entwickelt, um Nutzern bei Verlassen des Hauses möglichst hohen Komfort zu bieten. Dazu sollen verschiedene Aktionen gestartet werden, sobald der letzte Bewohner das Haus verlässt. Es ist von herausragender Bedeutung zu wissen, ob noch Personen anwesend sind, oder wirklich niemand mehr zu Hause ist. Wenn das der Fall ist, dann kann das Haus in den Standby versetzt werden. Dazu können verschiedene Geräte abgeschaltet und eine Alarmanlage aktiviert werden.
 
+\subsection{Konzept für die Umsetzung des Szenarios}
+Das oben beschriebene Szenario bringt einige Komplexität mit sich, welche nur schwer auf ein einzelnes Modul abbildbar ist. Aus diesem Grund wurde die zu erbringende Funktionalität analysiert und in überschaubare Funktionseinheiten gegliedert, diese werden wiederum durch einzelne Module repräsentiert. Außerdem bietet die Implementation verschiedener Module zur Bereitstellung einzelner Funktionseinheiten den Vorteil hoher Wiederverwendbarkeit.
+
+Im Folgenden werden erforderte Funktionalitäten beschrieben und darauf folgend die aus den Anforderungen entwickelten Module.
+
+\begin{description}
+	\item [Verlassen der Wohnung] Ausgangspunkt des Szenarios ist das Verlassen der Wohnung. Falls die Wohnungstür mit einem intelligenten, vernetzten Türschloss ausgestattet ist, signalisiert dieses beim Verschließen, dass der Standby-Modus aktiviert werden kann. Zu diesem Zeitpunkt wird dieser Modus jedoch nicht instantan aktiviert, dazu sind noch weitere Überprüfungen erforderlich. Ist in der Wohnung kein entsprechendes Schloss vorhanden, kann dieses auch durch einen Schalter in der Nähe der Wohnungstür ersetzt werden.
+	\item [Ankommen in der Wohnung] Beim Aufschließen der Wohnungstür wird der Standby-Modus automatisch deaktiviert. Das heißt evtl. aktivierte Alarmanlagen werden deaktiviert oder entsprechend konfigurierte Geräte an- bzw. abgeschaltet.
+	\item [Überprüfen der Personenanzahl] Bevor der Standby-Modus der Wohnung aktiviert werden kann, ist es erforderlich zu überprüfen, ob Personen anwesend sind. Sollten sich Personen in der Wohnung aufhalten, darf der Standby-Modus nicht aktiviert werden, da anwesende Personen sonst in ihrer Aktivität gestört würden.
+	\item [Benachrichtigen Anwesender] Es ist nicht sichergestellt, dass alle anwesenden Personen immer zuverlässig erkannt werden. Um die Auswirkungen solcher Fehleinschätzungen des Systems zu reduzieren, sollen eventuell anwesende Personen benachrichtigt werden. Dies kann z.B. durch optische Signale geschehen. Dafür ist eine gewisse Zeitspanne festgelegt, in dieser haben anwesende Personen die Möglichkeit, die anstehende Aktion zu unterbrechen. Folglich kann der Standby-Modus in dieser Zeitspanne nicht aktiviert werden. Das stellt allerdings kein Problem dar, da es unerheblich ist, wie schnell genau nach Verlassen der Wohnung der Standby-Modus aktiviert wird.
+	\item [Geräte in Standby schalten] Wenn davon ausgegangen werden kann, dass sich keine Personen mehr in der Wohnung aufhalten, kann der Standby-Modus aktiviert werden. Infolgedessen werden konfigurierte Geräte, wie zum Beispiel Steckdosen oder Lampen, ausgeschaltet. Außerdem können Orientierungsleuchten oder Geräte zur Überwachung angeschaltet werden.
+	\item[	Alarmanlage aktivieren] Die Aktivierung der Alarmanlage ist nur sinnvoll, wenn sich keine Person in der Wohnung befindet. Deshalb ist es sinnvoll, die Aktivierung der Alarmanlage an die Standby-Schaltung zu koppeln. Nach Aktivierung des Standby-Modus kann die Alarmanlage aktiviert werden. Somit wird die Gefahr von Fehlalarmen reduziert.
+\end{description}
+
+\subsection{Umsetzung und Programmierung, entwickelte Module}
+Aus den oben beschriebenen Funktionalitäten wurden die im folgenden beschriebenen Module entwickelt. Diese arbeiten eng zusammen und bieten teils spezielle Funktionen, welche für sich genommen wenig nützlich erscheinen.
+\begin{description}
+	\item [LockDoorModule] Das \emph{LockDoorModule} übernimmt die Koordination der oben beschriebenen Funktionen. Da sich diese Aufgaben immer auf die Wohnung als Ganzes beziehen, wurde das Modul als Sigleton konzipiert und kann deshalb nur einmalig angelegt werden. Zur Überprüfung der Personenanzahl wird die ZAutomation-Schnittstelle aller verfügbarer PersonCounter verwendet. Wenn endgültig keine Personen erkannt wurden, sendet das \emph{LockDoorModule} ein Event auf dem Event Bus. Abbonenten werden darüber informiert, dass sich keine Personen in der Wohnung befinden und können entsprechende Aktionen ausführen. 
+	
+	\item [PersonCounterModule] Das \emph{PersonCounterModule} stellt eine Schnittstelle zur Zählung der Personen je Raum bereit. Dazu können verschiedene Sensoren genutzt werden, detaillierter wird dies unter "`Gefahrenquellenabschaltung"' (\prettyref{sec:gefahrenquellenabschaltung}) beschrieben.
+	
+	\item [InHomeFeedbackModule] Falls durch die PersonCounter keine Personen erkannt wurden, startet das \emph{LockDoorModule} den Feedback-Modus. Auch dieser wird über einen ZAutomation-Aufruf auf dem entsprechenden \emph{InHomeFeedbackModule} gestartet. Genau wie \emph{PersonCounter} existieren \emph{InHomeFeedbackModule} je Raum.
+	
+	\item [StandbyModule] Nach Überprüfung der oben beschriebenen Sachverhalte beim Abschließen der Wohnung tritt das \emph{StandbyModule} in Aktion. Auch dieses Modul existiert nur einmalig für die gesamte Wohnung. Die Konfiguration erlaubt das Festlegen von Regeln sowohl für das Betreten als auch das Verlassen des Standby-Modus.
+	
+	\item [AlarmModule] Wie auch das \emph{StandbyModule} funktioniert der Alarm im Zusammenhang mit dem \emph{LockDoorModule}. Erst nachdem ein entsprechendes Event empfangen wurde, aktiviert das \emph{AlarmModule} die Alarmanlage. Dazu werden verschiedene Sensoren auf Statusänderungen überwacht und bei Erkennung von Aktivitäten 
+\end{description}
+
+\subsection{Beschreibung des Versuchsaufbau und verwendeter Sensoren}
+In einem Versuchsaufbau wurde das oben beschriebene Szenario mit den genannten Modulen realisiert. Die Module wurden wie beschrieben konfiguriert und erstellt. Da schon bei der Entwicklung der Module ausführlich getestet wurde, traten an dieser Stelle keine Probleme auf.
+Für den Versuchsaufbau wurden folgende Geräte verwendet:
+
+\begin{description}
+	\item [Popp Wall Controller] Dieser Wandschalter wird genutzt, um ein Türschloss zu simulieren. Durch einfaches Klicken auf den Button 1 kann das verschließen, durch drücken auf Botton 3 das aufschließen der Tür simuliert werden. Außerdem wird der Schalter verwendet, um das \emph{InHomeFeedbackModule} zu steuern. Doppeltes Klicken des Button 2 bewirkt, dass ein laufendes Feedback abgebrochen wird und somit die Anwesenheit von Personen signalisiert wird.
+	
+	\item [Philio 4-in-1 Multisensor] Der Tür- und Fensterkontakt dieses Sensors wird als Auslöser für die Alarmanlage genutzt. Wurde die Wohnung verschlossen und das \emph{AlarmModule} aktiviert, werden Zustandsänderungen des Kontakts als Einbruch interpretiert. Daraufhin wird der Alarm aktiviert. Da keine entsprechende Sirene zur Verfügung steht, setzt das \emph{AlarmModule} einen HTTP-Request ab, lässt eine Website blinken und spielt dort einen Alarmton ab.
+	
+	\item [Fibaro Wall Plug] Der schaltbare Zwischenstecker mit einer angeschlossenen Schreibtischlampe wird vom \emph{InHomeFeedbackModule} genutzt. Bei Aktivierung Feedback-Modus schaltet die Steckdose sekündlich an und aus.
+	
+	\item [Weitere Bewegungsmelder] Für die Personenerkennung und Zählung an der Tür wurden weitere Sensoren (insbesondere Bewegungsmelder) verwendet. Da diese nicht in direktem Zusammenhang mit dem \emph{AlarmModule} stehen, wird deren Verwendung hier nicht näher beschrieben, statt dessen sei auf den Abschnitt "`Gefahrenquellenabschaltung"' (\prettyref{sec:gefahrenquellenabschaltung}) verwiesen.
+\end{description}
+\subsection{Zusammenfassung}
+Das Szenario konnte wie ursprünglich beschrieben umgesetzt werden, wiewohl Erweiterungen denkbar sind. Beispielsweise kann das \emph{AlarmModule} für die Konfiguration weiterer Geräte erweitert werden, welche in einem Alarmfall aktiviert werden.
+
+Die Einbindung eines vernetzten Türschlosses ist zwar angedacht, konnte jedoch nicht getestet werden. Geringfügige Anpassungen in den einzelnen Modulen sollten dies jedoch einfach ermöglichen.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Feedback-Mechanismen}
 \label{sec:feedbackMechanismen}
