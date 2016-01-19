@@ -173,6 +173,8 @@ Wenn sich die Personenanzahl eines Raumes ändert wird unterschieden, ob die Per
 \subsubsection{Modellierung Gefahrenquellen abstellen}
 Wenn sich die Personenanzahl eines PersonCounters ändert, wird die Identifizierung gestartet, ob sich ein Erwachsener im Raum befindet. Wird ein Erwachsener erkannt wird der Zustand der Gefahrenquellen ausgelesen und, wenn nötig, freigeschaltet. Wird bei der Identifizierung kein Erwachsener erkannt wird ebenfalls der Zustand der Gefahrenquellen ausgelesen und gegebenenfalls ein Timer zu deren Abschaltung gestartet, welcher bei erneuter Änderung der Personenanzahl gestoppt wird.
 
+\newpage
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Szenarien/GefahrenquellenAbstellen.pdf}
@@ -236,6 +238,8 @@ Für die Überprüfung der Personenanzahl wird die Schnittstelle \emph{PersonCou
 	}
 	\hline
 	\textbf{Event Name}					& \textbf{Parameter}	& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 	\hline LockDoorModule\_locked		& - 					& Tür verschlossen, keine Person anwesend \\ 
 	\hline LockDoorModule\_unlocked		& - 			 		& Tür geöffnet \\ 
 	\hline
@@ -256,7 +260,7 @@ Das \emph{TurnOffTimerModule} stellt eine Schnittstelle zum \emph{FeedbackModule
 	\item konfiguriertes Türschloss
 \end{itemize}
 
-
+\newpage
 \subsection{PersonCounterModule}
 \emph{(von Philip Laube)}
 \subsubsection{Allgemein}
@@ -295,6 +299,8 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 		}
 		\hline
 		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 		\hline /command/person\_entered		& - 					& Erhöht den Zähler um 1. \\ 
 		\hline /command/person\_left		& - 			 		& Mindert den Zähler um 1. \\
 		\hline /command/persons				& - 					& Liefert die aktuelle Anzahl an Personen des Raums. \\
@@ -308,6 +314,8 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 		}
 		\hline
 		\textbf{Event Name}													& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_entered	& - \\ 
 		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_left		& - \\
 		\hline
@@ -326,6 +334,7 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 \end{itemize}
 
 
+\newpage
 \subsection{RoomAccessModule}
 \emph{(von Philip Laube)}
 
@@ -376,6 +385,8 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 		}
 		\hline
 		\textbf{Event Name}						& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 		\hline [DeviceId]:RoomAccessModule\_[verlassenderRaumId]\_[betretenerRaumId]\_transition\_detected	& Wenn ein Übergang einer Person von einem Raum in den nächsten 	Raum erfolgt ist wird dieses Event ausgelöst \\ 
 		\hline
 	\caption{\emph{RoomAccessModule}: Schnittstellen Event Bus}
@@ -394,6 +405,7 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 \end{itemize}
 
 
+\newpage
 \subsection{StandbyModule}
 \emph{(von Zarina Muratbekovna Omurova)}
 \subsubsection{Allgemein}
@@ -438,8 +450,6 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des \emph{Sta
 	\end{itemize}
 \end{itemize}
 
-\newpage
-
 \subsubsection{Schnittstellen}
 \begin{longtabu} to \textwidth{
 			>{\hsize=0.75\hsize}X % 40% of 3\hsize 
@@ -449,6 +459,8 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des \emph{Sta
 		}
 		\hline
 		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 		\hline /command/started				& - 					& Starten des Standby-Modus. \\ 
 		\hline /command/stopped				& - 			 		& Stoppen des Standby-Modus. \\
 		\hline /command/state				& stopped started	& Liefert den aktuellen Zustand des Moduls. \\
@@ -464,6 +476,8 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des \emph{Sta
 		}
 		\hline
 		\textbf{Event Name}								& \textbf{Parameter}	& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 		\hline [DeviceId]:StandbyModule\_[RaumId]\_started	& - 				& Standby-Modus wurde gestartet \\ 
 		\hline [DeviceId]:StandbyModule\_[RaumId]\_stopped	& - 				& Standby-Modus wurde beendet \\
 		\hline
@@ -483,6 +497,7 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des \emph{Sta
 \end{itemize}
 
 
+\newpage
 \subsection{InHomeFeedbackModule}
 \emph{(von Patrick Hecker)}
 \subsubsection{Allgemein}
@@ -610,6 +625,8 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 		}
 		\hline
 		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 		\hline 
 		/command/start				
 				& duration (opt.) \newline endless=true (opt.) 	
@@ -641,6 +658,8 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 		}
 		\hline
 		\textbf{Event Name}						& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 		\hline
 		[deviceId]:InHomeFeedbackModule\_[roomId]\_started	
 				& Feedback-Modus wurde gestartet \\
@@ -678,6 +697,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 \end{itemize}
 
 
+\newpage
 \subsection{PersonIdentificationModule}
 \emph{(von Martin Petzold)}
 
@@ -688,6 +708,8 @@ Das \emph{PersonIdentificationModule} erkennt anhand der Messung des CO$_2$-Wert
 
 \subsubsection{Funktionsweise}
 Das Modul benötigt ein \emph{PersonCounterModule} für den Raum, in welchem es angewandt wird, da der Abgleich der CO$_2$-Messungen nur in Verbindung des Wissens der Personenanzahl ausgewertet werden kann. Weiterhin erfolgt die Größenmessung in Zusammenhang mit der Änderung der im Raum befindlichen Personenanzahl. Somit ergibt sich die Funktionsweise, dass bei Änderung der Personenanzahl im Raum geprüft wird, ob durch die sich an den Raumzugängen durchgeführten Größenmessungen Erwachsene registriert wurden. Danach beginnt als Abgleich der Größenmessung die Messung der CO$_2$-Änderung im Raum. Haben nach den Messvorgängen beide Messgrößen die Anwesenheit eines Erwachsenen registriert gibt das Modul die Erkennung eines Erwachsenen bekannt. Stellt  allerdings eines der beiden Systeme fest, dass sich kein Erwachsener im Raum befindet, oder alle Erwachsenen den Raum verlassen haben, wird das Signal "`kein Erwachsener erkannt"' gesendet. Dieser Ablauf ist auch im Modell (\prettyref{fig:personIdentification}) dargestellt.
+
+\newpage
 
 \begin{figure}[h!]
 	\centering
@@ -800,6 +822,8 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		}
 		\hline
 		\textbf{URL}						& \textbf{Parameter}	& \textbf{Beschreibung} \\
+	\hline
+	\endhead
 		\hline 
 		/command/areThereAdults				
 		& - 	
@@ -847,6 +871,8 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		}
 		\hline
 		\textbf{Event Name}						& \textbf{Beschreibung} \\ %TODO Beschreibung einfügen?
+	\hline
+	\endhead
 		\hline
 		[deviceId]:PersonIdentificationModule\_[roomId]\_started	
 		& - \\
@@ -879,6 +905,8 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		}
 		\hline
 		\textbf{Speicher Name}	& \textbf{Datentyp}		& \textbf{Beschreibung}		& \textbf{Initialwert} \\
+	\hline
+	\endhead
 		\hline
 		level					& integer				& Entsprechung des Status "`off"' ist false und "`on"' ist true.	& off \\
 		\hline
@@ -898,6 +926,7 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 \end{longtabu}
 
 
+\newpage
 \subsection{TurnOffTimerModule}
 \emph{(von Tobias Weise)}
 \subsubsection{Funktionsweise}
@@ -966,6 +995,7 @@ Der \emph{TurnOffTimer} wurde für das Projekt so erstellt, dass nur eine Instan
 Eine andere Möglichkeit zur Integration des Timers besteht darin, dass jedes Modul, welches pro notwendigen Raum definiert wird, eine eigenständige Instanz des Timers erzeugt. Dieser instanziierte Timer existiert anschließend solange, wie dieses Modul ihn für eine Timerlaufzeit benötigt.
 
 
+\newpage
 \subsection{TurnOffHazardModule}
 \emph{(von Patrick Hecker und Tobias Weise)}
 
@@ -2570,6 +2600,8 @@ Aufgrund dieser Anforderungen wurde folgender Ansatz gewählt: Das Erkennungssys
 		\textbf{System}	
 		& \textbf{Kosten}
 		& \textbf{Steuerung} \\
+	\hline
+	\endhead
 		\hline 
 	 	Homey
 		& 299,00 \$
