@@ -245,7 +245,7 @@ Für die Überprüfung der Personenanzahl wird die Schnittstelle \emph{PersonCou
 \end{itemize}
 Das \emph{PersonCounterModule} wird zur Überprüfung der Personenanzahl je Raum genutzt. Dazu werden Aufrufe über die ZAutomation-API an das Modul gesendet.
 
-Das \emph{TurnOffTimerModule} stellt eine Schnittstelle zum Feedback-Modul her. Durch die zusätzliche Abstraktionsschicht des \emph{TurnOffTimerModule} arbeitet das \emph{LockDoorModule} nicht direkt gegen das \emph{FeedbackModule}, sondern startet lediglich den \emph{TurnOffTimer}. Dieser übernimmt die Kommunikation mit dem \emph{FeedbackModule}.
+Das \emph{TurnOffTimerModule} stellt eine Schnittstelle zum \emph{FeedbackModule} her. Durch die zusätzliche Abstraktionsschicht des \emph{TurnOffTimerModule} arbeitet das \emph{LockDoorModule} nicht direkt gegen das \emph{FeedbackModule}, sondern startet lediglich den \emph{TurnOffTimer}. Dieser übernimmt die Kommunikation mit dem \emph{FeedbackModule}.
 
 \subsubsection{Interne Speicher}
 \begin{itemize}
@@ -256,9 +256,9 @@ Das \emph{TurnOffTimerModule} stellt eine Schnittstelle zum Feedback-Modul her. 
 \subsection{PersonCounterModule}
 \emph{(von Philip Laube)}
 \subsubsection{Allgemein}
-Das PersonCounterModule übernimmt die Aufgabe, die Anzahl der Personen im jeweiligen Raum zu speichern. Jede Möglichkeit einer Erkennung ob eine Person den Raum betreten oder verlassen hat kann über dieses Modul kommuniziert werden um es anderen Modulen zur Verfügung zu stellen. Dies macht dieses Modul zu einem zentralen Bestandteil.
+Das \emph{PersonCounterModule} übernimmt die Aufgabe, die Anzahl der Personen im jeweiligen Raum zu speichern. Jede Möglichkeit einer Erkennung ob eine Person den Raum betreten oder verlassen hat kann über dieses Modul kommuniziert werden um es anderen Modulen zur Verfügung zu stellen. Dies macht dieses Modul zu einem zentralen Bestandteil.
 
-Ein PersonCounterModule enthält zusätzlich die Information, für welchen Raum es bestimmt ist. Somit kann es beliebig oft wiederverwendet werden.
+Ein \emph{PersonCounterModule} enthält zusätzlich die Information, für welchen Raum es bestimmt ist. Somit kann es beliebig oft wiederverwendet werden.
 
 Der jeweilige Personenzähler pro Raum wird durch Module, die ihn benötigen, instanziiert. Vorhandene Personenzähler werden einfach verwendet.
 
@@ -297,7 +297,7 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 		\hline /command/persons				& - 					& Liefert die aktuelle Anzahl an Personen des Raums. \\
 		\hline
 	\end{tabularx}
-	\caption{PersonCounterModule: Schnittstelle ZAutomation}
+	\caption{\emph{PersonCounterModule}: Schnittstelle ZAutomation}
 \end{table}
 
 \begin{table}[H]
@@ -311,7 +311,7 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_left		& - \\
 		\hline
 	\end{tabularx}
-	\caption{PersonCounterModule: Schnittstelle Event Bus}
+	\caption{\emph{PersonCounterModule}: Schnittstelle Event Bus}
 \end{table}
 
 \subsubsection{Abhängigkeiten}
@@ -330,16 +330,16 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 \emph{(von Philip Laube)}
 
 \subsubsection{Allgemein}
-Das RoomAccessModule übernimmt die Aufgabe, Personen zu erkennen, die einen Raum verlassen oder betreten haben. Dies geschieht entweder unverzüglich oder zeitversetzt, je nach Art der zugrundeliegende Module.
+Das \emph{RoomAccessModule} übernimmt die Aufgabe, Personen zu erkennen, die einen Raum verlassen oder betreten haben. Dies geschieht entweder unverzüglich oder zeitversetzt, je nach Art der zugrundeliegende Module.
 
 Dieses Modul stellt grundlegende Unterstützung zunächst für Bewegungssensoren, später eventuell auch erweiterte Logik für andere Sensoren zur Personenerkennung bzw. Raumwechsel.
 
-Ein RoomAccessModule enthält zusätzlich die Information für welche Räume es bestimmt ist, somit kann es beliebig oft wiederverwendet werden.
+Ein \emph{RoomAccessModule} enthält zusätzlich die Information für welche Räume es bestimmt ist, somit kann es beliebig oft wiederverwendet werden.
 
 \subsubsection{Funktionsweise}
 Diese Realisierung entspricht der geplanten Realisierung des Szenarios zu Beginn des Projekts (\prettyref{subsec:szenarioPersonCounter}). Exakt diese Logik wird zunächst durch dieses Modul implementiert (\prettyref{fig:szenarienPersonenerkennungTür}).
 
-Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und die Anzahl jeweils korrigiert. Weitere Logik anderer Module kann durch ein Event erfolgen. Jedwede Logik die direkt mit der Personenanzahl in Verbindung steht muss den Personenzähler (PersonCounterModule) ansprechen.
+Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und die Anzahl jeweils korrigiert. Weitere Logik anderer Module kann durch ein Event erfolgen. Jedwede Logik die direkt mit der Personenanzahl in Verbindung steht muss den Personenzähler (\emph{PersonCounterModule}) ansprechen.
 
 \subsubsection{Konfiguration}
 \begin{itemize}
@@ -380,30 +380,30 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 		\hline [DeviceId]:RoomAccessModule\_[verlassenderRaumId]\_[betretenerRaumId]\_transition\_detected	& Wenn ein Übergang einer Person von einem Raum in den nächsten 	Raum erfolgt ist wird dieses Event ausgelöst \\ 
 		\hline 
 	\end{tabularx}
-	\caption{RoomAccessModule: Schnittstellen Event Bus}
+	\caption{\emph{RoomAccessModule}: Schnittstellen Event Bus}
 \end{table}
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
-	\item Daten des PersonCounterModule zum Zählen der Personen in einem Raum
+	\item Daten des \emph{PersonCounterModule} zum Zählen der Personen in einem Raum
 \end{itemize}
 
 \subsubsection{Interne Speicher}
 \begin{itemize}
 	\item zwei Bewegungssensoren
 	\item Raum Zuordnung der beiden Sensoren
-	\item PersonenCounterModule der Raumzuordnungen
+	\item \emph{PersonCounterModule} der Raumzuordnungen
 \end{itemize}
 
 
 \subsection{StandbyModule}
 \emph{(von Zarina Muratbekovna Omurova)}
 \subsubsection{Allgemein}
-Das StandbyModule übernimmt die Aufgabe, das Haus in einen Standby-Modus zu versetzen.
+Das \emph{StandbyModule} übernimmt die Aufgabe, das Haus in einen Standby-Modus zu versetzen.
 
-Im Fall, dass niemand zu Hause ist und das Event "`LockDoor\_locked"' vom LockDoorModule eingegangen ist, werden ausgewählte Geräte, wie Lampen, Heizung oder Elektrogeräte im Haus in einen definierten Zustand geschaltet. Manche Geräte, z.B. Steckdosen, sollen ausgeschaltet werden, wenn die Wohnung in den Standby-Modus geht. Andere Geräte, z.B. Orientierungsleuchten oder Alarmanlagen sollen angeschaltet werden. Diese Geräte und die entsprechenden Aktionen werden beim Anlegen des StandbyModules konfiguriert.
+Im Fall, dass niemand zu Hause ist und das Event "`LockDoor\_locked"' vom \emph{LockDoorModule} eingegangen ist, werden ausgewählte Geräte, wie Lampen, Heizung oder Elektrogeräte im Haus in einen definierten Zustand geschaltet. Manche Geräte, z.B. Steckdosen, sollen ausgeschaltet werden, wenn die Wohnung in den Standby-Modus geht. Andere Geräte, z.B. Orientierungsleuchten oder Alarmanlagen sollen angeschaltet werden. Diese Geräte und die entsprechenden Aktionen werden beim Anlegen des \emph{StandbyModules} konfiguriert.
 
-Bei dem Event "`LockDoor\_unlocked"', werden keine Aktionen durchgeführt, dies bewirkt, dass der interne Zustand des StandbyModules auf "`stopped"' geändert wird.
+Bei dem Event "`LockDoor\_unlocked"', werden keine Aktionen durchgeführt, dies bewirkt, dass der interne Zustand des \emph{StandbyModules} auf "`stopped"' geändert wird.
 
 Wenn die Tür geöffnet wird, wird automatisch der Standby-Modus ausgeschaltet und ein entsprechendes Event an andere Module gesendet.
 
@@ -412,12 +412,12 @@ Wenn die Tür geöffnet wird, wird automatisch der Standby-Modus ausgeschaltet u
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.7]{img/Modulkonzeption/StandbyStateMachine.pdf}
-	\caption{Zustandsdiagramm – StandbyModule}
+	\caption{Zustandsdiagramm – \emph{StandbyModule}}
 	\label{fig:standbyStateMachine}
 \end{figure}
 
 
-Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyModules und deren Zustandsübergänge. Wenn es im inaktiven Zustand ist, wird das Modul durch einen Startkommando in einen aktiven Zustand übergehen und im aktivem Zustand kann das Modul in einen inaktiven Zustand wechseln.
+Dieses Modell veranschaulicht die verschiedenen internen Zustände des \emph{StandbyModules} und deren Zustandsübergänge. Wenn es im inaktiven Zustand ist, wird das Modul durch einen Startkommando in einen aktiven Zustand übergehen und im aktivem Zustand kann das Modul in einen inaktiven Zustand wechseln.
 
 \subsubsection{Konfiguration}
 \begin{itemize}
@@ -455,7 +455,7 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyMo
 		\hline /command/state				& stopped started	& Liefert den aktuellen Zustand des Moduls. \\
 		\hline
 	\end{tabularx}
-	\caption{StandbyModule: Schnittstelle ZAutomation}
+	\caption{\emph{StandbyModule}: Schnittstelle ZAutomation}
 \end{table}
 
 \begin{table}[H]
@@ -471,7 +471,7 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyMo
 		\hline [DeviceId]:StandbyModule\_[RaumId]\_stopped	& - 				& Standby-Modus wurde beendet \\
 		\hline
 	\end{tabularx}
-	\caption{StandbyModule: Schnittstelle Event Bus}
+	\caption{\emph{StandbyModule}: Schnittstelle Event Bus}
 \end{table}
 
 \subsubsection{Abhängigkeiten}
@@ -490,7 +490,7 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyMo
 \subsection{InHomeFeedbackModule}
 \emph{(von Patrick Hecker)}
 \subsubsection{Allgemein}
-Das Feedback-Modul übernimmt die Aufgabe, Personen im Haus über eingehende Aktionen zu informieren. Neben den eingehenden Aktionen (von Personen außerhalb des Hauses) kann auch auf Aktionen, die vom System automatisch gestartet wurden, hingewiesen werden (Timer, Grenzwert eines Sensors überschritten, ...). Die Personen im Haus haben dadurch die Möglichkeit auf Aktionen zu reagieren, indem sie sie abbrechen bzw. verzögern können. Der konkrete Feedbackmechanismus kann individuell konfiguriert werden und gliedert sich in folgende fünf Kategorien (detaillierter in Abschnitt Konfiguration).
+Das \emph{FeedbackModule} übernimmt die Aufgabe, Personen im Haus über eingehende Aktionen zu informieren. Neben den eingehenden Aktionen (von Personen außerhalb des Hauses) kann auch auf Aktionen, die vom System automatisch gestartet wurden, hingewiesen werden (Timer, Grenzwert eines Sensors überschritten, ...). Die Personen im Haus haben dadurch die Möglichkeit auf Aktionen zu reagieren, indem sie sie abbrechen bzw. verzögern können. Der konkrete Feedbackmechanismus kann individuell konfiguriert werden und gliedert sich in folgende fünf Kategorien (detaillierter in Abschnitt Konfiguration).
 
 \begin{itemize}
 	\item visuelles Feedback (bspw. Lampen, LED’s an Schalter, ...),
@@ -507,21 +507,21 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.7]{img/Modulkonzeption/FeedbackStateMachine.pdf}
-	\caption{Zustandsdiagramm – InHomeFeedback-Modul}
+	\caption{Zustandsdiagramm – \emph{InHomeFeedbackModule}}
 	\label{fig:feedbackStateMachine}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/FeedbackSequence.pdf}
-	\caption{Sequenzdiagramm – InHomeFeedback-Modul – Beispiel 1}
+	\caption{Sequenzdiagramm – \emph{InHomeFeedbackModule} – Beispiel 1}
 	\label{fig:feedbackSequence}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/FeedbackSequenceUser.pdf}
-	\caption{Sequenzdiagramm – InHomeFeedback-Modul – Beispiel 2}
+	\caption{Sequenzdiagramm – \emph{InHomeFeedbackModule} – Beispiel 2}
 	\label{fig:feedbackSequenceUser}
 \end{figure}
 
@@ -637,7 +637,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 						& Die Aktion um eine bestimmte Zeit verschieben. \\
 		\hline
 	\end{tabularx}
-	\caption{InHomeFeedback-Modul: Schnittstelle ZAutomation}
+	\caption{\emph{InHomeFeedbackModule}: Schnittstelle ZAutomation}
 \end{table}
 
 \begin{table}[H]
@@ -668,7 +668,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 				& - \\
 		\hline
 	\end{tabularx}
-	\caption{InHomeFeedback-Modul: Schnittstellen Event Bus}
+	\caption{\emph{InHomeFeedbackModule}: Schnittstellen Event Bus}
 \end{table}
 
 \subsubsection{Abhängigkeiten}
@@ -690,17 +690,17 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 \emph{(von Martin Petzold)}
 
 \subsubsection{Allgemein}
-Das PersonIdentificationModule übernimmt die Aufgabe, anhand der Personenanzahl und von Größen- und CO$_2$-Messungen Aussagen darüber zu treffen, ob sich erwachsene Personen oder ausschließlich Kinder im  jeweiligen Raum befinden.
+Das \emph{PersonIdentificationModule} übernimmt die Aufgabe, anhand der Personenanzahl und von Größen- und CO$_2$-Messungen Aussagen darüber zu treffen, ob sich erwachsene Personen oder ausschließlich Kinder im  jeweiligen Raum befinden.
 
-Das PersonIdentificationModule erkennt anhand der Messung des CO$_2$-Wertes in einem Raum und einer Größenmessung über eine Höhenmessungsschranke (\prettyref{subsec:groessenerkennungAnTuer}), ob sich in einem Raum eine erwachsene Person befindet oder nicht. Dabei erkennt das Modul Erwachsene nur, wenn beide Messungen entsprechende Ergebnisse liefern.
+Das \emph{PersonIdentificationModule} erkennt anhand der Messung des CO$_2$-Wertes in einem Raum und einer Größenmessung über eine Höhenmessungsschranke (\prettyref{subsec:groessenerkennungAnTuer}), ob sich in einem Raum eine erwachsene Person befindet oder nicht. Dabei erkennt das Modul Erwachsene nur, wenn beide Messungen entsprechende Ergebnisse liefern.
 
 \subsubsection{Funktionsweise}
-Das Modul benötigt ein PersonCounterModule für den Raum, in welchem es angewandt wird, da der Abgleich der CO$_2$-Messungen nur in Verbindung des Wissens der Personenanzahl ausgewertet werden kann. Weiterhin erfolgt die Größenmessung in Zusammenhang mit der Änderung der im Raum befindlichen Personenanzahl. Somit ergibt sich die Funktionsweise, dass bei Änderung der Personenanzahl im Raum geprüft wird, ob durch die sich an den Raumzugängen durchgeführten Größenmessungen Erwachsene registriert wurden. Danach beginnt als Abgleich der Größenmessung die Messung der CO$_2$-Änderung im Raum. Haben nach den Messvorgängen beide Messgrößen die Anwesenheit eines Erwachsenen registriert gibt das Modul die Erkennung eines Erwachsenen bekannt. Stellt  allerdings eines der beiden Systeme fest, dass sich kein Erwachsener im Raum befindet, oder alle Erwachsenen den Raum verlassen haben, wird das Signal "`kein Erwachsener erkannt"' gesendet. Dieser Ablauf ist auch im Modell (\prettyref{fig:personIdentification}) dargestellt.
+Das Modul benötigt ein \emph{PersonCounterModule} für den Raum, in welchem es angewandt wird, da der Abgleich der CO$_2$-Messungen nur in Verbindung des Wissens der Personenanzahl ausgewertet werden kann. Weiterhin erfolgt die Größenmessung in Zusammenhang mit der Änderung der im Raum befindlichen Personenanzahl. Somit ergibt sich die Funktionsweise, dass bei Änderung der Personenanzahl im Raum geprüft wird, ob durch die sich an den Raumzugängen durchgeführten Größenmessungen Erwachsene registriert wurden. Danach beginnt als Abgleich der Größenmessung die Messung der CO$_2$-Änderung im Raum. Haben nach den Messvorgängen beide Messgrößen die Anwesenheit eines Erwachsenen registriert gibt das Modul die Erkennung eines Erwachsenen bekannt. Stellt  allerdings eines der beiden Systeme fest, dass sich kein Erwachsener im Raum befindet, oder alle Erwachsenen den Raum verlassen haben, wird das Signal "`kein Erwachsener erkannt"' gesendet. Dieser Ablauf ist auch im Modell (\prettyref{fig:personIdentification}) dargestellt.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/PersonIdentificationStateMachine.pdf}
-	\caption{PersonIdentificationModule - Zustandsdiagramm}
+	\caption{\emph{PersonIdentificationModule} - Zustandsdiagramm}
 	\label{fig:personIdentification}
 \end{figure}
 
@@ -726,7 +726,7 @@ Danach werden in einem bestimmten Intervall die vom CO$_2$-Sensor gesendeten Dat
 Der Wert von einer Minute Wartezeit pro 25.000 Liter Raumvolumen ist ein Erfahrungswert, der sich aus Probemessungen und der Beispielrechnung nach dem intellexi Standardlehraussagen Stand 2014 ergibt\footnote{\url{http://projektserver.informatik.fh-zwickau.de/attachments/download/4128/BerechnungenundTabellenCO2BerbrauchMensch.pdf}}. Wobei davon Ausgegangen wird, dass innerhalb dieser Zeitspanne eine Unterscheidung des CO$_2$-Verbrauchs von Kindern und Erwachsenen möglich ist.
 
 \paragraph{Höhenmessung}
-Die Höhenmessung des Moduls vergleicht die Zeitpunkte der letzten Änderung des dem Modul zugeordneten PersonCounters und der Sensoren zur Höhenmessung. Wenn innerhalb eines Zeitraumes ("`highmeasureWaitingtime"') in Sekunden gleichzeitig eine Höhenerkennung und eine Änderung des PersonCounters erfolgt, wird ein Erwachsener erkannt. Der, wenn der PersonCounter sich verringert, vom "`adultCounter"' abgezogen und wenn er sich erhöht auf den "`adultCounter"' addiert wird.
+Die Höhenmessung des Moduls vergleicht die Zeitpunkte der letzten Änderung des dem Modul zugeordneten \emph{PersonCounters} und der Sensoren zur Höhenmessung. Wenn innerhalb eines Zeitraumes ("`highmeasureWaitingtime"') in Sekunden gleichzeitig eine Höhenerkennung und eine Änderung des \emph{PersonCounters} erfolgt, wird ein Erwachsener erkannt. Der, wenn der \emph{PersonCounter} sich verringert, vom "`adultCounter"' abgezogen und wenn er sich erhöht auf den "`adultCounter"' addiert wird.
 
 \paragraph{Vergleich der Messungen}
 Sobald die CO$_2$-Differenz bestimmt wurde, wird dessen Ergebnis mit der Personenanzahl und den Angaben zu den Personae verrechnet. Dabei wird verglichen, ob das CO$_2$-Delta den Standardwert für den maximalen CO$_2$-Verbrauch für Kinder der gleichen Anzahl Personen im Raum übersteigt. Ist der Verbrauch im Raum höher, gibt die CO$_2$-Messung ihr "`OK"', dass ein Erwachsener erkannt wurde. Ist sowohl dieses Ok gegeben als auch der "`AdultCounter"' der Höhenmessung größer 1, schaltet das Modul auf "`on"', ansonsten bleibt es "`off"'.
@@ -734,7 +734,7 @@ Sobald die CO$_2$-Differenz bestimmt wurde, wird dessen Ergebnis mit der Persone
 \paragraph{Abbruchbedingungen und Reinitialisierung}
 Es gibt mehrere Bedingungen, welche die momentanen Messdaten zurücksetzen und neu starten. Daraufhin gibt das Modul seinen aktuellen Status über den Event Bus bekannt. Diese Bedingungen sind:
 \begin{enumerate}
-	\item der zugehörige PersonCounter ändert sich
+	\item der zugehörige \emph{PersonCounter} ändert sich
 	\item ein Fenster- oder Tür-/Sensorkontakt schaltet "`off"'
 	\item eine CO$_2$-Messung ist abgeschlossen und wurde ausgewertet
 \end{enumerate}
@@ -877,7 +877,7 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
-	\item PersonCounterModule
+	\item \emph{PersonCounterModule}
 \end{itemize}
 
 \subsubsection{Interne Speicher}
@@ -915,9 +915,9 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 \subsection{TurnOffTimerModule}
 \emph{(von Tobias Weise)}
 \subsubsection{Funktionsweise}
-Das TurnOffTimer Module übernimmt die Aufgabe, nach einem eingehenden Command mit der Angabe der Ablaufdauer und einer zugewiesenen Priorität, einen Timer zu starten. Nach Ablauf oder Unterbrechung des Timers wird ein entsprechendes Event an den Event Bus verschickt. 
+Das \emph{TurnOffTimerModule} übernimmt die Aufgabe, nach einem eingehenden Command mit der Angabe der Ablaufdauer und einer zugewiesenen Priorität, einen Timer zu starten. Nach Ablauf oder Unterbrechung des Timers wird ein entsprechendes Event an den Event Bus verschickt. 
 
-Ein TurnOffTimerModule enthält zusätzlich die Information, für welchen Raum es bestimmt ist. Somit kann es beliebig oft innerhalb eines Raumes verwendet werden.
+Ein \emph{TurnOffTimerModule} enthält zusätzlich die Information, für welchen Raum es bestimmt ist. Somit kann es beliebig oft innerhalb eines Raumes verwendet werden.
 
 \subsubsection{Schnittstellen}
 
@@ -937,7 +937,7 @@ Ein TurnOffTimerModule enthält zusätzlich die Information, für welchen Raum e
 	\hline 
 	/command/stop						& -						& Stoppen des Timers. \\
 	\hline
-	\caption{TurnOffTimerModule: Schnittstelle ZAutomation}
+	\caption{\emph{TurnOffTimerModule}: Schnittstelle ZAutomation}
 \end{longtabu}
 
 \begin{longtabu} to \textwidth{
@@ -952,12 +952,12 @@ Ein TurnOffTimerModule enthält zusätzlich die Information, für welchen Raum e
 	\hline 
 	[DeviceId]: TurnOffTimerModule\_[RaumId]\_canceled	& Benachrichtigung, wenn der Zeitablauf unterbrochen wurde. \\
 	\hline
-	\caption{TurnOffTimerModule: Schnittstelle Event Bus}
+	\caption{\emph{TurnOffTimerModule}: Schnittstelle Event Bus}
 \end{longtabu}
 	
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
-	\item InHomeFeedbackModule: wenn der Timer aktiviert wurde, wird auch das Nutzerfeedback gestartet und falls durch Nutzerinteraktion das Feedbackmodul unterbrochen wird, wird der Timer ebenfalls abgebrochen	
+	\item \emph{InHomeFeedbackModule}: wenn der Timer aktiviert wurde, wird auch das Nutzerfeedback gestartet und falls durch Nutzerinteraktion das \emph{Feedbackmodul} unterbrochen wird, wird der Timer ebenfalls abgebrochen	
 \end{itemize}
 
 
@@ -968,7 +968,7 @@ Ein TurnOffTimerModule enthält zusätzlich die Information, für welchen Raum e
 \end{itemize}
 
 \subsubsection{Einsatzmöglichkeiten}
-Der Turn Off Timer wurde für das Projekt so erstellt, dass nur eine Instanz des Timers für jeden Raum genutzt werden kann. Anhand der Prioritäten ist es jedoch möglich, mit den entsprechenden Timer-Commands eine bestimmte Wichtigkeit zu definieren. Dabei ist zu beachten, dass ein höherer Zahlenwert eine höhere Priorität bedeutet. Nachfolgende Abbildung (\prettyref{fig:turnOffTimer}) soll das Verhalten des Timers bei entsprechender Priorisierung näher verdeutlichen.
+Der \emph{TurnOffTimer} wurde für das Projekt so erstellt, dass nur eine Instanz des Timers für jeden Raum genutzt werden kann. Anhand der Prioritäten ist es jedoch möglich, mit den entsprechenden Timer-Commands eine bestimmte Wichtigkeit zu definieren. Dabei ist zu beachten, dass ein höherer Zahlenwert eine höhere Priorität bedeutet. Nachfolgende Abbildung (\prettyref{fig:turnOffTimer}) soll das Verhalten des Timers bei entsprechender Priorisierung näher verdeutlichen.
 
 \begin{figure}[h!]
 	\centering
@@ -984,21 +984,21 @@ Eine andere Möglichkeit zur Integration des Timers besteht darin, dass jedes Mo
 \emph{(von Patrick Hecker und Tobias Weise)}
 
 \subsubsection{Allgemein}
-Das Modul "`Gefahrenquellen abstellen"' übernimmt die Aufgabe, eine vom Nutzer individuell erstellbare Liste an Gefahrenquellen zu speichern. Daraufhin soll das Modul in einem zuvor definierten Fehlerfall alle Gefahrenquellen, die in der Liste aufgeführt sind, abschalten bzw. eine spezielle Aktion ausführen. Um definieren zu können, wann ein Fehlerfall vorliegt, wird in dem Modul die Anzahl der Kinder, der Erwachsenen und der Personen im Raum allgemein registriert. Das Abschalten der Geräte erfolgt jedoch nicht direkt. Ein Abschalttimer für den Raum ermöglicht anwesenden Personen die Aktion abzubrechen.
+Das \emph{TurnOffHazardModule} übernimmt die Aufgabe, eine vom Nutzer individuell erstellbare Liste an Gefahrenquellen zu speichern. Daraufhin soll das Modul in einem zuvor definierten Fehlerfall alle Gefahrenquellen, die in der Liste aufgeführt sind, abschalten bzw. eine spezielle Aktion ausführen. Um definieren zu können, wann ein Fehlerfall vorliegt, wird in dem Modul die Anzahl der Kinder, der Erwachsenen und der Personen im Raum allgemein registriert. Das Abschalten der Geräte erfolgt jedoch nicht direkt. Ein Abschalttimer für den Raum ermöglicht anwesenden Personen die Aktion abzubrechen.
 
-Ein "`Gefahrenquellen abstellen"'-Modul enthält zusätzlich die Information, für welchen Raum es bestimmt ist.
+Ein \emph{TurnOffHazardModule} enthält zusätzlich die Information, für welchen Raum es bestimmt ist.
 
 \subsubsection{Funktionsweise}
-Ein Beispielablauf könnte sein, dass eine erwachsene Person den Raum verlässt. Daraufhin wird der \textit{PersonCounter} und das \textit{PersonIdentificationModule} aktiv, um nach einer internen Berechnung, die Information, dass ein Erwachsener den Raum verlassen hat, anderen Modulen zur Verfügung zu stellen.
+Ein Beispielablauf könnte sein, dass eine erwachsene Person den Raum verlässt. Daraufhin wird der \emph{PersonCounter} und das \emph{PersonIdentificationModule} aktiv, um nach einer internen Berechnung, die Information, dass ein Erwachsener den Raum verlassen hat, anderen Modulen zur Verfügung zu stellen.
 
-Das \textit{TurnOffHazardModule} registriert dieses Ereignis und beginnt sofort mit der Abschaltroutine, indem es den \textit{TurnOffTimer} startet. In diesem Beispiel wird angenommen, dass sich keine weitere Person im Raum befindet und der Abschalttimer ohne Abbruch abläuft. Nach Ablauf benachrichtigt der Abschalttimer das \textit{TurnOffHazardModule}, welches die konfigurierten Gefahrenquellen abschaltet.
+Das \emph{TurnOffHazardModule} registriert dieses Ereignis und beginnt sofort mit der Abschaltroutine, indem es den \emph{TurnOffTimer} startet. In diesem Beispiel wird angenommen, dass sich keine weitere Person im Raum befindet und der Abschalttimer ohne Abbruch abläuft. Nach Ablauf benachrichtigt der Abschalttimer das \emph{TurnOffHazardModule}, welches die konfigurierten Gefahrenquellen abschaltet.
 
 Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurden.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{img/Modulkonzeption/TurnOffHazardSequence.pdf}
-	\caption{TurnOffHazardModule: Sequenzdiagramm}
+	\caption{\emph{TurnOffHazardModule}: Sequenzdiagramm}
 	\label{fig:turnOffHazard}
 \end{figure}
 
@@ -1018,7 +1018,7 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 		\item Default: 60 s
 	\end{itemize}
 	
-	\item Priorität (beim Starten des Abschalttimer-Moduls)
+	\item Priorität (beim Starten des \emph{TurnOffTimerModule})
 	\begin{itemize}
 		\item Typ: Text
 		\item erforderlich: nein
@@ -1058,15 +1058,15 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 	/command/history			& Liefert eine Liste mit den Zeitpunkten und deren Begründung nach abgeschalteten Gefahrenquellen. \\
 	\hline
 	
-	\caption{TurnOffHazardModule: Schnittstelle ZAutomation}
+	\caption{\emph{TurnOffHazardModule}: Schnittstelle ZAutomation}
 \end{longtabu}
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
 	\item Module für Geräte von Drittanbietern
-	\item Abschalttimer-Modul zum Starten und Stoppen des Abschalttimer-Moduls
-	\item Personenanzahl-Modul zum Erfassen der Personenzahlen im Raum
-	\item Identifizierung Kind/Erwachsener-Modul zum Erfassen der Kinder und Erwachsenen im Raum
+	\item \emph{TurnOffTimerModule} zum Starten und Stoppen des \emph{TurnOffTimerModule}
+	\item \emph{PersonCounterModule} zum Erfassen der Personenzahlen im Raum
+	\item \emph{PersonIdentificationModule} zum Erfassen der Kinder und Erwachsenen im Raum
 \end{itemize}
 
 %TODO: deutsche Modulnamen?
@@ -1075,12 +1075,12 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 \begin{itemize}
 	\item Raum ID
 	\item Liste aller Gefahrenquellen
-	\item Dauer eines aktivierten Abschalttimer-Moduls
-	\item Priorität beim Starten des Abschalttimer-Moduls
+	\item Dauer eines aktivierten \emph{TurnOffTimerModules}
+	\item Priorität beim Starten des \emph{TurnOffTimerModules}
 	\item Anzahl der Kinder im Raum
 	\item Anzahl der Erwachsenen im Raum
 	\item Anzahl der Personen im Raum
-	\item Zustand des zugehörigen Abschalttimer-Moduls
+	\item Zustand des zugehörigen \emph{TurnOffTimerModules}
 	\item Historie zum Speichern der Abschaltzeiten und Abschaltbegründung der Gefahrenquellen
 \end{itemize}
 
@@ -1424,7 +1424,7 @@ Weitere Informationen (auch technische Details) sind dem Handbuch zu entnehmen (
 
 Im Bereich Smarthome hat man eine riesige Auswahl von verschiedenen Sensoren. Je nach Bedarf bieten die Multisensoren verschiedene Funktionalitäten welche Bewegungen, Raumtemperatur, Licht oder andere registrieren können. Der Aeotec Sensor erfasst 6 verschiedene Messwerte. Die Sensoren messen Raumtemperatur, Lichtstärke, Luftfeuchtigkeit, Bewegung, UV-Sensor und Vibration. Diese Werte überträgt der Multisensor mit einer drahtlosen Kommunikationsschnittstelle names Z-Wave.
 
-In unserem Projekt kommt dieser Sensor zum Einsatz, um das Alarm Modul, Personenidentifikationsmodul und Gefahrenmodul mithilfe seiner Sensortechnik zu unterstützen.
+In unserem Projekt kommt dieser Sensor zum Einsatz, um das \emph{AlarmModule}, \emph{PersonIdentificationModule} und \emph{TurnOffHazardModule} mithilfe seiner Sensortechnik zu unterstützen.
 
 
 \subsubsection{Konfigurationsmöglichkeiten}
