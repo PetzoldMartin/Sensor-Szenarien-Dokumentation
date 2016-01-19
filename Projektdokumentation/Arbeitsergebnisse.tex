@@ -217,7 +217,7 @@ Die Schnittstellen, welche dieses Modul nutzt und bereitstellt, sind von großer
 
 Das \emph{LockDoorModule} bietet über den Event Bus eine Schnittstelle zu anderen Modulen. Diese werden benachrichtigt, sobald davon ausgegangen wird, dass keine Person mehr anwesend ist (\emph{LockDoorModule\_locked}). Die Freischaltung geschieht über ein weiteres Event (\emph{LockDoorModule\_unlocked}).
 
-Das Modul wird als \emph{Singleton} angelegt, da für jede Wohnung nur ein Modul zur Überwachung der Wohnungstür erforderlich ist. Das hat zur Folge, dass Events keine \emph{VirtualDeviceId} tragen. Damit ist es für Empfänger einfacher, auf entsprechende Events zu reagieren.
+Das Modul wird als Singleton angelegt, da für jede Wohnung nur ein Modul zur Überwachung der Wohnungstür erforderlich ist. Das hat zur Folge, dass Events keine \emph{VirtualDeviceId} tragen. Damit ist es für Empfänger einfacher, auf entsprechende Events zu reagieren.
 
 Für die Überprüfung der Personenanzahl wird die Schnittstelle \emph{PersonCounterModule} genutzt. Dazu wird für jeden Raum die Anzahl der Personen überprüft.
 
@@ -2051,7 +2051,7 @@ Aus Sicht der Bewegungssensoren sind die Fibaro Bewegungssensoren am besten und 
 
 \section{Alarmanlage}
 \subsection{Einleitung und Szenariobeschreibung}
-Das Szenario "`Haus/Wohnung bei verschließen der Haus-/Wohnungstür in Standby versetzten"' wurde entwickelt, um Nutzern bei Verlassen des Hauses möglichst hohen Komfort zu bieten. Dazu sollen verschiedene Aktionen gestartet werden, sobald der letzte Bewohner das Haus verlässt. Es ist von herausragender Bedeutung zu wissen, ob noch Personen anwesend sind, oder wirklich niemand mehr zu Hause ist. Wenn das der Fall ist, dann kann das Haus in den Standby versetzt werden. Dazu können verschiedene Geräte abgeschaltet und eine Alarmanlage aktiviert werden.
+Das Szenario "`Haus/Wohnung bei verschließen der Haus-/Wohnungstür in Standby versetzten"' wurde entwickelt, um Nutzern bei Verlassen des Hauses möglichst hohen Komfort zu bieten. Dazu sollen verschiedene Aktionen gestartet werden, sobald der letzte Bewohner das Haus verlässt. Es ist von herausragender Bedeutung zu wissen, ob noch Personen anwesend sind, oder wirklich niemand mehr zu Hause ist. Wenn das der Fall ist, kann das Haus in den Standby-Modus versetzt werden. Dazu können verschiedene Geräte abgeschaltet und eine Alarmanlage aktiviert werden.
 
 \subsection{Konzept für die Umsetzung des Szenarios}
 Das oben beschriebene Szenario bringt einige Komplexität mit sich, welche nur schwer auf ein einzelnes Modul abbildbar ist. Aus diesem Grund wurde die zu erbringende Funktionalität analysiert und in überschaubare Funktionseinheiten gegliedert, diese werden wiederum durch einzelne Module repräsentiert. Außerdem bietet die Implementation verschiedener Module zur Bereitstellung einzelner Funktionseinheiten den Vorteil hoher Wiederverwendbarkeit.
@@ -2070,15 +2070,15 @@ Im Folgenden werden erforderte Funktionalitäten beschrieben und darauf folgend 
 \subsection{Umsetzung und Programmierung, entwickelte Module}
 Aus den oben beschriebenen Funktionalitäten wurden die im folgenden beschriebenen Module entwickelt. Diese arbeiten eng zusammen und bieten teils spezielle Funktionen, welche für sich genommen wenig nützlich erscheinen.
 \begin{description}
-	\item [LockDoorModule] Das \emph{LockDoorModule} übernimmt die Koordination der oben beschriebenen Funktionen. Da sich diese Aufgaben immer auf die Wohnung als Ganzes beziehen, wurde das Modul als Sigleton konzipiert und kann deshalb nur einmalig angelegt werden. Zur Überprüfung der Personenanzahl wird die ZAutomation-Schnittstelle aller verfügbarer PersonCounter verwendet. Wenn endgültig keine Personen erkannt wurden, sendet das \emph{LockDoorModule} ein Event auf dem Event Bus. Abbonenten werden darüber informiert, dass sich keine Personen in der Wohnung befinden und können entsprechende Aktionen ausführen. 
+	\item [LockDoorModule] Das \emph{LockDoorModule} übernimmt die Koordination der oben beschriebenen Funktionen. Da sich diese Aufgaben immer auf die Wohnung als Ganzes beziehen, wurde das Modul als Singleton konzipiert und kann deshalb nur einmalig angelegt werden. Zur Überprüfung der Personenanzahl wird die ZAutomation-Schnittstelle aller verfügbarer \emph{PersonCounter} verwendet. Wenn endgültig keine Personen erkannt wurden, sendet das \emph{LockDoorModule} ein Event auf dem Event Bus. Abbonenten werden darüber informiert, dass sich keine Personen in der Wohnung befinden und können entsprechende Aktionen ausführen. 
 	
 	\item [PersonCounterModule] Das \emph{PersonCounterModule} stellt eine Schnittstelle zur Zählung der Personen je Raum bereit. Dazu können verschiedene Sensoren genutzt werden, detaillierter wird dies unter "`Gefahrenquellenabschaltung"' (\prettyref{sec:gefahrenquellenabschaltung}) beschrieben.
 	
-	\item [InHomeFeedbackModule] Falls durch die PersonCounter keine Personen erkannt wurden, startet das \emph{LockDoorModule} den Feedback-Modus. Auch dieser wird über einen ZAutomation-Aufruf auf dem entsprechenden \emph{InHomeFeedbackModule} gestartet. Genau wie \emph{PersonCounter} existieren \emph{InHomeFeedbackModule} je Raum.
+	\item [InHomeFeedbackModule] Falls durch die \emph{PersonCounter} keine Personen erkannt wurden, startet das \emph{LockDoorModule} den Feedback-Modus. Auch dieser wird über einen ZAutomation-Aufruf auf dem entsprechenden \emph{InHomeFeedbackModule} gestartet. Genau wie \emph{PersonCounter} existieren \emph{InHomeFeedbackModule} je Raum.
 	
 	\item [StandbyModule] Nach Überprüfung der oben beschriebenen Sachverhalte beim Abschließen der Wohnung tritt das \emph{StandbyModule} in Aktion. Auch dieses Modul existiert nur einmalig für die gesamte Wohnung. Die Konfiguration erlaubt das Festlegen von Regeln sowohl für das Betreten als auch das Verlassen des Standby-Modus.
 	
-	\item [AlarmModule] Wie auch das \emph{StandbyModule} funktioniert der Alarm im Zusammenhang mit dem \emph{LockDoorModule}. Erst nachdem ein entsprechendes Event empfangen wurde, aktiviert das \emph{AlarmModule} die Alarmanlage. Dazu werden verschiedene Sensoren auf Statusänderungen überwacht und bei Erkennung von Aktivitäten 
+	\item [AlarmModule] Wie auch das \emph{StandbyModule} funktioniert der Alarm im Zusammenhang mit dem \emph{LockDoorModule}. Erst nachdem ein entsprechendes Event empfangen wurde, aktiviert das \emph{AlarmModule} die Alarmanlage. Dazu werden verschiedene Sensoren auf Statusänderungen überwacht und bei der Erkennung von Aktivitäten genutzt.
 \end{description}
 
 \subsection{Beschreibung des Versuchsaufbau und verwendeter Sensoren}
@@ -2086,7 +2086,7 @@ In einem Versuchsaufbau wurde das oben beschriebene Szenario mit den genannten M
 Für den Versuchsaufbau wurden folgende Geräte verwendet:
 
 \begin{description}
-	\item [Popp Wall Controller] Dieser Wandschalter wird genutzt, um ein Türschloss zu simulieren. Durch einfaches Klicken auf den Button 1 kann das verschließen, durch drücken auf Botton 3 das aufschließen der Tür simuliert werden. Außerdem wird der Schalter verwendet, um das \emph{InHomeFeedbackModule} zu steuern. Doppeltes Klicken des Button 2 bewirkt, dass ein laufendes Feedback abgebrochen wird und somit die Anwesenheit von Personen signalisiert wird.
+	\item [Popp Wall Controller] Dieser Wandschalter wird genutzt, um ein Türschloss zu simulieren. Durch einfaches Klicken auf den Button 1 kann das Verschließen, durch drücken auf Botton 3 das Aufschließen der Tür simuliert werden. Außerdem wird der Schalter verwendet, um das \emph{InHomeFeedbackModule} zu steuern. Doppeltes Klicken des Button 2 bewirkt, dass ein laufendes Feedback abgebrochen wird und somit die Anwesenheit von Personen signalisiert wird.
 	
 	\item [Philio 4-in-1 Multisensor] Der Tür- und Fensterkontakt dieses Sensors wird als Auslöser für die Alarmanlage genutzt. Wurde die Wohnung verschlossen und das \emph{AlarmModule} aktiviert, werden Zustandsänderungen des Kontakts als Einbruch interpretiert. Daraufhin wird der Alarm aktiviert. Da keine entsprechende Sirene zur Verfügung steht, setzt das \emph{AlarmModule} einen HTTP-Request ab, lässt eine Website blinken und spielt dort einen Alarmton ab.
 	
