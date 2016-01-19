@@ -154,8 +154,6 @@ Nach einer Weile verlässt Person Y den Raum. Das System stellt fest das sich ke
 \end{itemize}
 
 \subsubsection{Modellierung Identifizierung Erwachsener}
-\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell)) bereits gemacht?
-
 Wenn sich die Personenanzahl eines Raumes ändert wird unterschieden, ob die Person den Raum betreten oder verlassen hat. Danach wird die Größenmessung und CO$_2$ Messung gestartet. Wenn eine Person den Raum betreten hat, wird die Größenerkennung abgeglichen und anhand des Ergebnisses die Anzahl der Erwachsenen erhöht. Verlässt eine Person den Raum, dann wird der Counter verringert. Wenn der erwachsenenCounter Geringer als 1 ist oder die CO$_2$ Messung keinen Erwachsenen erkennt wird der Vorgang mit kein Erwachsener vorhanden beendet. Nur wenn sowohl die Größenmessung und die CO$_2$ Messung einen Erwachsenen erkennen, wird "`Erwachsener erkannt"' ausgegeben.
 \begin{figure}[h!]
 	\centering
@@ -165,8 +163,6 @@ Wenn sich die Personenanzahl eines Raumes ändert wird unterschieden, ob die Per
 \end{figure}
 
 \subsubsection{Modellierung Gefahrenquellen abstellen}
-\emph(//TODO BITTE NOCH BESCHREIBUNGSTEXT EINFÜGEN (siehe Modell)) bereits gemacht?
-
 Wenn sich die Personenanzahl eines PersonCounters ändert, wird die Identifizierung gestartet, ob sich ein Erwachsener im Raum befindet. Wird ein Erwachsener erkannt wird der Zustand der Gefahrenquellen ausgelesen und, wenn nötig, freigeschaltet. Wird bei der Identifizierung kein Erwachsener erkannt wird ebenfalls der Zustand der Gefahrenquellen ausgelesen und gegebenenfalls ein Timer zu deren Abschaltung gestartet, welcher bei erneuter Änderung der Personenanzahl gestoppt wird.
 
 \begin{figure}[h!]
@@ -179,7 +175,7 @@ Wenn sich die Personenanzahl eines PersonCounters ändert, wird die Identifizier
 
 \section{Modulkonzeption}
 \label{sec:modulkonzepte}
-TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
+%TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
 
 \subsection{LockDoorModule}
 \emph{(von Simon Schwabe)}
@@ -1069,8 +1065,6 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 	\item \emph{PersonIdentificationModule} zum Erfassen der Kinder und Erwachsenen im Raum
 \end{itemize}
 
-%TODO: deutsche Modulnamen?
-
 \subsubsection{Interne Speicher}
 \begin{itemize}
 	\item Raum ID
@@ -1928,9 +1922,6 @@ Die Funktionen der Buttons werden über vier "`Command to Control Groups"' defin
 	
 	\caption{Buttons und Assoziationsgruppen des Popp Wall Controllers}
 \end{longtabu}
-
-%TODO newpage
-%\newpage
 
 Alle Buttons unterstützen verschiedene Klickarten und bieten so Mehrfachfunktionalität. Wenn die Buttons separat verwendet werden, können sie wie folgt geklickt werden:
 
