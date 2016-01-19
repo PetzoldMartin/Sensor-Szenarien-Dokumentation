@@ -49,6 +49,8 @@ Das Modell (\prettyref{fig:szenarienPersonenerkennungTür}) zeigt den Ablauf fü
 	\label{fig:szenarienPersonenerkennungTür}
 \end{figure}
 
+\newpage
+
 \subsection{Haus bei verschließen der Haus-/ Wohnungstür in "`Standby"' versetzen}
 \label{subsec:szenarioStandby}
 \emph{(von Simon Schwabe)}
@@ -82,6 +84,8 @@ Das Modell (\prettyref{fig:szenarienStandbyNutzersicht}) verdeutlicht die im Sze
 
 Mit dem Abschließen der Tür ist die Erwartung des Nutzers verbunden, dass die Wohnung in einen Standby-Modus tritt. Sollte dies aufgrund anwesender Personen nicht möglich sein, sollte der Nutzer über ein geeignetes Mittel darüber informiert werden. Dazu kann beispielsweise eine Benachrichtigung auf das Mobiltelefon des Nutzers gesendet werden.
 
+\newpage
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.7]{img/Szenarien/WohnungSchliessenNutzersicht.pdf}
@@ -96,6 +100,8 @@ Wird zum Zeitpunkt des Abschließens keine anwesende Person erkannt, wird ein Ti
 
 Trotz dieses Vorgehens ist nicht auszuschließen, dass Personen in der Wohnung nicht korrekt erkannt werden. Für diesen Fall kann ein zusätzlicher Feedback-Modus implementiert werden, in dem die anwesenden, nicht erkannten Personen über die anstehende Aktion informiert werden. Erfolgt kein Feedback, werden konfigurierte Geräte in den Standby-Modus versetzt.
 
+\newpage
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Szenarien/WohnungSchliessen.pdf}
@@ -106,7 +112,7 @@ Trotz dieses Vorgehens ist nicht auszuschließen, dass Personen in der Wohnung n
 \subsection{Gefahrenquellen abstellen (Fibaro, CO$_2$)}
 \label{subsec:szenarioGefahrenquellen}
 \emph{(von Martin Petzold)}
-\subsubsection{Auslöser (opt.)}
+\subsubsection{Auslöser}
 \begin{itemize}
 	\item Erkennung Erwachsene Person (Fibaro, CO$_2$)
 \end{itemize}
@@ -162,6 +168,8 @@ Wenn sich die Personenanzahl eines Raumes ändert wird unterschieden, ob die Per
 	\label{fig:szenarienIdentifizierungErwachsene}
 \end{figure}
 
+\newpage
+
 \subsubsection{Modellierung Gefahrenquellen abstellen}
 Wenn sich die Personenanzahl eines PersonCounters ändert, wird die Identifizierung gestartet, ob sich ein Erwachsener im Raum befindet. Wird ein Erwachsener erkannt wird der Zustand der Gefahrenquellen ausgelesen und, wenn nötig, freigeschaltet. Wird bei der Identifizierung kein Erwachsener erkannt wird ebenfalls der Zustand der Gefahrenquellen ausgelesen und gegebenenfalls ein Timer zu deren Abschaltung gestartet, welcher bei erneuter Änderung der Personenanzahl gestoppt wird.
 
@@ -173,6 +181,7 @@ Wenn sich die Personenanzahl eines PersonCounters ändert, wird die Identifizier
 \end{figure}
 
 
+\newpage
 \section{Modulkonzeption}
 \label{sec:modulkonzepte}
 %TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
@@ -198,6 +207,8 @@ Das Sequenzdiagramm (\prettyref{fig:modulkonzeptionLockDoorSequence}) stellt mö
 	\label{fig:modulkonzeptionLockDoorSequence}
 \end{figure}
 
+\newpage
+
 \subsubsection{Konfiguration}
 Bei der Konfiguration des \emph{LockDoorModule} muss das Wohnungstürschloss angegeben werden, alternativ kann dafür ein Schalter benutzt werden, der im Inneren der Wohnung vor dem Verlassen betätigt wird. 
 \begin{itemize}
@@ -217,11 +228,10 @@ Das Modul wird als Singleton angelegt, da für jede Wohnung nur ein Modul zur Ü
 
 Für die Überprüfung der Personenanzahl wird die Schnittstelle \emph{PersonCounterModule} genutzt. Dazu wird für jeden Raum die Anzahl der Personen überprüft.
 
-\begin{table}[h!]
-\begin{tabularx}{\textwidth}{
-		 >{\hsize=1.25\hsize}X % 40% of 3\hsize 
-		>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
-		>{\hsize=1.25\hsize}X % 40% of 3\hsize
+\begin{longtabu} to \textwidth{
+		 >{\hsize=1.05\hsize}X % 40% of 3\hsize 
+		>{\hsize=0.4\hsize\centering}X % 30% of 3\hsize
+		>{\hsize=1.55\hsize}X % 40% of 3\hsize
 		% sum=3.0\hsize for 3 columns
 	}
 	\hline
@@ -229,10 +239,8 @@ Für die Überprüfung der Personenanzahl wird die Schnittstelle \emph{PersonCou
 	\hline LockDoorModule\_locked		& - 					& Tür verschlossen, keine Person anwesend \\ 
 	\hline LockDoorModule\_unlocked		& - 			 		& Tür geöffnet \\ 
 	\hline
-\end{tabularx}
-\caption{LockDoorModule: Schnittstelle Event Bus}
-\end{table}
-
+\caption{\emph{LockDoorModule}: Schnittstelle Event Bus}
+\end{longtabu}
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
@@ -243,7 +251,7 @@ Das \emph{PersonCounterModule} wird zur Überprüfung der Personenanzahl je Raum
 
 Das \emph{TurnOffTimerModule} stellt eine Schnittstelle zum \emph{FeedbackModule} her. Durch die zusätzliche Abstraktionsschicht des \emph{TurnOffTimerModule} arbeitet das \emph{LockDoorModule} nicht direkt gegen das \emph{FeedbackModule}, sondern startet lediglich den \emph{TurnOffTimer}. Dieser übernimmt die Kommunikation mit dem \emph{FeedbackModule}.
 
-\subsubsection{Interne Speicher}
+\subsubsection{Interner Speicher}
 \begin{itemize}
 	\item konfiguriertes Türschloss
 \end{itemize}
@@ -279,11 +287,10 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 
 \subsubsection{Schnittstellen}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
-			>{\hsize=1.25\hsize}X % 40% of 3\hsize 
-			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
-			>{\hsize=1.25\hsize}X % 40% of 3\hsize
+\begin{longtabu} to \textwidth{
+			>{\hsize=1.1\hsize}X % 40% of 3\hsize 
+			>{\hsize=0.4\hsize\centering}X % 30% of 3\hsize
+			>{\hsize=1.5\hsize}X % 40% of 3\hsize
 			% sum=3.0\hsize for 3 columns
 		}
 		\hline
@@ -292,12 +299,10 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 		\hline /command/person\_left		& - 			 		& Mindert den Zähler um 1. \\
 		\hline /command/persons				& - 					& Liefert die aktuelle Anzahl an Personen des Raums. \\
 		\hline
-	\end{tabularx}
 	\caption{\emph{PersonCounterModule}: Schnittstelle ZAutomation}
-\end{table}
+\end{longtabu}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
+\begin{longtabu} to \textwidth{
 			>{\hsize=1.5\hsize}X 
 			>{\hsize=0.5\hsize}X
 		}
@@ -306,16 +311,15 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_entered	& - \\ 
 		\hline [DeviceId]:PersonCounterModule\_[RaumId]\_person\_left		& - \\
 		\hline
-	\end{tabularx}
 	\caption{\emph{PersonCounterModule}: Schnittstelle Event Bus}
-\end{table}
+\end{longtabu}
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
 	\item Keine, da dieses Modul Grundfunktionalitäten bereitstellt.
 \end{itemize}
 
-\subsubsection{Interne Speicher}
+\subsubsection{Interner Speicher}
 \begin{itemize}
 	\item Raum ID
 	\item Anzahl der Personen im Raum
@@ -365,26 +369,24 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 \end{itemize}
 
 \subsubsection{Schnittstellen}
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
-			>{\hsize=1.25\hsize}X 
-			>{\hsize=0.75\hsize}X
+\begin{longtabu} to \textwidth{
+			>{\hsize=1.1\hsize}X 
+			>{\hsize=0.9\hsize}X
 			% sum=2.0\hsize for 2 columns
 		}
 		\hline
 		\textbf{Event Name}						& \textbf{Beschreibung} \\
 		\hline [DeviceId]:RoomAccessModule\_[verlassenderRaumId]\_[betretenerRaumId]\_transition\_detected	& Wenn ein Übergang einer Person von einem Raum in den nächsten 	Raum erfolgt ist wird dieses Event ausgelöst \\ 
-		\hline 
-	\end{tabularx}
+		\hline
 	\caption{\emph{RoomAccessModule}: Schnittstellen Event Bus}
-\end{table}
+\end{longtabu}
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
 	\item Daten des \emph{PersonCounterModule} zum Zählen der Personen in einem Raum
 \end{itemize}
 
-\subsubsection{Interne Speicher}
+\subsubsection{Interner Speicher}
 \begin{itemize}
 	\item zwei Bewegungssensoren
 	\item Raum Zuordnung der beiden Sensoren
@@ -436,12 +438,13 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des \emph{Sta
 	\end{itemize}
 \end{itemize}
 
+\newpage
+
 \subsubsection{Schnittstellen}
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
-			>{\hsize=1.25\hsize}X % 40% of 3\hsize 
-			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
-			>{\hsize=1.25\hsize}X % 40% of 3\hsize
+\begin{longtabu} to \textwidth{
+			>{\hsize=0.75\hsize}X % 40% of 3\hsize 
+			>{\hsize=0.4\hsize\centering}X % 30% of 3\hsize
+			>{\hsize=1.85\hsize}X % 40% of 3\hsize
 			% sum=3.0\hsize for 3 columns
 		}
 		\hline
@@ -450,14 +453,12 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des \emph{Sta
 		\hline /command/stopped				& - 			 		& Stoppen des Standby-Modus. \\
 		\hline /command/state				& stopped started	& Liefert den aktuellen Zustand des Moduls. \\
 		\hline
-	\end{tabularx}
 	\caption{\emph{StandbyModule}: Schnittstelle ZAutomation}
-\end{table}
+\end{longtabu}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
-			>{\hsize=1.25\hsize}X % 66.66% of 3\hsize 
-			>{\hsize=0.5\hsize\centering}X % 16.66% of 3\hsize
+\begin{longtabu} to \textwidth{
+			>{\hsize=1.35\hsize}X % 66.66% of 3\hsize 
+			>{\hsize=0.4\hsize\centering}X % 16.66% of 3\hsize
 			>{\hsize=1.25\hsize}X % 16.66% of 3\hsize
 			% sum=3.0\hsize for 3 columns
 		}
@@ -466,16 +467,15 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des \emph{Sta
 		\hline [DeviceId]:StandbyModule\_[RaumId]\_started	& - 				& Standby-Modus wurde gestartet \\ 
 		\hline [DeviceId]:StandbyModule\_[RaumId]\_stopped	& - 				& Standby-Modus wurde beendet \\
 		\hline
-	\end{tabularx}
 	\caption{\emph{StandbyModule}: Schnittstelle Event Bus}
-\end{table}
+\end{longtabu}
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
 	\item Module Events (LockDoor)
 \end{itemize}
 
-\subsubsection{Interne Speicher}
+\subsubsection{Interner Speicher}
 \begin{itemize}
 	\item Raum ID
 	\item Zustand des Raums (im Standby: stopped/started)
@@ -521,6 +521,7 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\label{fig:feedbackSequenceUser}
 \end{figure}
 
+\newpage
 
 \subsubsection{Konfiguration}
 
@@ -600,13 +601,11 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 \end{itemize}
 
 \subsubsection{Schnittstellen}
-%todo tabelle einfügen
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
-			>{\hsize=1.25\hsize}X % 40% of 3\hsize 
+\begin{longtabu} to \textwidth{
+			>{\hsize=0.7\hsize}X % 40% of 3\hsize 
 			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
-			>{\hsize=1.25\hsize}X % 40% of 3\hsize
+			>{\hsize=1.8\hsize}X % 40% of 3\hsize
 			% sum=3.0\hsize for 3 columns
 		}
 		\hline
@@ -632,14 +631,12 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 				& duration (opt.)
 						& Die Aktion um eine bestimmte Zeit verschieben. \\
 		\hline
-	\end{tabularx}
 	\caption{\emph{InHomeFeedbackModule}: Schnittstelle ZAutomation}
-\end{table}
+\end{longtabu}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
-			>{\hsize=1.2\hsize}X 
-			>{\hsize=0.8\hsize}X
+\begin{longtabu} to \textwidth{
+			>{\hsize=0.85\hsize}X 
+			>{\hsize=1.15\hsize}X
 			% sum=2.0\hsize for 2 columns
 		}
 		\hline
@@ -663,16 +660,15 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 		[deviceId]:InHomeFeedbackModule\_[roomId]\_continued
 				& - \\
 		\hline
-	\end{tabularx}
 	\caption{\emph{InHomeFeedbackModule}: Schnittstellen Event Bus}
-\end{table}
+\end{longtabu}
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
 	\item Module, für Geräte von Drittanbietern (Philips Hue, Bose, ...)
 \end{itemize}
 
-\subsubsection{Interne Speicher}
+\subsubsection{Interner Speicher}
 \begin{itemize}
 	\item Raum ID
 	\item Zustand - aktiviert, deaktiviert, aufgeschoben
@@ -796,11 +792,10 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 \end{itemize}
 
 \subsubsection{Schnittstellen}
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
+\begin{longtabu} to \textwidth{
 			>{\hsize=1.25\hsize}X % 40% of 3\hsize 
-			>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
-			>{\hsize=1.25\hsize}X % 40% of 3\hsize
+			>{\hsize=0.4\hsize\centering}X % 30% of 3\hsize
+			>{\hsize=1.35\hsize}X % 40% of 3\hsize
 			% sum=3.0\hsize for 3 columns
 		}
 		\hline
@@ -842,14 +837,12 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		& - 
 		& \\
 		\hline
-	\end{tabularx}
 	\caption{PersonIdentification: Schnittstelle ZAutomation}
-\end{table}
+\end{longtabu}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
-			>{\hsize=1.2\hsize}X 
-			>{\hsize=0.8\hsize}X
+\begin{longtabu} to \textwidth{
+			>{\hsize=1.65\hsize}X 
+			>{\hsize=0.35\hsize}X
 			% sum=2.0\hsize for 2 columns
 		}
 		\hline
@@ -864,26 +857,24 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		[deviceId]:PersonIdentificationModule\_[roomId]\_adult\_there
 		& - \\
 		\hline
-		[deviceId]:PersonIdentificationModule\_[roomIId]\_no\_adult\_there
+		[deviceId]:PersonIdentificationModule\_[roomId]\_no\_adult\_there
 		& - \\
 		\hline
-	\end{tabularx}
 	\caption{PersonIdentification: Schnittstellen Event Bus}
-\end{table}
+\end{longtabu}
 
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
 	\item \emph{PersonCounterModule}
 \end{itemize}
 
-\subsubsection{Interne Speicher}
+\subsubsection{Interner Speicher}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
-			>{\hsize=0.85\hsize}X 
-			>{\hsize=0.85\hsize}X
-			>{\hsize=1.45\hsize}X
-			>{\hsize=0.85\hsize}X
+\begin{longtabu} to \textwidth{
+			>{\hsize=0.9\hsize}X 
+			>{\hsize=0.5\hsize}X
+			>{\hsize=2.0\hsize}X
+			>{\hsize=0.6\hsize}X
 			% sum=2.0\hsize for 2 columns
 		}
 		\hline
@@ -903,9 +894,8 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		\hline
 		runningState			& boolean				& Zustand ob die Messungen ausgewertet werden oder nicht.			& true \\ 
 		\hline
-	\end{tabularx}
-	\caption{PersonIdentification: Interne Speicher}
-\end{table}
+	\caption{PersonIdentification: Interner Speicher}
+\end{longtabu}
 
 
 \subsection{TurnOffTimerModule}
@@ -918,9 +908,9 @@ Ein \emph{TurnOffTimerModule} enthält zusätzlich die Information, für welchen
 \subsubsection{Schnittstellen}
 
 \begin{longtabu} to \textwidth{
-		>{\hsize=1.25\hsize}X % 40% of 3\hsize 
-		>{\hsize=0.5\hsize\centering}X % 30% of 3\hsize
-		>{\hsize=1.25\hsize}X % 40% of 3\hsize
+		>{\hsize=0.9\hsize}X % 40% of 3\hsize 
+		>{\hsize=0.4\hsize\centering}X % 30% of 3\hsize
+		>{\hsize=1.7\hsize}X % 40% of 3\hsize
 		% sum=3.0\hsize for 3 columns
 	}
 	\hline
@@ -957,7 +947,7 @@ Ein \emph{TurnOffTimerModule} enthält zusätzlich die Information, für welchen
 \end{itemize}
 
 
-\subsubsection{Interne Speicher}
+\subsubsection{Interner Speicher}
 \begin{itemize}
 	\item Raum ID
 	\item Variable "`cancel"': "`1"' wenn der Timer unterbrochen wurde, "`0"' sonst
@@ -1030,8 +1020,8 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 
 \subsubsection{Schnittstellen}
 \begin{longtabu} to \textwidth{
-		>{\hsize=0.8\hsize}X
-		>{\hsize=1.2\hsize}X
+		>{\hsize=0.6\hsize}X
+		>{\hsize=1.4\hsize}X
 	}
 	% ----------- begin header -----------
 	\hline
@@ -1065,7 +1055,7 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 	\item \emph{PersonIdentificationModule} zum Erfassen der Kinder und Erwachsenen im Raum
 \end{itemize}
 
-\subsubsection{Interne Speicher}
+\subsubsection{Interner Speicher}
 \begin{itemize}
 	\item Raum ID
 	\item Liste aller Gefahrenquellen
@@ -1079,6 +1069,7 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Auswahl der Sensoren}
 \label{sec:sensorAuswahl}
 \emph{(von Simon Schwabe)}
@@ -1173,6 +1164,7 @@ Die folgende Tabelle gibt einen Überblick der erworbenen Sensoren sowie deren  
 \end{longtabu}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Sensorevaluation}
 Dieser Abschnitt soll die ausgewählten Sensoren (\prettyref{sec:sensorAuswahl}) im Detail beschreiben und charakterisieren. Dabei wird analysiert, welche Funktionen von den Sensoren wie erwartet erfüllt werden, bzw. in welchen Bereichen die Geräte nicht wie angenommen arbeiten.
 
@@ -1619,6 +1611,8 @@ Im Rahmen des Projektes kommt dieser Sensor zum Einsatz, um das Öffnen und Schl
 	\label{fig:sensorenPhilioMultisensor}
 \end{figure}
 
+\newpage
+
 \subsubsection{Konfigurationsmöglichkeiten}
 Nachdem der Sensor erfolgreich in das Z-Wave-Netzwerk hinzugefügt wurde, besteht die Möglichkeit, den Multisensor über die Expert-UI zu konfigurieren.
 
@@ -1829,8 +1823,8 @@ Bevor der Sensor seine Arbeit aufnehmen kann, muss er kalibriert werden. Dazu mu
 \begin{description}
 	\item [Parameter 1] besteht aus einem 8-Bit-Feld. Die dezimale Repräsentation der hier gesetzten Bits kann in der Oberfläche eingegeben werden, z.B. für 0000 01001$_2$ wird 7$_{10}$ gesetzt.
 	\begin{longtabu} to \textwidth{
-			>{\hsize=0.4\hsize}X 
-			>{\hsize=1.6\hsize}X
+			>{\hsize=0.1\hsize}X 
+			>{\hsize=1.9\hsize}X
 		}
 		\hline
 		\textbf{Stelle}		& \textbf{Bedeutung} \\
@@ -1960,6 +1954,7 @@ Auch wenn der Schalter als Sekundärcontroller verwendet wird, ist es möglich l
 In der Beispielkonfiguration wurde die "`Command to Control Group A"' auf "`Switch On/Off only (send Basic Set)"' gesetzt. Außerdem wurde die Fibaro Schaltsteckdose ("`(\#9) Fibaro Wall Plug"' im Bild oben) als Assoziation für die Gruppe A gesetzt. Somit werden einfache On/Off Kommandos an das Gateway und die Steckdose (\prettyref{subsec:fibaroWallPlug}) gesendet. Auch bei ausgeschaltetem Gateway lässt sich die Steckdose durch den Popp Wall Controller fernsteuern.
 
 
+\newpage
 \section{Gefahrenquellenabschaltung}
 \label{sec:gefahrenquellenabschaltung}
 
@@ -2013,10 +2008,12 @@ Für den Versuchsaufbau wurden folgende Geräte verwendet:
 \item [Gefahrenquelle] Hier simuliert dargestellt als ein Dummy Modul, was ein Bügeleisen darstellen soll. Dieses Gerät wird letztendlich vom \emph{TurnOffHazardModule} nach Ablauf des Timers deaktiviert.
 \end{description}
 
+\newpage
+
 Folgender theoretischer Ablauf findet in diesem Szenario statt:
 \begin{longtabu} to \textwidth{
-		>{\hsize=0.8\hsize}X
-		>{\hsize=1.2\hsize}X
+		>{\hsize=0.4\hsize}X
+		>{\hsize=1.6\hsize}X
 	}
 	\hline
 	\textbf{Aktionen des Benutzers}									& \textbf{Reaktion des Systems} \\
@@ -2118,6 +2115,8 @@ Weiter unten werden am Markt vorhandene Systeme und Lösungen kurz aufgelistet.\
 	\label{fig:feedbackTTS}
 \end{figure}
 
+\newpage
+
 Der Einsatz von sprach-gesteuerten Systemen hat bereits auf verschiedensten Gebieten, mehr oder weniger erfolgreich Einzug gehalten.
 
 \subsubsection{IVEE}
@@ -2157,8 +2156,7 @@ Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq CastleO
 \noindent
 CastleOS Voice-Controlled Home Automation Betriebssystem für INSTEON, X10, Z-Wave, UPB, LightwaveRF, WeMo, Nest, Sonos, Plex, XBMC, MediaBrowser3, DirecTV. Es ist kompatibel mit folgenden Smart Home Geräten wie Aeon Labs, Yale, Phillips, Honeywell, GE, Leviton, Sonos. CastleOS verwendet eine einzigartige Dual-Gerätesteuerung, die einfache Sprachbefehle durch eine Kinect oder CastleOS Web- und Mobile-Anwendung auf jedem iOS und Android Gerät akzeptiert. Befehle werden von der Kinect oder Web- und Mobile-Anwendung auf einen Windows PC, der mit einer unbegrenzten Anzahl von verbundenen Heimautomatisierungsgeräte, wie INSTEON, Z-Wave, UPB, X10 oder WeMo weitergeleitet. CastleOS kann nicht nur auf Sprachbefehle reagieren, sondern auch mit dem Ton Bestätigungen und Antworten auf Fragen und Befehle zu ausgeben. Kinect ermöglicht eine vollständige Kontrolle über ihr Zuhause mit einem präzisen und anspruchsvollen Spracherkennungssystem. Ihr Haus wird 24/7 ohne Störungen durch laute Musik, Filme, TV und andere Geräusche überwacht. Es gibt keine Begrenzung für die Anzahl der Kinect-Geräte die angeschlossen werden können aber zusätzliche Kinects erhöhen den Standard Übertragungsbereich um bis zu 10 Meter. Es kann auch mittels Mobil- bzw. Webapp gesteuert werden, falls keine Kinect vorhanden ist.
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
+\begin{longtabu} to \textwidth{
 			>{\hsize=0.5\hsize}X 
 			>{\hsize=1.5\hsize}X
 			% sum=2.0\hsize for 2 columns
@@ -2170,12 +2168,10 @@ CastleOS Voice-Controlled Home Automation Betriebssystem für INSTEON, X10, Z-Wa
 		Z-Wave
 		& Aeon Labs Z-Stick \\
 		\hline
-	\end{tabularx}
 	\caption{Systemanforderungen: CastleOS}
-\end{table}
+\end{longtabu}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
+\begin{longtabu} to \textwidth{
 			>{\hsize=0.5\hsize}X 
 			>{\hsize=1.5\hsize}X
 			% sum=2.0\hsize for 2 columns
@@ -2190,9 +2186,8 @@ CastleOS Voice-Controlled Home Automation Betriebssystem für INSTEON, X10, Z-Wa
 		Gerätegruppierung
 		& Szene, Gruppe \\
 		\hline
-	\end{tabularx}
 	\caption{Features: CastleOS}
-\end{table}
+\end{longtabu}
 
 Die Änderungen, die mit Version CastleOS 2.0 erscheinen sollen, werden die Erstellung von virtuellen Geräten und Protokollen ermöglichen. Auf diese Weise können beliebige HTTP-Aufrufe ausgeführt werden. Der endgültige Termin ist nicht festgelegt, laut  Q\&A auf der offiziellen Webseite wird es noch dauern bis es in die Produktion geht.
 
@@ -2208,8 +2203,7 @@ Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq Amazon 
 \noindent
 Der Echo kann jetzt auch Belkin WeMo und Philips Hue Produkte steuern. Amazon Echo sieht aus wie ein kleiner Bluetooth-Lautsprecher, der aber viel mehr kann als nur Musik abzuspielen. Das Gerät ist per WLAN mit dem Internet verbunden und besitzt sieben Mikrofone, mit denen es jedes Gespräch im Raum registrieren kann. Eine Fernbedienung mit eingebauten Mikrofonen, welche benutzt werden kann, wenn der Hub außer Reichweite ist, steht zur Verfügung.
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
+\begin{longtabu} to \textwidth{
 			>{\hsize=0.5\hsize}X 
 			>{\hsize=1.5\hsize}X
 			% sum=2.0\hsize for 2 columns
@@ -2224,9 +2218,8 @@ Der Echo kann jetzt auch Belkin WeMo und Philips Hue Produkte steuern. Amazon Ec
 	 	Systemanforderungen
 		& Zugriff über Mobile-App oder Weboberfläche \\
 		\hline
-	\end{tabularx}
 	\caption{Spezifikation: Amazon Echo}
-\end{table}
+\end{longtabu}
 
 \begin{figure}[h!]
 	\centering
@@ -2239,6 +2232,7 @@ Eine Anleitung zur Anbindung an Z-Wave ist unter \url{http://www.myzwave.net/ind
 
 Die nachfolgenden Ausführung beziehen sich auf die Onlinequelle \glqq Amazon\grqq\footnote{\url{http://www.amazon.com/dp/B00X4WHP5E}} und \glqq Smart Home - Home Automation Superstore\grqq \footnote{\url{http://www.smarthome.com/amazon-echo-alexa.html}}.
 
+ \newpage
 Amazon Echo kommuniziert visuell mit dem Benutzer über sein Status mit Hilfe einer farbigen Beleuchtung ganz oben und unten:
 
 \begin{figure}[h!]
@@ -2304,8 +2298,7 @@ Es handelt sich hierbei um einen kleine USB-Stick, der in jedes Google-TV-Gerät
 	\label{fig:feedbackEnBlink}
 \end{figure}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
+\begin{longtabu} to \textwidth{
 			>{\hsize=0.5\hsize}X 
 			>{\hsize=1.5\hsize}X
 			% sum=2.0\hsize for 2 columns
@@ -2325,10 +2318,9 @@ Es handelt sich hierbei um einen kleine USB-Stick, der in jedes Google-TV-Gerät
 		\hline 
 	 	Reichweite
 		& ca. 30 m \\
-		\hline 
-	\end{tabularx}
+		\hline
 	\caption{Spezifikation: EnBlink}
-\end{table}
+\end{longtabu}
 
 \subsubsection{HALBasic - Home Automation living}
 Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle\footnote{\url{www.automatedliving.com/HALbasic.aspx}}
@@ -2434,6 +2426,8 @@ Die nachfolgenden Ausführungen beziehen sich auf die Onlinequelle \glqq Reemo: 
 \noindent
 Dazu wird ein Receiver benötigt, welcher mit den gewünschten Smart Home-Produkten verbunden werden kann. Mit einer Geste (Reemo versteht insgesamt sechs verschiedene) können einzelne Aktionen, aber auch ganze Sequenzen ausgelöst werden.
 
+\newpage
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/Reemo.png}
@@ -2453,6 +2447,7 @@ Kompatibel mit:
 \item Thermostaten von Azela, Pearl, Computime, RTCOA
 \end{itemize}
 
+\newpage
 \noindent
 Installation (\url{https://www.indiegogo.com/projects/control-your-world-with-reemo#/})
 
@@ -2469,6 +2464,8 @@ Installation (\url{https://www.indiegogo.com/projects/control-your-world-with-re
 	\caption{Reemo Installation}
 	\label{fig:feedbackReemoInstallation2}
 \end{figure}
+
+\newpage
 
 \noindent
 Ein Feedback von Reemo wird den Benutzern über eine Vibration mitgeteilt. Wenn ein Benutzer auf eine Lampe zeigt und er einen Befehl starten will, wird am Reemo durch eine Vibration betätigt, dass das Gerät ausgewählt wurde. Danach kann Benutzer Gesten-Befehle ausführen.
@@ -2521,7 +2518,7 @@ Das System wurde von insgesamt 10 Testpersonen evaluiert, in dem sie spontane Be
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/LOGOS.png}
+	\includegraphics[width=0.8\textwidth]{img/Feedback-Mechanismen/LOGOS.png}
 	\caption{LOGOS}
 	\label{fig:feedbackLOGOS}
 \end{figure}
@@ -2545,12 +2542,14 @@ Lampen ein/auszuschalten, Wiedergabe von Filmen zu starten/anhalten/stoppen.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.4\textwidth]{img/Feedback-Mechanismen/Gestensteuerung.png}
+	\includegraphics[width=0.7\textwidth]{img/Feedback-Mechanismen/Gestensteuerung.png}
 	\caption{Gestensteuerung}
 	\label{fig:feedbackGestensteuerung}
 \end{figure}
 
 Aufgrund dieser Anforderungen wurde folgender Ansatz gewählt: Das Erkennungssystem besteht aus einer Infrarot Kamera, einer Infrarot LED und einem Handschuh, wobei kein spezieller Datenhandschuh hierfür verwendet wird. Es wird lediglich die Infrarot LED am Handschuh befestigt. Wenn eine neue Geste gelernt werden soll, so aktiviert der User die Infrarot LED während er die Geste in den Raum zeichnet. Sodann wird die Geste vom System zerlegt, d.h. es werden vom Startpunkt aus jeweils die Richtungen, in die der User die Geste von Punkt zu Punkt zeichnet (in Summe sind es acht mögliche Richtungen) im IR motion processor gespeichert. Wenn nun eine gelernte Geste vom System erkannt wird, dann wird über einen sogenannten \glqq User Interaction Manager\grqq , der das Smart Home System per Web-Service über die erkannte Geste und die damit verbundene Aktion informiert und sodann führt das Smart Home die auszuführende Operation aus.
+
+\newpage
 
 \begin{figure}[h!]
 	\centering
@@ -2561,8 +2560,7 @@ Aufgrund dieser Anforderungen wurde folgender Ansatz gewählt: Das Erkennungssys
 
 \subsection{Vergleich der Feedback-Mechanismen}
 
-\begin{table}[H]
-	\begin{tabularx}{\textwidth}{
+\begin{longtabu} to \textwidth{
 			>{\hsize=1\hsize}X 
 			>{\hsize=1\hsize}X
 			>{\hsize=1\hsize}X
@@ -2612,10 +2610,9 @@ Aufgrund dieser Anforderungen wurde folgender Ansatz gewählt: Das Erkennungssys
 	 	Kinect (das Gerät selbst)
 		& 110,00 \$
 		& Gestik \\
-		\hline 
-	\end{tabularx}
+		\hline
 	\caption{Vergleichstabelle}
-\end{table}
+\end{longtabu}
 
 \subsection{Einsatzmöglichkeiten im Projekt}
 Alle bisher aufgelistete Anwendungen können für Feedback im Projekt eingesetzt werden. Eine große Rolle spielen die Kosten, die im Vergleichsliste deutlich zu erkennen sind. Das Kostenfaktor variiert sich im Bereich von 200€, was für eine mögliche Testumsetzung sehr aufwändig wäre. Die Benutzbarkeit von den Systemen scheint überhaupt nicht schwierig zu sein, sondern sehr schnell erlernbar, effizient und anpassungsfähig. Die Anwendungen können von einzelnen sowie auch von mehreren Benutzern gesteuert werden. Als Vorteil bei Sprachsteuerungssystemen gilt das es keine vordefinierte Sätze gelernt werden sollen um die Hausgeräte zu steuern. Einfach angesprochene Sätze werden vom System verstanden und richtig ausgeführt.
@@ -2666,6 +2663,8 @@ Dadurch werden diverse Informationen in der Konsole ausgegeben. Unter anderem au
 \end{figure}
 
 Raspberry Pi ist nun ein vollständig konfiguriertes HomeKit Accessoire, welches in jeder HomeKit kompatiblen App verwendet werden kann. HomeKit-PIN soll eingegeben werden, sobald nach diesem gefragt wird und alle inkludierten Geräte werden unter der Raspberry HomeKit Bridge zu finden sein. Als App kann z.B. die \glqq MyTouchHome\grqq{} App verwendet werden, welche viele HomeKit-Funktionen bietet. Danach wird neu erstelltes Haus im APP ausgewählt. Da das Raspberry als Bridge dient, zählt es als Accessoire. Füge es entweder zu deinem Haus hinzu oder zu einem neu erstellten Raum und danach werden alle inkludierten Geräte angezeigt, sofern HomeKit den Gerätetyp unterstützt.
+
+\newpage
 
 \begin{figure}[h!]
 	\centering
