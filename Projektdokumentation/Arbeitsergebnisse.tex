@@ -185,15 +185,16 @@ TODO: allgemeine Beschreibung aller Module, deren Zusammenwirken (Grafik).
 \emph{(von Simon Schwabe)}
 
 \subsubsection{Allgemein}
-Das LockDoor-Modul ist der Vermittler für weitere Module im Zusammenhang mit dem Verlassen der Wohnung. Wenn die Wohnung verlassen und abgeschlossen wird, ist die Wahrscheinlichkeit hoch, dass keine weiteren Personen anwesend sind. Allerdings kann die Wohnung auch irrtümlich abgeschlossen werden und es sind noch weitere Personen anwesend. Um solchen Fehlinterpretationen entgegenzuwirken überprüft das LockDoor-Modul immer, ob wirklich keine Personen erkannt werden und die Wohnung leer steht. Diese Information ist für weitere Module, insbesondere das Alarm-Modul, relevant und wird über den Event Bus mitgeteilt.
+Das \emph{LockDoorModule} ist der Vermittler für weitere Module im Zusammenhang mit dem Verlassen der Wohnung. Wenn die Wohnung verlassen und abgeschlossen wird, ist die Wahrscheinlichkeit hoch, dass keine weiteren Personen anwesend sind. Allerdings kann die Wohnung auch irrtümlich abgeschlossen werden und es sind noch weitere Personen anwesend. Um solchen Fehlinterpretationen entgegenzuwirken überprüft das \emph{LockDoorModule} immer, ob wirklich keine Personen erkannt werden und die Wohnung leer steht. Diese Information ist für weitere Module, insbesondere das \emph{AlarmModule}, relevant und wird über den Event Bus mitgeteilt.
 
 \subsubsection{Funktionsweise}
-Die genaue Funktionsweise des Moduls wurde im Wesentlichen schon im Abschnitt Szenarien (siehe \prettyref{subsec:szenarioStandby}) beschrieben und modelliert. Das Modell „Abläufe bei Verschließen der Wohnung aus Systemsicht“ (\prettyref{fig:szenarienStandby}) beschreibt das Vorgehen. Die Aktivität „Standby aktivieren“ kann um das Werfen des entsprechenden Events erweitert werden.
+Die genaue Funktionsweise des Moduls wurde im Wesentlichen schon im Abschnitt Szenarien (siehe \prettyref{subsec:szenarioStandby}) beschrieben und modelliert. Das Modell "`Abläufe bei Verschließen der Wohnung aus Systemsicht"' (\prettyref{fig:szenarienStandby}) beschreibt das Vorgehen. Die Aktivität „Standby aktivieren“ kann um das Werfen des entsprechenden Events erweitert werden.
 
-Das Szenario enthält keine detaillierte Beschreibung für die Abschaltung des Standby-Modus, da dies nicht notwendig ist. Für das LockDoor-Modul ist es allerdings erforderlich auf die Ankunft von Personen zu reagieren, z.B. um das Alarm-Modul zu benachrichtigen und die Alarmanlage abzuschalten. %Die Anzahl der durchzuführenden Aktionen ist überschaubar und wird im Modell dargestellt (\prettyref{fig:modulkonzeptionLockDoorSequence}).
-Dazu wird bei Ankunft der entsprechende Schalter betätigt, bzw. das Schloss geschlossen. Anschließend wird das Event "`LockDoorModule\_unlocked"' geworfen. An dieser Stelle ist keine weitere Logik erforderlich.
+Das Szenario enthält keine detaillierte Beschreibung für die Abschaltung des Standby-Modus, da dies nicht notwendig ist. Für das \emph{LockDoorModule} ist es allerdings erforderlich auf die Ankunft von Personen zu reagieren, z.B. um das \emph{AlarmModule} zu benachrichtigen und die Alarmanlage abzuschalten. %Die Anzahl der durchzuführenden Aktionen ist überschaubar und wird im Modell dargestellt (\prettyref{fig:modulkonzeptionLockDoorSequence}).
+Dazu wird bei Ankunft der entsprechende Schalter betätigt, bzw. das Schloss geschlossen. Anschließend wird das Event \emph{LockDoorModule\_unlocked} geworfen. An dieser Stelle ist keine weitere Logik erforderlich.
 
-%TODO Grafik an geeigneter Stelle einbinden und beschreiben.
+Das Sequenzdiagramm (\prettyref{fig:modulkonzeptionLockDoorSequence}) stellt mögliche Abläufe bei dem Verschließen der Tür dar. Im ersten Fall ist die Personenanzahl des abgefragten \emph{PersonCounters} sieben, es sind demzufolge noch Personen anwesend und es werden keine weiteren Aktionen durchgeführt. Im zweiten Ablauf erkennt der \emph{PersonCounter} keine anwesenden Personen. Da dies auch eine Fehleinschätzung sein kann, wird in diesem Fall das \emph{InHomeFeedbackModule} aktiviert und über einen Aufruf der ZAutomation-API der Feedback-Modus gestartet. Dieser ermöglicht es eventuell anwesenden Personen auf die anstehende Aktion zu reagieren.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/LockDoorSequence.pdf}
@@ -293,12 +294,12 @@ Die Instanziierung des Moduls findet entweder zentral über ein Modul statt oder
 	\item Zähler
 	\begin{itemize}
 		\item Typ: Metrik
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 	\item Raum
 	\begin{itemize}
 		\item Typ: Text
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 \end{itemize}
 
@@ -367,25 +368,25 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 	\item Sensor Eins
 	\begin{itemize}
 		\item Typ: Bewegungssensor
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 	
 	\item Raum Eins
 	\begin{itemize}
 		\item Typ: Raum
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 
 	\item Sensor Zwei
 	\begin{itemize}
 		\item Typ: Bewegungssensor
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 	
 	\item Raum Zwei
 	\begin{itemize}
 		\item Typ: Raum
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 \end{itemize}
 
@@ -446,18 +447,18 @@ Dieses Modell veranschaulicht die verschiedenen internen Zustände des StandbyMo
 	\begin{itemize}
 		\item 	Typ: Liste [Switch Binary, Switch Multilevel]
 		\item Aktion: on/off 
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 	\item Geräte, welche bei Dektivierung des Standby geschaltet werden
 	\begin{itemize}
 		\item 	Typ: Liste [Switch Binary, Switch Multilevel]
 		\item Aktion: on/off 
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 	\item Raum
 	\begin{itemize}
 		\item Typ: Text
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 \end{itemize}
 
@@ -554,13 +555,13 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\begin{itemize}
 		\item Typ: Liste [Binary Switch, Multilevel Switch]
 		\item Aktion: an/aus/an/aus/an/... bzw. 0-99-0-99-0-...
-		\item Erforderlich: nein
+		\item erforderlich: nein
 		\item Option:
 		\begin{itemize}
 			\item Frequenz
 			\begin{itemize}
 				\item Typ: Text
-				\item Erforderlich: nein
+				\item erforderlich: nein
 				\item Standard: 5 Sekunden
 			\end{itemize}
 		\item spezieller Wert, bspw. RGB (RGB + Warmweiß + Kaltweiß)
@@ -570,20 +571,20 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\begin{itemize}
 		\item Typ: Liste [*] \textrightarrow{ }bspw. Aeon Labs Sirene \textrightarrow{ }Binary Switch
 		\item Aktion: an/aus
-		\item Erforderlich: nein
+		\item erforderlich: nein
 	\end{itemize}
 	\item Nachricht
 	\begin{itemize}
 		\item Vorbedingung: Auswahl von E-Mail bzw. Push-Nachricht
 		\item Typ: Liste [Text] (E-Mail-Adresse bzw. URL)
 		\item Aktion: HTTP-Request
-		\item Erforderlich: nein
+		\item erforderlich: nein
 	\end{itemize}
 	\item Aufruf spezieller Module
 	\begin{itemize}
 		\item Typ: Liste [Binary Switch, Multilevel Switch] \textrightarrow{ }Device Type der speziellen Module! (deviceType \textrightarrow{ }namespace\_deviceType)
 		\item Aktion: an/aus bzw. 0/99
-		\item Erforderlich: nein
+		\item erforderlich: nein
 		\item Option:
 		\begin{itemize}
 			\item spezieller Wert, bspw. RGB (R + G + B + Warmweiß + Kaltweiß)
@@ -592,34 +593,34 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 	\item HTTP
 	\begin{itemize}
 		\item Typ: Text
-		\item Erforderlich: nein
+		\item erforderlich: nein
 	\end{itemize}
 	\item JavaScript
 	\begin{itemize}
 		\item Typ: Text
-		\item Erforderlich: nein
+		\item erforderlich: nein
 	\end{itemize}
 	\item Raum
 	\begin{itemize}
 		\item Typ: Text
-		\item Erforderlich: ja
+		\item erforderlich: ja
 	\end{itemize}
 	\item Dauer (bis automisch deaktiviert)
 	\begin{itemize}
 		\item Typ: Text
-		\item Erforderlich: nein
+		\item erforderlich: nein
 		\item Standard: 30 Sekunden
 	\end{itemize}
 	\item Verzögerungszeit
 	\begin{itemize}
 		\item Typ: Text
-		\item Erforderlich: nein
+		\item erforderlich: nein
 		\item Standard: 600 Sekunden
 	\end{itemize}
 	\item Schalter (zum Abbrechen der eingehenden Aktion)
 	\begin{itemize}
 		\item Typ: Binary Switch
-		\item Erforderlich nein
+		\item erforderlich nein
 	\end{itemize}
 
 \end{itemize}
