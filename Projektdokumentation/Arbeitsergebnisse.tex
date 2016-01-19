@@ -1629,13 +1629,19 @@ Ab einen bestimmten Anteil von ultravioletten Licht ist dieses sehr schädlich f
 \subsection{Philio 4-in-1 Multisensor}
 \emph{(von Tobias Weise)}
 \subsubsection{Allgemein}
-Im Bereich Smart Home hat man eine riesige Auswahl von verschiedenen Sensoren. Je nach Bedarf biete der Philio 4-in-1 Multisensor verschiedene Funktionalitäten, welche Bewegungen, Tür- und Fenster öffnen bzw. schließen, Licht- oder Temperaturänderungen registrieren können. Der Philio 4-in-1 Multisensor ist somit in der Lage 4 verschiedene Messwerte zu erfassen. Diese Werte überträgt der Multisensor mit einer drahtlosen Kommunikationsschnittstelle names Z-Wave an den Z-Way Server.
+Im Bereich Smart Home existiert eine große Auswahl an unterschiedlichen Sensoren. Je nach Bedarf bietet der Philio 4-in-1 Multisensor verschiedene Funktionalitäten, welche Bewegungen, Tür- und Fenster öffnen bzw. schließen, Licht- oder Temperaturänderungen registrieren können. Der Philio 4-in-1 Multisensor ist somit in der Lage 4 verschiedene Messwerte zu erfassen. Diese Werte überträgt der Multisensor über eine drahtlose Kommunikationsschnittstelle namens Z-Wave an den Z-Way-Server.
 
-Im Rahmen des Projektes kommt dieser Sensor zum Einsatz, um das Öffnen und Schließen der Wohnungstüre, sowie Bewegungen innerhalb des Raumes zu registrieren. Dabei findet er hauptsächlich in den Modulen „LockDoorModule“, „PersonCounterModule“ und „StandbyModule“ Verwendung. Durch die vielseitigen Einstellungsmöglichkeiten der Parameter des Sensors, wird nachfolgend eine Evaluierung der Möglichkeiten, die man bei der Parametereinstellung hat, durchgeführt.
+Im Rahmen des Projektes kommt dieser Sensor zum Einsatz, um das Öffnen und Schließen der Wohnungstür, sowie Bewegungen innerhalb des Raumes zu registrieren. Dabei findet er hauptsächlich in den Modulen \textit{LockDoorModule}, \textit{PersonCounterModule} und \textit{StandbyModule} Verwendung. Durch die vielseitigen Einstellungsmöglichkeiten der Parameter des Sensors, wird nachfolgend eine Evaluierung der Optionen durchgeführt.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\textwidth]{img/Sensorevaluation/Philio.jpeg}
+	\caption{Philio 4-in-1 Multisensor}
+	\label{fig:sensorenPhilioMultisensor}
+\end{figure}
 
 \subsubsection{Konfigurationsmöglichkeiten}
-Nachdem man den Sensor erfolgreich in das Z-Way Home Center eingefügt hat, besteht die Möglichkeit, den Multisensor über die Expert-UI zu konfigurieren.
-
+Nachdem der Sensor erfolgreich in das Z-Wave-Netzwerk hinzugefügt wurde, besteht die Möglichkeit, den Multisensor über die Expert-UI zu konfigurieren.
 
 \begin{figure}[h!]
 	\centering
@@ -1644,7 +1650,7 @@ Nachdem man den Sensor erfolgreich in das Z-Way Home Center eingefügt hat, best
 	\label{fig:sensorenPhilioConf1}
 \end{figure}
 
-Der Z-Way Server erstellt automatisiert eine Übersichtsseite, nachdem der Sensor erfolgreich hinzugefügt wurde. In diesem Reiter besteht die Möglichkeit, das Gerät umzubenennen, den Netzwerkstatus abzurufen und die aktuelle Sensor-Version abzufragen. Im Reiter „Configuration“ findet man alle Einstellungsmöglichkeiten die der Sensor bietet. In der nachfolgenden Tabelle (\prettyref{tab:PhilioConf}) sind die wichtigsten Konfigurationsoptionen aufgelistet.
+Der Z-Way-Server erstellt automatisiert eine Übersichtsseite, nachdem der Sensor erfolgreich hinzugefügt wurde. In diesem Reiter besteht die Möglichkeit, das Gerät umzubenennen, den Netzwerkstatus abzurufen und die aktuelle Sensor-Version abzufragen. Im Reiter "`Configuration"' finden sich alle Einstellungsmöglichkeiten die der Sensor bietet. Nachfolgend sind die wichtigsten Konfigurationsoptionen in einer Tabelle (\prettyref{tab:PhilioConf}) aufgelistet.
 
 
 \begin{longtabu} to \linewidth {
@@ -1673,26 +1679,25 @@ Der Z-Way Server erstellt automatisiert eine Übersichtsseite, nachdem der Senso
 	\hline
 	2	
 			& Grundeinstellung 
-					& Setzt den Standardwert, um das Licht einzuschalten
+					& Setzt den Standardwert, um das Licht einzuschalten.
 							& -1 \textrightarrow{ }einschalten \newline 1 – 99 \textrightarrow{ }Dimmerintensität \\
 	\hline
 	3	
-			& Sensitivität Bewegungsmelder 
-					& Festlegen der Bewegungserkennungsintensität
+			& Sensitivität des Bewegungsmelders
+					& Festlegen der Bewegungserkennungsintensität.
 							& 0 \textrightarrow{ }keine Bewegungserkennung \newline
 							1 – 99 \textrightarrow{ }1 ist niedrigste Sensitivität, 99 die höchste \\
 	\hline
 	4	
 			& Lichtschwellwert 
-					& Festlegen des Beleuchtungsschwellwertes, um das Licht einzuschalten. Wenn das Event auslöst und die Umgebung dunkler ist, als der Schwellwert, geht das Licht an 
+					& Festlegen des Beleuchtungsschwellwertes, um das Licht einzuschalten. Wenn das Event auslöst und die Umgebung dunkler ist, als der Schwellwert, geht das Licht an. 
 							& 1 – 99 \textrightarrow{ }1 ist dunkel, 99 ist hellster Wert \newline
 							100 \textrightarrow{ }Lichterkennung deaktiviert \newline
 							0 \textrightarrow{ }Lichterkennung deaktiviert und das Licht wird nie angeschaltet \\
 	\hline
 	5	
 			& Betriebsmodus 
-					& Bit 0 und Bit 1 werden freigeschaltet, sobald der PID-Schalter auf Programmmodus umgeschaltet wurde
-					%todo wirklich PID?
+					& Bit 0 und Bit 1 werden freigeschaltet, sobald der DID-Schalter auf Programmmodus umgeschaltet wurde.
 							& (Bit) 0 \textrightarrow{ }Sicherheitsmodus \newline
 							(Bit) 1 \textrightarrow{ }Testmodus \newline
 							(Bit) 2 \textrightarrow{ }Fenster-/Türsensor deaktiviert \newline
@@ -1703,28 +1708,28 @@ Der Z-Way Server erstellt automatisiert eine Übersichtsseite, nachdem der Senso
 	\hline
 	6	
 			& Multisensor Funktionsschalter
-					& Setzt den Standardwert, um das Licht einzuschalten \newline
+					& Setzt den Standardwert, um das Licht einzuschalten. \newline
 							& (Bit) 0 \textrightarrow{ }deaktiviere integrierte Beleuchtung \newline
 							(Bit) 1 \textrightarrow{ }deaktiviere integrierte Bewegungsmelder-Beleuchtung \newline
 							(Bit) 2 \textrightarrow{ }deaktiviere Bewegungsmelder \newline
 							(Bit) 3 \textrightarrow{ }wenn Bit 2 0 ist (aktiviert), ist das Gerät dann im selben Raum installiert? 0 = gleicher Raum (Standard), 1 = anderer Raum \newline
 							(Bit) 4 \textrightarrow{ }deaktiviere die Verzögerung von 5 Sekunden beim Licht ausschalten, wenn Tür/Fenster geschlossen wurden \newline
 							(Bit) 5 \textrightarrow{ }deaktiviere automatisches Licht ausschalten, nachdem Fenster/Tür geöffnet wurden und das Licht anging (keine Verwendung, wenn Bit 2 = 0) \newline
-							(Bit) 6 \textrightarrow{ }Aktivere Temperaturaufzeichnung. Temperaturreport alle 64 Sekunden, wenn Veränderung von 3 Grad Fahrenheit und Überschreitung von 140 Grad Fahrenheit \\
+							(Bit) 6 \textrightarrow{ }Aktiviere die Temperaturaufzeichnung. Temperaturreport alle 64 Sekunden, wenn Veränderung von 3 Grad Fahrenheit und Überschreitung von 140 Grad Fahrenheit \\
 	\hline
 	8	
 			& Bewegungsmelder, erneute Entdeckungszeit
-					& Setzen der nächsten Entdeckungszeit, wenn ein Objekt entdeckt wurde und sich das Gerät im Sicherheitsmodus befindet
-							& 3 – 127 \textrightarrow{ }Eingegebener Wert mal 8 Sekunden entspricht dem Zeitwert. \newline
+					& Setzen der nächsten Entdeckungszeit, wenn ein Objekt entdeckt wurde und sich das Gerät im Sicherheitsmodus befindet.
+							& 3 – 127 \textrightarrow{ }eingegebener Wert mal 8 Sekunden entspricht dem Zeitwert. \newline
 							Minimale Zeit beträgt 24 Sekunden. \\
 	\hline
 	9	
 			& Abschaltlichtzeit
-					& Setzen der Verzögerungszeit um das Licht wieder auszuschalten, wenn der Bewegungsmelder nicht ausgelöst hat und nachdem das Licht angeschaltet wurde
+					& Setzen der Verzögerungszeit, um das Licht wieder auszuschalten, wenn der Bewegungsmelder nicht ausgelöst hat und nachdem das Licht angeschaltet wurde.
 							& 4 – 127 \textrightarrow{ }Eingegebener Wert mal 8 Sekunden entspricht dem Zeitwert. \newline Minimale Zeit beträgt 32 Sekunden. \\
 	\hline
 	10	
-			& Auto- Reportzeit der Batterielebensdauer
+			& Auto-Reportzeit der Batterielebensdauer
 					& Intervallzeit für automatische Meldung über die Batterierestkapazität
 							& 1 – 127 \textrightarrow{ }Eingegebener Wert mal 30 Minuten entspricht dem Zeitwert. \newline Minimale Zeit beträgt 30 Minuten. \\
 	\hline
@@ -1748,11 +1753,11 @@ Der Z-Way Server erstellt automatisiert eine Übersichtsseite, nachdem der Senso
 \end{longtabu}
 
 \subsubsection{Praxistest}
-Um das Gerät in das Netzwerk einbinden zu können, ist es für die erste Konfiguration nur notwendig, den Stromkreislauf mit der Batterie zu verbinden und schon verbindet sich das Gerät innerhalb von 5 Sekunden automatisch mit dem Z-Wave-Netzwerk, wenn sich der Controller im "`Inclusion Mode"' befindet. Wenn man zu einem späteren Zeitpunkt eine Integration in das Netzwerk wünscht, genügt es, den Manipulationsschutzschalters auf der Rückseite drei Mal zu drücken. Ein einmaliges Drücken des erwähnten Schalters, hat eine Wake-up-Funktion zur Folge.
+Um das Gerät in das Netzwerk einbinden zu können, ist es für die erste Konfiguration nur notwendig, den Stromkreislauf mit der Batterie zu verbinden und schon verbindet sich das Gerät innerhalb von 5 Sekunden automatisch mit dem Z-Wave-Netzwerk, wenn sich der Controller im "`Inclusion Mode"' befindet. Zu einem späteren Zeitpunkt ist eine Integration in das Netzwerk möglich, indem der Manipulationsschutzschalter auf der Rückseite drei Mal gedrückt wird. Ein einmaliges Drücken des erwähnten Schalters, hat ein "´Wake-up"' zur Folge.
 
 In manchen Fällen besteht nach Recherche allerdings die Möglichkeit, dass nach dem Inkludieren keine Funktion angezeigt wird. Um dem Abhilfe zu schaffen, wurde die nachfolgende Anleitung erstellt.
 
-Z-Wave verfügt über die Möglichkeit, Geräte als "`secure"' in das Z-Wave-Netzwerk zu inkludieren. Dabei erfolgt die Kommunikation zwischen dem Sensor und dem Gateway verschlüsselt. Allerdings ist es in diesem Falle möglich, dass der Philio-Multisensor keine Zustandsänderungen an das Gateway sendet. In diesem Falle muss man die Experten-Oberfläche des Z-Way-Servers öffnen (\prettyref{fig:sensorenPhilioConf2}).
+Z-Wave verfügt über die Möglichkeit, Geräte als "`secure"' in das Z-Wave-Netzwerk zu inkludieren. Dabei erfolgt die Kommunikation zwischen dem Sensor und dem Gateway verschlüsselt. Allerdings ist es in diesem Falle möglich, dass der Philio-Multisensor keine Zustandsänderungen an das Gateway sendet. In diesem Fall muss die Experten-Oberfläche des Z-Way-Servers geöffnet werden. (\prettyref{fig:sensorenPhilioConf2}).
 
 \begin{figure}[h!]
 	\centering
@@ -1761,7 +1766,7 @@ Z-Wave verfügt über die Möglichkeit, Geräte als "`secure"' in das Z-Wave-Net
 	\label{fig:sensorenPhilioConf2}
 \end{figure}
 
-Auf der Experten-Oberfläche wählt man anschließend den Menüpunkt \textbf{Network} und darunter den Menüpunkt \textbf{Control} (\prettyref{fig:sensorenPhilioConf3}).
+Anschließend sind die Netzwerkeinstellungen zu öffnen, auf der Experten-Oberfläche  unter "`Network"' und "`Control"' (\prettyref{fig:sensorenPhilioConf3}).
 
 \begin{figure}[h!]
 	\centering
@@ -1770,7 +1775,7 @@ Auf der Experten-Oberfläche wählt man anschließend den Menüpunkt \textbf{Net
 	\label{fig:sensorenPhilioConf3}
 \end{figure}
 
-An dieser Stelle hat man die Möglichkeit, den Inkludiermodus von „secure“ zu „unsecure“ zu ändern (1.). Anschließend muss man den „Start Inclusion“-Button drücken (2.), um das Inkludieren zu beginnen (\prettyref{fig:sensorenPhilioConf4}). 
+An dieser Stelle besteht die Möglichkeit, die Art der Inklusion von "`secure"' auf "`unsecure"' zu ändern (1.). Anschließend muss der "`Start Inclusion"'-Button gedrückt werden (2.), um das Inkludieren zu beginnen (\prettyref{fig:sensorenPhilioConf4}). 
 
 \begin{figure}[h!]
 	\centering
@@ -1779,8 +1784,14 @@ An dieser Stelle hat man die Möglichkeit, den Inkludiermodus von „secure“ z
 	\label{fig:sensorenPhilioConf4}
 \end{figure}
 
-Wenn man nun die kleine Schalter-Lasche des Sensors 3x hintereinander (innerhalb von 1,5 Sekunden) betätigt, sollte der Multisensor erfolgreich in das Z-Way-Netzwerk integriert worden sein. Auf der Smart Home Benutzeroberfläche werden die Elemente automatisch generiert, welche die Funktionen des Philio-Multisensors darstellen.
+Wenn nun die kleine Schalter-Lasche des Sensors dreimal hintereinander (innerhalb von 1,5 Sekunden) betätigt wird, sollte der Multisensor erfolgreich in das Z-Way-Netzwerk integriert worden sein. Auf der Smart Home Benutzeroberfläche werden die Elemente automatisch generiert, welche die Funktionen des Philio-Multisensors darstellen (\prettyref{fig:sensorenPhilioElements}).
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/PhilioElements.png}
+	\caption{Elemente des Philio Multisensors}
+	\label{fig:sensorenPhilioElements}
+\end{figure}
 
 \subsection{Sensoair Z-Wave CO$_2$ Sensor (Tischgerät)}
 
