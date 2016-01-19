@@ -1987,9 +1987,42 @@ Nachfolgend werden die erforderlichen Funktionalitäten beschrieben und anschlie
 	\item [Gefahrenquellen ausschalten] Um den Schutz bestmöglich zu gewährleisten muss der Bewohner, die im Haus befindlichen Gefahrenquellen auswählen können, welche bei Erkennen, dass sich nur ein Kind im Raum befindet, abgeschaltet werden.
 \end{description}
 
-\subsection{Umsetzung und Programmierung, entwickelte Module}
-\subsection{Beschreibung des Versuchsaufbau und verwendeter Sensoren}
 
+\subsection{Umsetzung und Programmierung, entwickelte Module}
+Aus den oben beschriebenen Funktionalitäten wurden die im folgenden beschriebenen Module entwickelt. Diese arbeiten eng zusammen und bieten teils spezielle Funktionen, welche für sich genommen wenig nützlich erscheinen.
+\begin{description}
+
+\item [PersonCounterModule] Das \emph{PersonCounterModule} bietet eine Schnittstelle um die Anzahl der Personen innerhalb eines Raumes zum derzeitigen Zeitpunkt zu speichern und bereitzustellen. Diese Information kann von Modulen verändert werden, die festellen können ob Personen den Raum betreten oder verlassen haben. Jedes Modul, welches Informationen zur derzeitigen Personenanzahl benötigt, kann auf die Informationen des \emph{PersonCounter} im jeweiligen Raum zurückgreifen.
+
+\item [RoomAccessModule] Um ein Betreten und Verlassen eines Raumes an einem Türdurchgang zu überprüfen wird das \emph{RoomAccessModule} benutzt. Dazu werden Bewegungssensoren auf jeder Seite der Tür benötigt. Der \emph{PersonCounter} der angrenzenden Räume werden jeweils den Sensoren zugeordnet. Dadurch kann eine Bewegungsrichtung und damit ein Betreten und Verlassen eines Raumes festgestellt werden.
+
+\item [PersonIdentifikatorModule] Zusätzlich kann an einem Türdurchgang ein weiterer Bewegungssensor angebracht werden um zu definieren ob die Person die einen Raum betritt bzw. verlässt, ein Erwachsener oder ein Kind ist. Dies wird während des Betreten und Verlassen des Raums überprüft und hält damit zusätzliche Informationen zu den anwesenden Personen. Des Weiteren findet eine weitere Überprüfung über den weiteren Verlauf des CO$_2$ Gehalts in der Luft statt, um die Höhenmessung an der Tür zu bestätigen.
+
+\item [InHomeFeedbackModule] Das \emph{InHomeFeedbackModule} kann benutzt werden um den Nutzern im Raum eine Rückmeldung zu anstehenden Aktionen im Raum zu geben. Dieser kann dann notfalls darauf reagieren und die anstehenden Aktionen abbrechen. Dieser wird über einen ZAutomation-Aufruf auf dem entsprechenden \emph{InHomeFeedbackModule} gestartet. Genau wie \emph{PersonCounter} existieren \emph{InHomeFeedbackModule} je Raum.
+
+\item [TurnOffTimerModule] Wird erkannt das kein Erwachsener mehr im Raum ist startet ein \emph{Timer} der ein Signal an das \emph{InHomeFeedbackModule} weitergibt. Während Ablauf des Timers ist das \emph{InHomeFeedbackModule} aktiv. Wird eine Aktion vom Nutzer während des Zeitraums vorgenommen, wird dies berücksichtigt.
+
+\item [TurnOffHazardModule] Nach Ablauf des \emph{Timers} wird ein Aufruf an das \emph{TurnOffHazardModule} gesendet. Dieser schaltet nun alle definierten Gefahrenquellen ab. Sollte erneut ein Erwachsener erkannt werden können, sofern gewünscht, die Gefahrenquellen erneut aktiviert werden.
+\end{description}
+
+
+\subsection{Beschreibung des Versuchsaufbau und verwendeter Sensoren}
+In einem Versuchsaufbau wurde das oben beschriebene Szenario mit den genannten Modulen realisiert. Die Module wurden wie beschrieben konfiguriert und erstellt. Da schon bei der Entwicklung der Module ausführlich getestet wurde, traten an dieser Stelle keine Probleme auf.
+Für den Versuchsaufbau wurden folgende Geräte verwendet:
+
+\begin{description}
+\item [Philio und Fibaro Bewegungssensor] Für die Personenerkennung und Zählung an der Tür wurden Bewegungssensoren verwendet. Am besten für einen Türdurchgang sind die Fibaro Bewegungssensoren zu verwenden, da diese auf eine minimale Reaktionszeit von einer Sekunde konfigurierbar sind, d.h. jede Sekunde kann eine Bewegung erkannt werden. Andere vorhandene Bewegungssensoren sind träger und lassen nur eine weitaus höhere Reaktionszeit von 10 bis 18 Sekunden zu, was vorallem bei einem Szenario mit mehreren Personen von Nachteil ist.
+
+\item [Sensoair CO$_2$ Sensor und Aeotec Bewegungssensor] Zur Personenidentifikation wird zum einen der Aeotec Bewegungssensor verwendet um einen Erwachsenen zu erkennen, sollte dieser aktiviert werden. Zum anderen wird der CO$_2$ Sensor benutzt um die Erkennung des Bewegungssensors zu überprüfen.
+
+\item [Popp Wall Controller] Der Schalter wird verwendet, um das \emph{InHomeFeedbackModule} zu steuern. Doppeltes Klicken des Button 2 bewirkt, dass ein laufendes Feedback abgebrochen wird und somit die Anwesenheit von Personen signalisiert wird.
+
+\item [Fibaro Wall Plug] Der schaltbare Zwischenstecker mit einer angeschlossenen Schreibtischlampe wird vom \emph{InHomeFeedbackModule} genutzt. Bei Aktivierung Feedback-Modus schaltet die Steckdose sekündlich an und aus.
+
+\item [Gefahrenquelle] Hier simuliert dargestellt als ein Dummy Modul, was ein Bügeleisen darstellen soll. Dieses Gerät wird letztendlich vom \emph{TurnOffHazardModule} nach Ablauf des Timers deaktiviert.
+\end{description}
+
+Folgender theoretischer Ablauf findet in diesem Szenario statt:
 \begin{longtabu} to \textwidth{
 		>{\hsize=0.8\hsize}X
 		>{\hsize=1.2\hsize}X
@@ -2017,51 +2050,10 @@ Nachfolgend werden die erforderlichen Funktionalitäten beschrieben und anschlie
 	\caption{TurnOffTimerModule: Schnittstelle Event Bus}
 \end{longtabu}
 
+
 \subsection{Zusammenfassung}
 Das Szenario ist größtenteils nach dem oben ablaufenden Schema durchführbar. Die Module und Sensoren für einen solchen Ablauf sind vorhanden. Einzelne Modul- und Sensortests waren erfolgreich. In der Praxis jedoch sind während des Integrationstests sowohl Module als auch Sensoren im Z-Way-Server ausgefallen und waren erst nach einem Neustart des Servers verfügbar. Die anfänglichen Schwierigkeiten konnten relativ zügig behoben werden und verschieden Testfälle führten zu einem positiven Ergebnis. Die Kombination aus CO$_2$- und Größenmessungen lieferten dabei eine akzeptable Abschätzung über die im Raum befindlichen Personen.
 
-
-
-
-Einleitung (kurz): Grundgedanke des Szenarios, Motivation (der Leser sollte danach mit dem Szenario vertraut sein und nachfolgende Punkte verstehen können)\\
-
-Konzept als Ganzes: Beschreibung als zusammenhängender Text der einzelnen Modulkonzepte. Wie soll das Szenario konkret umgesetzt werden?\\
-
-Funktionen die realisiert sein müssen\\
-
-Umsetzung / Programmierung: Welche Module wurden entwickelt?\\
-
-Personidentifikator-Modul
-
-RoomAccess- und PersonCounter-Modul
-
-InHomeFeedback-Modul
-
-
-
-TurnOffHazard-Modul
-
-
-
-TurnOffTimer-Modul
-
-
-
-Versuchsaufbau: Umsetzung des Szenarios mit Modulen und Geräten, u.a. einen konkreten Ablauf dokumentieren. Welche Sensoren/Aktoren wurden verwendet?\\
-
-Ausgehend von unserem zu Anfang angelegten Szenario werden die Geräte und Module so konfiguriert, dass das Szenario nachvollzogen werden kann.\\
-Dazu werden folgende Geräte benutzt:\\
-- Aeon Labs Bewegungssensor zur Personenidentifikation – Höhe der Person\\
-- Philio und Fibaro Bewegungssensor zur Erkennung einer Person im Türdurchgang\\
-- CO$_2$ Sensor zur Personenidentifikation\\
-- Fibaro Steckdose + Lampe für die Feedbackfunktionalität\\
-
-weitere Aktoren:\\
-Simulierte Gefahrenquelle - Bügeleisen als Dummy Modul im System
-
-Konkreter Ablauf:\\
-
-Vorbedingung: eingestelltes Zway-system mit den oben genannten Modulen, Sensoren und Aktoren
 
 \section{Alarmanlage}
 \subsection{Einleitung und Szenariobeschreibung}
