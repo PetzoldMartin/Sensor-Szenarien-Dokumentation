@@ -198,12 +198,12 @@ Das Sequenzdiagramm (\prettyref{fig:modulkonzeptionLockDoorSequence}) stellt mö
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/LockDoorSequence.pdf}
-	\caption{LockDoor-Modul - Sequenzdiagramm}
+	\caption{\emph{LockDoorModule:} Sequenzdiagramm}
 	\label{fig:modulkonzeptionLockDoorSequence}
 \end{figure}
 
 \subsubsection{Konfiguration}
-Bei der Konfiguration des LockDoor-Moduls muss das Wohnungstürschloss angegeben werden, alternativ kann dafür ein Schalter benutzt werden, der im Inneren der Wohnung vor dem Verlassen betätigt wird. 
+Bei der Konfiguration des \emph{LockDoorModule} muss das Wohnungstürschloss angegeben werden, alternativ kann dafür ein Schalter benutzt werden, der im Inneren der Wohnung vor dem Verlassen betätigt wird. 
 \begin{itemize}
 	\item Schloss/Schalter
 	\begin{itemize}
@@ -215,20 +215,11 @@ Bei der Konfiguration des LockDoor-Moduls muss das Wohnungstürschloss angegeben
 \subsubsection{Schnittstellen}
 Die Schnittstellen, welche dieses Modul nutzt und bereitstellt, sind von großer Bedeutung. Das Modul an sich implementiert eine nur geringe Funktionalität, jedoch ist es eine Brücke zwischen den Modulen zur Raumüberwachung auf der einen Seite, und den Modulen für Aktionen beim Verlassen der Wohnung auf der anderen Seite.
 
-Das LockDoor-Modul bietet über den Event Bus eine Schnittstelle zu anderen Modulen. Diese werden benachrichtigt, sobald davon ausgegangen wird, dass keine Person mehr anwesend ist (LockDoorModule\_locked). Die Freischaltung geschieht über ein weiteres Event (LockDoorModule\_unlocked).
+Das \emph{LockDoorModule} bietet über den Event Bus eine Schnittstelle zu anderen Modulen. Diese werden benachrichtigt, sobald davon ausgegangen wird, dass keine Person mehr anwesend ist (\emph{LockDoorModule\_locked}). Die Freischaltung geschieht über ein weiteres Event (\emph{LockDoorModule\_unlocked}).
 
-Das Modul wird als Singleton angelegt, da für jede Wohnung nur ein Modul zur Überwachung der Wohnungstür erforderlich ist. Das hat zur Folge, dass Events keine Virtual Device Id tragen. Damit ist es für Empfänger einfacher, auf entsprechende Events zu reagieren.
+Das Modul wird als \emph{Singleton} angelegt, da für jede Wohnung nur ein Modul zur Überwachung der Wohnungstür erforderlich ist. Das hat zur Folge, dass Events keine \emph{VirtualDeviceId} tragen. Damit ist es für Empfänger einfacher, auf entsprechende Events zu reagieren.
 
-Für die Überprüfung der Personenanzahl wird die Schnittstelle des Moduls PersonCounter genutzt. Dazu wird für jeden Raum die Anzahl der Personen überprüft.
-
-
-%\begin{tabularx}{\textwidth}{ X X X }
-%	\hline \multicolumn{3}{c}{\textbf{Event Bus - Senden}}  \\ 
-%	\hline Event Name 					& Parameter 	& Beschreibung \\ 
-%	\hline door\_lock\_module\_locked	& - 			& Tür verschlossen, keine Person anwesend \\ 
-%	\hline door\_lock\_module\_unlocked & - 			& Tür geöffnet \\ 
-%	\hline 
-%\end{tabularx}
+Für die Überprüfung der Personenanzahl wird die Schnittstelle \emph{PersonCounterModule} genutzt. Dazu wird für jeden Raum die Anzahl der Personen überprüft.
 
 \begin{table}[h!]
 \begin{tabularx}{\textwidth}{
@@ -247,27 +238,14 @@ Für die Überprüfung der Personenanzahl wird die Schnittstelle des Moduls Pers
 \end{table}
 
 
-%\begin{longtable}{R{5cm} L{7cm}}
-%	\toprule
-%	\textit{Option} & \textit{Konfiguration} \\
-%	\midrule
-%	Feedbackart & Frage \\ [0.25cm]
-%	Feedback von & Nutzer mit E-Mail-Adresse für Rückmeldungen \\[0.25cm]
-%	Ausführender & Mitarbeiter der Abteilung \glqq Qualitätssicherung\grqq \\[0.25cm]
-%	Kategorie & Einordnung in die Kategorie \glqq Mobiles Menü-Bestellsystem\grqq \\[0.25cm]
-%	Erklärung & Frage mit Zusatzinformationen zur Menükomponente auf die sich die Frage bezieht \\[0.25cm]
-%	\bottomrule	
-%	\caption{Beispielkonfiguration des CRM Systems}
-%\end{longtable}
-
 \subsubsection{Abhängigkeiten}
 \begin{itemize}
-	\item PersonCounterModule
-	\item TurnOffTimerModule
+	\item \emph{PersonCounterModule}
+	\item \emph{TurnOffTimerModule}
 \end{itemize}
-Das PersonCounter-Modul wird zur Überprüfung der Personenanzahl je Raum genutzt. Dazu werden Aufrufe über die ZAutomation-API an das Modul gesendet.
+Das \emph{PersonCounterModule} wird zur Überprüfung der Personenanzahl je Raum genutzt. Dazu werden Aufrufe über die ZAutomation-API an das Modul gesendet.
 
-Das TurnOffTimer-Modul stellt eine Schnittstelle zum Feedback-Modul her. Durch die zusätzliche Abstraktionsschicht des TurnOffTimer-Moduls arbeitet das LockDoor-Modul nicht direkt gegen das Feedback-Modul, sondern startet lediglich den Timer. Dieser übernimmt die Kommunikation mit dem Feedback-Modul.
+Das \emph{TurnOffTimerModule} stellt eine Schnittstelle zum Feedback-Modul her. Durch die zusätzliche Abstraktionsschicht des \emph{TurnOffTimerModule} arbeitet das \emph{LockDoorModule} nicht direkt gegen das \emph{FeedbackModule}, sondern startet lediglich den \emph{TurnOffTimer}. Dieser übernimmt die Kommunikation mit dem \emph{FeedbackModule}.
 
 \subsubsection{Interne Speicher}
 \begin{itemize}
