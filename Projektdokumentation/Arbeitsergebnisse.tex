@@ -1973,17 +1973,17 @@ In der Beispielkonfiguration wurde die "`Command to Control Group A"' auf "`Swit
 \label{sec:gefahrenquellenabschaltung}
 
 \subsection{Einleitung und Szenariobeschreibung}
-Das Szenario "`Gefahrenquellen abstellen"' versucht Ansätze zur Verringerung von Gefahrenquellen im Haushalt, besonders in Bezug auf den Schutz von Kinder, umzusetzen. Dabei werden möglichst viele Informationen durch Sensoren gesammelt, bspw. durch Bewegungssensoren erfasste Daten, mit denen Rückschlüsse über die Präsenz von Personen getroffen werden. Der nächste Schritt ist die Identifizierung von Erwachsenen bzw. Kindern, um Gefahrenquellen abhängig davon abschalten zu können. Um eine mögliche Fehlanalyse der Situation durch das System abzuschwächen soll ein Feedback-Mechanismus die Bewohner über eine auszuführende Aktion informieren und ihnen die Möglichkeit bieten diese abzubrechen. Die Konfiguration der Gefahrenquellen liegt in der Hand des Nutzers.
+Das Szenario "`Gefahrenquellen abstellen"' versucht Ansätze zur Verringerung von Gefahrensituationen im Haushalt, besonders in Bezug auf den Schutz von Kinder, umzusetzen. Dabei werden möglichst viele Informationen durch Sensoren gesammelt, bspw. durch Bewegungssensoren erfasste Daten, mit denen Rückschlüsse über die Präsenz von Personen getroffen werden. Der nächste Schritt ist die Identifizierung von Erwachsenen bzw. Kindern, um Gefahrenquellen abhängig davon abschalten zu können. Um eine mögliche Fehlanalyse der Situation durch das System abzuschwächen soll ein Feedback-Mechanismus die Bewohner über eine auszuführende Aktion informieren und ihnen die Möglichkeit bieten diese abzubrechen. Die Konfiguration der Gefahrenquellen liegt in der Hand des Nutzers.
 
 \subsection{Konzept für die Umsetzung des Szenarios}
 Das komplexe Szenario der Gefahrenquellenabschaltung lässt sich nur sinnvoll realisieren, wenn die Funktionalität auf einzelne Module aufgeteilt und entwickelt wird. Zusätzlich wird dadurch eine hohe Wiederverwendbarkeit erreicht.
 
-Nachfolgend werden die erforderlichen Funktionalitäten beschrieben und anschließend die entwickelten Module erläutert.
+Nachfolgend werden die erforderlichen Funktionalitäten beschrieben und anschließend, im nächsten Punkt, die entwickelten Module erläutert.
 
 \begin{description}
 	\item [Anzahl der Personen in einem Raum] Grundvoraussetzung für das Szenario ist die Information, wie viel Personen sich in einem Raum befinden. Zunächst sollten Gefahrenquellen nur eingeschaltet werden können, falls sich eine Person im Raum befindet und andererseits sollten beim Verlassen des Raums alle Gefahrenquellen ausgeschaltet werden.
 	\item [Personenidentifikation] Der Ausbau der erstgenannten Funktionalität besteht in der Identifikation von Kindern und Erwachsenen. Gefahrenquellen dürfen nicht eingeschaltet werden, wenn nur ein Kind im Raum anwesend ist und sollten möglichst zeitnah abgeschaltet werden, sobald ein Erwachsener den Raum verlässt und nur noch ein Kind präsent ist.
-	\item [Benachrichtigen Anwesender] Es ist nicht sichergestellt, dass alle anwesenden Personen immer zuverlässig erkannt werden. Um die Auswirkungen solcher Fehleinschätzungen des Systems zu reduzieren, sollen eventuell anwesende Personen benachrichtigt werden. Dies kann z.B. durch optische Signale geschehen. Dafür ist eine gewisse Zeitspanne festgelegt, in dieser haben anwesende Personen die Möglichkeit, die anstehende Aktion zu unterbrechen.
+	\item [Benachrichtigung anwesender Personen] Es ist nicht sichergestellt, dass alle anwesenden Personen immer zuverlässig erkannt werden. Um die Auswirkungen solcher Fehleinschätzungen des Systems zu reduzieren, sollen eventuell anwesende Personen benachrichtigt werden. Dies kann z.B. durch optische Signale geschehen. Dafür ist eine gewisse Zeitspanne festgelegt, in der die anwesenden Personen die Möglichkeit haben, die anstehende Aktion zu unterbrechen.
 	\item [Gefahrenquellen ausschalten] Um den Schutz bestmöglich zu gewährleisten muss der Bewohner, die im Haus befindlichen Gefahrenquellen auswählen können, welche bei Erkennen, dass sich nur ein Kind im Raum befindet, abgeschaltet werden.
 \end{description}
 
