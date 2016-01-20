@@ -400,7 +400,7 @@ Es wird der zugehörige Personenzähler der jeweiligen Räume angesprochen und d
 \subsubsection{Interner Speicher}
 \begin{itemize}
 	\item zwei Bewegungssensoren
-	\item Raum Zuordnung der beiden Sensoren
+	\item Raumzuordnung der beiden Sensoren
 	\item \emph{PersonCounterModule} der Raumzuordnungen
 \end{itemize}
 
@@ -861,7 +861,7 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		& - 
 		& \\
 		\hline
-	\caption{PersonIdentification: Schnittstelle ZAutomation}
+	\caption{\emph{PersonIdentificationModule}: Schnittstelle ZAutomation}
 \end{longtabu}
 
 \begin{longtabu} to \textwidth{
@@ -886,7 +886,7 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		[deviceId]:PersonIdentificationModule\_[roomId]\_no\_adult\_there
 		& - \\
 		\hline
-	\caption{PersonIdentification: Schnittstellen Event Bus}
+	\caption{\emph{PersonIdentificationModule}: Schnittstellen Event Bus}
 \end{longtabu}
 
 \subsubsection{Abhängigkeiten}
@@ -922,7 +922,7 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		\hline
 		runningState			& boolean				& Zustand ob die Messungen ausgewertet werden oder nicht.			& true \\ 
 		\hline
-	\caption{PersonIdentification: Interner Speicher}
+	\caption{\emph{PersonIdentificationModule}: Interner Speicher}
 \end{longtabu}
 
 
@@ -1243,14 +1243,14 @@ Der Erschütterungssensor wird standardmäßig als Diebstahlschutz verwendet um 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.4]{img/Sensorevaluation/FibaroMultiRange.png}
-	\caption{Reichweite des Bewegungssensors}
+	\caption{Reichweite des Bewegungssensors (Fibaro Multisensor)}
 	\label{fig:sensorenFibaroMultiRange}
 \end{figure}
  
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.4]{img/Sensorevaluation/FibaroMultiExamples.png}
-	\caption{Generelle Installationspunkte zum Beobachtung eines Raumes}
+	\caption{Generelle Installationspunkte zur Beobachtung eines Raumes}
 	\label{fig:sensorenFibaroMultiExamples}
 \end{figure}
 
@@ -1771,7 +1771,7 @@ Z-Wave verfügt über die Möglichkeit, Geräte als "`secure"' in das Z-Wave-Net
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/PhilioConf2.png}
-	\caption{Oberfläche des Z-Way-Servers}
+	\caption{Benutzeroberfläche des Z-Way-Servers}
 	\label{fig:sensorenPhilioConf2}
 \end{figure}
 
@@ -2073,7 +2073,7 @@ Folgender theoretischer Ablauf findet in diesem Szenario statt:
 	\hline
 	Erwachsener betätigt Schalter an schaltbarer Steckdose des Bügeleisens 	& Bügeleisen ist wieder angeschalten \\
 	\hline
-	\caption{TurnOffTimerModule: Schnittstelle Event Bus}
+	\caption{\emph{TurnOffTimerModule}: Schnittstelle Event Bus}
 \end{longtabu}
 
 
@@ -2651,7 +2651,7 @@ Aufgrund dieser Anforderungen wurde folgender Ansatz gewählt: Das Erkennungssys
 		& 110,00 \$
 		& Gestik \\
 		\hline
-	\caption{Vergleichstabelle}
+	\caption{Vergleichstabelle der Feedback-Mechanismen}
 \end{longtabu}
 
 \subsection{Einsatzmöglichkeiten im Projekt}
@@ -2801,7 +2801,7 @@ Ziel ist es, bei der Recherche zu ermitteln, wie viel CO$_2$ ein Mensch ausstö�
 
 Im letzten Gruppengespräch wurde festgelegt, dass drei verschiedene Personae angenommen werden. Diese drei Personae unterscheiden sich in Geschlecht und Alter des Menschen. Diese Annahme widerspiegelt eine Familie, die aus einem Mann, eine Frau und zwei Kindern besteht. Mittels des CO$_2$ Sensors soll es möglich sein zu erkennen, ob sich eines der beiden Kinder im Raum aufhält. Nachdem erkannt wurde, ob sich eines der beiden Kindern alleine im Raum befindet, werden anschließend automatisiert per Smart-Home-Steuerung alle Gefahrenquellen abgeschaltet.
 
-\subsubsection{Siegenia SensoAir CO$_2$-Sensor}
+\subsubsection{Siegenia Sensoair CO$_2$-Sensor}
 Der CO$_2$-Gehalt der Luft wird mit der Maßeinheit \gls{ppm}  mithilfe des Gerätes der Firma Siegenia gemessen. Der Sensor besitzt eine LED die je nach CO$_2$ Konzentration in der Luft in verschiedenen Farben aufleuchtet.
 
 \begin{longtabu} to \linewidth {
@@ -2835,7 +2835,7 @@ Der CO$_2$-Gehalt der Luft wird mit der Maßeinheit \gls{ppm}  mithilfe des Ger�
 	\hline
 	dauerhaft grün (350 ppm)				& saubere Frischluft \\
 	\hline	
-	\caption{Statusanzeige des SensoAir}
+	\caption{Statusanzeige des Siegenia Sensorair CO$_2$-Sensors}
 \end{longtabu}
 
 Um das Gerät der Firma Siegenia nutzen zu können, muss der Sensor kalibriert werden. Die Kalibrierung des Sensors dauert mindestens 30 Minuten und anschließend ist das Gerät betriebsbereit. In der Theorie sollte das Gerät erkennen wie viele Personen sich im Raum befinden und unterscheiden ob Kinder oder Erwachsener sich dort aufhalten. Um das zuordnen zu können, ist es notwendig zu evaluieren wie viel jede Person im Schnitt an CO$_2$ ausstößt.
@@ -2843,7 +2843,7 @@ Um das Gerät der Firma Siegenia nutzen zu können, muss der Sensor kalibriert w
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.4\textwidth]{img/PersonIdentification/sensoAir.png}
-	\caption{Siegenia SensoAir (Tischgerät)}
+	\caption{Siegenia Sensoair CO$_2$-Sensor (Tischgerät)}
 	\label{fig:sensoAir}
 \end{figure}
 
