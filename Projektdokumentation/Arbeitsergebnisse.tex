@@ -20,7 +20,7 @@ Sobald die letzte Person das Wohnzimmer verlassen hat, werden die Lampen im Wohn
 \subsubsection{Erforderliche Komponenten}
 \begin{itemize}
 	\item Z-Way Steuereinheit
-	\item 2 x Bewegungsmelder / Fibaro 6-in-1 Sensor pro Tür
+	\item 2 x Bewegungsmelder / Fibaro Multisensor pro Tür
 	\item Modul zur Lichtsteuerung
 \end{itemize}
 
@@ -133,7 +133,7 @@ Nach einer Weile verlässt Person Y den Raum. Das System stellt fest das sich ke
 
 \subsubsection{erforderliche Komponenten}
 \begin{itemize}
-	\item Fibaro 6 in 1 Sensor
+	\item Fibaro Multisensor
 	\item CO$_2$ Sensor
 	\item Z-Way-Server/Steuereinheit
 	\item 2 Bewegungsmelder zur Erkennung von Eintritt in den Raum
@@ -422,7 +422,7 @@ Wenn die Tür geöffnet wird, wird automatisch der Standby-Modus ausgeschaltet u
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.7]{img/Modulkonzeption/StandbyStateMachine.pdf}
-	\caption{Zustandsdiagramm – \emph{StandbyModule}}
+	\caption{\emph{StandbyModule}: Zustandsdiagramm}
 	\label{fig:standbyStateMachine}
 \end{figure}
 
@@ -518,21 +518,21 @@ Ein Feedbackmodul enthält zusätzlich die Information für welchen Raum es best
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.7]{img/Modulkonzeption/FeedbackStateMachine.pdf}
-	\caption{Zustandsdiagramm – \emph{InHomeFeedbackModule}}
+	\caption{\emph{InHomeFeedbackModule}: Zustandsdiagramm}
 	\label{fig:feedbackStateMachine}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/FeedbackSequence.pdf}
-	\caption{Sequenzdiagramm – \emph{InHomeFeedbackModule} – Beispiel 1}
+	\caption{\emph{InHomeFeedbackModule}: Sequenzdiagramm – Beispiel 1}
 	\label{fig:feedbackSequence}
 \end{figure}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/FeedbackSequenceUser.pdf}
-	\caption{Sequenzdiagramm – \emph{InHomeFeedbackModule} – Beispiel 2}
+	\caption{\emph{InHomeFeedbackModule}: Sequenzdiagramm – Beispiel 2}
 	\label{fig:feedbackSequenceUser}
 \end{figure}
 
@@ -714,7 +714,7 @@ Das Modul benötigt ein \emph{PersonCounterModule} für den Raum, in welchem es 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Modulkonzeption/PersonIdentificationStateMachine.pdf}
-	\caption{\emph{PersonIdentificationModule} - Zustandsdiagramm}
+	\caption{\emph{PersonIdentificationModule}: Zustandsdiagramm}
 	\label{fig:personIdentification}
 \end{figure}
 
@@ -988,7 +988,7 @@ Der \emph{TurnOffTimer} wurde für das Projekt so erstellt, dass nur eine Instan
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/Modulkonzeption/TurnOffTimer.png}
-	\caption{Übersicht Prioritätenverhalten}
+	\caption{\emph{TurnOffTimerModule}: Übersicht Prioritätenverhalten}
 	\label{fig:turnOffTimer}
 \end{figure}
 
@@ -1315,13 +1315,13 @@ Mit dem Parameter 24 = 4 und einer eingestellten minimalen Vibration in Paramete
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.6\textwidth]{img/Sensorevaluation/FibaroWallPlug.jpg}
-	\caption{Fibaro Wall Plug}
+	\caption{Fibaro Zwischenstecker}
 	\label{fig:sensorenFibaroWallPlug}
 \end{figure}
 
 \subsubsection{Z-Way Elemente}
 \begin{itemize}
-	\item Fibaro Wall Plug
+	\item Fibaro Zwischenstecker
 	\begin{itemize}
 		\item Binary Switch
 		\item Steuerung des Schaltzustandes
@@ -1438,12 +1438,12 @@ Mit dem Parameter 24 = 4 und einer eingestellten minimalen Vibration in Paramete
 Weitere Informationen (auch technische Details) sind dem Handbuch zu entnehmen (\url{http://www.fibaro.com/manuals/de/FGWPx-101/FGWPx-101-DE-A-v1.00.pdf}).
 
 \newpage
-\subsection{Aoetec Multisensor Sensor}
+\subsection{Aoetec Multisensor}
 \emph{(von Alexander Keller)}
 
 \subsubsection{Allgemein}
 
-Im Bereich Smarthome hat man eine riesige Auswahl von verschiedenen Sensoren. Je nach Bedarf bieten die Multisensoren verschiedene Funktionalitäten welche Bewegungen, Raumtemperatur, Licht oder andere registrieren können. Der Aeotec Sensor erfasst 6 verschiedene Messwerte. Die Sensoren messen Raumtemperatur, Lichtstärke, Luftfeuchtigkeit, Bewegung, UV-Sensor und Vibration. Diese Werte überträgt der Multisensor mit einer drahtlosen Kommunikationsschnittstelle names Z-Wave.
+Im Bereich Smarthome hat man eine riesige Auswahl von verschiedenen Sensoren. Je nach Bedarf bieten die Multisensoren verschiedene Funktionalitäten welche Bewegungen, Raumtemperatur, Licht oder andere registrieren können. Der Aeotec Multisensor erfasst 6 verschiedene Messwerte. Die Sensoren messen Raumtemperatur, Lichtstärke, Luftfeuchtigkeit, Bewegung, UV-Sensor und Vibration. Diese Werte überträgt der Multisensor mit einer drahtlosen Kommunikationsschnittstelle names Z-Wave.
 
 In unserem Projekt kommt dieser Sensor zum Einsatz, um das \emph{AlarmModule}, \emph{PersonIdentificationModule} und \emph{TurnOffHazardModule} mithilfe seiner Sensortechnik zu unterstützen.
 
@@ -1455,7 +1455,7 @@ Nachdem man das Gerät erfolgreich im Z-Way Home Center hinzugefügt hat, besteh
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/AeoScreenshot.png}
-	\caption{Übersichtsseite des Aeotec Multisensor}
+	\caption{Aeotec Multisensor: Übersichtsseite}
 	\label{fig:sensorenAeoScreenshot}
 \end{figure}
 
@@ -1505,7 +1505,7 @@ Im Reiter „Configuration“ findet man alle Einstellungsmöglichkeiten die der
 	Motion Detection &
 			(1) \uline{Send Basic Set CC.} \newline
 			(2) Send Sensor Binary Report CC. &
-					Welchen Standard soll der Aeotec Sensor sende, wenn der Bewegungssensor ausgelöst wurde \\
+					Welchen Standard soll der Aeotec Multisensor sende, wenn der Bewegungssensor ausgelöst wurde \\
 	\hline
 	Low Batterie Value &
 			X \% &
@@ -1556,7 +1556,7 @@ Im Reiter „Configuration“ findet man alle Einstellungsmöglichkeiten die der
 					Nach wie vielen Sekunden der Sensor erwachen sollen, wenn keine Aktivität vorhanden war \\
 	\hline
 		
-\caption{Konfiguration des Aeotec-Sensors} \\
+\caption{Aeotec Multisensor: Konfiguration} \\
 \end{longtabu}
 
 \subsubsection{Praxistest}
@@ -1567,7 +1567,7 @@ Die effektive Reichweite des Bewegungssensors ist begrenzt. Anhang der Skizze is
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/AeoMeter1.png}
-	\caption{Bewegungssensor in der Praxis ohne Hindernisse}
+	\caption{Aeotec Multisensor: Bewegungssensor in der Praxis ohne Hindernisse}
 	\label{fig:sensorenAeoMeter1}
 \end{figure}
 
@@ -1576,7 +1576,7 @@ Falls eine Wand oder andere Hindernisse im Weg sind muss die Berechnung des Durc
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/AeoMeter2.png}
-	\caption{Bewegungssensor in der Praxis an einer Wand}
+	\caption{Aeotec Multisensor: Bewegungssensor in der Praxis an einer Wand}
 	\label{fig:sensorenAeoMeter2}
 \end{figure}
 
@@ -1584,7 +1584,7 @@ Falls eine Wand oder andere Hindernisse im Weg sind muss die Berechnung des Durc
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/Sensorevaluation/AeoTemp.png}
-	\caption{Aoetec Temperatursensor}
+	\caption{Aeotec Multisensor: Temperatursensor}
 	\label{fig:sensorenAeoTemp}
 \end{figure}
 
@@ -1594,7 +1594,7 @@ Der Multisensor der Firma Aeotec bietet die Möglichkeit dem Nutzer die aktuelle
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/Sensorevaluation/AeoLight.png}
-	\caption{Aoetec Lichtsensor}
+	\caption{Aeotec Multisensor: Lichtsensor}
 	\label{fig:sensorenAeoLight}
 \end{figure}
 
@@ -1604,7 +1604,7 @@ In der Praxis erwies sich sich der Lichtsensor für sehr zuverlässig. Der Anwen
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/Sensorevaluation/AeoHum.png}
-	\caption{Aoetec Feuchtigkeitssensor}
+	\caption{Aeotec Multisensor: Feuchtigkeitssensor}
 	\label{fig:sensorenAeoHum}
 \end{figure}
 
@@ -1615,7 +1615,7 @@ Der Aoetec Sensor besitzt einen Luftfeuchtigkeitssensor mit diesem man die Luftf
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/Sensorevaluation/AeoVib.png}
-	\caption{Aoetec Vibrationssensor}
+	\caption{Aeotec Multisensor: Vibrationssensor}
 	\label{fig:sensorenAeoVib}
 \end{figure}
 
@@ -1625,7 +1625,7 @@ Durch den eingebauten seismischen Sensor überwacht dieser Erschütterungen und 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/Sensorevaluation/AeoUV.png}
-	\caption{Aoetec UV-Sensor}
+	\caption{Aeotec Multisensor: UV-Sensor}
 	\label{fig:sensorenAeoUV}
 \end{figure}
 
@@ -1655,7 +1655,7 @@ Nachdem der Sensor erfolgreich in das Z-Wave-Netzwerk hinzugefügt wurde, besteh
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/PhilioConf1.png}
-	\caption{Übersichtsseite des Philio 4-in-1 Multisensors}
+	\caption{Philio Multisensor: Übersichtsseite}
 	\label{fig:sensorenPhilioConf1}
 \end{figure}
 
@@ -1757,7 +1757,7 @@ Der Z-Way-Server erstellt automatisiert eine Übersichtsseite, nachdem der Senso
 					& Intervallzeit für automatische Meldung der Temperatur
 							& 1 – 127 \textrightarrow{ }Eingegebener Wert mal 30 Minuten entspricht dem Zeitwert. \newline Minimale Zeit beträgt 30 Minuten. \\
 	\hline
-\caption{Konfiguration des Philio Multisensor}
+\caption{Philio Multisensor: Konfiguration}
 \label{tab:PhilioConf}
 \end{longtabu}
 
@@ -1766,12 +1766,12 @@ Um das Gerät in das Netzwerk einbinden zu können, ist es für die erste Konfig
 
 In manchen Fällen besteht nach Recherche allerdings die Möglichkeit, dass nach dem Inkludieren keine Funktion angezeigt wird. Um dem Abhilfe zu schaffen, wurde die nachfolgende Anleitung erstellt.
 
-Z-Wave verfügt über die Möglichkeit, Geräte als "`secure"' in das Z-Wave-Netzwerk zu inkludieren. Dabei erfolgt die Kommunikation zwischen dem Sensor und dem Gateway verschlüsselt. Allerdings ist es in diesem Falle möglich, dass der Philio-Multisensor keine Zustandsänderungen an das Gateway sendet. In diesem Fall muss die Experten-Oberfläche des Z-Way-Servers geöffnet werden. (\prettyref{fig:sensorenPhilioConf2}).
+Z-Wave verfügt über die Möglichkeit, Geräte als "`secure"' in das Z-Wave-Netzwerk zu inkludieren. Dabei erfolgt die Kommunikation zwischen dem Sensor und dem Gateway verschlüsselt. Allerdings ist es in diesem Falle möglich, dass der Philio Multisensor keine Zustandsänderungen an das Gateway sendet. In diesem Fall muss die Experten-Oberfläche des Z-Way-Servers geöffnet werden. (\prettyref{fig:sensorenPhilioConf2}).
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/PhilioConf2.png}
-	\caption{Benutzeroberfläche des Z-Way-Servers}
+	\caption{Philio Multisensor: Benutzeroberfläche des Z-Way-Servers}
 	\label{fig:sensorenPhilioConf2}
 \end{figure}
 
@@ -1780,7 +1780,7 @@ Anschließend sind die Netzwerkeinstellungen zu öffnen, auf der Experten-Oberfl
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/PhilioConf3.png}
-	\caption{Experten-Oberfläche}
+	\caption{Philio Multisensor: Experten-Oberfläche}
 	\label{fig:sensorenPhilioConf3}
 \end{figure}
 
@@ -1789,21 +1789,21 @@ An dieser Stelle besteht die Möglichkeit, die Art der Inklusion von "`secure"' 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/PhilioConf4.png}
-	\caption{Auswahl des Inkludiermodus}
+	\caption{Philio Multisensor: Auswahl des Inkludiermodus}
 	\label{fig:sensorenPhilioConf4}
 \end{figure}
 
-Wenn nun die kleine Schalter-Lasche des Sensors dreimal hintereinander (innerhalb von 1,5 Sekunden) betätigt wird, sollte der Multisensor erfolgreich in das Z-Way-Netzwerk integriert worden sein. Auf der Smart Home Benutzeroberfläche werden die Elemente automatisch generiert, welche die Funktionen des Philio-Multisensors darstellen (\prettyref{fig:sensorenPhilioElements}).
+Wenn nun die kleine Schalter-Lasche des Sensors dreimal hintereinander (innerhalb von 1,5 Sekunden) betätigt wird, sollte der Multisensor erfolgreich in das Z-Way-Netzwerk integriert worden sein. Auf der Smart Home Benutzeroberfläche werden die Elemente automatisch generiert, welche die Funktionen des Philio Multisensors darstellen (\prettyref{fig:sensorenPhilioElements}).
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{img/Sensorevaluation/PhilioElements.png}
-	\caption{Elemente des Philio Multisensors}
+	\caption{Philio Multisensor: Elemente}
 	\label{fig:sensorenPhilioElements}
 \end{figure}
 
 \newpage
-\subsection{Sensoair Z-Wave CO$_2$ Sensor (Tischgerät)}
+\subsection{Sensoair Z-Wave CO$_2$-Sensor (Tischgerät)}
 
 \subsubsection{Beschreibung}
 Der Sensor misst die CO$_2$-Konzentration in der Luft in \gls{ppm}. Um die CO$_2$-Konzentration in geschlossenen Räumen erkennen zu können, nutzt die Einheit zwei Sensoren. Der gemessene Werte wird auch über die drei LEDs am Gehäuse symbolisiert. Dabei besitzt der Sensor sieben \gls{ppm}-Warnstufen, welche mithilfe der drei LEDs darstellt werden (\prettyref{fig:sensorenSensoair}).
@@ -1883,7 +1883,7 @@ Bevor der Sensor seine Arbeit aufnehmen kann, muss er kalibriert werden. Dazu mu
 		\hline
 		7					& Aktiviert die LED an der Frontseite. \\
 		\hline
-		\caption{Sensoair Konfiguration für Parameter 1.}
+		\caption{Sensoair CO$_2$-Sensor: Konfiguration für Parameter 1.}
 	\end{longtabu}
 	\item [Parameter 2] ist das Zeitintervall bei gesetztem Bit 1 und kann auf 1 bis 255 Sekunden gesetzt werden.
 \end{description}
@@ -1952,7 +1952,7 @@ Die Funktionen der Buttons werden über vier "`Command to Control Groups"' defin
 	Button 4		& doppelter Klick: Gruppe D & Gruppe D \\
 	\hline
 	
-	\caption{Buttons und Assoziationsgruppen des Popp Wall Controllers}
+	\caption{Popp Wall Controller: Buttons und Assoziationsgruppen}
 \end{longtabu}
 
 Alle Buttons unterstützen verschiedene Klickarten und bieten so Mehrfachfunktionalität. Wenn die Buttons separat verwendet werden, können sie wie folgt geklickt werden:
@@ -2035,13 +2035,13 @@ In einem Versuchsaufbau wurde das oben beschriebene Szenario mit den genannten M
 Für den Versuchsaufbau wurden folgende Geräte verwendet:
 
 \begin{description}
-\item [Philio und Fibaro Bewegungssensor] Für die Personenerkennung und Zählung an der Tür wurden Bewegungssensoren verwendet. Am besten für einen Türdurchgang sind die Fibaro Bewegungssensoren zu verwenden, da diese auf eine minimale Reaktionszeit von einer Sekunde konfigurierbar sind, d.h. jede Sekunde kann eine Bewegung erkannt werden. Andere vorhandene Bewegungssensoren sind träger und lassen nur eine weitaus höhere Reaktionszeit von 10 bis 18 Sekunden zu, was vorallem bei einem Szenario mit mehreren Personen von Nachteil ist.
+\item [Philio und Fibaro Multisensoren] Für die Personenerkennung und Zählung an der Tür wurden Bewegungssensoren verwendet. Am besten für einen Türdurchgang sind die Fibaro Bewegungssensoren zu verwenden, da diese auf eine minimale Reaktionszeit von einer Sekunde konfigurierbar sind, d.h. jede Sekunde kann eine Bewegung erkannt werden. Andere vorhandene Bewegungssensoren sind träger und lassen nur eine weitaus höhere Reaktionszeit von 10 bis 18 Sekunden zu, was vorallem bei einem Szenario mit mehreren Personen von Nachteil ist.
 
 \item [Sensoair CO$_2$ Sensor und Aeotec Bewegungssensor] Zur Personenidentifikation wird zum einen der Aeotec Bewegungssensor verwendet, um einen Erwachsenen zu erkennen. Zum anderen wird der CO$_2$ Sensor benutzt um die Erkennung des Bewegungssensors zu überprüfen.
 
 \item [Popp Wall Controller] Der Schalter wird verwendet, um das \emph{InHomeFeedbackModule} zu steuern. Doppeltes Klicken des Button 2 bewirkt, dass ein laufendes Feedback abgebrochen wird und somit die Anwesenheit von Personen signalisiert wird.
 
-\item [Fibaro Wall Plug] Der schaltbare Zwischenstecker mit einer angeschlossenen Schreibtischlampe wird vom \emph{InHomeFeedbackModule} genutzt. Bei Aktivierung des Feedback-Modus schaltet die Steckdose sekündlich an und aus.
+\item [Fibaro Zwischenstecker] Der schaltbare Zwischenstecker mit einer angeschlossenen Schreibtischlampe wird vom \emph{InHomeFeedbackModule} genutzt. Bei Aktivierung des Feedback-Modus schaltet die Steckdose sekündlich an und aus.
 
 \item [Gefahrenquelle] Hier simuliert dargestellt als ein Dummy Modul, was ein Bügeleisen darstellen soll. Dieses Gerät wird letztendlich vom \emph{TurnOffHazardModule} nach Ablauf des Timers deaktiviert.
 \end{description}
@@ -2057,23 +2057,23 @@ Folgender theoretischer Ablauf findet in diesem Szenario statt:
 	\textbf{Aktionen des Benutzers}									& \textbf{Reaktion des Systems} \\
 	\hline
 	\endhead
-	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
+	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, die Personenerkennung erkennt die Person als Erwachsenen anhand der Höhenmessung, Start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
 	\hline
-	Kind betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifkator erkennt Person als Kind anhand der Höhenmessung, start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
+	Kind betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, die Personenerkennung erkennt die Person als Kind anhand der Höhenmessung, Start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
 	\hline
 	Erwachsener fängt an zu Bügeln	& - \\
 	\hline
 	Erwachsener beendet bügeln und lässt Bügeleisen an	& - \\
 	\hline
-	Erwachsener verlässt den Raum	& Personenzähler vermindert Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung, Feedbackmodul und Timermodul wird aktiviert \\
+	Erwachsener verlässt den Raum	& Personenzähler vermindert Personenzahl im Raum um eins, die Personenerkennung erkennt die Person als Erwachsenen anhand der Höhenmessung, Start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung, \emph{InHomeFeedbackModule} und \emph{TurnOffTimerModule} wird aktiviert \\
 	\hline
-	-	& Nach dem Ablauf des Timers wird das Feedbackmodul deaktiviert und das Bügeleisen abgeschalten. \\
+	-	& Nach dem Ablauf des Timers wird das \emph{InHomeFeedbackModule} deaktiviert und das Bügeleisen abgeschaltet. \\
 	\hline
-	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, Personidentifikator erkennt Person als Erwachsener anhand der Höhenmessung, start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
+	Erwachsener betritt den Raum	& Personenzähler erhöht Personenzahl im Raum um eins, die Personenerkennung erkennt die Person als Erwachsenen anhand der Höhenmessung, Start der CO$_2$ Messung zur Bestätigung des Ergebnisses der Höhenmessung \\
 	\hline
-	Erwachsener betätigt Schalter an schaltbarer Steckdose des Bügeleisens 	& Bügeleisen ist wieder angeschalten \\
+	Erwachsener betätigt Schalter an der schaltbaren Steckdose des Bügeleisens 	& Bügeleisen ist wieder angeschaltet \\
 	\hline
-	\caption{\emph{TurnOffTimerModule}: Schnittstelle Event Bus}
+	\caption{Ablauf einer Gefahrenquellenabschaltung}
 \end{longtabu}
 
 
@@ -2122,7 +2122,7 @@ Für den Versuchsaufbau wurden folgende Geräte verwendet:
 	
 	\item [Philio 4-in-1 Multisensor] Der Tür- und Fensterkontakt dieses Sensors wird als Auslöser für die Alarmanlage genutzt. Wurde die Wohnung verschlossen und das \emph{AlarmModule} aktiviert, werden Zustandsänderungen des Kontakts als Einbruch interpretiert. Daraufhin wird der Alarm aktiviert. Da keine entsprechende Sirene zur Verfügung steht, setzt das \emph{AlarmModule} einen HTTP-Request ab, lässt eine Website blinken und spielt dort einen Alarmton ab.
 	
-	\item [Fibaro Wall Plug] Der schaltbare Zwischenstecker mit einer angeschlossenen Schreibtischlampe wird vom \emph{InHomeFeedbackModule} genutzt. Bei Aktivierung Feedback-Modus schaltet die Steckdose sekündlich an und aus.
+	\item [Fibaro Zwischenstecker] Der schaltbare Zwischenstecker mit einer angeschlossenen Schreibtischlampe wird vom \emph{InHomeFeedbackModule} genutzt. Bei Aktivierung Feedback-Modus schaltet die Steckdose sekündlich an und aus.
 	
 	\item [Weitere Bewegungsmelder] Für die Personenerkennung und Zählung an der Tür wurden weitere Sensoren (insbesondere Bewegungsmelder) verwendet. Da diese nicht in direktem Zusammenhang mit dem \emph{AlarmModule} stehen, wird deren Verwendung hier nicht näher beschrieben, statt dessen sei auf den Abschnitt "`Gefahrenquellenabschaltung"' (\prettyref{sec:gefahrenquellenabschaltung}) verwiesen.
 \end{description}
