@@ -1105,11 +1105,11 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 \emph{(von Alexander Keller)}
 
 \subsubsection{Allgemein}
-Das \emph{AlarmModule} hat die Aufgabe einen Merhpersonenhaushalt vor Gefahren wie z.B. Einbrechern zu schützen. Die Herausforderung bei diesem Modul ist es, eine Logik zu entwickeln, die berücksichtigt den Alarm dann zu aktivieren, wenn sich keine Personen mehr in den Räumen befinden. Voraussetzung ist, das dass Modul eine Verbindung zu dem Personerkennungsmodul herstellt, um bestimmte Zustände abzufragen.
+Das \emph{AlarmModule} hat die Aufgabe einen Mehrpersonenhaushalt vor Gefahren wie z.B. Einbrechern zu schützen. Die Herausforderung bei diesem Modul ist es, eine Logik zu entwickeln, die berücksichtigt den Alarm dann zu aktivieren, wenn sich keine Personen mehr in den Räumen befinden. Voraussetzung ist, dass das Modul eine Verbindung zu dem Personerkennungsmodul herstellt, um bestimmte Zustände abzufragen.
 
-Ein weiterer wichtiger Punkt ist es im Modul den Nutzer eine Feedbackmöglichkeit zu geben, sobald der Alarm ausgelöst wurde. Z-Way arbeitet derzeit noch nicht mit dem HomeKit Service von Apple zusammen.
+Ein weiterer wichtiger Punkt ist es im Modul dem Nutzer eine Feedbackmöglichkeit zu geben, sobald der Alarm ausgelöst wurde. Z-Way arbeitet derzeit noch nicht mit dem HomeKit Service von Apple zusammen.
 
-Der Nutzer soll die Möglichkeit haben die Sensoren selbst auszuwählen. Das gibt den Nutzer enorm viel Freiheiten was die Konfiguration des Alarm Moduls betrifft.
+Der Nutzer soll die Möglichkeit haben die Sensoren selbst auszuwählen. Das gibt dem Nutzer enorm viel Freiheiten was die Konfiguration des Alarm Moduls betrifft.
 
 \noindent
 Dieses Modul kann in folgenden Entwicklungsabschnitten eingeteilt werden:
@@ -1151,7 +1151,7 @@ Im nächsten Abschnitt der Oberfläche kann der Nutzer wählen, welche Feedback-
 	\label{fig:alarmModule3}
 \end{figure}
 
-Nach der Konfiguration kann der Nutzer das Modul vollständig nutzen. Wenn das Alarm Modul scharf geschaltet wurde, wird 30 Sekunden lang geprüft ob sich Personen in den Räumen aufhalten. Sobald festgestellt wurde dass sich noch Personen im Haushalt befinden, wird der Alarm abgebrochen. Wenn sich keine Personen mehr in den Räumen aufhalten sind alle Sensoren die in der Konfiguration ausgewählt wurden scharf geschaltet. Sobald einer dieser Sensoren ausgelöst wurde, bekommt der Nutzer per Feedback eine E-Mail oder SMS-Nachricht.
+Nach der Konfiguration kann der Nutzer das Modul vollständig nutzen. Wenn das Alarm Modul scharf geschaltet wurde, wird 30 Sekunden lang geprüft ob sich Personen in den Räumen aufhalten. Sobald festgestellt wurde, dass sich noch Personen im Haushalt befinden, wird der Alarm abgebrochen. Wenn sich keine Personen mehr in den Räumen aufhalten sind alle Sensoren die in der Konfiguration ausgewählt wurden scharf geschaltet. Sobald einer dieser Sensoren ausgelöst wurde, bekommt der Nutzer per Feedback eine E-Mail oder SMS-Nachricht.
 
 \begin{figure}[h!]
 	\centering
@@ -1164,7 +1164,7 @@ Nach der Konfiguration kann der Nutzer das Modul vollständig nutzen. Wenn das A
 Dieses Modul bietet keine Schnittstellen an.
 
 \subsubsection{Externe Aufrufe}
-Z-Way unterstützt HTTP-Aufrufe, welche es ermöglichen Geräte anzusteuern die beispielsweise per JSON/REST Protokoll und Webschnittstelle fungieren. Bose, Philipps Hue und viele andere namenhafte Hersteller setzen auf diesen Standard und ermöglichen es mit einfacher Programmierung diese per Web-Protokoll anzusprechen. Im Beispiel Alarm Modul wurde zur Anschaulichkeit ein HTTP-Request Aufruf integriert der per CSS eine Webseite abwechselnd weiß - rot blinken lässt.
+Z-Way unterstützt HTTP-Aufrufe, welche es ermöglichen Geräte anzusteuern, die beispielsweise per JSON/REST Protokoll und Webschnittstelle fungieren. Bose, Philipps Hue und viele andere namenhafte Hersteller setzen auf diesen Standard und ermöglichen es mit einfacher Programmierung diese per Web-Protokoll anzusprechen. Im Beispiel Alarm Modul wurde zur Anschaulichkeit ein HTTP-Request Aufruf integriert der per CSS eine Webseite abwechselnd weiß - rot blinken lässt.
 
 \begin{listing}
 \begin{minted}[numbers=left, tabsize=4, bgcolor=lbcolor, breaklines=true]{javascript}
