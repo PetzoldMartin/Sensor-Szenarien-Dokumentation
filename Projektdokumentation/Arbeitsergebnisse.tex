@@ -1100,6 +1100,87 @@ Dieses Beispielszenario ist nachfolgend in einem Sequenzdiagramm modelliert wurd
 	\item Historie zum Speichern der Abschaltzeiten und Abschaltbegründung der Gefahrenquellen
 \end{itemize}
 
+\newpage
+\subsection{AlarmModule}
+\emph{(von Alexander Keller)}
+
+\subsubsection{Allgemein}
+Das \emph{AlarmModule} hat die Aufgabe einen Merhpersonenhaushalt vor Gefahren wie z.B. Einbrechern zu schützen. Die Herausforderung bei diesem Modul ist es, eine Logik zu entwickeln, die berücksichtigt den Alarm dann zu aktivieren, wenn sich keine Personen mehr in den Räumen befinden. Voraussetzung ist, das dass Modul eine Verbindung zu dem Personerkennungsmodul herstellt, um bestimmte Zustände abzufragen.
+
+Ein weiterer wichtiger Punkt ist es im Modul den Nutzer eine Feedbackmöglichkeit zu geben, sobald der Alarm ausgelöst wurde. Z-Way arbeitet derzeit noch nicht mit dem HomeKit Service von Apple zusammen.
+
+Der Nutzer soll die Möglichkeit haben die Sensoren selbst auszuwählen. Das gibt den Nutzer enorm viel Freiheiten was die Konfiguration des Alarm Moduls betrifft.
+
+\noindent
+Dieses Modul kann in folgenden Entwicklungsabschnitten eingeteilt werden:
+
+\begin{itemize}
+\item Grundgerüst UI
+\item Funktionalitäten
+	\begin{itemize}
+		\item Auswahl der Sensoren (komplexe Auswahl von Multisensoren)
+		\item Feedbackmechanismus (Mail, Push, SMS)
+		\item Verbindung zu externen Modulen (Personenerkennung)
+	\end{itemize}
+\item Testen
+\end{itemize}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.2\textwidth]{img/Modulkonzeption/AlarmModule1.png}
+	\caption{\emph{AlarmModule}: Logo}
+	\label{fig:alarmModule1}
+\end{figure}
+
+\subsubsection{Funktionsweise}
+Nachdem der Nutzer das Alarm Modul in der Z-Way Oberfläche angelegt hat, muss er festlegen welche Sensoren er zur Überwachung nutzen möchte. In der Liste befinden sich alle Sensoren die im Z-Way-Server hinterlegt sind. Der Nutzer hat die Möglichkeit komplexe Abfragen einzustellen. Beispielsweise gibt es Sensoren die die Lichtintensität oder Erschütterungen wahrnehmen. Das Alarm Modul kann diese Werte abfragen und anschließend den Alarm auslösen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/Modulkonzeption/AlarmModule2.png}
+	\caption{\emph{AlarmModule}: Konfiguration}
+	\label{fig:alarmModule2}
+\end{figure}
+
+Im nächsten Abschnitt der Oberfläche kann der Nutzer wählen, welche Feedback-Option er nutzen möchte. Derzeit gibt es zwei kostenlose Dienste im russischen Raum. Es handelt sich dabei um einen SMS \& E-Mail Service. Es ist erforderlich sich bei den Diensten zu registrieren. Anschließend erhält der Nutzer einen API Key der in der Oberfläche des Alarm Moduls einzutragen ist. Der Nutzer wird bei Falscheingaben sofort informiert.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/Modulkonzeption/AlarmModule3.png}
+	\caption{\emph{AlarmModule}: Konfiguration (2)}
+	\label{fig:alarmModule3}
+\end{figure}
+
+Nach der Konfiguration kann der Nutzer das Modul vollständig nutzen. Wenn das Alarm Modul scharf geschaltet wurde, wird 30 Sekunden lang geprüft ob sich Personen in den Räumen aufhalten. Sobald festgestellt wurde dass sich noch Personen im Haushalt befinden, wird der Alarm abgebrochen. Wenn sich keine Personen mehr in den Räumen aufhalten sind alle Sensoren die in der Konfiguration ausgewählt wurden scharf geschaltet. Sobald einer dieser Sensoren ausgelöst wurde, bekommt der Nutzer per Feedback eine E-Mail oder SMS-Nachricht.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/Modulkonzeption/AlarmModule4.png}
+	\caption{\emph{AlarmModule}: Elementansicht}
+	\label{fig:alarmModule4}
+\end{figure}
+
+\subsubsection{Schnittstellen}
+Dieses Modul bietet keine Schnittstellen an.
+
+\subsubsection{Externe Aufrufe}
+Z-Way unterstützt HTTP-Aufrufe, welche es ermöglichen Geräte anzusteuern die beispielsweise per JSON/REST Protokoll und Webschnittstelle fungieren. Bose, Philipps Hue und viele andere namenhafte Hersteller setzen auf diesen Standard und ermöglichen es mit einfacher Programmierung diese per Web-Protokoll anzusprechen. Im Beispiel Alarm Modul wurde zur Anschaulichkeit ein HTTP-Request Aufruf integriert der per CSS eine Webseite abwechselnd weiß - rot blinken lässt.
+
+\begin{listing}
+\begin{minted}[numbers=left, tabsize=4, bgcolor=lbcolor, breaklines=true]{javascript}
+http.request({
+	url: 'http://sensor.fh-zwickau.de/index.php?option=com_sensor&task=sensor.setAlarmState &level=off&format=json',
+	type: 'GET',
+	async: true,
+	dataType: "json",
+	error: function(response) {
+		self.controller.addNotification("error", response.statusText, "module", 'AlarmModule');
+	}
+\end{minted}
+\caption{\emph{AlarmModule} - Beispiel eines HTTP-Request}
+\label{lst:alarmModuleHTTPRequest}
+\end{listing}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Auswahl der Sensoren}
