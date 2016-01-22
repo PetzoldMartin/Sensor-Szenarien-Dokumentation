@@ -830,19 +830,19 @@ Ein idealer Raum ist dadurch definiert, dass er keinen Luftaustausch mit der Umg
 		& Gibt ein Boolean zurück ob sich im Raum Erwachsene befinden. \\ 
 		\hline 
 		/command/setPersons		
-		& Anzahl, Erwachsenenanzahl		% TODO: wie heißen die Parameter wirklich?	 		
-		& Setzt die Anzahl der Personen im Raum und startet C02-Messung. \\
+		& Anzahl, Erwachsenenanzahl	(\emph{personCount})
+		& Setzt die Anzahl der Personen im Raum und startet CO$_2$-Messung. \\
 		\hline 
 		/command/giveData
 		& - 				
 		& Gibt die Personen-, Erwachsenen- und Kinderanzahl an, die das System registriert hat. \\
 		\hline
 		/command/setCorrectionFactor
-		& Factor
+		& Factor (\emph{correctionFactor})
 		& Korrekturfaktor für die CO$_2$-Messung. \\
 		\hline
 		/command/setMeasureTimeDelta
-		& TimeDelta
+		& TimeDelta (\emph{highmeasureWaitingtime})
 		& Zeitabstand zwischen Änderung des PersonCounter und Höhenmessung, welche noch einen Zusammenhang darstellen. \\
 		\hline
 		/command/start
@@ -1371,13 +1371,10 @@ Mit diesen eingestellten Parametern kann nun bei einem Türdurchgang mit zwei so
 
 \subsubsection{Weitere Funktionalitäten}
 Mit dem Parameter 24 = 4 und einer eingestellten minimalen Vibration in Parameter 20 sowie einem Intervall in Parameter 22 in Sekunden kann ein Seismograph eingestellt werden. Dabei wird ab dem Erreichen des Minimalwertes intervallmäßig der erkannte Erschütterungswert gesendet solang die Erschütterung über dem Minimalwert anhält.
-%TODO Quellen ergänzen
-%Weitere Einstellungen, sowie alle konkreten Wertebereiche sind in der Anleitung Motion-Sensor_EN_5.3.14.pdf zu finden.
+Weitere Einstellungen, sowie alle konkreten Wertebereiche sind in der offiziellen Anleitung des Motion Sensor\footnote{\url{http://www.fibaro.com/manuals/en/Motion-Sensor/Motion-Sensor_EN_5.3.14.pdf}} zu finden.\\
 
-%http://www.fibarouk.co.uk/counting-people-using-two-motion-sensors/
-%http://www.fibaro.com/manuals/en/Motion-Sensor/Motion-Sensor_EN_5.3.14.pdf
-%http://www.fibaro.com/de/the-fibaro-system/motion-sensor
-%http://www.fibaro.com/sites/all/themes/fibaro/images/motion-sensor/en/motion_sensor_02.png
+\noindent
+Die vorangegangen Ausführungen beziehen sich auf die Onlinequellen \glqq Counting People using two Motion Sensors\grqq\footnote{\url{http://www.fibarouk.co.uk/counting-people-using-two-motion-sensors/}} und \glqq Das Fibaro System - Motion Sensor\grqq\footnote{\url{http://www.fibaro.com/de/the-fibaro-system/motion-sensor}}. 
 
 \newpage
 \subsection{Fibaro Wall Plug (FGWPx-102) – Zwischenstecker}
@@ -2946,13 +2943,7 @@ Da das zu entwickelnde Modul ein sehr hohes Maß an Zuverlässigkeit mit sich
 bringen sollte, ist die Annahme, die Persona via CO$_2$ zu bestimmen nicht aussagekräftig genug. Von Dr. med. S. Blasko kam ebenfalls der Vorschlag, dieses System anhand eines Türsensors umzusetzen. Dieser bestimmt die Größe der Person, um dann entscheiden zu können, ob es sich um ein Kind oder einen Erwachsenen handelt.
 
 \subsubsection{Internetrecherche}
-Eine Recherche im Internet lieferte schlussendlich das gleiche Ergebnis wie  Dr. med. S. Blasko ausführlich erklärte. Der Stoffwechsel eines jeden Menschen ist derart grundverschiedenen, dass es ist nicht möglich ist, mithilfe einer Konstante festzulegen welche Persona sich im Raum aufhält.
+Eine Recherche im Internet lieferte schlussendlich das gleiche Ergebnis wie  Dr. med. S. Blasko ausführlich erklärte. Der Stoffwechsel eines jeden Menschen ist derart grundverschiedenen, dass es ist nicht möglich ist, mithilfe einer Konstante festzulegen welche Persona sich im Raum aufhält.\\
 
-%TODO Quellen
-%Webquellen
-%[Pep 1]		Z-Wave Device Library
-%http://www.pepper1.net/zwavedb/device/585
-%[Zwa 1]		Z-Wave Erfahrungsbericht
-%http://www.zwave-review.com/tests/Phlio_mutisensor.php
-%[Zwa 2]		Problembehebung mit Philip Mehrfachsensor
-%http://www.zwave.de/problembehebung-mit-philio-mehrfachsensor/
+\noindent
+Die vorangegangenen Ausführungen beziehen sich auf die Onlinequellen \glqq Z-Wave Device Library\grqq\footnote{\url{http://www.pepper1.net/zwavedb/device/585}}, \glqq Z-Wave Erfahrungsbericht\grqq\footnote{\url{http://www.zwave-review.com/tests/Phlio_mutisensor.php}} und \glqq Problembehebung mit Philip Mehrfachsensor\grqq\footnote{\url{http://www.zwave.de/problembehebung-mit-philio-mehrfachsensor/}}.
